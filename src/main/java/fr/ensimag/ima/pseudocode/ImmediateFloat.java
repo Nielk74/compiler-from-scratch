@@ -4,7 +4,7 @@ package fr.ensimag.ima.pseudocode;
  * Immediate operand containing a float value.
  * 
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class ImmediateFloat extends DVal {
     private float value;

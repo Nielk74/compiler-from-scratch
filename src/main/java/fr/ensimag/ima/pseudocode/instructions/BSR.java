@@ -7,7 +7,7 @@ import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
 /**
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class BSR extends UnaryInstruction {
 

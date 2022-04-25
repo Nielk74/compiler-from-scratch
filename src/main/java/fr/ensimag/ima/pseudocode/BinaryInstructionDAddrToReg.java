@@ -5,7 +5,7 @@ package fr.ensimag.ima.pseudocode;
  * DAddr, and the second a Register.
  *
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class BinaryInstructionDAddrToReg extends BinaryInstructionDValToReg {
 

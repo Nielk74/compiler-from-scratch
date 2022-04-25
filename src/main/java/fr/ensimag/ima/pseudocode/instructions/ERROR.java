@@ -5,7 +5,7 @@ import fr.ensimag.ima.pseudocode.NullaryInstruction;
 /**
  *
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class ERROR extends NullaryInstruction {
 

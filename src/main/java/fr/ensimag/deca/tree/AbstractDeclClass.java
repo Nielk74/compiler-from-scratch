@@ -6,8 +6,8 @@ import fr.ensimag.deca.context.ContextualError;
 /**
  * Class declaration.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author gl10
+ * @date 25/04/2022
  */
 public abstract class AbstractDeclClass extends Tree {
 

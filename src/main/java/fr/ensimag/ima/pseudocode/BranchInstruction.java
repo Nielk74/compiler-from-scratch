@@ -3,7 +3,7 @@ package fr.ensimag.ima.pseudocode;
 /**
  *
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class BranchInstruction extends UnaryInstruction {
 

@@ -7,7 +7,7 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 /**
  *
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class QUO extends BinaryInstructionDValToReg {
 

@@ -7,8 +7,8 @@ import org.apache.commons.lang.Validate;
 /**
  * Binary expressions.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author gl10
+ * @date 25/04/2022
  */
 public abstract class AbstractBinaryExpr extends AbstractExpr {
 

@@ -1,7 +1,7 @@
 #! /bin/sh
 
-# Auteur : @AUTHOR@
-# Version initiale : @DATE@
+# Auteur : gl10
+# Version initiale : 25/04/2022
 
 # Test minimaliste de la vérification contextuelle.
 # Le principe et les limitations sont les mêmes que pour basic-synt.sh

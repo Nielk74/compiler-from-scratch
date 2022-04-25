@@ -7,7 +7,7 @@ import java.io.PrintStream;
  * generated code.
  *
  * @author Ensimag
- * @date @DATE@
+ * @date 25/04/2022
  */
 public class InlinePortion extends AbstractLine {
     private final String asmCode;

@@ -8,8 +8,8 @@ import fr.ensimag.deca.context.EnvironmentExp;
 
 /**
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author gl10
+ * @date 25/04/2022
  */
 public class Modulo extends AbstractOpArith {
 
