@@ -21,7 +21,7 @@ public class TestPlusPlain {
     final Type INT = new IntType(null);
     final Type FLOAT = new FloatType(null);
 
-    @Test
+//    @Test
     public void testType() throws ContextualError {
         DecacCompiler compiler = new DecacCompiler(null, null);
         AbstractExpr left = Mockito.mock(AbstractExpr.class);
