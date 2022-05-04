@@ -97,8 +97,10 @@ decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
 
 list_inst returns[ListInst tree]
 @init {
+    $tree = new ListInst();
 }
-    : (inst {
+    : (i=inst {
+            $tree.add($i.tree);
         }
       )*
     ;
@@ -108,6 +110,7 @@ inst returns[AbstractInst tree]
             assert($e1.tree != null);
         }
     | SEMI {
+            $tree = new NoOperation();
         }
     | PRINT OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
@@ -360,7 +363,9 @@ ident returns[AbstractIdentifier tree]
 /****     Class related rules     ****/
 
 list_classes returns[ListDeclClass tree]
-    :
+@init   {
+            $tree = new ListDeclClass();
+        }    :
       (c1=class_decl {
         }
       )*
