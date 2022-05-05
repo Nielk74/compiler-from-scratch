@@ -11,11 +11,29 @@ options {
 @members {
 }
 
+//Ignore
+LINE_COMMENT: ('//' ~[\r\n]*) { skip(); };
+SPACES: ('\n'|' ') { skip(); };
+//Syntaxe
 OBRACE: '{';
 CBRACE: '}';
+OPARENT: '(';
+CPARENT: ')';
+COMMA: ',';
+EQUALS: '=';
 SEMI: ';';
-
-SPACES: ('\n'|' ') { skip(); };
+EOL: '\n';
+//Mots réservés
+NEW: 'new';
+//Fonctions
+PRINT: 'print';
+PRINTLN: 'println';
+PRINTX: 'printx';
+PRINTLNX: 'printlnx';
+//Types
+STRING_CAR: ~('"' | '\\' | '\n');
+STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
+MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
 
 // Deca lexer rules.
 DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
