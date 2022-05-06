@@ -19,13 +19,17 @@ public class SymbolTable {
     private Map<String, Symbol> map = new HashMap<String, Symbol>();
 
     /**
+     * Precondition: name != null
      * Create or reuse a symbol.
      * 
      * If a symbol already exists with the same name in this table, then return
      * this Symbol. Otherwise, create a new Symbol and add it to the table.
      */
     public Symbol create(String name) {
-        throw new UnsupportedOperationException("Symbol creation");
+        if (name == null)
+            throw new IllegalArgumentException("name should not be null");
+        Symbol s = new Symbol(name);
+        return map.put(name, s);
     }
 
     public static class Symbol {
