@@ -13,7 +13,7 @@ options {
 
 //Ignore
 LINE_COMMENT: ('//' ~[\r\n]*) { skip(); };
-SPACES: ('\n'|' ') { skip(); };
+SPACES: ('\r'|'\t'|'\n'|' ') { skip(); };
 //Syntaxe
 OBRACE: '{';
 CBRACE: '}';
