@@ -23,6 +23,8 @@ public class EnvironmentExp {
     // A FAIRE : implémenter la structure de donnée représentant un
     // environnement (association nom -> définition, avec possibilité
     // d'empilement).
+    
+    //List listDictionnaries = new LinkedList<HashMap<String, ExpDefinition>>();
 
     EnvironmentExp parentEnvironment;
     
@@ -58,6 +60,7 @@ public class EnvironmentExp {
      *
      */
     public void declare(Symbol name, ExpDefinition def) throws DoubleDefException {
+        //06052202 -> Ajouter à listDictionnaries ?
         throw new UnsupportedOperationException("not yet implemented");
     }
 
