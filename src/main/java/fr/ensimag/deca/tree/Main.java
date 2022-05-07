@@ -33,7 +33,6 @@ public class Main extends AbstractMain {
         this.declVariables.verifyListDeclVariable(compiler, null, null);
         this.insts.verifyListInst(compiler, null, null, compiler.environmentType.VOID);
         LOG.debug("verify Main: end");
-        // throw new UnsupportedOperationException("not yet implemented");
     }
 
     @Override

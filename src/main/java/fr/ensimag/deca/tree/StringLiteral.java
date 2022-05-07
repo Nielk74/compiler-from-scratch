@@ -36,7 +36,6 @@ public class StringLiteral extends AbstractStringLiteral {
             ClassDefinition currentClass) throws ContextualError {
         this.setType(compiler.environmentType.STRING);
         return compiler.environmentType.STRING;
-        // throw new UnsupportedOperationException("not yet implemented");
     }
 
     @Override
