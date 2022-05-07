@@ -50,6 +50,9 @@ fragment STRING_CAR: ~('"' | '\\' | '\n');
 STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
 fragment MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
 
+fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
+IDENT: (LETTER | '$' | '_')+;
+
 // Deca lexer rules.
 DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
                 // A FAIRE : Il faut la supprimer et la remplacer par les vraies règles.
