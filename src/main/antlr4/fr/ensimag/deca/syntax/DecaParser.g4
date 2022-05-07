@@ -115,7 +115,7 @@ inst returns[AbstractInst tree]
     | PRINT OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
             $tree = new Print(false, $list_expr.tree);
-            setLocation($tree, $list_expr.start);
+            setLocation($tree, $PRINT);
         }
     | PRINTLN OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
@@ -362,8 +362,10 @@ type returns[AbstractIdentifier tree]
 
 literal returns[AbstractExpr tree]
     : INT {
+            $tree = new IntLiteral(Integer.parseInt($INT.text));
         }
     | fd=FLOAT {
+            $tree = new FloatLiteral(Float.parseFloat($fd.text));
         }
     | str=STRING {
             $tree = new StringLiteral($str.text.substring(1, $str.text.length() - 1));
