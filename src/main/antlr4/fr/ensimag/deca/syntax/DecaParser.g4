@@ -120,7 +120,7 @@ inst returns[AbstractInst tree]
     | PRINTLN OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
             $tree = new Println(false, $list_expr.tree);
-            setLocation($tree, $list_expr.start);
+            setLocation($tree, $PRINTLN);
         }
     | PRINTX OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
@@ -172,6 +172,7 @@ expr returns[AbstractExpr tree]
     : assign_expr {
             assert($assign_expr.tree != null);
             $tree = $assign_expr.tree;
+            setLocation($tree, $assign_expr.start);
         }
     ;
 
@@ -365,7 +366,7 @@ literal returns[AbstractExpr tree]
     | fd=FLOAT {
         }
     | str=STRING {
-            $tree = new StringLiteral($str.text);
+            $tree = new StringLiteral($str.text.substring(1, $str.text.length() - 1));
         }
     | TRUE {
         }

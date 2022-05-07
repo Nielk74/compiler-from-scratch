@@ -33,7 +33,7 @@ PRINTLNX: 'printlnx';
 //Types
 STRING_CAR: ~('"' | '\\' | '\n');
 STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
-MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
+fragment MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
 
 // Deca lexer rules.
 DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.

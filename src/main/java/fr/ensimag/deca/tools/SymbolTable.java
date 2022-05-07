@@ -28,8 +28,12 @@ public class SymbolTable {
     public Symbol create(String name) {
         if (name == null)
             throw new IllegalArgumentException("name should not be null");
-        Symbol s = new Symbol(name);
-        return map.put(name, s);
+        Symbol s = map.get(name);
+        if (s == null) {
+            s = new Symbol(name);
+            map.put(name, s);
+        }
+        return s;
     }
 
     public static class Symbol {
