@@ -21,11 +21,13 @@ import fr.ensimag.deca.context.ExpDefinition;
  */
 public class Assign extends AbstractBinaryExpr {
 
+    private static int operandCounter = 1;
+
     @Override
     public AbstractLValue getLeftOperand() {
         // The cast succeeds by construction, as the leftOperand has been set
         // as an AbstractLValue by the constructor.
-        return (AbstractLValue)super.getLeftOperand();
+        return (AbstractLValue) super.getLeftOperand();
     }
 
     public Assign(AbstractLValue leftOperand, AbstractExpr rightOperand) {
@@ -37,8 +39,10 @@ public class Assign extends AbstractBinaryExpr {
             ClassDefinition currentClass) throws ContextualError {
         ExpDefinition leftDef = localEnv.get(((AbstractIdentifier) this.getLeftOperand()).getName());
         if (leftDef == null)
-            throw new ContextualError("Lvalue " + ((AbstractIdentifier) this.getLeftOperand()).getName().getName() + " does not exist", this.getLeftOperand().getLocation());
-        
+            throw new ContextualError(
+                    "Lvalue " + ((AbstractIdentifier) this.getLeftOperand()).getName().getName() + " does not exist",
+                    this.getLeftOperand().getLocation());
+
         ((AbstractIdentifier) this.getLeftOperand()).setDefinition(leftDef);
         Type leftType = leftDef.getType();
         this.getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
@@ -47,14 +51,23 @@ public class Assign extends AbstractBinaryExpr {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        if (getRightOperand().getType().isInt()) {
-            // getRightOperand n'est pas forcément un IntLiteral (cas d'une affectation de variable à variable)
-            IntLiteral intLiteral = (IntLiteral) getRightOperand();
-            compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
-            //Ne pas oublier de décaler le offset en fonction des autres
-            RegisterOffset offset = new RegisterOffset(1, Register.LB);
+        if (getRightOperand().getClass().equals(Identifier.class)) {
+            compiler.addInstruction(new LOAD(((AbstractIdentifier)this.getRightOperand()).getExpDefinition().getOperand(), Register.getR(2)));
+            RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
             compiler.addInstruction(new STORE(Register.getR(2), offset));
             ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
+        }
+        if (getRightOperand().getType() != null) {
+            if (getRightOperand().getType().isInt()) {
+                // getRightOperand n'est pas forcément un IntLiteral (cas d'une affectation de
+                // variable à variable)
+                IntLiteral intLiteral = (IntLiteral) getRightOperand();
+                compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
+                // A check si on peut incrémenter le offset autrement
+                RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
+                compiler.addInstruction(new STORE(Register.getR(2), offset));
+                ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
+            }
         }
     }
 
