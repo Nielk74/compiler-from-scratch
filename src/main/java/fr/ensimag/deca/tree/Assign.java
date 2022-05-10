@@ -6,6 +6,7 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
 
 /**
  * Assignment, i.e. lvalue = expr.
@@ -29,7 +30,14 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        ExpDefinition leftDef = localEnv.get(((AbstractIdentifier) this.getLeftOperand()).getName());
+        if (leftDef == null)
+            throw new ContextualError("Lvalue " + ((AbstractIdentifier) this.getLeftOperand()).getName().getName() + " does not exist", this.getLeftOperand().getLocation());
+        
+        ((AbstractIdentifier) this.getLeftOperand()).setDefinition(leftDef);
+        Type leftType = leftDef.getType();
+        this.getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
+        return leftType;
     }
 
 

@@ -23,11 +23,11 @@ import fr.ensimag.deca.tools.SymbolTable.Symbol;
  * @date 25/04/2022
  */
 public class EnvironmentExp {
-    // A FAIRE : implémenter la structure de donnée représentant un
+    // DONE : implémenter la structure de donnée représentant un
     // environnement (association nom -> définition, avec possibilité
     // d'empilement).
     
-    Map<Symbol, ExpDefinition> dictionary = new HashMap<>();
+    public Map<Symbol, ExpDefinition> dictionary = new HashMap<>();
 
     EnvironmentExp parentEnvironment;
     
