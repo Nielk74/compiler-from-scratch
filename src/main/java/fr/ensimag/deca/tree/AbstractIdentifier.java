@@ -84,8 +84,6 @@ public abstract class AbstractIdentifier extends AbstractLValue {
 
     public abstract void setDefinition(Definition definition);
 
-
-
     /**
      * Implements non-terminal "type" of [SyntaxeContextuelle] in the 3 passes
      * @param compiler contains "env_types" attribute

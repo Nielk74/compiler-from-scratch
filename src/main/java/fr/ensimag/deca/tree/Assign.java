@@ -1,6 +1,11 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -40,6 +45,18 @@ public class Assign extends AbstractBinaryExpr {
         return leftType;
     }
 
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+        if (getRightOperand().getType().isInt()) {
+            // getRightOperand n'est pas forcément un IntLiteral (cas d'une affectation de variable à variable)
+            IntLiteral intLiteral = (IntLiteral) getRightOperand();
+            compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
+            //Ne pas oublier de décaler le offset en fonction des autres
+            RegisterOffset offset = new RegisterOffset(1, Register.LB);
+            compiler.addInstruction(new STORE(Register.getR(2), offset));
+            ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
+        }
+    }
 
     @Override
     protected String getOperatorName() {
