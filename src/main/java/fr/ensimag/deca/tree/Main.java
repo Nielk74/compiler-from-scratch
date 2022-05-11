@@ -13,6 +13,14 @@ import org.apache.log4j.Logger;
  * @date 25/04/2022
  */
 public class Main extends AbstractMain {
+    private static int operandCounter = 1;
+    public static void incrementOperandCounter(){
+        operandCounter++;
+    }
+    public static int getOperandCounter(){
+        return operandCounter;
+    }
+
     private static final Logger LOG = Logger.getLogger(Main.class);
     
     private ListDeclVar declVariables;
@@ -41,6 +49,7 @@ public class Main extends AbstractMain {
     protected void codeGenMain(DecacCompiler compiler) {
         // A FAIRE: traiter les déclarations de variables.
         compiler.addComment("Beginning of main instructions:");
+        declVariables.codeGenListDeclVariable(compiler);
         insts.codeGenListInst(compiler);
     }
     

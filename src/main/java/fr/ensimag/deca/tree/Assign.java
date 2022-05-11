@@ -23,8 +23,6 @@ import fr.ensimag.deca.context.ExpDefinition;
  */
 public class Assign extends AbstractBinaryExpr {
 
-    private static int operandCounter = 1;
-
     @Override
     public AbstractLValue getLeftOperand() {
         // The cast succeeds by construction, as the leftOperand has been set
@@ -57,14 +55,9 @@ public class Assign extends AbstractBinaryExpr {
         if (getRightOperand().getClass().equals(Identifier.class)) {
             compiler.addInstruction(new LOAD(
                     ((AbstractIdentifier) this.getRightOperand()).getExpDefinition().getOperand(), Register.getR(2)));
-            RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
-            compiler.addInstruction(new STORE(Register.getR(2), offset));
-            ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
         }
         if (getRightOperand().getType() != null) {
             if (getRightOperand().getType().isInt()) {
-                // getRightOperand n'est pas forcément un IntLiteral (cas d'une affectation de
-                // variable à variable)
                 IntLiteral intLiteral = (IntLiteral) getRightOperand();
                 compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
             } else if (getRightOperand().getType().isFloat()) {
@@ -81,11 +74,12 @@ public class Assign extends AbstractBinaryExpr {
                 compiler.addInstruction(
                         new LOAD(new ImmediateInteger(booleanLiteral.getValue() ? 1 : 0), Register.getR(2)));
             }
-            // A check si on peut incrémenter le offset autrement
-            RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
-            compiler.addInstruction(new STORE(Register.getR(2), offset));
-            ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
         }
+        // A check si on peut incrémenter le offset autrement
+        RegisterOffset offset = new RegisterOffset(Main.getOperandCounter(), Register.LB);
+        Main.incrementOperandCounter();
+        compiler.addInstruction(new STORE(Register.getR(2), offset));
+        ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
     }
 
     @Override
