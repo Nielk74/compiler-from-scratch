@@ -88,6 +88,11 @@ public abstract class AbstractExpr extends AbstractInst {
             Type expectedType)
             throws ContextualError {
         Type currentType = this.verifyExpr(compiler, localEnv, currentClass);
+        if (currentType.isInt() && expectedType.isFloat()) {
+            ConvFloat convExpr = new ConvFloat(this);
+            currentType = convExpr.verifyExpr(compiler, localEnv, currentClass);
+            return convExpr;
+        }
         if (!currentType.equals(expectedType)) {
             throw new ContextualError("Type mismatch", this.getLocation());
         }
@@ -99,7 +104,6 @@ public abstract class AbstractExpr extends AbstractInst {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         Type expectedType = this.verifyExpr(compiler, localEnv, currentClass);
-        this.verifyRValue(compiler, localEnv, currentClass, expectedType);
         this.setType(expectedType);
     }
 

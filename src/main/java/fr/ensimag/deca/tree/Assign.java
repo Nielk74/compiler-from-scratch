@@ -1,7 +1,9 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.ImmediateString;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
@@ -45,14 +47,16 @@ public class Assign extends AbstractBinaryExpr {
 
         ((AbstractIdentifier) this.getLeftOperand()).setDefinition(leftDef);
         Type leftType = leftDef.getType();
-        this.getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
+        AbstractExpr expr = this.getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
+        this.setRightOperand(expr);
         return leftType;
     }
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         if (getRightOperand().getClass().equals(Identifier.class)) {
-            compiler.addInstruction(new LOAD(((AbstractIdentifier)this.getRightOperand()).getExpDefinition().getOperand(), Register.getR(2)));
+            compiler.addInstruction(new LOAD(
+                    ((AbstractIdentifier) this.getRightOperand()).getExpDefinition().getOperand(), Register.getR(2)));
             RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
             compiler.addInstruction(new STORE(Register.getR(2), offset));
             ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
@@ -63,11 +67,24 @@ public class Assign extends AbstractBinaryExpr {
                 // variable à variable)
                 IntLiteral intLiteral = (IntLiteral) getRightOperand();
                 compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
-                // A check si on peut incrémenter le offset autrement
-                RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
-                compiler.addInstruction(new STORE(Register.getR(2), offset));
-                ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
+            } else if (getRightOperand().getType().isFloat()) {
+                if (this.getRightOperand().getClass().equals(FloatLiteral.class)) {
+                    FloatLiteral floatLiteral = (FloatLiteral) getRightOperand();
+                    compiler.addInstruction(new LOAD(new ImmediateFloat(floatLiteral.getValue()), Register.getR(2)));
+                } else if (this.getRightOperand().getClass().equals(ConvFloat.class)) {
+                    IntLiteral intLiteral = (IntLiteral) ((ConvFloat) this.getRightOperand()).getOperand();
+                    compiler.addInstruction(
+                            new LOAD(new ImmediateFloat((float) intLiteral.getValue()), Register.getR(2)));
+                }
+            } else if (getRightOperand().getType().isBoolean()) {
+                BooleanLiteral booleanLiteral = (BooleanLiteral) getRightOperand();
+                compiler.addInstruction(
+                        new LOAD(new ImmediateInteger(booleanLiteral.getValue() ? 1 : 0), Register.getR(2)));
             }
+            // A check si on peut incrémenter le offset autrement
+            RegisterOffset offset = new RegisterOffset(operandCounter++, Register.LB);
+            compiler.addInstruction(new STORE(Register.getR(2), offset));
+            ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
         }
     }
 
