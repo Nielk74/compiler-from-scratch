@@ -52,32 +52,28 @@ public class Assign extends AbstractBinaryExpr {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        if (getRightOperand().getClass().equals(Identifier.class)) {
-            compiler.addInstruction(new LOAD(
-                    ((AbstractIdentifier) this.getRightOperand()).getExpDefinition().getOperand(), Register.getR(2)));
+        if (this.getRightOperand() instanceof AbstractIdentifier) {
+            AbstractIdentifier absIdent = (AbstractIdentifier) this.getRightOperand();
+            compiler.addInstruction(new LOAD(absIdent.getExpDefinition().getOperand(), Register.getR(2)));
         }
-        if (getRightOperand().getType() != null) {
+        else if (getRightOperand().getType() != null) {
             if (getRightOperand().getType().isInt()) {
                 IntLiteral intLiteral = (IntLiteral) getRightOperand();
                 compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
             } else if (getRightOperand().getType().isFloat()) {
-                if (this.getRightOperand().getClass().equals(FloatLiteral.class)) {
+                if (this.getRightOperand() instanceof FloatLiteral) {
                     FloatLiteral floatLiteral = (FloatLiteral) getRightOperand();
                     compiler.addInstruction(new LOAD(new ImmediateFloat(floatLiteral.getValue()), Register.getR(2)));
-                } else if (this.getRightOperand().getClass().equals(ConvFloat.class)) {
+                } else if (this.getRightOperand() instanceof ConvFloat) {
                     IntLiteral intLiteral = (IntLiteral) ((ConvFloat) this.getRightOperand()).getOperand();
                     compiler.addInstruction(
                             new LOAD(new ImmediateFloat((float) intLiteral.getValue()), Register.getR(2)));
                 }
-            } else if (getRightOperand().getType().isBoolean()) {
-                BooleanLiteral booleanLiteral = (BooleanLiteral) getRightOperand();
-                compiler.addInstruction(
-                        new LOAD(new ImmediateInteger(booleanLiteral.getValue() ? 1 : 0), Register.getR(2)));
             }
         }
         // A check si on peut incrémenter le offset autrement
-        RegisterOffset offset = new RegisterOffset(Main.getOperandCounter(), Register.LB);
-        Main.incrementOperandCounter();
+        RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
+        Register.incrementLbOffsetCounter();
         compiler.addInstruction(new STORE(Register.getR(2), offset));
         ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
     }

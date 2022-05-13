@@ -206,8 +206,6 @@ public class Identifier extends AbstractIdentifier {
         compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(1)));
         if (this.getExpDefinition().getType().isInt())
             compiler.addInstruction(new WINT());
-        else if (this.getExpDefinition().getType().isBoolean())
-            compiler.addInstruction(new WINT());
         else if (this.getExpDefinition().getType().isFloat())
             compiler.addInstruction(new WFLOAT());
     }

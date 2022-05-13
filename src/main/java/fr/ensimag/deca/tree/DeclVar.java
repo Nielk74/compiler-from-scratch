@@ -49,12 +49,6 @@ public class DeclVar extends AbstractDeclVar {
             case "int":
                 t = compiler.environmentType.INT;
                 break;
-            case "bool":
-                t = compiler.environmentType.BOOLEAN;
-                break;
-            case "string":
-                t = compiler.environmentType.STRING;
-                break;
             case "float":
                 t = compiler.environmentType.FLOAT;
                 break;
@@ -68,19 +62,17 @@ public class DeclVar extends AbstractDeclVar {
         try {
             localEnv.declare(varName.getName(), varName.getExpDefinition());
         } catch (DoubleDefException e) {
-            // TODO Auto-generated catch block
-            // e.printStackTrace();
             throw new ContextualError(typeSymbol.getName() + " is already defined", type.getLocation());
         }
     }
 
     @Override
     protected void codeGenDeclVar(DecacCompiler compiler) {  
-        if (this.initialization.getClass().equals(NoInitialization.class))
+        if (this.initialization instanceof NoInitialization)
             return;
-        else if (((Initialization) initialization).getExpression().getClass().equals(Identifier.class)) {
-            compiler.addInstruction(new LOAD(
-                    ((Identifier)((Initialization) initialization).getExpression()).getExpDefinition().getOperand(), Register.getR(2)));
+        else if (((Initialization) initialization).getExpression() instanceof AbstractIdentifier) {
+            AbstractIdentifier ident = (AbstractIdentifier) ((Initialization) initialization).getExpression();
+            compiler.addInstruction(new LOAD(ident.getExpDefinition().getOperand(), Register.getR(2)));
         }
         else if (this.type.getType() != null) {
             if (this.type.getType().isInt()) {
@@ -91,11 +83,11 @@ public class DeclVar extends AbstractDeclVar {
                 compiler.addInstruction(new LOAD(new ImmediateFloat(floatLiteral.getValue()), Register.getR(2)));
             }
         }
-        RegisterOffset offset = new RegisterOffset(Main.getOperandCounter(), Register.LB);
-        Main.incrementOperandCounter();
+        RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
+        Register.incrementLbOffsetCounter();
         compiler.addInstruction(new STORE(Register.getR(2), offset));
         ((AbstractIdentifier) this.varName).getExpDefinition().setOperand(offset);                
-    }//11052022
+    }
 
     @Override
     public void decompile(IndentPrintStream s) {

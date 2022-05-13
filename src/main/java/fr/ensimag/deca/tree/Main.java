@@ -4,6 +4,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
@@ -13,14 +14,6 @@ import org.apache.log4j.Logger;
  * @date 25/04/2022
  */
 public class Main extends AbstractMain {
-    private static int operandCounter = 1;
-    public static void incrementOperandCounter(){
-        operandCounter++;
-    }
-    public static int getOperandCounter(){
-        return operandCounter;
-    }
-
     private static final Logger LOG = Logger.getLogger(Main.class);
     
     private ListDeclVar declVariables;
@@ -36,7 +29,7 @@ public class Main extends AbstractMain {
     @Override
     protected void verifyMain(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify Main: start");
-        // A FAIRE: Appeler méthodes "verify*" de ListDeclVarSet et ListInst.
+        // FAIT : Appeler méthodes "verify*" de ListDeclVarSet et ListInst.
         // Vous avez le droit de changer le profil fourni pour ces méthodes
         // (mais ce n'est à priori pas nécessaire).
         EnvironmentExp localEnv = new EnvironmentExp(null);
@@ -47,7 +40,7 @@ public class Main extends AbstractMain {
 
     @Override
     protected void codeGenMain(DecacCompiler compiler) {
-        // A FAIRE: traiter les déclarations de variables.
+        // FAIT : traiter les déclarations de variables.
         compiler.addComment("Beginning of main instructions:");
         declVariables.codeGenListDeclVariable(compiler);
         insts.codeGenListInst(compiler);
