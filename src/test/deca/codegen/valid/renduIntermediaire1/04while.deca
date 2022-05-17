@@ -1,0 +1,8 @@
+{
+    int i = 0
+    while (i) {
+        println("Entrez 0 : ");
+        i = readInt();
+        println("le chiffre : ", i);
+    }
+}
