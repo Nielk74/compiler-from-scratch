@@ -23,13 +23,28 @@ COMMA: ',';
 EQUALS: '=';
 SEMI: ';';
 EOL: '\n';
+//Logique
+AND: '&&';
+OR: '||';
+EQEQ: '==';
+NEQ: '!=';
+EXCLAM: '!';
+LT: '<';
+LEQ: '<=';
+GT: '>';
+GEQ: '>=';
 //Mots réservés
-NEW: 'new';
+WHILE: 'while';
+IF: 'if';
+ELSE: 'else';
+ELSEIF: 'elseif';
 //Fonctions
 PRINT: 'print';
 PRINTLN: 'println';
 PRINTX: 'printx';
 PRINTLNX: 'printlnx';
+READINT: 'readInt';
+READFLOAT: 'readFloat';
 
 //Types
 fragment NUM: DIGIT+;
