@@ -188,13 +188,27 @@ public class DecacCompiler {
         }
         assert(prog.checkAllLocations());
 
+        // si l'option -p est activée
+        if (compilerOptions.getParse()) {
+            // TODO : afficher le programme décompilé
+            // appeler la méthode decompile ?
+            return false;
+        }
 
         prog.verifyProgram(this);
         assert(prog.checkAllDecorations());
 
+        // si l'option -v est activée
+        if (compilerOptions.getVerification()) {
+            return false;
+        }
+
         addComment("start main program");
         prog.codeGenProgram(this);
         addComment("end main program");
+        // gestion des exceptions
+        ErrorCatcher.handleErrors(this);
+
         LOG.debug("Generated assembly code:" + nl + program.display());
         LOG.info("Output file assembly file is: " + destName);
 

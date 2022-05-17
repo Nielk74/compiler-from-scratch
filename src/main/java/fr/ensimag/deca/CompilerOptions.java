@@ -24,6 +24,14 @@ public class CompilerOptions {
         return debug;
     }
 
+    public boolean getParse() {
+        return parse;
+    }
+
+    public boolean getVerification() {
+        return verification;
+    }
+
     public boolean getParallel() {
         return parallel;
     }
@@ -37,13 +45,15 @@ public class CompilerOptions {
     }
 
     private int debug = 0;
+    private boolean parse = false;
+    private boolean verification = false;
     private boolean parallel = false;
     private boolean printBanner = false;
     private List<File> sourceFiles = new ArrayList<File>();
 
     
     public void parseArgs(String[] args) throws CLIException {
-        // A FAIRE : parcourir args pour positionner les options correctement.
+        // FAIT : parcourir args pour positionner les options correctement.
         Logger logger = Logger.getRootLogger();
         // map command-line debug option to log4j's level.
         for(String a: args) {
@@ -51,10 +61,22 @@ public class CompilerOptions {
                 case "-b":
                     printBanner = true;
                     break;
+                case "-p":
+                    if (verification) {
+                        throw new CLIException("-v and -p are incompatible");
+                    }
+                    parse = true;
+                    break;
+                case "-v":
+                    if (parse) {
+                        throw new CLIException("-v and -p are incompatible");
+                    }
+                    verification = true;
+                    break;
                 case "-d":
                     debug++;
                     break;
-                case "-p":
+                case "-P":
                     parallel = true;
                     break;
                 default:
@@ -82,11 +104,15 @@ public class CompilerOptions {
         } else {
             logger.info("Java assertions disabled");
         }
-
-        //throw new UnsupportedOperationException("not yet implemented");
     }
 
     protected void displayUsage() {
-        throw new UnsupportedOperationException("not yet implemented");
+        System.err.println("Usage: decac [options] file.deca ...");
+        System.err.println("Options:");
+        System.err.println("  -b : print banner with the team's name");
+        System.err.println("  -p : parse only and display decompiled code");
+        System.err.println("  -v : verify only");
+        System.err.println("  -d : activate debug, repeat for more traces");
+        System.err.println("  -P : parallel compilation");
     }
 }
