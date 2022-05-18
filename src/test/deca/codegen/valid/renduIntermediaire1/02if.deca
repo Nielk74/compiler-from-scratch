@@ -1,7 +1,49 @@
 {
     int i = 1;
     int j = 1;
+    int k = 2;
+    // ==
     if (i == j) {
-        println(i);
+        println("OK1");
     }
+    else {
+        println("---KO---");
+    }
+    // !=
+    if (i != j) {
+        println("---KO---");
+    }
+    else {
+        println("OK2");
+    }
+    // <
+    if (i < j) {
+        println("---KO---");
+    }
+    // <
+    if (i < k) {
+        println("OK3");
+    }
+    // <=
+    if (i <= j) {
+        println("OK4");
+    }
+    // <=
+    if (i <= k) {
+        println("OK5");
+    }
+    // >
+    if (i > k) {
+        println("---KO---");
+    }
+    // >=
+    if (i >= k) {
+        println("---KO---");
+    }
+    // !=
+    if (i != k) {
+        println("OK6");
+    }
+
+    println("OK7");
 }
