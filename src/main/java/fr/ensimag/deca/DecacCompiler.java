@@ -2,6 +2,7 @@ package fr.ensimag.deca;
 
 import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.codegen.LabelManager;
+import fr.ensimag.deca.codegen.StackManager;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -131,8 +132,9 @@ public class DecacCompiler {
         return symbolTable.create(name);
     }
 
-    /** The global environment for labels */
+    /** The global environment codegen managers */
     public final LabelManager labelManager = new LabelManager();
+    public final StackManager stackManager = new StackManager();
     
     /**
      * Run the compiler (parse source file, generate code)

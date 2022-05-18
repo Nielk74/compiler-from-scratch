@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
@@ -72,8 +73,11 @@ public class Assign extends AbstractBinaryExpr {
             getRightOperand().codeGenExp(compiler, 2);
         }
         // A check si on peut incrémenter le offset autrement
-        RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
-        Register.incrementLbOffsetCounter();
+        DAddr offset = ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().getOperand();
+        if (offset == null) {
+            offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
+            Register.incrementLbOffsetCounter();
+        }
         compiler.addInstruction(new STORE(Register.getR(2), offset));
         ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
     }
