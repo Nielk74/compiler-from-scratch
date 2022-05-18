@@ -1,5 +1,7 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.ima.pseudocode.DVal;
+
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -7,8 +9,6 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tools.SymbolTable.Symbol;
-import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 
 import java.io.PrintStream;
@@ -120,9 +120,9 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-            Type t = this.verifyExpr(compiler, localEnv, currentClass);
-            if (!t.isBoolean())
-                throw new ContextualError("condition is not boolean", this.getLocation());
+        Type t = this.verifyExpr(compiler, localEnv, currentClass);
+        if (!t.isBoolean())
+            throw new ContextualError("condition is not boolean", this.getLocation());
     }
 
     /**
@@ -154,5 +154,17 @@ public abstract class AbstractExpr extends AbstractInst {
             s.print(t);
             s.println();
         }
+    }
+
+    // evalue l'expression et stocke son résultat dans le registre
+    // Register.getR(register_name)
+    protected void codeGenExp(DecacCompiler compiler, int register_name) {
+        throw new UnsupportedOperationException("not yet implemented");
+    }
+
+    // evalue l'expression et retourne une Dval contenant son résultat
+    public DVal codeGenExp(DecacCompiler compiler) throws ContextualError {
+        this.codeGenExp(compiler, 2);
+        return Register.getR(2);
     }
 }

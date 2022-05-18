@@ -12,7 +12,7 @@ import fr.ensimag.ima.pseudocode.instructions.RFLOAT;
 import fr.ensimag.ima.pseudocode.instructions.RINT;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.ErrorCatcher;
+import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -63,28 +63,13 @@ public class Assign extends AbstractBinaryExpr {
             // CAS DES READERS (READINT, READFLOAT)
             if (this.getRightOperand() instanceof ReadInt) {
                 compiler.addInstruction(new RINT());
-            }
-            else if (this.getRightOperand() instanceof ReadFloat) {
+            } else if (this.getRightOperand() instanceof ReadFloat) {
                 compiler.addInstruction(new RFLOAT());
             }
             compiler.addInstruction(new BOV(new Label(ErrorCatcher.IO_ERROR)));
             compiler.addInstruction(new LOAD(Register.R1, Register.getR(2)));
-        } else {
-            if (getRightOperand().getType().isInt()) {
-                // CAS DES ENTIERS
-                IntLiteral intLiteral = (IntLiteral) getRightOperand();
-                compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
-            } else if (getRightOperand().getType().isFloat()) {
-                // CAS DES FLOATS (ou des casts de FLOATS)
-                if (this.getRightOperand() instanceof FloatLiteral) { // FLOAT
-                    FloatLiteral floatLiteral = (FloatLiteral) getRightOperand();
-                    compiler.addInstruction(new LOAD(new ImmediateFloat(floatLiteral.getValue()), Register.getR(2)));
-                } else if (this.getRightOperand() instanceof ConvFloat) { // CAST FLOAT
-                    IntLiteral intLiteral = (IntLiteral) ((ConvFloat) this.getRightOperand()).getOperand();
-                    compiler.addInstruction(
-                            new LOAD(new ImmediateFloat((float) intLiteral.getValue()), Register.getR(2)));
-                }
-            }
+        } else if (getRightOperand().getType().isInt() || getRightOperand().getType().isFloat()) {
+            getRightOperand().codeGenExp(compiler, 2);
         }
         // A check si on peut incrémenter le offset autrement
         RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);

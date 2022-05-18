@@ -31,7 +31,6 @@ public class BooleanLiteral extends AbstractExpr {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
-
     @Override
     public void decompile(IndentPrintStream s) {
         s.print(Boolean.toString(value));
@@ -52,4 +51,10 @@ public class BooleanLiteral extends AbstractExpr {
         return "BooleanLiteral (" + value + ")";
     }
 
+    // evalue l'expression et stocke son résultat dans le registre
+    // Register.getR(register_name)
+    @Override
+    public void codeGenExp(DecacCompiler compiler, int register_name) {
+        throw new UnsupportedOperationException("not yet implemented");
+    }
 }

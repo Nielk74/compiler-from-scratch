@@ -1,5 +1,8 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -29,4 +32,10 @@ public class ConvFloat extends AbstractUnaryExpr {
         return "/* conv float */";
     }
 
+    // evalue l'expression et stocke son résultat dans le registre
+    // Register.getR(register_name)
+    @Override
+    public void codeGenExp(DecacCompiler compiler, int register_name){
+        compiler.addInstruction(new LOAD(new ImmediateFloat((float)((IntLiteral) this.getOperand()).getValue()), Register.getR(register_name)));
+    }
 }
