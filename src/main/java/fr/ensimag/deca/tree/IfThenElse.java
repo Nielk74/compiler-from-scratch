@@ -39,8 +39,6 @@ public class IfThenElse extends AbstractInst {
     private final ListInst thenBranch;
     private ListInst elseBranch;
 
-    private static int labelCounter = 0;
-
     public IfThenElse(AbstractExpr condition, ListInst thenBranch, ListInst elseBranch) {
         Validate.notNull(condition);
         Validate.notNull(thenBranch);
@@ -63,10 +61,12 @@ public class IfThenElse extends AbstractInst {
     protected void codeGenInst(DecacCompiler compiler) {
         // CMP #17, R1
         // BLE label (dans le codegen de <, ==, !=, .. peut etre)
-        Label elseLabel = new Label("else_" + Integer.toString(labelCounter));
-        Label endIfLabel = new Label("end_if_" + Integer.toString(labelCounter));
-        labelCounter++;
+        int labelNum = compiler.labelManager.createIfThenElseLabel();
+        Label ifLabel = compiler.labelManager.getLabel("if_" + Integer.toString(labelNum));
+        Label elseLabel = compiler.labelManager.getLabel("else_" + Integer.toString(labelNum));
+        Label endIfLabel = compiler.labelManager.getLabel("end_if_" + Integer.toString(labelNum));
 
+        compiler.addLabel(ifLabel);
         if (this.condition instanceof AbstractBinaryExpr) {
             AbstractIdentifier leftOperand = (AbstractIdentifier) ((AbstractBinaryExpr) this.condition)
                     .getLeftOperand();

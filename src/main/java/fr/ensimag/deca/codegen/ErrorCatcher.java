@@ -1,5 +1,6 @@
-package fr.ensimag.deca;
+package fr.ensimag.deca.codegen;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.WSTR;
 import fr.ensimag.ima.pseudocode.instructions.WNL;
@@ -16,7 +17,7 @@ public class ErrorCatcher {
     // stack_overflow_error
 
     public static void handleErrors(DecacCompiler compiler) {
-        Label io_error_label = new Label(IO_ERROR);
+        Label io_error_label = compiler.labelManager.createLabel(IO_ERROR);
 
         // IO_ERROR
         compiler.addLabel(io_error_label);

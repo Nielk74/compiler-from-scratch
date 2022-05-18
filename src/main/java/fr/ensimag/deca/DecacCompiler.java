@@ -1,5 +1,7 @@
 package fr.ensimag.deca;
 
+import fr.ensimag.deca.codegen.ErrorCatcher;
+import fr.ensimag.deca.codegen.LabelManager;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -126,10 +128,12 @@ public class DecacCompiler {
     public final EnvironmentType environmentType = new EnvironmentType(this);
 
     public Symbol createSymbol(String name) {
-        //return null; // A FAIRE: remplacer par la ligne en commentaire ci-dessous
         return symbolTable.create(name);
     }
 
+    /** The global environment for labels */
+    public final LabelManager labelManager = new LabelManager();
+    
     /**
      * Run the compiler (parse source file, generate code)
      *
