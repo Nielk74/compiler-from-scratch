@@ -1,5 +1,7 @@
 {
     int num;
+    int num2 = readInt();
     num = readInt();
     println(num);
+    println(num2);
 }
