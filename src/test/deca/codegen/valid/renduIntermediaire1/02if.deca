@@ -7,18 +7,18 @@
         println("OK1");
     }
     else {
-        println("---KO---");
+        println("---KO1---");
     }
     // !=
     if (i != j) {
-        println("---KO---");
+        println("---KO2---");
     }
     else {
         println("OK2");
     }
     // <
     if (i < j) {
-        println("---KO---");
+        println("---KO3---");
     }
     // <
     if (i < k) {
@@ -34,11 +34,11 @@
     }
     // >
     if (i > k) {
-        println("---KO---");
+        println("---KO4---");
     }
     // >=
     if (i >= k) {
-        println("---KO---");
+        println("---KO5---");
     }
     // !=
     if (i != k) {

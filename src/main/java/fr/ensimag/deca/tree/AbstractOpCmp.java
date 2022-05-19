@@ -1,6 +1,11 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -24,6 +29,14 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
         super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         this.setType(compiler.environmentType.BOOLEAN);
         return this.getType();
+    }
+
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        // fonctionne seulement dans le cas où les 2 opérandes sont des identifer
+        AbstractIdentifier leftOperand = (AbstractIdentifier) super.getLeftOperand();
+        AbstractIdentifier rightOperand = (AbstractIdentifier) super.getRightOperand();
+        compiler.addInstruction(new LOAD((DVal) leftOperand.getExpDefinition().getOperand(), Register.getR(2)));
+        compiler.addInstruction(new CMP((DVal) rightOperand.getExpDefinition().getOperand(), Register.getR(2)));
     }
 
 }

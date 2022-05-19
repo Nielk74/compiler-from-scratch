@@ -5,6 +5,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.Label;
 
 /**
  *
@@ -21,9 +22,14 @@ public class Not extends AbstractUnaryExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         this.setType(compiler.environmentType.BOOLEAN);
+        this.getOperand().verifyCondition(compiler, localEnv, currentClass);
         return this.getType();
     }
 
+    @Override
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        this.getOperand().codeGenCondition(compiler, !negative, l);
+    }
 
     @Override
     protected String getOperatorName() {

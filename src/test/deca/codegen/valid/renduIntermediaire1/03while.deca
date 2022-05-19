@@ -5,14 +5,14 @@
     int l = 2;
     int j = 3;
     while (i < j) {
-        if (i == a) {
-            i = 1;
+        if (i == l) {
+            i = 3;
         }
         if (i == k) {
             i = 2;
         }
-        if (i == l) {
-            i = 3;
+        if (i == a) {
+            i = 1;
         }
         println(i);
     }

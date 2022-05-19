@@ -1,7 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.ima.pseudocode.DVal;
-
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -121,6 +121,7 @@ public abstract class AbstractExpr extends AbstractInst {
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         Type t = this.verifyExpr(compiler, localEnv, currentClass);
+
         if (!t.isBoolean())
             throw new ContextualError("condition is not boolean", this.getLocation());
     }
@@ -163,8 +164,12 @@ public abstract class AbstractExpr extends AbstractInst {
     }
 
     // evalue l'expression et retourne une Dval contenant son résultat
-    public DVal codeGenExp(DecacCompiler compiler) throws ContextualError {
+    protected DVal codeGenExp(DecacCompiler compiler) throws ContextualError {
         this.codeGenExp(compiler, 2);
         return Register.getR(2);
+    }
+
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        throw new UnsupportedOperationException("not yet implemented");
     }
 }

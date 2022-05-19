@@ -1,5 +1,9 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BLE;
+import fr.ensimag.ima.pseudocode.instructions.BGT;
 
 /**
  *
@@ -12,10 +16,15 @@ public class Greater extends AbstractOpIneq {
         super(leftOperand, rightOperand);
     }
 
-
     @Override
     protected String getOperatorName() {
         return ">";
+    }
+
+    @Override
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        super.codeGenCondition(compiler, negative, l);
+        compiler.addInstruction(negative ? new BGT(l) : new BLE(l));
     }
 
 }

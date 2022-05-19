@@ -67,57 +67,14 @@ public class IfThenElse extends AbstractInst {
         Label endIfLabel = compiler.labelManager.getLabel("end_if_" + Integer.toString(labelNum));
 
         compiler.addLabel(ifLabel);
-        if (this.condition instanceof AbstractBinaryExpr) {
-            AbstractIdentifier leftOperand = (AbstractIdentifier) ((AbstractBinaryExpr) this.condition)
-                    .getLeftOperand();
-            AbstractIdentifier rightOperand = (AbstractIdentifier) ((AbstractBinaryExpr) this.condition)
-                    .getRightOperand();
-
-            String operatorName = ((AbstractBinaryExpr) this.condition).getOperatorName();
-            // CMP val, Rx
-            compiler.addInstruction(new LOAD((DVal) leftOperand.getExpDefinition().getOperand(), Register.getR(2)));
-            compiler.addInstruction(new CMP((DVal) rightOperand.getExpDefinition().getOperand(), Register.getR(2)));
-            // BNE | BGE | ... -> jump
-            switch (operatorName) {
-                case "==":
-                    compiler.addInstruction(new BNE(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-                    break;
-                case "!=":
-                    compiler.addInstruction(new BEQ(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-                    break;
-                case ">=":
-                    compiler.addInstruction(new BLT(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-                    break;
-                case "<=":
-                    compiler.addInstruction(new BGT(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-                    break;
-                case ">":
-                    compiler.addInstruction(new BLE(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-                    break;
-                case "<":
-                    compiler.addInstruction(new BGE(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-                    break;
-                default:
-                    break;
-            }
-        } else if (this.condition instanceof Not) {
-            if (((Not) this.condition).getOperand() instanceof AbstractIdentifier) {
-                // comparaison unaire avec une variable
-                AbstractIdentifier ident = (AbstractIdentifier) ((Not) this.condition).getOperand();
-                compiler.addInstruction(new LOAD(ident.getExpDefinition().getOperand(), Register.getR(2)));
-                compiler.addInstruction(new CMP(0, Register.getR(2)));
-                compiler.addInstruction(new BEQ(elseBranch.isEmpty() ? endIfLabel : elseLabel));
-            }
-            // TODO : comparaison unaire d'autre type (cf page 51)
-        }
-
+        this.condition.codeGenCondition(compiler, false, elseBranch.isEmpty() ? endIfLabel : elseLabel);
         // generate "then" instructions
         thenBranch.codeGenListInst(compiler);
-        // jump to end_if
-        compiler.addInstruction(new BRA(endIfLabel));
 
         // add "else" label and instructions
         if (!elseBranch.isEmpty()) {
+            // jump to end_if
+            compiler.addInstruction(new BRA(endIfLabel));
             compiler.addLabel(elseLabel);
             elseBranch.codeGenListInst(compiler);
         }

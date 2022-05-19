@@ -1,6 +1,9 @@
 package fr.ensimag.deca.tree;
 
-
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BLT;
+import fr.ensimag.ima.pseudocode.instructions.BGE;
 /**
  * Operator "x >= y"
  * 
@@ -19,4 +22,9 @@ public class GreaterOrEqual extends AbstractOpIneq {
         return ">=";
     }
 
+    @Override
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        super.codeGenCondition(compiler, negative, l);
+        compiler.addInstruction(negative ? new BGE(l) : new BLT(l));
+    }
 }
