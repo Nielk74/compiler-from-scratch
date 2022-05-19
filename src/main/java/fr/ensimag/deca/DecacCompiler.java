@@ -15,6 +15,8 @@ import fr.ensimag.ima.pseudocode.AbstractLine;
 import fr.ensimag.ima.pseudocode.IMAProgram;
 import fr.ensimag.ima.pseudocode.Instruction;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Line;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -108,6 +110,22 @@ public class DecacCompiler {
         program.addInstruction(instruction, comment);
     }
     
+    /**
+     * @see 
+     * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Instruction)
+     */
+    public void addFirst(Instruction i) {
+        program.addFirst(i);
+    }
+
+    /**
+     * @see 
+     * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Line)
+     */
+    public void addFirst(Line l) {
+        program.addFirst(l);
+    }
+
     /**
      * @see 
      * fr.ensimag.ima.pseudocode.IMAProgram#display()
@@ -214,6 +232,9 @@ public class DecacCompiler {
         addComment("end main program");
         // gestion des exceptions
         ErrorCatcher.handleErrors(this);
+        
+        // initialise la pile
+        stackManager.initializeStack(this);
 
         LOG.debug("Generated assembly code:" + nl + program.display());
         LOG.info("Output file assembly file is: " + destName);
