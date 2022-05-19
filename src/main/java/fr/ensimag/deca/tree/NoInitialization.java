@@ -24,6 +24,11 @@ public class NoInitialization extends AbstractInitialization {
         // do nothing
     }
 
+    @Override
+    protected void codeGenInitialization(DecacCompiler compiler, int register_name) {
+        // do nothing
+    }
+
 
     /**
      * Node contains no real information, nothing to check.

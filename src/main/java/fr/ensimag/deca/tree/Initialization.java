@@ -40,6 +40,11 @@ public class Initialization extends AbstractInitialization {
             throw new ContextualError("Type mismatch", expression.getLocation());
     }
 
+    @Override
+    protected void codeGenInitialization(DecacCompiler compiler, int register_name) {
+        this.expression.codeGenExp(compiler, register_name);
+    }
+
 
     @Override
     public void decompile(IndentPrintStream s) {

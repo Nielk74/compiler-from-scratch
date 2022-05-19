@@ -2,7 +2,6 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.TypeDefinition;
-import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -17,13 +16,9 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.WINT;
-import fr.ensimag.ima.pseudocode.instructions.WSTR;
-import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
 
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
 
 /**
  * Deca Identifier
@@ -198,16 +193,15 @@ public class Identifier extends AbstractIdentifier {
         if (typeDef == null) {
             throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
         }
+        this.setType(currentType);
         return currentType;
     }
 
+    // evalue l'expression et stocke son résultat dans le registre
+    // Register.getR(register_name)
     @Override
-    protected void codeGenPrint(DecacCompiler compiler) {
-        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(1)));
-        if (this.getExpDefinition().getType().isInt())
-            compiler.addInstruction(new WINT());
-        else if (this.getExpDefinition().getType().isFloat())
-            compiler.addInstruction(new WFLOAT());
+    public void codeGenExp(DecacCompiler compiler, int register_name) {
+        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
     }
 
     private Definition definition;

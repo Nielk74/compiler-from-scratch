@@ -10,6 +10,9 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
@@ -132,12 +135,26 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param compiler
      */
     protected void codeGenPrint(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+        DVal d;
+        try {
+            d = this.codeGenExp(compiler);
+        } catch (ContextualError e) {
+            throw new DecacInternalError("Contextual error in AbstractExpr.codeGenPrint");
+        }
+        
+        compiler.addInstruction(new LOAD(d, Register.R1));
+        if (this.getType().isFloat()) {
+            compiler.addInstruction(new WFLOAT());
+        } else if (this.getType().isInt()) {
+            compiler.addInstruction(new WINT());
+        } else {
+            throw new DecacInternalError("Unexpected case in AbstractExpr.codeGenPrint");
+        }
     }
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+        this.codeGenExp(compiler, 2);
     }
 
     @Override

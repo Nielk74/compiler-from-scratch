@@ -10,11 +10,8 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
-import fr.ensimag.ima.pseudocode.ImmediateFloat;
-import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 import java.io.PrintStream;
@@ -67,22 +64,8 @@ public class DeclVar extends AbstractDeclVar {
     }
 
     @Override
-    protected void codeGenDeclVar(DecacCompiler compiler) {  
-        if (this.initialization instanceof NoInitialization)
-            return;
-        else if (((Initialization) initialization).getExpression() instanceof AbstractIdentifier) {
-            AbstractIdentifier ident = (AbstractIdentifier) ((Initialization) initialization).getExpression();
-            compiler.addInstruction(new LOAD(ident.getExpDefinition().getOperand(), Register.getR(2)));
-        }
-        else if (this.type.getType() != null) {
-            if (this.type.getType().isInt()) {
-                IntLiteral intLiteral = (IntLiteral) ((Initialization) initialization).getExpression();
-                compiler.addInstruction(new LOAD(new ImmediateInteger(intLiteral.getValue()), Register.getR(2)));
-            } else if (this.type.getType().isFloat()) {
-                FloatLiteral floatLiteral = (FloatLiteral) ((Initialization) initialization).getExpression();
-                compiler.addInstruction(new LOAD(new ImmediateFloat(floatLiteral.getValue()), Register.getR(2)));
-            }
-        }
+    protected void codeGenDeclVar(DecacCompiler compiler) {
+        this.initialization.codeGenInitialization(compiler, 2);
         RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
         Register.incrementLbOffsetCounter();
         compiler.addInstruction(new STORE(Register.getR(2), offset));
