@@ -1,0 +1,19 @@
+{
+    int a = 0;
+    int i = 0;
+    int k = 1;
+    int l = 2;
+    int j = 3;
+    while (i < j) {
+        if (i == l) {
+            i = 3;
+        }
+        if (i == k) {
+            i = 2;
+        }
+        if (i == a) {
+            i = 1;
+        }
+        println(i);
+    }
+}

@@ -1,0 +1,50 @@
+{
+    int i = 1;
+    int j = 1;
+    int k = 2;
+
+    // == 
+    if (i == j) {
+        println("i = j");
+    }
+    else {
+        println("error 1");
+    }
+
+    // !=
+    if (i != j) {
+        println("error 2");
+    }
+    else {
+        println("i = j");
+    }
+
+    // <
+    if (i < j) {
+        println("error3");
+    }
+    // <
+    if (i < k) {
+        println("i < k");
+    }
+    // <=
+    if (i <= j) {
+        println("i <= j");
+    }
+    // <=
+    if (i <= k) {
+        println("i <= k");
+    }
+    // >
+    if (i > k) {
+        println("error4");
+    }
+    // >=
+    if (i >= k) {
+        println("error5");
+    }
+    // !=
+    if (i != k) {
+        println("i != k");
+    }
+}
