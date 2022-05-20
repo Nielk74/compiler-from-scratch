@@ -214,8 +214,7 @@ public class DecacCompiler {
 
         // si l'option -p est activée
         if (compilerOptions.getParse()) {
-            // TODO : afficher le programme décompilé
-            // appeler la méthode decompile ?
+            prog.decompile(out);
             return false;
         }
 
