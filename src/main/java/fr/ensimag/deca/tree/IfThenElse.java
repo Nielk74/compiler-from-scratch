@@ -44,8 +44,6 @@ public class IfThenElse extends AbstractInst {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        // CMP #17, R1
-        // BLE label (dans le codegen de <, ==, !=, .. peut etre)
         int labelNum = compiler.labelManager.createIfThenElseLabel();
         Label ifLabel = compiler.labelManager.getLabel("if_" + Integer.toString(labelNum));
         Label elseLabel = compiler.labelManager.getLabel("else_" + Integer.toString(labelNum));

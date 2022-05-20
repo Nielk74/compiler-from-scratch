@@ -1,0 +1,9 @@
+{
+    int x = 2;
+    if(x == 2){
+        println(x);
+    }
+    if (3 > x) {
+        println(x);
+    }
+}

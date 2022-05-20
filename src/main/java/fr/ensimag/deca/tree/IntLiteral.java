@@ -59,7 +59,7 @@ public class IntLiteral extends AbstractExpr {
     // evalue l'expression et stocke son résultat dans le registre
     // Register.getR(register_name)
     @Override
-    public void codeGenExp(DecacCompiler compiler, int register_name){
+    public void codeGenExp(DecacCompiler compiler, int register_name) {
         compiler.addInstruction(new LOAD(new ImmediateInteger(this.getValue()), Register.getR(register_name)));
     }
 }

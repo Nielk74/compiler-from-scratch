@@ -33,10 +33,9 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
 
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         // fonctionne seulement dans le cas où les 2 opérandes sont des identifer
-        AbstractIdentifier leftOperand = (AbstractIdentifier) super.getLeftOperand();
-        AbstractIdentifier rightOperand = (AbstractIdentifier) super.getRightOperand();
-        compiler.addInstruction(new LOAD((DVal) leftOperand.getExpDefinition().getOperand(), Register.getR(2)));
-        compiler.addInstruction(new CMP((DVal) rightOperand.getExpDefinition().getOperand(), Register.getR(2)));
+        getLeftOperand().codeGenExp(compiler, 2);
+        getRightOperand().codeGenExp(compiler, 3);
+        compiler.addInstruction(new CMP(Register.getR(3), Register.getR(2)));
     }
 
 }

@@ -1,5 +1,0 @@
-{
-    int num;
-    num = readInt();
-    println("num = ", num);
-}

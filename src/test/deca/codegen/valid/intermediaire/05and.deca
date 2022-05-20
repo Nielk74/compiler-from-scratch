@@ -1,0 +1,8 @@
+{
+    int x = 1;
+    int j = 2;
+    
+    if ((x != j) && (x == x)){
+        println("ok2");
+    }
+}

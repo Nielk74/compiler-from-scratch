@@ -1,5 +1,7 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.deca.DecacCompiler;
 
 /**
  *
@@ -17,5 +19,8 @@ public class And extends AbstractOpBool {
         return "&&";
     }
 
-
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        this.getLeftOperand().codeGenCondition(compiler, negative, l);
+        this.getRightOperand().codeGenCondition(compiler, negative, l);
+    }
 }
