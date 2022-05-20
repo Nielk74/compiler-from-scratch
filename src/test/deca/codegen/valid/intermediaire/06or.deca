@@ -3,7 +3,13 @@
     if ((x == j) || (x == x)){
         println("ok1");
     }
-    if ((x != x) || (x < x)){
-        println("ko");
+    if ((x == x) || (x == j)){
+        println("ok2");
+    }
+    if (!((x != x) || (x == j))){
+        println("ok3");
+    }
+    if (!!((x == x) || (x == j))){
+        println("ok4");
     }
 }

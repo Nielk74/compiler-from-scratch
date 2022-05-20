@@ -3,6 +3,14 @@
     int j = 2;
     
     if ((x != j) && (x == x)){
+        println("ok1");
+    }
+
+    if (!((x == j) && (x != x))){
         println("ok2");
+    }
+
+    if (!!((x != j) && (x == x))){
+        println("ok3");
     }
 }

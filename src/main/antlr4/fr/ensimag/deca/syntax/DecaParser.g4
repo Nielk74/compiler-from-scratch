@@ -330,6 +330,7 @@ unary_expr returns[AbstractExpr tree]
     | op=EXCLAM e=unary_expr {
             assert($e.tree != null);
             $tree = new Not($e.tree);
+            setLocation($tree, $op);
         }
     | select_expr {
             assert($select_expr.tree != null);
