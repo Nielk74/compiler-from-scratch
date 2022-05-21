@@ -225,6 +225,7 @@ or_expr returns[AbstractExpr tree]
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new Or($e1.tree, $e2.tree);
+            setLocation($tree, $OR);
        }
     ;
 
@@ -237,6 +238,7 @@ and_expr returns[AbstractExpr tree]
             assert($e1.tree != null);                         
             assert($e2.tree != null);
             $tree = new And($e1.tree, $e2.tree);
+            setLocation($tree, $AND);
         }
     ;
 
@@ -249,11 +251,13 @@ eq_neq_expr returns[AbstractExpr tree]
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new Equals($e1.tree, $e2.tree);
+            setLocation($tree, $EQEQ);
         }
     | e1=eq_neq_expr NEQ e2=inequality_expr {
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new NotEquals($e1.tree, $e2.tree);
+            setLocation($tree, $NEQ);
         }
     ;
 
