@@ -97,7 +97,7 @@ public abstract class AbstractExpr extends AbstractInst {
             return convExpr;
         }
         if (!currentType.equals(expectedType)) {
-            throw new ContextualError("Type mismatch", this.getLocation());
+            throw new ContextualError("Type mismatch in AbstractExpr.verifyRValue", this.getLocation());
         }
         return this;
     }
