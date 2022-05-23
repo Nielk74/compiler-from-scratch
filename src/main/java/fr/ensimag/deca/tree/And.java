@@ -20,7 +20,14 @@ public class And extends AbstractOpBool {
     }
 
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        this.getLeftOperand().codeGenCondition(compiler, negative, l);
-        this.getRightOperand().codeGenCondition(compiler, negative, l);
+        if (negative) {
+            Label end = compiler.labelManager.createCondLabel();
+            this.getLeftOperand().codeGenCondition(compiler, !negative, end);
+            this.getRightOperand().codeGenCondition(compiler, negative, l);
+            compiler.addLabel(end);
+        } else {
+            this.getLeftOperand().codeGenCondition(compiler, negative, l);
+            this.getRightOperand().codeGenCondition(compiler, negative, l);
+        }
     }
 }

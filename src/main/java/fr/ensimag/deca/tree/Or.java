@@ -18,9 +18,14 @@ public class Or extends AbstractOpBool {
     }
 
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        Label end = compiler.labelManager.createCondLabel();
-        this.getLeftOperand().codeGenCondition(compiler, !negative, end);
-        this.getRightOperand().codeGenCondition(compiler, negative, l);
-        compiler.addLabel(end);
+        if (negative) {
+            this.getLeftOperand().codeGenCondition(compiler, negative, l);
+            this.getRightOperand().codeGenCondition(compiler, negative, l);
+        } else {
+            Label end = compiler.labelManager.createCondLabel();
+            this.getLeftOperand().codeGenCondition(compiler, !negative, end);
+            this.getRightOperand().codeGenCondition(compiler, negative, l);
+            compiler.addLabel(end);
+        }
     }
 }

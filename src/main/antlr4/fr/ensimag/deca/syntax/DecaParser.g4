@@ -270,21 +270,25 @@ inequality_expr returns[AbstractExpr tree]
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new LowerOrEqual($e1.tree, $e2.tree);
+            setLocation($tree, $LEQ);
         }
     | e1=inequality_expr GEQ e2=sum_expr {
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new GreaterOrEqual($e1.tree, $e2.tree);
+            setLocation($tree, $GEQ);
         }
     | e1=inequality_expr GT e2=sum_expr {
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new Greater($e1.tree, $e2.tree);
+            setLocation($tree, $GT);
         }
     | e1=inequality_expr LT e2=sum_expr {
             assert($e1.tree != null);
             assert($e2.tree != null);
             $tree = new Lower($e1.tree, $e2.tree);
+            setLocation($tree, $LT);
         }
     | e1=inequality_expr INSTANCEOF type {
             assert($e1.tree != null);
