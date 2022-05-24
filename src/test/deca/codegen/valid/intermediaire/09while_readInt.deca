@@ -1,0 +1,6 @@
+{
+    while (readInt() != 10) {
+        println("wrong number");
+    }
+    println("good number: ", 10);
+}

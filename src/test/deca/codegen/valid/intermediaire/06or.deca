@@ -1,15 +1,20 @@
 {
-    int x = 1, j = 2;
-    if ((x == j) || (x == x)){
-        println("ok1");
+    int x = 1;
+    int j = 2;
+    
+    if (x != j || x > x){
+        println(x, " != ", j, " || ", x, " > ", x);
     }
-    if ((x == x) || (x == j)){
-        println("ok2");
+
+    if (x >= 5 || x < j){
+        println(x, " >= ", 5, " || ", x, " < ", j);
     }
-    if (!((x != x) || (x == j))){
-        println("ok3");
+
+    if (!(x > j || x == 40)){
+        println("!(", x, " > ", j, " || ", x, " == ", 40, ")");
     }
-    if (!!((x == x) || (x == j))){
-        println("ok4");
+
+    if (!!(x > j || 0 <= j)){
+        println("!!(", x, " > ", j, " || ", 0, " <= ", j, ")");
     }
 }

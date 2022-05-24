@@ -1,7 +1,7 @@
 {
-    int num;
-    int num2 = readInt();
-    num = readInt();
-    println(num);
-    println(num2);
+    int x;
+    int y = readInt();
+    x = readInt();
+    println(x);
+    println(y);
 }

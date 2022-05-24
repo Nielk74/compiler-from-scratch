@@ -2,15 +2,15 @@
     int x = 1;
     int j = 2;
     
-    if ((x != j) && (x == x)){
-        println("ok1");
+    if (x != j && x >= x){
+        println(x, " != ", j, " && ", x, " >= ", x);
     }
 
-    if (!((x == j) && (x != x))){
-        println("ok2");
+    if (!(x > j && x == 1)){
+        println("!(", x, " > ", j, " && ", x, " == ", 1, ")");
     }
 
-    if (!!((x != j) && (x == x))){
-        println("ok3");
+    if (!!(x < j && 0 <= j)){
+        println("!!(", x, " < ", j, " && ", 0, " <= ", j, ")");
     }
 }

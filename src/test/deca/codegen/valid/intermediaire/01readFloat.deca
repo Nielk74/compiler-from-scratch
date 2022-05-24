@@ -1,5 +1,7 @@
 {
-    float num;
-    num = readFloat();
-    println(num);
+    float x;
+    float y = readFloat();
+    x = readFloat();
+    println(x);
+    println(y);
 }

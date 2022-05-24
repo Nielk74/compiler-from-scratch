@@ -1,9 +1,50 @@
 {
     int x = 2;
-    if(x == 2){
-        println(x);
+    if (x == 2){
+        println(x, " == ", 2);
+    } else {
+        println("error1");
     }
+
+    if (x != 8){
+        println(x, " != ", 8);
+    } else {
+        println("error2");
+    }
+
     if (3 > x) {
-        println(x);
+        println(3, " > ", x);
+    } else {
+        println("error3");
+    }
+
+    if (x < 5) {
+        println(x, " < ", 5);
+    } else {
+        println("error4");
+    }
+
+    if (3 >= x) {
+        println(3, " >= ", x);
+    } else {
+        println("error5");
+    }
+
+    if (x <= 5) {
+        println(x, " <= ", 5);
+    } else {
+        println("error6");
+    }
+
+    if (2 >= x) {
+        println(2, " >= ", x);
+    } else {
+        println("error7");
+    }
+
+    if (x <= 2) {
+        println(x, " <= ", 5);
+    } else {
+        println("error8");
     }
 }

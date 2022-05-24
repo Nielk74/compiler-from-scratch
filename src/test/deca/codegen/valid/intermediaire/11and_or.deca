@@ -1,0 +1,31 @@
+{
+    int x = 1, y = 2, z = 3;
+
+    if (y > z && x != y || z > x) {
+        println(y, " > ", z, " && ", x, " != ", y, " || ", z, " > ", x);
+    }
+
+    if (y > z && (x != y || z > x)) {
+        println("error1");
+    } else {
+        println(y, " > ", z, " && (", x, " != ", y, " || ", z, " > ", x, ") is false");
+    }
+
+    if (x != y && y < z || z < x) {
+        println(x, " != ", y, " && ", y, " < ", z, " || ", z, " < ", x);
+    }
+
+    if (x != y || y == z && z < x) {
+        println(x, " != ", y, " || ", y, " == ", z, " && ", z, " < ", x);
+    }
+
+    if ((x != y || y == z) && z < x) {
+        println("error2");
+    } else {
+        println("(", x, " != ", y, " || ", y, " == ", z, ") && ", z, " < ", x, " is false");
+    }
+
+    if (x == y || y < z && z > x) {
+        println(x, " == ", y, " || ", y, " < ", z, " && ", z, " > ", x);
+    }
+}
