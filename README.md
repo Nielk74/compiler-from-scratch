@@ -3,8 +3,8 @@ gl10, 25/04/2022.
 
 ## Sommaire
 
- - [Implémentation effective](#implementation-effective)
- - [Choix d'implémentation](#choix-d-implementation)
+ - [Implémentation effective](#implémentation-effective)
+ - [Choix d'implémentation](#choix-dimplémentation)
  - [Utilisation de decac](#utilisation-de-decac)
  - [Tests](#tests)
 
