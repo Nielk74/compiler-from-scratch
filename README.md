@@ -18,7 +18,8 @@ Récapitulatif des fonctionnalités :
 | Affectation de variable | int, float, identifier, convFloat |
 | print(), println() | int, float, string, identifier |
 
-### Rendu intermédiaire 1
+
+### Rendu intermédiaire
 Récapitulatif des fonctionnalités :
 | Fonctionnalité | Détails |
 | ------ | ------ |
@@ -27,7 +28,6 @@ Récapitulatif des fonctionnalités :
 | Expression booléenne '!', '&&', '\|\|' | Les termes ne peuvent être que des comparaisons.<br />Les opérateurs peuvent être combinés.<br />Le nombre d'opérateur n'est pas limité.<br />Des parenthèses peuvent être utilisées pour définir des ordres de priorité. |
 | Boucle while | - Condition : une comparaison ou une expression booléenne <br/> - Corps : liste d'instructions qui font partie de celles implémentées |
 | If/then/else | - Condition : idem que précedemment<br/> - Corps then/else : idem que précedemment |
-
 <br/>
 
 ---
@@ -61,7 +61,7 @@ Le premier (et seul argument pour l’instant) doit être un chemin vers un fich
 ## Tests
 
 Les tests du renduInitial passent à 100 %.
-Nous avons également écrit des tests (src/test/deca/codegen/valid/intermediaire/) pour le rendu intermédiaire qui peuvent être exécutés avec le script src/test/script/intermediaire.sh.
+Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermediaire/```) pour le rendu intermédiaire qui peuvent être exécutés avec le script ```src/test/script/intermediaire.sh```.
 
 - Programme
 
