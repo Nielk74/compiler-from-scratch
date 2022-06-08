@@ -69,5 +69,5 @@ fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 IDENT: (LETTER | DIGIT | '$' | '_')+;
 
 // Deca lexer rules.
-DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
+// DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
                 // A FAIRE : Il faut la supprimer et la remplacer par les vraies règles.
