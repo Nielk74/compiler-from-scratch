@@ -111,7 +111,12 @@ if [ -d  "${root}/codegen/invalid/${feature}" ]; then
         file="${f%.deca}"
         ((nbtests++))
         decac "${f}" && (ima "${file}.ass" > "${file}.res")
-        if [ -f "${file}.res" ]; then 
+        if [ -f "${file}.in" ]; then
+            decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
+        else
+            decac "${f}" && (ima "${file}.ass" > "${file}.res")
+        fi
+        if [ -f "${file}.res" ]; then
     	if diff -q "${file}.res" "${file}.expected" > /dev/null ; then
     	    echo "--- ${file}: PASSED ---"
     	    ((nbpassed++))
@@ -134,7 +139,12 @@ if [ -d  "${root}/codegen/valid/${feature}" ]; then
         file="${f%.deca}"
         ((nbtests++))
         decac "${f}" && (ima "${file}.ass" > "${file}.res")
-        if [ -f "${file}.res" ]; then 
+        if [ -f "${file}.in" ]; then
+            decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
+        else
+            decac "${f}" && (ima "${file}.ass" > "${file}.res")
+        fi
+        if [ -f "${file}.res" ]; then
     	if diff -q "${file}.res" "${file}.expected" > /dev/null ; then
     	    echo "--- ${file}: PASSED ---"
     	    ((nbpassed++))
