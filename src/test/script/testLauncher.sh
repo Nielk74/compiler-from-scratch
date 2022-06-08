@@ -2,6 +2,7 @@
 
 feature = $1
 echo "Testing feature "${feature}""
+
 cd "$(dirname "$0")/../deca"
 root="$(pwd)"
 
