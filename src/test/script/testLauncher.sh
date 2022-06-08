@@ -61,7 +61,7 @@ if [ -d  "${root}/syntax/valid/${feature}" ]; then
     done
 fi
 
-if [ -d  "${root}/context/invalid/${feature} ]; then
+if [ -d  "${root}/context/invalid/${feature}" ]; then
     cd "${root}/context/invalid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.lis *.ass || exit 1
