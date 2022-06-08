@@ -22,19 +22,19 @@ nbpassed=0
 if [ -d  "${root}/syntax/invalid/${feature}" ]; then
     cd "${root}/syntax/invalid/${feature}"
     echo "### TEST: $(pwd) ###"
-    rm -f *.lis *.ass || exit 1
+    rm -f *.res *.ass || exit 1
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
         if decac "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
+        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
     	((nbpassed++))
         else
     	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
-    	echo "IN \"$(cat ${file}.lis)\""
+            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
+    	echo "IN \"$(cat ${file}.res)\""
         fi
         echo
     done
@@ -43,18 +43,18 @@ fi
 if [ -d  "${root}/syntax/valid/${feature}" ]; then
     cd "${root}/syntax/valid/${feature}"
     echo "### TEST: $(pwd) ###"
-    rm -f *.lis *.ass || exit 1
+    rm -f *.res *.ass || exit 1
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.lis" ; then
+        if decac "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
+        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
     	((nbpassed++))
         else
     	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
+            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
     	echo "IN \"$(cat ${file}.res)\""
         fi
         echo
@@ -64,19 +64,19 @@ fi
 if [ -d  "${root}/context/invalid/${feature}" ]; then
     cd "${root}/context/invalid/${feature}"
     echo "### TEST: $(pwd) ###"
-    rm -f *.lis *.ass || exit 1
+    rm -f *.res *.ass || exit 1
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.lis" ; then
+        if decac "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
+        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
     	((nbpassed++))
         else
     	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
-    	echo "IN \"$(cat ${file}.lis)\""
+            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
+    	echo "IN \"$(cat ${file}.res)\""
         fi
         echo
     done
@@ -85,19 +85,19 @@ fi
 if [ -d  "${root}/context/valid/${feature}" ]; then
     cd "${root}/context/valid/${feature}"
     echo "### TEST: $(pwd) ###"
-    rm -f *.lis *.ass || exit 1
+    rm -f *.res *.ass || exit 1
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.lis" ; then
+        if decac "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
+        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
     	((nbpassed++))
         else
     	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
-    	echo "IN \"$(cat ${file}.lis)\""
+            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
+    	echo "IN \"$(cat ${file}.res)\""
         fi
         echo
     done
