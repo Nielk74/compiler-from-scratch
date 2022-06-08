@@ -13,7 +13,7 @@ cache:
     - target/
 
 before_script:
-  - export PATH="$PWD/global_bin:$PWD/src/main/bin:$PWD/src/test/script:$PATH"
+  - export PATH="$PWD/global_bin:$PWD/src/main/bin:$PWD/src/test/script:$PWD/src/test/script/launchers:$PATH"
 
 build:
   stage: build
