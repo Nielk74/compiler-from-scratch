@@ -26,13 +26,13 @@ for f in *.deca ; do
     ((nbtests++))
     if decac "${f}" 2> "${file}.res" ; then
 	echo "--- ${file}: KO ---"
-    elif grep $(cat "${file}.expected") "${file}.res" > /dev/null ; then
+    elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
 	echo "--- ${file}: PASSED ---"
 	((nbpassed++))
     else
 	echo "--- ${file}: FAILED ---"
         echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
-	echo "IN \"$(cat ${file}.res)\""
+	echo "IN \"$(cat ${file}.lis)\""
     fi
     echo
 done
@@ -43,9 +43,9 @@ rm -f *.lis *.ass || exit 1
 for f in *.deca ; do
     file="${f%.deca}"
     ((nbtests++))
-    if decac "${f}" 2> "${file}.res" ; then
+    if decac "${f}" 2> "${file}.lis" ; then
 	echo "--- ${file}: KO ---"
-    elif grep $(cat "${file}.expected") "${file}.res" > /dev/null ; then
+    elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
 	echo "--- ${file}: PASSED ---"
 	((nbpassed++))
     else
@@ -62,15 +62,15 @@ rm -f *.lis *.ass || exit 1
 for f in *.deca ; do
     file="${f%.deca}"
     ((nbtests++))
-    if decac "${f}" 2> "${file}.res" ; then
+    if decac "${f}" 2> "${file}.lis" ; then
 	echo "--- ${file}: KO ---"
-    elif grep $(cat "${file}.expected") "${file}.res" > /dev/null ; then
+    elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
 	echo "--- ${file}: PASSED ---"
 	((nbpassed++))
     else
 	echo "--- ${file}: FAILED ---"
         echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
-	echo "IN \"$(cat ${file}.res)\""
+	echo "IN \"$(cat ${file}.lis)\""
     fi
     echo
 done
@@ -81,15 +81,15 @@ rm -f *.lis *.ass || exit 1
 for f in *.deca ; do
     file="${f%.deca}"
     ((nbtests++))
-    if decac "${f}" 2> "${file}.res" ; then
+    if decac "${f}" 2> "${file}.lis" ; then
 	echo "--- ${file}: KO ---"
-    elif grep $(cat "${file}.expected") "${file}.res" > /dev/null ; then
+    elif grep $(cat "${file}.expected") "${file}.lis" > /dev/null ; then
 	echo "--- ${file}: PASSED ---"
 	((nbpassed++))
     else
 	echo "--- ${file}: FAILED ---"
         echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
-	echo "IN \"$(cat ${file}.res)\""
+	echo "IN \"$(cat ${file}.lis)\""
     fi
     echo
 done
