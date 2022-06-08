@@ -1,4 +1,4 @@
-image: "maven:3-openjdk-16"
+#image: "maven:3-openjdk-16"
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
@@ -13,7 +13,8 @@ cache:
     - target/
 
 before_script:
-  - export PATH="$PWD/global_bin/bin:$PWD/src/main/bin:$PWD/src/test/script:$PWD/src/test/script/launchers:$PATH"
+  - source /bashrc
+  #- export PATH="$PWD/global_bin/bin:$PWD/src/main/bin:$PWD/src/test/script:$PWD/src/test/script/launchers:$PATH"
 
 build:
   stage: build
