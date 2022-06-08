@@ -11,7 +11,7 @@ if [ "${decac}" == "" ] ; then
 fi
 
 echo "### INFO: recompiling java files for $decac ###" 
-cd "$(dirname "${decac}")/../../.."
+cd "../../.."
 mvn compile || exit 1
 
 nbtests=0
