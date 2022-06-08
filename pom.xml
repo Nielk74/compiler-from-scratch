@@ -229,6 +229,7 @@
                             <goal>java</goal>
                         </goals>
                     </execution>
+                    <!--
                     <execution>
                         <id>basic-context</id>
                         <configuration>
@@ -263,6 +264,17 @@
                         <id>common-tests</id>
                         <configuration>
                             <executable>./src/test/script/common-tests.sh</executable>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    -->
+                    <execution>
+                        <id>rendu-initial</id>
+                        <configuration>
+                            <executable>./src/test/script/renduInitial.sh</executable>
                         </configuration>
                         <phase>test</phase>
                         <goals>
