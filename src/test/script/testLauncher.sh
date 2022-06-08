@@ -26,7 +26,7 @@ if [ -d  "${root}/syntax/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.res" ; then
+        if test_synt "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
         elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
@@ -47,7 +47,7 @@ if [ -d  "${root}/syntax/valid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.res" ; then
+        if test_synt "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
         elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
@@ -68,7 +68,7 @@ if [ -d  "${root}/context/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.res" ; then
+        if test_context "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
         elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
@@ -89,7 +89,7 @@ if [ -d  "${root}/context/valid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.res" ; then
+        if test_context "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
         elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
