@@ -295,7 +295,7 @@
                             <executable>./src/test/script/testLauncher.sh</executable>
                             <arguments>
                                 <argument>
-                                    renduIntermediaire
+                                    intermediaire
                                 </argument>
                             </arguments>
                         </configuration>
