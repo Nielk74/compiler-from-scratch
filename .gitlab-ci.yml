@@ -1,0 +1,26 @@
+image: "maven:3-openjdk-16"
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+before_script:
+  - export PATH="$PWD/global_bin:$PWD/src/main/bin:$PWD/src/test/script:$PATH"
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_OPTS clean compile
+    
+test:
+  stage: test
+  script:
+    - mvn $MAVEN_OPTS test
