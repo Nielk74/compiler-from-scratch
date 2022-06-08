@@ -138,3 +138,7 @@ done
 
 
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
+
+if nbpassed != nbtests then
+    exit 1
+fi
