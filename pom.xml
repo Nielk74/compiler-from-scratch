@@ -277,7 +277,27 @@
                     <execution>
                         <id>rendu-initial</id>
                         <configuration>
-                            <executable>./src/test/script/renduInitial.sh</executable>
+                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    renduInitial
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>rendu-intermediaire</id>
+                        <configuration>
+                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    renduIntermediaire
+                                </argument>
+                            </arguments>
                         </configuration>
                         <phase>test</phase>
                         <goals>
