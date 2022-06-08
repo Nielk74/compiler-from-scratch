@@ -19,8 +19,8 @@ mvn compile || exit 1
 
 nbtests=0
 nbpassed=0
-if [ -d  "${root}/syntax/invalid/"${feature}"" ]; then
-    cd "${root}/syntax/invalid/"${feature}""
+if [ -d  "${root}/syntax/invalid/${feature}" ]; then
+    cd "${root}/syntax/invalid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.lis *.ass || exit 1
     for f in *.deca ; do
@@ -40,8 +40,8 @@ if [ -d  "${root}/syntax/invalid/"${feature}"" ]; then
     done
 fi
 
-if [ -d  "${root}/syntax/valid/"${feature}"" ]; then
-    cd "${root}/syntax/valid/"${feature}""
+if [ -d  "${root}/syntax/valid/${feature}" ]; then
+    cd "${root}/syntax/valid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.lis *.ass || exit 1
     for f in *.deca ; do
@@ -61,8 +61,8 @@ if [ -d  "${root}/syntax/valid/"${feature}"" ]; then
     done
 fi
 
-if [ -d  "${root}/context/invalid/"${feature}"" ]; then
-    cd "${root}/context/invalid/"${feature}""
+if [ -d  "${root}/context/invalid/${feature} ]; then
+    cd "${root}/context/invalid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.lis *.ass || exit 1
     for f in *.deca ; do
@@ -82,8 +82,8 @@ if [ -d  "${root}/context/invalid/"${feature}"" ]; then
     done
 fi
 
-if [ -d  "${root}/context/valid/"${feature}"" ]; then
-    cd "${root}/context/valid/"${feature}""
+if [ -d  "${root}/context/valid/${feature}" ]; then
+    cd "${root}/context/valid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.lis *.ass || exit 1
     for f in *.deca ; do
@@ -103,8 +103,8 @@ if [ -d  "${root}/context/valid/"${feature}"" ]; then
     done
 fi
 
-if [ -d  "${root}/codegen/invalid/"${feature}"" ]; then
-    cd "${root}/codegen/invalid/"${feature}"""
+if [ -d  "${root}/codegen/invalid/${feature}" ]; then
+    cd "${root}/codegen/invalid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.res *.ass || exit 1
     for f in *.deca ; do
@@ -126,8 +126,8 @@ if [ -d  "${root}/codegen/invalid/"${feature}"" ]; then
     done
 fi
 
-if [ -d  "${root}/codegen/valid/"${feature}"" ]; then
-    cd "${root}/codegen/valid/"${feature}"""
+if [ -d  "${root}/codegen/valid/${feature}" ]; then
+    cd "${root}/codegen/valid/${feature}"
     echo "### TEST: $(pwd) ###"
     rm -f *.res *.ass || exit 1
     for f in *.deca ; do
