@@ -3,7 +3,7 @@
 cd "$(dirname "$0")/../deca"
 root="$(pwd)"
 
-decac="$(which decac)"
+decac=""${root}"/src/main/bin/decac"
 if [ "${decac}" == "" ] ; then
     echo "Error, executable \"decac\" not found in"
     echo "${PATH}"
