@@ -194,7 +194,7 @@
                     <execution>
                         <id>basic-lex</id>
                         <configuration>
-                            <executable>./src/test/script/basic-lex.sh</executable>
+                            <executable>./src/test/script/basic-lex.sh</executable>-->
                             <!-- If we need to pass arguments :
                                  <arguments>
                                  <argument>...</argument>
@@ -218,7 +218,7 @@
                         </goals>
                     </execution>
                     
-                    <execution>
+                    <execution>-->
                         <!-- run a unit test by defining our own class with a main
                         function -->
                         <!-- warning: java assertions are not enabled -->
