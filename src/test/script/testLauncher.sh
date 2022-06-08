@@ -110,7 +110,6 @@ if [ -d  "${root}/codegen/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        decac "${f}" && (ima "${file}.ass" > "${file}.res")
         if [ -f "${file}.in" ]; then
             decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
         else
@@ -138,7 +137,6 @@ if [ -d  "${root}/codegen/valid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        decac "${f}" && (ima "${file}.ass" > "${file}.res")
         if [ -f "${file}.in" ]; then
             decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
         else
