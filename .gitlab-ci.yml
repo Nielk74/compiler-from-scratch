@@ -14,7 +14,6 @@ cache:
 
 before_script:
   - export PATH="$PWD/global_bin:$PWD/src/main/bin:$PWD/src/test/script:$PWD/src/test/script/launchers:$PATH"
-  - docker run cmd.cat/diff diff
 
 build:
   stage: build
@@ -23,5 +22,7 @@ build:
     
 test:
   stage: test
+  services:
+    - docker:diff
   script:
     - mvn $MAVEN_OPTS test
