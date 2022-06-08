@@ -1,6 +1,6 @@
 #!/bin/bash
 
-feature = $1
+feature=$1
 echo "Testing feature "${feature}""
 
 cd "$(dirname "$0")/../deca"
