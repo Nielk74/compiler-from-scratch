@@ -1,0 +1,8 @@
+{
+    if (2 < 1) {
+        print("Trop petit !");
+    }
+    elseif (2 > 1) {
+        print("Trop grand !");
+    }
+}

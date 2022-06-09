@@ -1,0 +1,54 @@
+{
+	int secret;
+	int user;
+	(secret = 421);
+	(user = 421);
+	if((user == 100)) {
+		println("égal à 100");
+	}
+	else {
+		if((user < secret)) {
+			println("Trop petit");
+		}
+		else {
+			if((user > secret)) {
+				println("Trop grand");
+			}
+			else {
+				println("Bravo");
+			}
+		}
+	}
+	if((user == secret)) {
+		println("Bravo");
+	}
+	else {
+		if((user > secret)) {
+			println("Trop grand");
+		}
+		else {
+			if((user < secret)) {
+				println("Trop petit");
+			}
+			else {
+			}
+		}
+	}
+	(user = 4);
+	if((user == 100)) {
+		println("égal à 100");
+	}
+	else {
+		if((user < secret)) {
+			println("Trop petit");
+		}
+		else {
+			if((user > secret)) {
+				println("Trop grand");
+			}
+			else {
+				println("Bravo");
+			}
+		}
+	}
+}
