@@ -1,0 +1,5 @@
+{
+    float x = 0x1.FFFFFEp0;
+    printlnx("Float : ", x);
+    printx(0x1.0p1);
+}
