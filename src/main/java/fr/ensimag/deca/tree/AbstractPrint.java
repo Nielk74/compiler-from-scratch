@@ -5,8 +5,13 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.WFLOATX;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -48,6 +53,23 @@ public abstract class AbstractPrint extends AbstractInst {
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
             a.codeGenPrint(compiler);
+            if (a.getType().isFloat() || a.getType().isInt()) {
+                addInstructionPrint(compiler, a);
+            }
+        }
+    }
+
+    protected void addInstructionPrint(DecacCompiler compiler, AbstractExpr a) {
+        if (a.getType().isFloat()) {
+            if (printHex) {
+                compiler.addInstruction(new WFLOATX());
+            } else {
+                compiler.addInstruction(new WFLOAT());
+            }
+        } else if (a.getType().isInt()) {
+            compiler.addInstruction(new WINT());
+        } else {
+            throw new DecacInternalError("Unexpected case in AbstractExpr.codeGenPrint");
         }
     }
 
@@ -57,7 +79,12 @@ public abstract class AbstractPrint extends AbstractInst {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        s.print("print" + getSuffix() +"(");
+        if (printHex) {
+            s.print("print" + getSuffix() +"x(");
+        } else {
+            s.print("print" + getSuffix() +"(");
+        }
+        
         for (AbstractExpr a : getArguments().getList()) {
             a.decompile(s);
             if (this.getArguments().getList().lastIndexOf(a) != this.getArguments().getList().size() - 1)

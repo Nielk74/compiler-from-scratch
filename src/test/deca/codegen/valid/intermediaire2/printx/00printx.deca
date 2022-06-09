@@ -1,0 +1,4 @@
+{
+    float x = 0x1.FFFFFEp0;
+    printx(x);
+}
