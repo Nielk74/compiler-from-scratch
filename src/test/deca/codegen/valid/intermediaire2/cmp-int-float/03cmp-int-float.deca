@@ -1,0 +1,9 @@
+{
+  int x = 18;
+  float y = 18; 
+  if (y != x) {
+    println (y, " != " , x);
+  } else {
+    println (y , " == ", x);
+  }
+}

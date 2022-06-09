@@ -1,0 +1,52 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [2, 10] DeclVar
+      |  ||  +> [2, 4] Identifier (float)
+      |  ||  |  definition: type defined at [2, 4], type=float
+      |  ||  +> [2, 10] Identifier (x)
+      |  ||  |  definition: variable defined at [2, 10], type=float
+      |  ||  `> [2, 14] Initialization
+      |  ||     `> ConvFloat
+      |  ||        type: float
+      |  ||        `> [2, 14] Int (5)
+      |  ||           type: int
+      |  []> [3, 8] DeclVar
+      |      +> [3, 4] Identifier (int)
+      |      |  definition: type defined at [3, 4], type=int
+      |      +> [3, 8] Identifier (y)
+      |      |  definition: variable defined at [3, 8], type=int
+      |      `> [3, 12] Initialization
+      |         `> [3, 12] Int (10)
+      |            type: int
+      `> ListInst [List with 1 elements]
+         []> [4, 4] IfThenElse
+             +> [4, 8] And
+             |  type: boolean
+             |  +> [4, 10] LowerOrEqual
+             |  |  type: boolean
+             |  |  +> [4, 8] Identifier (x)
+             |  |  |  definition: variable defined at [2, 10], type=float
+             |  |  `> ConvFloat
+             |  |     type: float
+             |  |     `> [4, 13] Identifier (y)
+             |  |        definition: variable defined at [3, 8], type=int
+             |  `> [4, 20] Equals
+             |     type: boolean
+             |     +> ConvFloat
+             |     |  type: float
+             |     |  `> [4, 18] Int (5)
+             |     |     type: int
+             |     `> [4, 23] Float (5.0)
+             |        type: float
+             +> ListInst [List with 1 elements]
+             |  []> [5, 8] Assign
+             |      type: float
+             |      +> [5, 8] Identifier (x)
+             |      |  definition: variable defined at [2, 10], type=float
+             |      `> ConvFloat
+             |         type: float
+             |         `> [5, 12] Identifier (y)
+             |            definition: variable defined at [3, 8], type=int
+             `> ListInst [List with 0 elements]
