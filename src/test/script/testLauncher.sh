@@ -26,16 +26,14 @@ if [ -d  "${root}/syntax/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if test_synt "${f}" 2> "${file}.res" ; then
-    	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
-    	echo "--- ${file}: PASSED ---"
-    	((nbpassed++))
+        if test_synt "${f}">&1 | head -n 1 | grep -q "${f}:[0-9]"
+        then
+            echo "--- ${file}: KO ---"
+            exit 1
         else
-    	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
-    	echo "IN \"$(cat ${file}.res)\""
+            echo "--- ${file}: PASSED ---"
         fi
+        ((nbpassed++))
         echo
     done
 fi
