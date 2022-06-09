@@ -35,9 +35,7 @@ public class Initialization extends AbstractInitialization {
     protected void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-        Type expectedType = expression.verifyExpr(compiler, localEnv, currentClass);
-        if (!t.equals(expectedType))
-            throw new ContextualError("Type mismatch", expression.getLocation());
+        setExpression(expression.verifyRValue(compiler, localEnv, currentClass, t));
     }
 
     @Override
