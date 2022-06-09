@@ -282,6 +282,9 @@
                                 <argument>
                                     renduInitial
                                 </argument>
+                                <argument>
+                                    decompile
+                                </argument>
                             </arguments>
                         </configuration>
                         <phase>test</phase>
@@ -296,6 +299,9 @@
                             <arguments>
                                 <argument>
                                     intermediaire
+                                </argument>
+                                <argument>
+                                    decompile
                                 </argument>
                             </arguments>
                         </configuration>
