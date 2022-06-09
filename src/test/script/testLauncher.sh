@@ -26,14 +26,14 @@ if [ -d  "${root}/syntax/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if test_synt "${f}">&1 | head -n 1 | grep -q "${f}:[0-9]"
+        test_synt "${f}" 2> "${file}.res"
+        if grep -q -f "${file}.lis" "${file}.res"
         then
-            echo "--- ${file}: KO ---"
-            exit 1
-        else
             echo "--- ${file}: PASSED ---"
+            ((nbpassed++))
+        else
+            echo "--- ${file}: FAILED ---"
         fi
-        ((nbpassed++))
         echo
     done
 fi
@@ -45,15 +45,17 @@ if [ -d  "${root}/syntax/valid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if test_synt "${f}" > "${file}.res" ; then
-    	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
-    	echo "--- ${file}: PASSED ---"
-    	((nbpassed++))
+        test_synt "${f}" > "${file}.res"
+        if [ -f "${file}.res" ]; then
+        if diff -q "${file}.res" "${file}.lis" > /dev/null ; then
+            echo "--- ${file}: PASSED ---"
+            ((nbpassed++))
         else
-    	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
-    	echo "IN \"$(cat ${file}.res)\""
+            echo "--- ${file}: FAILED ---"
+            diff "${file}.lis" "${file}.res" 
+        fi
+        else
+        echo "--- ${file}: KO ---"
         fi
         echo
     done
@@ -66,7 +68,7 @@ if [ -d  "${root}/context/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if test_context "${f}" > "${file}.res" ; then
+        if decac "${f}" 2> "${file}.res" ; then
     	echo "--- ${file}: KO ---"
         elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
