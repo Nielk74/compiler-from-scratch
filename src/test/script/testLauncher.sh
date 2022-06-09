@@ -89,9 +89,8 @@ if [ -d  "${root}/context/valid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if test_context "${f}" > "${file}.res" ; then
-    	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
+        test_context "${f}" > "${file}.res"
+        if diff -q "${file}.res" "${file}.lis" > /dev/null ; then
     	echo "--- ${file}: PASSED ---"
     	((nbpassed++))
         else
