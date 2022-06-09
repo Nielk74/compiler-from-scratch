@@ -50,4 +50,5 @@ public class LabelManager {
     public Label getLabel(String name) {
         return map.get(name);
     }
+
 }

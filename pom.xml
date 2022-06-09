@@ -328,7 +328,24 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
-
+                    <execution>
+                        <id>elseif</id>
+                        <configuration>
+                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    intermediaire2/elseif
+                                </argument>
+                                <argument>
+                                    decompile
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
 

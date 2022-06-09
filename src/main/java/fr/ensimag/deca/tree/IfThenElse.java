@@ -48,22 +48,71 @@ public class IfThenElse extends AbstractInst {
         Label ifLabel = compiler.labelManager.getLabel("if_" + Integer.toString(labelNum));
         Label elseLabel = compiler.labelManager.getLabel("else_" + Integer.toString(labelNum));
         Label endIfLabel = compiler.labelManager.getLabel("end_if_" + Integer.toString(labelNum));
-
+        String elseIfLabelFormat = "else_if_" + Integer.toString(labelNum)+ "_";
+        int cptElseif = 0;
+        Label elseifLabel = compiler.labelManager.createLabel(elseIfLabelFormat + cptElseif);
+        ListInst elseIfBranch = this.elseBranch;
+        boolean isElseif = false;
         compiler.addLabel(ifLabel);
-        this.condition.codeGenCondition(compiler, false, elseBranch.isEmpty() ? endIfLabel : elseLabel);
-        // generate "then" instructions
-        thenBranch.codeGenListInst(compiler);
-
-        // add "else" label and instructions
+        //TODO: ajouter else if dans labelmanager
         if (!elseBranch.isEmpty()) {
-            // jump to end_if
+            // if elseif endif
+            if (elseBranch.getList().get(0).getClass() == IfThenElse.class) {
+                this.condition.codeGenCondition(compiler, false, elseifLabel);
+                isElseif = true;
+            } else {
+                // if else endif
+                this.condition.codeGenCondition(compiler, false, elseLabel);
+            }
+            // generate "then" instructions
+            thenBranch.codeGenListInst(compiler);
+            // else if label and instructions
             compiler.addInstruction(new BRA(endIfLabel));
-            compiler.addLabel(elseLabel);
-            elseBranch.codeGenListInst(compiler);
+        } else {
+            // if endif
+            this.condition.codeGenCondition(compiler, false, endIfLabel);
+            // generate "then" instructions
+            thenBranch.codeGenListInst(compiler);
         }
-
+        // elseif et distinguer else de elseif
+        while (isElseif) {
+            IfThenElse elseif = (IfThenElse) elseIfBranch.getList().get(0);
+            compiler.addLabel(elseifLabel);
+            // else de elseif = endif
+            if (elseif.elseBranch.isEmpty()) {
+                elseif.codeGenElseIf(compiler, endIfLabel, endIfLabel, false);
+                isElseif = false;
+            // else de elseif = elseif
+            } else if (elseif.elseBranch.getList().get(0).getClass() == IfThenElse.class) {
+                elseifLabel = compiler.labelManager.createLabel(elseIfLabelFormat + Integer.toString(cptElseif + 1));
+                elseif.codeGenElseIf(compiler, endIfLabel, elseifLabel, true);
+            // else de elseif = else
+            } else {
+                elseif.codeGenElseIf(compiler, endIfLabel, elseLabel, true);
+                isElseif = false;
+            }
+            elseIfBranch = elseif.elseBranch;
+            cptElseif++;
+        }
+        // else
+        if (!elseIfBranch.isEmpty()) {
+            compiler.addLabel(elseLabel);
+            elseIfBranch.codeGenListInst(compiler);
+        }
         // add "end_if" label
         compiler.addLabel(endIfLabel);
+    }
+
+    protected void codeGenElseIf(DecacCompiler compiler, Label if_fin, Label jmp, boolean fin) {
+        this.condition.codeGenCondition(compiler, false, jmp);
+        this.thenBranch.codeGenListInst(compiler);
+        if (fin)
+            compiler.addInstruction(new BRA(if_fin));
+    }
+
+    public void setElse(ListInst newElse) {
+        Validate.notNull(elseBranch);
+        this.elseBranch = newElse;
     }
 
     @Override
