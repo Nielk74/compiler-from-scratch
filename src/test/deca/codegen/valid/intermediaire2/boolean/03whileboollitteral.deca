@@ -1,0 +1,18 @@
+//Passe dans la boucle une fois, puis en sort à cause du x
+{
+int x = 5;
+int y = 5;
+while(true && (x < 10)){
+  println("true && (5 < 10)");
+  x = 10;
+}
+println("!(true && (10 < 10))");
+
+//Ne passe pas dans la boucle à cause du false
+
+while(false && (y < 10)){
+  println("false && (y < 10)");
+  y = 10;
+}
+println("!(false && (5 < 10))");
+}

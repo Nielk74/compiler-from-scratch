@@ -1,21 +1,22 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.context.TypeDefinition;
-import fr.ensimag.deca.context.VariableDefinition;
-import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
+import java.io.PrintStream;
+
+import org.apache.commons.lang.Validate;
+
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.TypeDefinition;
+import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
-
-import java.io.PrintStream;
-import org.apache.commons.lang.Validate;
 
 /**
  * @author gl10
@@ -49,6 +50,9 @@ public class DeclVar extends AbstractDeclVar {
             case "float":
                 t = compiler.environmentType.FLOAT;
                 break;
+            case "boolean":
+                t = compiler.environmentType.BOOLEAN;
+                break;
             default:
                 throw new ContextualError(typeSymbol.getName() + " is not a valid type", type.getLocation());
         }
@@ -67,9 +71,14 @@ public class DeclVar extends AbstractDeclVar {
     protected void codeGenDeclVar(DecacCompiler compiler) {
         this.initialization.codeGenInitialization(compiler, 2);
         RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
-        compiler.addInstruction(new STORE(Register.getR(2), offset), this.varName.getName() + " => " + Register.getLbOffsetCounter() + "(LB)");
+
+        if (this.initialization instanceof Initialization) {
+            compiler.addInstruction(new STORE(Register.getR(2), offset),
+                    this.varName.getName() + " => " + Register.getLbOffsetCounter() + "(LB)");
+        }
+
         Register.incrementLbOffsetCounter();
-        ((AbstractIdentifier) this.varName).getExpDefinition().setOperand(offset);                
+        ((AbstractIdentifier) this.varName).getExpDefinition().setOperand(offset);
     }
 
     @Override

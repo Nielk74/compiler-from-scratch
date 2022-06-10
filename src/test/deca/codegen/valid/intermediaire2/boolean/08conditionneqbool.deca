@@ -1,0 +1,20 @@
+//Exécute le if
+ {
+ int y = 10;
+ boolean x = (true && (5.5 < y)) || (!true == !(true && false));
+ int a = 10;
+ boolean b = (true && (15.5 < a)) || (!true == !(true && false));
+ if(x){
+    println("(true && (5.5 < 10)) || (!true == !(true && false))");
+ }else{
+    println("!((true && (5.5 < 10)) || (!true == !(true && false)))");
+ }
+
+ //Exécute le else
+
+ if(b){
+    println("(true && (15.5 < 10)) || (!true == !(true && false))");
+ }else{
+    println("!((true && (15.5 < 10)) || (!true == !(true && false)))");
+ }
+ }

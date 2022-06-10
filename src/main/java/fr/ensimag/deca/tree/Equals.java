@@ -2,8 +2,7 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.instructions.BEQ;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
+import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
  *
@@ -26,5 +25,10 @@ public class Equals extends AbstractOpExactCmp {
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         super.codeGenCondition(compiler, negative, l);
         compiler.addInstruction(negative ? new BEQ(l) : new BNE(l));
+    }
+
+    @Override
+    public void codeGenBranch(DecacCompiler compiler, Label elseLabel){
+        compiler.addInstruction(new BNE(elseLabel));
     }
 }

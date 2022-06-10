@@ -1,0 +1,24 @@
+//Exécute le if
+{
+boolean x = true;
+boolean y = false;
+boolean z = true;
+boolean w = true;
+boolean a = true;
+boolean b = false;
+boolean c = true;
+boolean d = false;
+if((x && (4 == 5)) || y || (z == w)){
+  println("(true && (4 == 5)) || false || (true == true)");
+}else{
+  println("!(true && (4 == 5)) || false || (true == true)");
+}
+
+//Exécute le else
+
+if((a && (4 == 5)) || b || (c == d)){
+  println("(true && (4 == 5)) || false || (true == false)");
+}else{
+  println("!((true && (4 == 5)) || false || (true == false))");
+}
+}
