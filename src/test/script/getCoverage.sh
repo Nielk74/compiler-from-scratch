@@ -12,14 +12,11 @@ COMPLEXITY_MISSED COMPLEXITY_COVERED METHOD_MISSED METHOD_COVERED
 do
   passed=$(($passed+$INSTRUCTION_COVERED))
   failed=$(($failed+$INSTRUCTION_MISSED))
-  #z=$((INSTRUCTION_COVERED+INSTRUCTION_MISSED))
-  #t=$(pct $INSTRUCTION_COVERED $z 2)
 done < <(tail -n +2 target/site/jacoco.csv)
-# echo percentage of passed tests
 coverage=$(pct $passed $((passed+failed)) 2)
 if (( $(echo "$coverage < 75" |bc -l) )); then
   color="yellow"
 else
   color="green"
 fi
-#anybadge -l coverage -v "$coverage %" -f cover.svg -c $color
+anybadge -l coverage -v "$coverage %" -f cover.svg -c $color
