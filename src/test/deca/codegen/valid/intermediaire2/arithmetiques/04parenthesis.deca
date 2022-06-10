@@ -1,0 +1,23 @@
+// Description:
+//    Programme minimaliste affichant les résultats d'opérations arithmétiques utilisant des parenthèses pour modifier la priorité.
+//
+// Resultats:
+//    04parenthesis.expected
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 1;
+    int y = 2;
+    int a = 1 - (y + x);
+    int b = 1 - y + x;
+    float c = (1 - y) / y;
+    int d = (1 - x) * y;
+    int e = (x + y) * (3 % 2);
+    println(a);
+    println(b);
+    println(c);
+    println(d);
+    println(e);
+}

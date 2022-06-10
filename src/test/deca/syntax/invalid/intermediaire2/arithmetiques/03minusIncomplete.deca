@@ -1,0 +1,13 @@
+// Description:
+//    tests de programme incorrect lexicalement (operation sans operande de droite)
+//
+// Resultats:
+//    
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x;
+    x = 1 -;
+}

@@ -1,0 +1,17 @@
+// Description:
+//    Programme minimaliste réalisant une comparaison dans un if entre une variable et le résultat d'une addition, et le résultat d'une soustraction.
+//
+// Resultats:
+//    04if.lis
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 0;
+    if (x < 1 + 1) {
+    }
+    
+    if (x < 1 - 1) {
+    }
+}

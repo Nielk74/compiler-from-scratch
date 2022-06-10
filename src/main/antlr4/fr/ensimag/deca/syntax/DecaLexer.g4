@@ -33,6 +33,12 @@ LT: '<';
 LEQ: '<=';
 GT: '>';
 GEQ: '>=';
+// Arithmétique
+PLUS: '+';
+MINUS: '-';
+TIMES: '*';
+SLASH: '/';
+PERCENT: '%';
 //Mots réservés
 WHILE: 'while';
 IF: 'if';

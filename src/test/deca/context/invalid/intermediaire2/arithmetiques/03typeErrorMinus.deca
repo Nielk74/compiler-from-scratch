@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste assignant le résultat d'une addition (int, float) à une variable int -> erreur de typage
+//
+// Resultats:
+//    03typeErrorMinus.lis
+//
+// Historique:
+//    cree le 09/06/2022
+
+{
+    int a = 1;
+    int c = 0.5 + a;
+}

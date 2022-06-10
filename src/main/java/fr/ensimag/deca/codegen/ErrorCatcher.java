@@ -13,21 +13,29 @@ import fr.ensimag.ima.pseudocode.instructions.ERROR;
 public class ErrorCatcher {
     public static final String IO_ERROR = "io_error";
     public static final String SO_ERROR = "so_error";
+    public static final String OV_ERROR = "ov_error";
 
     // overflow_error
     // stack_overflow_error
 
-    public static void handleErrors(DecacCompiler compiler) {
-        Label io_error_label = compiler.labelManager.createLabel(IO_ERROR);
-        Label so_error_label = compiler.labelManager.createLabel(SO_ERROR);
+    public static void createErrorLabel(DecacCompiler compiler) {
+        compiler.labelManager.createLabel(IO_ERROR);
+        compiler.labelManager.createLabel(SO_ERROR);
+        compiler.labelManager.createLabel(OV_ERROR);
+    }
 
+    public static void handleErrors(DecacCompiler compiler) {
         // IO_ERROR
-        compiler.addLabel(io_error_label);
+        compiler.addLabel(compiler.labelManager.getLabel(IO_ERROR));
         addErrorHandler(compiler, "Error: Input/Output error");
 
         // SO_ERROR
-        compiler.addLabel(so_error_label);
+        compiler.addLabel(compiler.labelManager.getLabel(SO_ERROR));
         addErrorHandler(compiler, "Error: Stack Overflow");
+
+        // OV_ERROR
+        compiler.addLabel(compiler.labelManager.getLabel(OV_ERROR));
+        addErrorHandler(compiler, "Error: Overflow");
     }
 
     private static void addErrorHandler(DecacCompiler compiler, String message) {

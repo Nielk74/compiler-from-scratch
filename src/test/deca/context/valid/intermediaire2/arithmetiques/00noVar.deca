@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste réalisant une addition et une soustraction.
+//
+// Resultats:
+//    00noVar.lis
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    1 + 1;
+    1 - 1;
+}
