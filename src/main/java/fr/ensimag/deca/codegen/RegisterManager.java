@@ -1,23 +1,13 @@
 package fr.ensimag.deca.codegen;
 
 public class RegisterManager {
-    private int nbRegisterMax = 15;
-    private int registerCounter = 2;
+    private int nbRegisterMax = 16;
 
     public int getNbRegisterMax() {
-        return nbRegisterMax;
+        return nbRegisterMax - 1;
     }
 
-    public void incrementRegisterCounter() {
-        if (!maxReached())
-            registerCounter++;
-    }
-
-    public int getRegisterCounter() {
-        return registerCounter;
-    }
-
-    public boolean maxReached() {
-        return registerCounter == nbRegisterMax;
+    public void setNbRegisterMax(int n) {
+        nbRegisterMax = n;
     }
 }

@@ -39,6 +39,10 @@ public class CompilerOptions {
     public boolean getPrintBanner() {
         return printBanner;
     }
+
+    public int getRegisterMax() {
+        return registerMax;
+    }
     
     public List<File> getSourceFiles() {
         return Collections.unmodifiableList(sourceFiles);
@@ -49,15 +53,14 @@ public class CompilerOptions {
     private boolean verification = false;
     private boolean parallel = false;
     private boolean printBanner = false;
+    private int registerMax = 15;
     private List<File> sourceFiles = new ArrayList<File>();
-
     
     public void parseArgs(String[] args) throws CLIException {
-        // FAIT : parcourir args pour positionner les options correctement.
         Logger logger = Logger.getRootLogger();
         // map command-line debug option to log4j's level.
-        for(String a: args) {
-            switch (a) {
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
                 case "-b":
                     printBanner = true;
                     break;
@@ -83,21 +86,39 @@ public class CompilerOptions {
                 case "-P":
                     parallel = true;
                     break;
+                case "-r":
+                    // get the X argument
+                    i++;
+                    try {
+                        if (i >= args.length) {
+                            throw new Exception();
+                        }
+                        int x = Integer.parseInt(args[i]);
+                        if (x < 4 || x > 16) {
+                            throw new Exception();
+                        }
+                        this.registerMax = x;
+                    } catch (Exception e) {
+                        System.out.println("Argument X must be between 4 and 16 for option -r");
+                        displayUsage();
+                        System.exit(0);
+                    }
+                    break;
                 default:
-                    sourceFiles.add(new File(a));
+                    sourceFiles.add(new File(args[i]));
                     break;
             }
         }
         switch (getDebug()) {
-        case QUIET: break; // keep default
-        case INFO:
-            logger.setLevel(Level.INFO); break;
-        case DEBUG:
-            logger.setLevel(Level.DEBUG); break;
-        case TRACE:
-            logger.setLevel(Level.TRACE); break;
-        default:
-            logger.setLevel(Level.ALL); break;
+            case QUIET: break; // keep default
+            case INFO:
+                logger.setLevel(Level.INFO); break;
+            case DEBUG:
+                logger.setLevel(Level.DEBUG); break;
+            case TRACE:
+                logger.setLevel(Level.TRACE); break;
+            default:
+                logger.setLevel(Level.ALL); break;
         }
         logger.info("Application-wide trace level set to " + logger.getLevel());
 
@@ -118,6 +139,7 @@ public class CompilerOptions {
         System.out.println("  -v : verify only");
         System.out.println("  -d : activate debug, repeat for more traces");
         System.out.println("  -P : parallel compilation");
+        System.out.println("  -r X : limit the number of registers to R0 to R{X-1} (4 <= X <= 16)");
     }
 
     protected void displayBanner() {

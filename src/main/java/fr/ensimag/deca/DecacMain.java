@@ -30,6 +30,7 @@ public class DecacMain {
                 @Override
                 public Boolean call() throws Exception {
                     DecacCompiler compiler = new DecacCompiler(options, file);
+                    compiler.registerManager.setNbRegisterMax(options.getRegisterMax());
                     if (compiler.compile()) {
                         return Boolean.FALSE;
                     }
@@ -85,6 +86,7 @@ public class DecacMain {
         } else {
             for (File source : options.getSourceFiles()) {
                 DecacCompiler compiler = new DecacCompiler(options, source);
+                compiler.registerManager.setNbRegisterMax(options.getRegisterMax());
                 if (compiler.compile()) {
                     error = true;
                 }
