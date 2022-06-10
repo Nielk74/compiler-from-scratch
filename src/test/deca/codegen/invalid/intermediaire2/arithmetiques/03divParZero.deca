@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste testant la division par 0
+//
+// Resultats:
+//    03divParZero.expected
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    float x = 1.0;
+    x = x / 0;
+}

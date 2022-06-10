@@ -346,7 +346,24 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
-
+                    <execution>
+                        <id>arithmetiques</id>
+                        <configuration>
+                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    intermediaire2/arithmetiques
+                                </argument>
+                                <argument>
+                                    decompile
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <id>cmp-int-float</id>
                         <configuration>

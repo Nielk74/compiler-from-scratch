@@ -68,15 +68,13 @@ if [ -d  "${root}/context/invalid/${feature}" ]; then
     for f in *.deca ; do
         file="${f%.deca}"
         ((nbtests++))
-        if decac "${f}" 2> "${file}.res" ; then
-    	echo "--- ${file}: KO ---"
-        elif grep $(cat "${file}.lis") "${file}.res" > /dev/null ; then
-    	echo "--- ${file}: PASSED ---"
-    	((nbpassed++))
+        decac "${f}" 2> "${file}.res"
+        if grep -q -f "${file}.lis" "${file}.res"
+        then
+            echo "--- ${file}: PASSED ---"
+            ((nbpassed++))
         else
-    	echo "--- ${file}: FAILED ---"
-            echo "DID NOT FOUND STRING \"$(cat ${file}.lis)\""
-    	echo "IN \"$(cat ${file}.res)\""
+            echo "--- ${file}: FAILED ---"
         fi
         echo
     done

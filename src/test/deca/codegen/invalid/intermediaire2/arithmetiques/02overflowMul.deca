@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste testant le débordement de valeur lors d'une multiplication
+//
+// Resultats:
+//    02overflowMul.expected
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 2147483647;
+    x = x * 2;
+}

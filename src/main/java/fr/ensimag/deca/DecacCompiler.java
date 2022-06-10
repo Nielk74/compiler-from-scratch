@@ -2,6 +2,7 @@ package fr.ensimag.deca;
 
 import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.codegen.LabelManager;
+import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.deca.codegen.StackManager;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
@@ -153,6 +154,7 @@ public class DecacCompiler {
     /** The global environment codegen managers */
     public final LabelManager labelManager = new LabelManager();
     public final StackManager stackManager = new StackManager();
+    public final RegisterManager registerManager = new RegisterManager();
     
     /**
      * Run the compiler (parse source file, generate code)
@@ -227,9 +229,11 @@ public class DecacCompiler {
         }
 
         addComment("start main program");
+        // create ima program error labels
+        ErrorCatcher.createErrorLabel(this);
         prog.codeGenProgram(this);
         addComment("end main program");
-        // gestion des exceptions
+        // add ima program error handlers
         ErrorCatcher.handleErrors(this);
         
         // initialise la pile

@@ -1,0 +1,65 @@
+// Description:
+//    Programme affichant les résultats d'opérations arithmétiques entre des variables int et float
+//
+// Resultats:
+//    00IntFloat.expected
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 5;
+    int z = 1;
+    float y = 0.5;
+    float a = 5.9;
+
+    // opérations entre int et float
+    println(x + y);
+    println(x - y);
+    println(x * y);
+    println(x / y);
+
+    println(y + x);
+    println(y - x);
+    println(y * x);
+    println(y / x);
+
+    // opérations entre ints
+    println(x + z);
+    println(x - z);
+    println(x * z);
+    println(x / z);
+
+    println(x + 5);
+    println(x - 35);
+    println(x * 156);
+    println(x / 9);
+
+    println(5 + x);
+    println(35 - x);
+    println(156 * x);
+    println(9 / x);    
+
+    // opérations entre floats
+    println(y + a);
+    println(y - a);
+    println(y * a);
+    println(y / a);
+
+    println(y + 5.6);
+    println(y - 560.05);
+    println(y * 98.1654);
+    println(y / 5465.17);
+
+    println(5.6 + a);
+    println(560.05 - a);
+    println(98.1654 * a);
+    println(5465.17 / a);
+
+    // tests modulo
+    x = 5;
+    println(x % 3);
+    println(24 % x);
+    z = 3;
+    println(x % z);
+}

@@ -1,0 +1,48 @@
+// Description:
+//    Programme minimaliste réalisant des comparaisons dans des if entre une variable int et le résultat d'opéartions arithmétiques.
+//
+// Resultats:
+//    01if.expected
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 0;
+    if (x < 1 + 1) {
+        println(x, " < 1 + 1");
+    } else {
+        println(x, " >= 1 + 1");
+    }
+
+    if (x < 1 - 1) {
+        println(x, " < 1 - 1");
+    } else {
+        println(x, " >= 1 - 1");
+    }
+
+    if (x < 1 * 1) {
+        println(x, " < 1 * 1");
+    } else {
+        println(x, " >= 1 * 1");
+    }
+
+    if (x == 1 / 1) {
+        println(x, " == 1 / 1");
+    } else {
+        println(x, " != 1 / 1");
+    }
+
+    x = 5;
+    if (x == 12 % 7) {
+        println(x, " == 12 % 7");
+    } else {
+        println(x, " != 12 % 7");
+    }
+
+    if (12 % 7 == x) {
+        println("12 % 7 == ", x);
+    } else {
+        println("12 % 7 != ", x);
+    }
+}

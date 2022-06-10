@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste testant le débordement de valeur lors d'une addition
+//
+// Resultats:
+//    00overflowPlus.expected
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 2147483647;
+    x = x + 1;
+}

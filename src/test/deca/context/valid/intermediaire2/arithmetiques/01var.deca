@@ -1,0 +1,17 @@
+// Description:
+//    Programme minimaliste réalisant une addition et une soustraction entre une variable initialisée et un chiffre et entre deux variables.
+//
+// Resultats:
+//    01var.lis
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    int x = 1;
+    int y = 1;
+    x + 1;
+    x - 1;
+    x + y;
+    x - y;
+}
