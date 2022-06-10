@@ -7,7 +7,7 @@ import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
 public class StackManager {
-    private static int varCounter = 0;
+    private int varCounter = 0;
 
     public void incrementVarCounter() {
         varCounter++;
