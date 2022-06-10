@@ -67,6 +67,10 @@ public class CompilerOptions {
                     }
                     parse = true;
                     break;
+                case "-h":
+                    displayUsage();
+                    System.exit(0);
+                    break;
                 case "-v":
                     if (parse) {
                         throw new CLIException("-v and -p are incompatible");
@@ -107,12 +111,16 @@ public class CompilerOptions {
     }
 
     protected void displayUsage() {
-        System.err.println("Usage: decac [options] file.deca ...");
-        System.err.println("Options:");
-        System.err.println("  -b : print banner with the team's name");
-        System.err.println("  -p : parse only and display decompiled code");
-        System.err.println("  -v : verify only");
-        System.err.println("  -d : activate debug, repeat for more traces");
-        System.err.println("  -P : parallel compilation");
+        System.out.println("Usage: decac [options] file.deca ...");
+        System.out.println("Options:");
+        System.out.println("  -b : print banner with the team's name");
+        System.out.println("  -p : parse only and display decompiled code");
+        System.out.println("  -v : verify only");
+        System.out.println("  -d : activate debug, repeat for more traces");
+        System.out.println("  -P : parallel compilation");
+    }
+
+    protected void displayBanner() {
+        System.out.println("Equipe GL10");
     }
 }
