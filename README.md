@@ -1,6 +1,7 @@
 # Projet Génie Logiciel, Ensimag.
 gl10, 25/04/2022.
 
+![https://gitlab.ensimag.fr/glapp2022/gl10/-/jobs/artifacts/develop/raw/cover.svg?job=coverage](https://gitlab.ensimag.fr/glapp2022/gl10/-/jobs/artifacts/develop/raw/cover.svg?job=coverage)
 ## Sommaire
 
  - [Implémentation effective](#implémentation-effective)
