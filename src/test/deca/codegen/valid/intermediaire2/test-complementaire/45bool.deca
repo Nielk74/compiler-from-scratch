@@ -1,0 +1,19 @@
+// Description:
+//    Programme avec une condition dans un if utilisant la negation d'un OU.
+//
+// Resultats:
+//    00convFloat.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+  int x = 17;
+  print (x);
+  if (! ((7 <= x && x < 13) || (17 < x && x <= 42))) {
+    print ( " n'est pas " );
+ } else {
+    print ( " est " );
+ }
+  println ( " dans [7 ,13[ union ]17 ,42] " );
+}

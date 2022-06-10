@@ -1,0 +1,12 @@
+// Description:
+//  readFloat avec une chaine 
+//
+// Resultats:
+//  05stringReadFloat.expected
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float x = readFloat();
+}

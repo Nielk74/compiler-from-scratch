@@ -1,0 +1,19 @@
+// Description:
+//  Programme avec une chaine dans une condition générant une erreur
+//
+// Resultats:
+//  31and.lis
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+  int x = 14;
+  print (x);
+  if (x <= 19 && "coucou") {
+    print ( " est" );
+  } else {
+    print ( " n'est pas " );
+  }
+  println ( " dans [15,19]" );
+}

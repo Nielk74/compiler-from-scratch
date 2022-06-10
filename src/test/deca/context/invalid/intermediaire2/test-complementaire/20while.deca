@@ -1,0 +1,25 @@
+// Description:
+//  Programme avec une condition qui n'est pas un booleen 
+//
+// Resultats:
+//  20while.lis
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+  int x = 0;
+  while (x) {
+    println ("x=", x);
+    if (x==0) {
+      x=1;
+    } else {
+      if (x == 1) {
+        x=2;
+      } else {
+        println("erreur x=",x);
+      }
+    } 
+  }
+  println("ok: 2=",x);
+}

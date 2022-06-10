@@ -1,0 +1,13 @@
+// Description:
+//    Programme initialisant une variable float avec un readInt -> teste le bon fonctionnement de convFloat.
+//
+// Resultats:
+//    00readFloatInt.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float x = readInt();
+    println(x);
+}

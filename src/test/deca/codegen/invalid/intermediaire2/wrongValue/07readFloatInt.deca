@@ -1,0 +1,12 @@
+// Description:
+//  readFloat avec un int 
+//
+// Resultats:
+//  07readFloatInt.expected
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float x = readFloat();
+}
