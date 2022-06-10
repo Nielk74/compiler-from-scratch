@@ -213,7 +213,7 @@ assign_expr returns[AbstractExpr tree]
     : e=or_expr (
         /* condition: expression e must be a "LVALUE" */ {
             if (! ($e.tree instanceof AbstractLValue)) {
-                throw new InvalidLValue(this, $ctx);
+                throw new InvalidLValue(this, $ctx, $e.tree.getClass().getSimpleName());
             }
         }
         EQUALS e2=assign_expr {

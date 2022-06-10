@@ -44,7 +44,7 @@ public abstract class AbstractPrint extends AbstractInst {
         for (AbstractExpr a : getArguments().getList()) {
             Type t = a.verifyExpr(compiler, localEnv, currentClass);
             if (!t.isInt() && !t.isFloat() && !t.isString()) {
-                throw new ContextualError("expression is not an int, a float, or a string", a.getLocation());
+                throw new ContextualError("Wrong parameter type of print - expected: int, float or string ≠ current: "+ t, a.getLocation());
             }
         } 
     }
@@ -69,7 +69,7 @@ public abstract class AbstractPrint extends AbstractInst {
         } else if (a.getType().isInt()) {
             compiler.addInstruction(new WINT());
         } else {
-            throw new DecacInternalError("Unexpected case in AbstractExpr.codeGenPrint");
+            throw new DecacInternalError("Unexpected case in AbstractExpr.codeGenPrint, current type: "+a.getType()+" ≠ expected type: float or int");
         }
     }
 

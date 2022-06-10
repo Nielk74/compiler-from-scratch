@@ -13,7 +13,7 @@ public class LabelManager {
 
     public Label createLabel(String name) {
         if (name == null)
-            throw new IllegalArgumentException("name should not be null");
+            throw new IllegalArgumentException("Wrong label type - expected: string ≠ current: null");
         Label l = map.get(name);
         if (l == null) {
             l = new Label(name);

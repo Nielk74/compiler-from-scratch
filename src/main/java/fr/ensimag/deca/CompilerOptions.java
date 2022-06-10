@@ -143,6 +143,8 @@ public class CompilerOptions {
     }
 
     protected void displayBanner() {
-        System.out.println("Equipe GL10");
+        System.out.println("===============================================================");
+        System.out.println("            Groupe 10 ---- Donkey Kong    ");
+        System.out.println("===============================================================");
     }
 }

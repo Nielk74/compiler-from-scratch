@@ -180,9 +180,10 @@ public class Identifier extends AbstractIdentifier {
             ClassDefinition currentClass) throws ContextualError {
         ExpDefinition def = localEnv.get(this.getName());
         if (def == null) {
-            throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
+            throw new ContextualError("Wrong variable name: " + this.getName() + " is not defined", this.getLocation());
         }
-        this.definition = def;
+        this.setDefinition(def);
+
         return this.verifyType(compiler);
     }
 
@@ -195,11 +196,11 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         Type currentType = this.definition.getType();
         if (currentType == null) {
-            throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
+            throw new DecacInternalError("Type " + this.getName() + " is not defined");
         }
         TypeDefinition typeDef = compiler.environmentType.defOfType(currentType.getName());
         if (typeDef == null) {
-            throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
+            throw new DecacInternalError("Type definition " + this.getName() + " is not defined");
         }
         this.setType(currentType);
         return currentType;
@@ -250,11 +251,8 @@ public class Identifier extends AbstractIdentifier {
             throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
         }
         DVal d;
-        try {
-            d = this.codeGenExp(compiler);
-        } catch (ContextualError e) {
-            throw new DecacInternalError("Contextual error in AbstractExpr.codeGenCondition");
-        }
+        d = this.codeGenExp(compiler);
+     
         compiler.addInstruction(new LOAD(d, Register.R1));
         if(negative){
             compiler.addInstruction(new CMP(0, Register.R1));
