@@ -1,0 +1,27 @@
+// Description:
+//    Programme testant l'affectation avec une autre affectation
+//
+// Resultats:
+//    5
+//    7
+//    4.00000e+00
+//    7.00000e+00
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    int a = 8;
+    int b = (a = 5);
+    float c = (a = 4);
+    float d;
+    int e = 7;
+
+    println(b);
+    b = (a = e);
+    println(b);
+
+    println(c);
+    c = (d = a);
+    println(c);
+}

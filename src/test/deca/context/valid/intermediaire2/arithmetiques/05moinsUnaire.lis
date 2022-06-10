@@ -1,0 +1,81 @@
+`> [11, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [11, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  |  definition: type defined at [12, 4], type=int
+      |  ||  +> [12, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [12, 8], type=int
+      |  ||  `> [12, 12] Initialization
+      |  ||     `> [12, 12] Int (5)
+      |  ||        type: int
+      |  []> [13, 8] DeclVar
+      |      +> [13, 4] Identifier (int)
+      |      |  definition: type defined at [13, 4], type=int
+      |      +> [13, 8] Identifier (y)
+      |      |  definition: variable defined at [13, 8], type=int
+      |      `> [13, 12] Initialization
+      |         `> [13, 12] UnaryMinus
+      |            type: int
+      |            `> [13, 13] UnaryMinus
+      |               type: int
+      |               `> [13, 14] UnaryMinus
+      |                  type: int
+      |                  `> [13, 15] UnaryMinus
+      |                     type: int
+      |                     `> [13, 16] UnaryMinus
+      |                        type: int
+      |                        `> [13, 17] UnaryMinus
+      |                           type: int
+      |                           `> [13, 18] UnaryMinus
+      |                              type: int
+      |                              `> [13, 19] UnaryMinus
+      |                                 type: int
+      |                                 `> [13, 20] UnaryMinus
+      |                                    type: int
+      |                                    `> [13, 21] UnaryMinus
+      |                                       type: int
+      |                                       `> [13, 22] UnaryMinus
+      |                                          type: int
+      |                                          `> [13, 23] UnaryMinus
+      |                                             type: int
+      |                                             `> [13, 24] UnaryMinus
+      |                                                type: int
+      |                                                `> [13, 25] UnaryMinus
+      |                                                   type: int
+      |                                                   `> [13, 26] UnaryMinus
+      |                                                      type: int
+      |                                                      `> [13, 27] UnaryMinus
+      |                                                         type: int
+      |                                                         `> [13, 28] UnaryMinus
+      |                                                            type: int
+      |                                                            `> [13, 29] UnaryMinus
+      |                                                               type: int
+      |                                                               `> [13, 30] UnaryMinus
+      |                                                                  type: int
+      |                                                                  `> [13, 31] UnaryMinus
+      |                                                                     type: int
+      |                                                                     `> [13, 32] UnaryMinus
+      |                                                                        type: int
+      |                                                                        `> [13, 33] UnaryMinus
+      |                                                                           type: int
+      |                                                                           `> [13, 34] UnaryMinus
+      |                                                                              type: int
+      |                                                                              `> [13, 35] UnaryMinus
+      |                                                                                 type: int
+      |                                                                                 `> [13, 36] UnaryMinus
+      |                                                                                    type: int
+      |                                                                                    `> [13, 37] UnaryMinus
+      |                                                                                       type: int
+      |                                                                                       `> [13, 38] UnaryMinus
+      |                                                                                          type: int
+      |                                                                                          `> [13, 39] UnaryMinus
+      |                                                                                             type: int
+      |                                                                                             `> [13, 40] UnaryMinus
+      |                                                                                                type: int
+      |                                                                                                `> [13, 41] UnaryMinus
+      |                                                                                                   type: int
+      |                                                                                                   `> [13, 42] Int (5)
+      |                                                                                                      type: int
+      `> ListInst [List with 0 elements]

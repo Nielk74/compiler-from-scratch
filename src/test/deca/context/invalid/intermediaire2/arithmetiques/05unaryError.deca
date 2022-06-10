@@ -1,0 +1,13 @@
+// Description:
+//    Erreur quand moins unaire est utilisé sur un type non entier/float
+//
+// Resultats:
+//    05unaryError.lis
+//
+// Historique:
+//    cree le 09/06/2022
+
+
+{
+    int x = -true;
+}
