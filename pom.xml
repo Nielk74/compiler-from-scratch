@@ -382,6 +382,24 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>boolean</id>
+                        <configuration>
+                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    intermediaire2/boolean
+                                </argument>
+                                <argument>
+                                    decompile
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
 

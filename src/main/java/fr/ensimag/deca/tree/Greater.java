@@ -2,8 +2,8 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.instructions.BLE;
 import fr.ensimag.ima.pseudocode.instructions.BGT;
+import fr.ensimag.ima.pseudocode.instructions.BLE;
 
 /**
  *
@@ -27,4 +27,8 @@ public class Greater extends AbstractOpIneq {
         compiler.addInstruction(negative ? new BGT(l) : new BLE(l));
     }
 
+    @Override
+    public void codeGenBranch(DecacCompiler compiler, Label elseLabel) {
+        compiler.addInstruction(new BGT(elseLabel));
+    }
 }

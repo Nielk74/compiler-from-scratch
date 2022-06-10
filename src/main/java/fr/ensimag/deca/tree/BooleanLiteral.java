@@ -6,6 +6,14 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.ImmediateString;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
+
 import java.io.PrintStream;
 
 /**
@@ -28,8 +36,10 @@ public class BooleanLiteral extends AbstractExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        this.setType(compiler.environmentType.BOOLEAN);
+        return compiler.environmentType.BOOLEAN;
     }
+
 
     @Override
     public void decompile(IndentPrintStream s) {
@@ -55,6 +65,22 @@ public class BooleanLiteral extends AbstractExpr {
     // Register.getR(register_name)
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
-        throw new UnsupportedOperationException("not yet implemented");
+        if(this.getValue()) {
+            compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.getR(register_name)));
+        }else{
+            compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.getR(register_name)));
+        }
+    }
+
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        if(negative){
+            if(this.getValue()){
+                compiler.addInstruction(new BRA(l));
+            }
+        }else{
+            if(!this.getValue()){
+                compiler.addInstruction(new BRA(l));
+            }
+        }
     }
 }

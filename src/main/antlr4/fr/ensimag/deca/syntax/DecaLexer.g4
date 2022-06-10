@@ -53,6 +53,8 @@ READINT: 'readInt';
 READFLOAT: 'readFloat';
 
 //Types
+TRUE: 'true';
+FALSE: 'false';
 fragment NUM: DIGIT+;
 fragment SIGN: ('+' | '-')?;
 fragment EXP:  ('E' | 'e') SIGN NUM;

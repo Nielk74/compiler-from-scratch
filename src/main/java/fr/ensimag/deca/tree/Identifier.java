@@ -1,24 +1,32 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.context.TypeDefinition;
+import java.io.PrintStream;
+
+import org.apache.commons.lang.Validate;
+
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
-import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BNE;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-
-import java.io.PrintStream;
-import org.apache.commons.lang.Validate;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
  * Deca Identifier
@@ -236,5 +244,24 @@ public class Identifier extends AbstractIdentifier {
             s.println();
         }
     }
-
+    @Override
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        if(!this.getType().isBoolean()){
+            throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
+        }
+        DVal d;
+        try {
+            d = this.codeGenExp(compiler);
+        } catch (ContextualError e) {
+            throw new DecacInternalError("Contextual error in AbstractExpr.codeGenCondition");
+        }
+        compiler.addInstruction(new LOAD(d, Register.R1));
+        if(negative){
+            compiler.addInstruction(new CMP(0, Register.R1));
+            compiler.addInstruction(new BNE(l));
+        }else{
+            compiler.addInstruction(new CMP(0, Register.R1));
+            compiler.addInstruction(new BEQ(l));
+        }
+    }
 }
