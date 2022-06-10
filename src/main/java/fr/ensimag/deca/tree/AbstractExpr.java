@@ -96,7 +96,9 @@ public abstract class AbstractExpr extends AbstractInst {
             return convExpr;
         }
         if (!currentType.equals(expectedType)) {
-            throw new ContextualError("Type mismatch in AbstractExpr.verifyRValue", this.getLocation());
+            throw new ContextualError(
+                    "Wrong right value type - expected: "+expectedType+" ≠ current: "+ currentType,
+                    this.getLocation());
         }
         return this;
     }
@@ -125,7 +127,7 @@ public abstract class AbstractExpr extends AbstractInst {
         Type t = this.verifyExpr(compiler, localEnv, currentClass);
 
         if (!t.isBoolean())
-            throw new ContextualError("condition is not boolean", this.getLocation());
+            throw new ContextualError("Wrong condition type - expected: boolean ≠ current: "+ t, this.getLocation());
     }
 
     /**
@@ -135,11 +137,7 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     protected void codeGenPrint(DecacCompiler compiler) {
         DVal d;
-        try {
-            d = this.codeGenExp(compiler);
-        } catch (ContextualError e) {
-            throw new DecacInternalError("Contextual error in AbstractExpr.codeGenPrint");
-        }
+        d = this.codeGenExp(compiler);
 
         compiler.addInstruction(new LOAD(d, Register.R1));
     }
@@ -173,7 +171,7 @@ public abstract class AbstractExpr extends AbstractInst {
     }
 
     // evalue l'expression et retourne une Dval contenant son résultat
-    protected DVal codeGenExp(DecacCompiler compiler) throws ContextualError {
+    protected DVal codeGenExp(DecacCompiler compiler) {
         this.codeGenExp(compiler, 2);
         return Register.getR(2);
     }

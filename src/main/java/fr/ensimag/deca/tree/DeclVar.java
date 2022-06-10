@@ -54,7 +54,8 @@ public class DeclVar extends AbstractDeclVar {
                 t = compiler.environmentType.BOOLEAN;
                 break;
             default:
-                throw new ContextualError(typeSymbol.getName() + " is not a valid type", type.getLocation());
+                throw new ContextualError("Wrong variable type - expected: float, int or boolean ≠ current: "+
+                typeSymbol.getName(), type.getLocation());
         }
         varName.setDefinition(new VariableDefinition(t, varName.getLocation()));
         type.setDefinition(new TypeDefinition(t, type.getLocation()));
@@ -63,7 +64,7 @@ public class DeclVar extends AbstractDeclVar {
         try {
             localEnv.declare(varName.getName(), varName.getExpDefinition());
         } catch (DoubleDefException e) {
-            throw new ContextualError(typeSymbol.getName() + " is already defined", type.getLocation());
+            throw new ContextualError(e.getMessage(), type.getLocation());
         }
     }
 

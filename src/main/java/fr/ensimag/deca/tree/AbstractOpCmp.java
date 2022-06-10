@@ -37,9 +37,9 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             this.setRightOperand(expr);
         }
         else if (!leftType.sameType(rightType)) {
-            throw new ContextualError("Type mismatch in AbstractOpCmp.verifyExpr", this.getLocation());
+            throw new ContextualError("Wrong right value type - expected: "+leftType+" ≠ current: "+ rightType, this.getLocation());
         }else if(leftType.isBoolean() || rightType.isBoolean()){
-            throw new ContextualError("Type boolean forbidden in AbstractOpCmp.verifyExpr", this.getLocation());
+            throw new ContextualError("Wrong type: boolean is forbidden", this.getLocation());
         }
 
         this.setType(compiler.environmentType.BOOLEAN);
