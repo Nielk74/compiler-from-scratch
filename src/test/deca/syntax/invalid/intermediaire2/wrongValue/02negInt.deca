@@ -1,0 +1,12 @@
+// Description:
+//    Programme initialisant une variable int avec une valeur negative inferieur a la valeur minimale autorisee.
+//
+// Resultats:
+//    02negInt.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    int x = -2147483648;
+}

@@ -1,0 +1,12 @@
+// Description:
+//  readFloat avec le float minimum  
+//
+// Resultats:
+//  03negReadFloat.expected
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float y = readFloat();
+}

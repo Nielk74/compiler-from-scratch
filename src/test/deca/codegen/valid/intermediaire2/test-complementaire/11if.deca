@@ -1,0 +1,17 @@
+// Description:
+//    Programme testant l'inversion de condition pour un if (entier inferieur a une variable).
+//
+// Resultats:
+//    00convFloat.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+  int x = 16;
+  if (17 < x ) {
+    println ( " 17 < " , x );
+  } else {
+    println (x , " <= 17 " );
+  }
+}

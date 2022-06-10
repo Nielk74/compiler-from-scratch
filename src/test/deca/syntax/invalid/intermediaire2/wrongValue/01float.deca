@@ -1,0 +1,12 @@
+// Description:
+//    Programme initialisant une variable float avec une valeur depassant la valeur float maximale.
+//
+// Resultats:
+//    01float.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float x = 2.0E+300;
+}

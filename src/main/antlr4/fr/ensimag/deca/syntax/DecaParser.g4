@@ -432,10 +432,19 @@ type returns[AbstractIdentifier tree]
 
 literal returns[AbstractExpr tree]
     : INT {
-            $tree = new IntLiteral(Integer.parseInt($INT.text));
+            try { 
+                $tree = new IntLiteral(Integer.parseInt($INT.text)); 
+            } catch (NumberFormatException e) { 
+                throw new InvalidRangeValue(this, $ctx);
+            }
+            
         }
     | fd=FLOAT {
-            $tree = new FloatLiteral(Float.parseFloat($fd.text));
+            try { 
+                $tree = new FloatLiteral(Float.parseFloat($fd.text));
+            } catch (Exception e) { 
+                throw new InvalidRangeValue(this, $ctx);
+            }
         }
     | str=STRING {
             $tree = new StringLiteral($str.text.substring(1, $str.text.length() - 1));

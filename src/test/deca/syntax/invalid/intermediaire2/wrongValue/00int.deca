@@ -1,0 +1,12 @@
+// Description:
+//    Programme affichant le contenu de variables float initialisees avec des immediats et des variables int -> teste le bon fonctionnement de convFloat
+//
+// Resultats:
+//    00int.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    int x = 2147483648;
+}
