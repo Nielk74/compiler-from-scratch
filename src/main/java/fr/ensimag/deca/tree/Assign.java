@@ -37,6 +37,7 @@ public class Assign extends AbstractBinaryExpr {
         Type leftType = this.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         AbstractExpr expr = this.getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
         this.setRightOperand(expr);
+        setType(leftType);
         return leftType;
     }
 
@@ -57,4 +58,8 @@ public class Assign extends AbstractBinaryExpr {
         return "=";
     }
 
+    @Override
+    protected void codeGenExp(DecacCompiler compiler, int register_name) {
+        this.codeGenInst(compiler);
+    }
 }

@@ -1,0 +1,51 @@
+// Description:
+//    Programme testant le moins unaire (avec et sans opérations binaires)
+//
+// Resultats:
+//    07unaryMinus.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    int a = 5;
+    float b = 7.5;
+    float c;
+    int d = 3;
+
+    println(-a);
+    a = -a;
+    println(a);
+
+    println(-b);
+    b = -b;
+    println(b);
+
+    println(-(a + b));
+    c = -(a + b);
+    println(c);
+
+    println(-(a - b));
+    c = -(a - b);
+    println(c);
+
+    println(-(a * b));
+    c = -(a * b);
+    println(c);
+
+    println(-(a / b));
+    c = -(a / b);
+    println(c);
+
+    println(-(a % d));
+    d = -(a % d);
+    println(d);
+
+    println(-(-(a + b)));
+    c = -(-(a + b));
+    println(c);
+    
+    // conv float avec moins unaire
+    c = -d;
+    println(c);
+}
