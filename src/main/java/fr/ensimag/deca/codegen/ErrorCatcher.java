@@ -15,9 +15,6 @@ public class ErrorCatcher {
     public static final String SO_ERROR = "so_error";
     public static final String OV_ERROR = "ov_error";
 
-    // overflow_error
-    // stack_overflow_error
-
     public static void createErrorLabel(DecacCompiler compiler) {
         compiler.labelManager.createLabel(IO_ERROR);
         compiler.labelManager.createLabel(SO_ERROR);
