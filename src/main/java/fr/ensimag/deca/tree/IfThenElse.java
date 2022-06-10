@@ -54,7 +54,7 @@ public class IfThenElse extends AbstractInst {
         ListInst elseIfBranch = this.elseBranch;
         boolean isElseif = false;
         compiler.addLabel(ifLabel);
-        //TODO: ajouter else if dans labelmanager
+        compiler.addComment(this.condition.decompile());
         if (!elseBranch.isEmpty()) {
             // if elseif endif
             if (elseBranch.getList().get(0).getClass() == IfThenElse.class) {
@@ -75,9 +75,12 @@ public class IfThenElse extends AbstractInst {
             thenBranch.codeGenListInst(compiler);
         }
         // elseif et distinguer else de elseif
+        String elseIfDecompiled = "!" + this.condition.decompile();
         while (isElseif) {
             IfThenElse elseif = (IfThenElse) elseIfBranch.getList().get(0);
             compiler.addLabel(elseifLabel);
+            compiler.addComment(elseif.condition.decompile());
+            elseIfDecompiled += " && !" + elseif.condition.decompile();
             // else de elseif = endif
             if (elseif.elseBranch.isEmpty()) {
                 elseif.codeGenElseIf(compiler, endIfLabel, endIfLabel, false);
@@ -93,10 +96,12 @@ public class IfThenElse extends AbstractInst {
             }
             elseIfBranch = elseif.elseBranch;
             cptElseif++;
+
         }
         // else
         if (!elseIfBranch.isEmpty()) {
             compiler.addLabel(elseLabel);
+            compiler.addComment(elseIfDecompiled);
             elseIfBranch.codeGenListInst(compiler);
         }
         // add "end_if" label
