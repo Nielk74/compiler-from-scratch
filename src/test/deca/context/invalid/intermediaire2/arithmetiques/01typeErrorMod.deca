@@ -2,7 +2,7 @@
 //    Programme minimaliste calculant un modulo avec une valeur float -> erreur de typage.
 //
 // Resultats:
-//    01typeErrorMod.lis
+//    01typeErrorMod.deca:11:12:
 //
 // Historique:
 //    cree le 09/06/2022

@@ -68,10 +68,10 @@ if [ -d "${root}/codegen/valid/${sprint}" ]; then
 fi
 # if the array is empty, we presume that the sprint is the feature
 if [ ${#features[@]} -eq 0 ]; then
-    "$(dirname "$0")/testLauncher.sh" "${sprint}" "decompile"
+    "$(dirname "$0")/testLauncher.sh" "${sprint}" "decompile" || exit 1
     exit 0
 fi
 
 for feature in "${features[@]}" ; do
-    "$(dirname "$0")/testLauncher.sh" "${sprint}/${feature}" "decompile"
+    "$(dirname "$0")/testLauncher.sh" "${sprint}/${feature}" "decompile" || exit 1
 done

@@ -1,9 +1,23 @@
+// Description:
+// Test du if then else, sans else if, avec des variable, et tous les opérateurs de comparaisons (==, !=, <, <=, >, >=), avec une comparaison simple par condition de if.
+// Les 2 premiers if ont un else. Les autres if n'ont que un "then".
+//
+// Resultats:
+//  i = j
+//  i = j
+//  i < k
+//  i <= j
+//  i <= k
+//  i != k
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int i = 1;
     int j = 1;
     int k = 2;
 
-    // == 
+    // ==
     if (i == j) {
         println("i = j");
     }

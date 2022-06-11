@@ -1,3 +1,14 @@
+// Description:
+// Test du while avec des variables, et des if pour incrémenter i (les opérateurs arithmétiques n'ont pas été faits à ce moment),
+// ce qui test aussi le label manager, et les imbrications de structures de contrôle.
+//
+// Resultats:
+//  1
+//  2
+//  3
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int a = 0;
     int i = 0;

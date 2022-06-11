@@ -1,15 +1,6 @@
 // Description:
 // Test de la recherche dichotomique, avec un int prédéfini à trouver, ici 421.
 //
-// Resultats:
-//  Quel est mon nombre entre 0 et 1000 ?
-//  Trop petit ! Autre proposition ?
-//  Trop petit ! Autre proposition ?
-//  Trop grand ! Autre proposition ?
-//  Trop petit ! Autre proposition ?
-//  Trop grand ! Autre proposition ?
-//  Trop grand ! Autre proposition ?
-//  Bravo...
 //
 // Historique:
 //    crée le 10/06/2022

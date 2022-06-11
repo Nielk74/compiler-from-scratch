@@ -1,3 +1,12 @@
+// Description:
+// Test du printx, qui ne doit pas afficher la valeur hexadécimale, 
+// car mal écrite: 0x1FFFFFEp0 au lieu de 0x1.FFFFFEp0
+//
+// Resultats:
+//  00printx.deca:11:11:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     printx(0x1FFFFFEp0);
 }

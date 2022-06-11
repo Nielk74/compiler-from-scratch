@@ -2,7 +2,7 @@
 //    Programme minimaliste testant le modulo par 0
 //
 // Resultats:
-//    04modParZero.expected
+//    Error: Overflow
 //
 // Historique:
 //    cree le 09/06/2022

@@ -1,7 +1,15 @@
+// Description:
+// Test de la condition du else if, que readFloat() marche pas.
+//
+// Resultats:
+//  04condition_readfloat.deca:12:16:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     if (3 < 2) {
-        print("Trop petit !");
+        print("3 < 2");
     } else if ( readFloat() ){
-        print("Trop grand !");
+        print("!(3 < 2) && readFloat()");
     }
 }

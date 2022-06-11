@@ -2,7 +2,11 @@
 //    Programme minimaliste affichant les résultats d'opérations arithmétiques utilisant des parenthèses pour modifier la priorité.
 //
 // Resultats:
-//    04parenthesis.expected
+//    -2
+//    0
+//    -5.00000e-01
+//    0
+//    3
 //
 // Historique:
 //    cree le 08/06/2022

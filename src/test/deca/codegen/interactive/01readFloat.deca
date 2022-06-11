@@ -4,9 +4,6 @@
 // et y avec une initialisation avec un readFloat.
 // On assigne ensuite à x une valeur avec un readFloat.
 //
-// Resultats:
-//  6.78900e+01
-//  5.60000e+00
 //
 // Historique:
 //    crée le 10/06/2022

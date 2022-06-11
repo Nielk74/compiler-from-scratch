@@ -1,33 +1,46 @@
+// Description:
+// Test de plusieurs 3 if avec plusieur else if
+// Test le else de la 1ere condition
+// Test le if de la 2eme codition
+// Test le else if de la 3eme condition
+//
+// Resultats:
+//  !(421 == 100) && !(421 < 421) && !(421 > 421)
+// 421 == 421
+// !(4 == 100) && 4 < 421
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int secret, user;
     secret = 421;
     user = 421;
     if (user == 100) {
-        println("égal à 100");
+        println("421 == 100");
     }else if (user < secret) {
-        println("Trop petit");
+        println("!(421 == 100) && 421 < 421");
     } else if (user > secret) {
-        println("Trop grand");
+        println("!(421 == 100) && !(421 < 421) && 421 > 421");
     } else{
-        println("Bravo");
+        println("!(421 == 100) && !(421 < 421) && !(421 > 421)");
     } 
     
     if (user == secret) {
-        println("Bravo");
+        println("421 == 421");
     }else if (user > secret) {
-        println("Trop grand");
+        println("!(421 == 421) && 421 > 421");
     } else if (user < secret) {
-        println("Trop petit");
+        println("!(421 == 421) && !(421 > 421) && 421 < 421");
     }
 
     user = 4;
     if (user == 100) {
-        println("égal à 100");
+        println("4 == 100");
     }else if (user < secret) {
-        println("Trop petit");
+        println("!(4 == 100) && 4 < 421");
     } else if (user > secret) {
-        println("Trop grand");
+        println("!(4 == 100) && !(4 < 421) && 4 > 421");
     } else{
-        println("Bravo");
+        println("!(4 == 100) && !(4 < 421) && !(4 > 421)");
     } 
 }

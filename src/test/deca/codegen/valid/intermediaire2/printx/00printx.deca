@@ -1,4 +1,13 @@
+// Description:
+// Test du printx et du printlnx, avec une variable.
+//
+// Resultats:
+//  0x1.fffffep+00x1.fffffep+0
+//
+// Historique:
+//    crée le 10/06/2022
 {
     float x = 0x1.FFFFFEp0;
     printx(x);
+    printlnx(x);
 }
