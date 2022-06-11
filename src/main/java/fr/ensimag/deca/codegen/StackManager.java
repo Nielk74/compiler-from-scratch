@@ -9,7 +9,7 @@ import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
 public class StackManager {
     private int varCounter = 0;
-    public int lbOffsetCounter = 1;
+    private int lbOffsetCounter = 1;
 
     public void incrementVarCounter() {
         varCounter++;
