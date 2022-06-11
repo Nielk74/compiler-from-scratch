@@ -2,7 +2,6 @@
 
 feature=$1
 echo "Testing feature "${feature}""
-#/../deca"
 root="$(dirname "$0")/../../.."
 decac=""${root}"/src/main/bin/decac"
 if [ "${decac}" == "" ] ; then
@@ -12,7 +11,7 @@ if [ "${decac}" == "" ] ; then
 fi
 
 root="${root}/src/test/deca"
-echo "### INFO: recompiling java files for $decac ###" 
+#echo "### INFO: recompiling java files for $decac ###" 
 #mvn compile || exit 1
 
 nbtests=0

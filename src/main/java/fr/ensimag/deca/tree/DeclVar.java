@@ -71,14 +71,14 @@ public class DeclVar extends AbstractDeclVar {
     @Override
     protected void codeGenDeclVar(DecacCompiler compiler) {
         this.initialization.codeGenInitialization(compiler, 2);
-        RegisterOffset offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
+        RegisterOffset offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
 
         if (this.initialization instanceof Initialization) {
             compiler.addInstruction(new STORE(Register.getR(2), offset),
-                    this.varName.getName() + " => " + Register.getLbOffsetCounter() + "(LB)");
+                    this.varName.getName() + " => " + compiler.stackManager.getLbOffsetCounter() + "(LB)");
         }
 
-        Register.incrementLbOffsetCounter();
+        compiler.stackManager.incrementLbOffsetCounter();
         ((AbstractIdentifier) this.varName).getExpDefinition().setOperand(offset);
     }
 

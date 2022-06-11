@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+
+# This script update the coverage badge.
+# The script assumes that the Jacoco report has been correctly generated in target/site/jacoco.svg
+
 function pct () {
     echo "scale = $3; $1 * 100 / $2" | bc
 }
 passed=0
 failed=0
-# get total percentage of passed tests
+
 while IFS="," read -r GROUP PACKAGE CLASS INSTRUCTION_MISSED INSTRUCTION_COVERED \
 BRANCH_MISSED BRANCH_COVERED LINE_MISSED LINE_COVERED \
 COMPLEXITY_MISSED COMPLEXITY_COVERED METHOD_MISSED METHOD_COVERED
