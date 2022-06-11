@@ -247,18 +247,16 @@ public class Identifier extends AbstractIdentifier {
     }
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        if(!this.getType().isBoolean()){
+        if (!this.getType().isBoolean()) {
             throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
         }
-        DVal d;
-        d = this.codeGenExp(compiler);
+        DVal d = this.codeGenExp(compiler);
      
         compiler.addInstruction(new LOAD(d, Register.R1));
-        if(negative){
-            compiler.addInstruction(new CMP(0, Register.R1));
+        compiler.addInstruction(new CMP(0, Register.R1));
+        if (negative) {
             compiler.addInstruction(new BNE(l));
-        }else{
-            compiler.addInstruction(new CMP(0, Register.R1));
+        } else {
             compiler.addInstruction(new BEQ(l));
         }
     }

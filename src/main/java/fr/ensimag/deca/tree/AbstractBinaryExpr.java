@@ -1,6 +1,11 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.*;
+
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
@@ -66,4 +71,23 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
         rightOperand.prettyPrint(s, prefix, true);
     }
 
+    // Code generation for boolean binary expressions (AbstractOpBool, AbstractOpCmp) 
+    @Override
+    protected void codeGenExp(DecacCompiler compiler, int register_name){
+        int labelNum = compiler.labelManager.createIfThenElseLabel();
+        Label ifLabel = compiler.labelManager.getLabel("if_" + Integer.toString(labelNum));
+        Label elseLabel = compiler.labelManager.getLabel("else_" + Integer.toString(labelNum));
+        Label endIfLabel = compiler.labelManager.getLabel("end_if_" + Integer.toString(labelNum));
+
+        // if the expression is true, load 1 in the register
+        compiler.addLabel(ifLabel);
+        this.codeGenCondition(compiler, false, elseLabel);
+        compiler.addInstruction(new LOAD(1, Register.getR(register_name)));
+        compiler.addInstruction(new BRA(endIfLabel));
+
+        // else, load 0 in the register
+        compiler.addLabel(elseLabel);
+        compiler.addInstruction(new LOAD(0, Register.getR(register_name)));
+        compiler.addLabel(endIfLabel);
+    }
 }

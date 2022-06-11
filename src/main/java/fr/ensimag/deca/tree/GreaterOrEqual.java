@@ -27,9 +27,4 @@ public class GreaterOrEqual extends AbstractOpIneq {
         super.codeGenCondition(compiler, negative, l);
         compiler.addInstruction(negative ? new BGE(l) : new BLT(l));
     }
-
-    @Override
-    public void codeGenBranch(DecacCompiler compiler, Label elseLabel) {
-        compiler.addInstruction(new BGE(elseLabel));
-    }
 }

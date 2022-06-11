@@ -26,9 +26,4 @@ public class Equals extends AbstractOpExactCmp {
         super.codeGenCondition(compiler, negative, l);
         compiler.addInstruction(negative ? new BEQ(l) : new BNE(l));
     }
-
-    @Override
-    public void codeGenBranch(DecacCompiler compiler, Label elseLabel){
-        compiler.addInstruction(new BNE(elseLabel));
-    }
 }

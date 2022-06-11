@@ -2,8 +2,6 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
  *
@@ -31,25 +29,5 @@ public class And extends AbstractOpBool {
             this.getLeftOperand().codeGenCondition(compiler, negative, l);
             this.getRightOperand().codeGenCondition(compiler, negative, l);
         }
-    }
-
-    @Override
-    public void codeGenExp(DecacCompiler compiler, int register_name){
-        getLeftOperand().codeGenExp(compiler, register_name);
-        getRightOperand().codeGenExp(compiler, register_name + 1);
-        int labelNum = compiler.labelManager.createIfThenElseLabel();
-        Label ifLabel = compiler.labelManager.getLabel("if_" + Integer.toString(labelNum));
-        Label elseLabel = compiler.labelManager.getLabel("else_" + Integer.toString(labelNum));
-        Label endIfLabel = compiler.labelManager.getLabel("end_if_" + Integer.toString(labelNum));
-        compiler.addLabel(ifLabel);
-        compiler.addInstruction(new CMP(0, Register.getR(register_name)));
-        compiler.addInstruction(new BEQ(elseLabel));
-        compiler.addInstruction(new CMP(0, Register.getR(register_name + 1)));
-        compiler.addInstruction(new BEQ(elseLabel));
-        compiler.addInstruction(new LOAD(1, Register.getR(register_name)));
-        compiler.addInstruction(new BRA(endIfLabel));
-        compiler.addLabel(elseLabel);
-        compiler.addInstruction(new LOAD(0, Register.getR(register_name)));
-        compiler.addLabel(endIfLabel);
     }
 }

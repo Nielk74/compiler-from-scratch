@@ -26,9 +26,4 @@ public class Greater extends AbstractOpIneq {
         super.codeGenCondition(compiler, negative, l);
         compiler.addInstruction(negative ? new BGT(l) : new BLE(l));
     }
-
-    @Override
-    public void codeGenBranch(DecacCompiler compiler, Label elseLabel) {
-        compiler.addInstruction(new BGT(elseLabel));
-    }
 }

@@ -25,9 +25,4 @@ public class LowerOrEqual extends AbstractOpIneq {
         super.codeGenCondition(compiler, negative, l);
         compiler.addInstruction(negative ? new BLE(l) : new BGT(l));
     }
-
-    @Override
-    public void codeGenBranch(DecacCompiler compiler, Label elseLabel) {
-        compiler.addInstruction(new BLE(elseLabel));
-    }
 }

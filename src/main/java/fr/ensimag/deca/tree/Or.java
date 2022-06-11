@@ -1,11 +1,6 @@
 package fr.ensimag.deca.tree;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
-import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 /**
  *
@@ -33,11 +28,5 @@ public class Or extends AbstractOpBool {
             this.getRightOperand().codeGenCondition(compiler, negative, l);
             compiler.addLabel(end);
         }
-    }
-
-    @Override
-    public void codeGenExp(DecacCompiler compiler, int register_name){
-        AbstractExpr expr = new Not(new And( new Not(getLeftOperand()), new Not (getRightOperand())));
-        expr.codeGenExp(compiler, register_name);
     }
 }
