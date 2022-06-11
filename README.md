@@ -68,83 +68,69 @@ Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermedi
 
 ```c
 {
-    int i, j = 0;
-    float k;
-
-    println("Entrez un nombre entier :");
-    i = readInt();
-    println("Vous avez entré le nombre : ", i);
-
-    i = 1;
-    println("i = ", i);
-    k = 10;
-    println("k = ", k);
-
-    if(!(i > 10 || i <= 0)){
-        println("!(i > 10 || i <= 0) <=> !(",i," > 10 || ",i," <= 0) -> VRAI");
-        i = 2;
-        println("i = ", i);
+    int rayon = 15;
+    int N = rayon * 2 + 1;
+    int x, y, i, j;
+    i = 0;
+    while (i < N + 4) {
+        j = 0;
+        while (j < N * 2) {
+            x = i - rayon - 4;
+            y = j - rayon * 2 + 8;
+            if (((i <= N /2 && x * x/2 + y * y/2 <= rayon * rayon - 40 ) || x * x + y * y/2 <= rayon * rayon )
+                && ((i <= N /2 && x * x/2 + y * y/2 > rayon * rayon - 70  ) || ( i >N/2 && x * x + y * y/2 > rayon * rayon - 50) )) {
+                print(".");
+            }
+            else if (((i <= N /2 && x * x/2 + y * y/2 <= rayon * rayon - 50 ) || x * x + y * y/2 <= rayon * rayon - 50)
+                && (x - 4) * (x - 4) + y * y/4 >= rayon * rayon - 200 ){
+                print("o");
+            }
+            else {
+                print(" ");
+            }
+            j = j + 1;
+        }
+        println();
+        i = i + 1;
     }
-    else{
-        println("ERROR");
-    }
-
-    while((i > j) && (i <= k)){
-        println("---- (i > j) && (i <= k) <=> (",i," > ",j,") && (",i," <= ",k,") -> VRAI");
-        println("----> Entrée dans la boucle");
-        if(i > 2 && k == 10){ 
-            // Not expected
-            println("ERROR");
-        }
-        else {
-            println("-------- i > 2 <=> ",i," > 2 -> FAUX");
-        }
-        if(!(i != 3)){
-           println("-------- !(i != 3) <=> !(",i," != 3) -> VRAI");
-           i = 100;
-           println("-------- i = ", i);
-           println("----> Sortie prévue");
-        }
-        else {
-           println("-------- !(i != 3) <=> !(",i," != 3) -> FAUX");
-        }
-        if((i == 2 || i == 1) && k == 10){
-            println("-------- (i == 2 || i == 1) && k == 10 <=> (",i," == 2 || ",i," == 1) && ",k," == 10 -> VRAI");
-            println("-------- i E {1,2}");
-            i = 3;
-            k = 9;
-        }
-        else { 
-            // Not expected
-            println("-------- (i == 2 || i == 1) && k == 10 <=> (",i," == 2 || ",i," == 1) && ",k," == 10 -> FAUX");
-        }
-    }
-    println("----(i > j) && (i <= k) <=> (",i," > ",j,") && (",i," <= ",k,") -> FAUX");
-    println("Fin de boucle.");
 }
+
 ```
 - Sortie :
 ```
-Entrez un nombre entier :
-5
-Vous avez entré le nombre : 5
-i = 1
-k = 1.00000e+01
-!(i > 10 || i <= 0) <=> !(1 > 10 || 1 <= 0) -> VRAI
-i = 2
----- (i > j) && (i <= k) <=> (2 > 0) && (2 <= 1.00000e+01) -> VRAI
-----> Entrée dans la boucle
--------- i > 2 <=> 2 > 2 -> FAUX
--------- !(i != 3) <=> !(2 != 3) -> FAUX
--------- (i == 2 || i == 1) && k == 10 <=> (2 == 2 || 2 == 1) && 1.00000e+01 == 10 -> VRAI
--------- i E {1,2}
----- (i > j) && (i <= k) <=> (3 > 0) && (3 <= 9.00000e+00) -> VRAI
-----> Entrée dans la boucle
--------- i > 2 <=> 3 > 2 -> FAUX
--------- !(i != 3) <=> !(3 != 3) -> VRAI
--------- i = 100
-----> Sortie prévue
--------- (i == 2 || i == 1) && k == 10 <=> (100 == 2 || 100 == 1) && 9.00000e+00 == 10 -> FAUX
-----(i > j) && (i <= k) <=> (100 > 0) && (100 <= 9.00000e+00) -> FAUX
-Fin de boucle.
+                   .......                                    
+                .............                                 
+             .....ooooooooo.....                              
+            ...ooooooooooooooo...                             
+          ...ooooooooooooooooooo...                           
+         ...ooooooooooooooooooooo...                          
+        ...ooooooooooooooooooooooo...                         
+       ...ooooooooooooooooooooooooo...                        
+       ..ooooooooooooooooooooooooooo..                        
+      ..ooooooooooooooooooooooooooooo..                       
+     ..ooooooooooooooooooooooooooooooo..                      
+     ..ooooooooooooooooooooooooooooooo..                      
+    ..ooooooooooooooooooooooooooooooooo..                     
+   ...ooooooooooooooooooooooooooooooooo...                    
+  ....ooooooooooooooooooooooooooooooooo....                   
+  ...ooooooooooooooooooooooooooooooooooo...                   
+  ..ooooooooooooooooooooooooooooooooooooo..                   
+ ...ooooooooooooooooooooooooooooooooooooo...                  
+ ...ooooooooooooooooooooooooooooooooooooo...                  
+ ...ooooooooooooo           ooooooooooooo...                  
+ ...ooooooooooo               ooooooooooo...                  
+ ...ooooooooo                   ooooooooo...                  
+  ..ooooooooo                   ooooooooo..                   
+  ...oooooooo                   oooooooo...                   
+  ...oooooooo                   oooooooo...                   
+   ...ooooooo                   ooooooo...                    
+    ...oooooooo               oooooooo...                     
+     ...ooooooooo           ooooooooo...                      
+      ...ooooooooooooooooooooooooooo...                       
+       ...ooooooooooooooooooooooooo...                        
+        ....ooooooooooooooooooooo....                         
+          .....ooooooooooooooo.....                           
+            .......ooooooo.......                             
+               ...............                                
+                      .
 ```
