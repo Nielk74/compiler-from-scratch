@@ -2,7 +2,7 @@
 //    Programme minimaliste assignant le résultat d'une soustraction (int, float) à une variable int -> erreur de typage
 //
 // Resultats:
-//    02typeErrorPlus.lis
+//    02typeErrorPlus.deca:12:12:
 //
 // Historique:
 //    cree le 09/06/2022

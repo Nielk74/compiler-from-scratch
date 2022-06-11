@@ -2,7 +2,12 @@
 //    Programme minimaliste réalisant des comparaisons dans des if entre une variable int et le résultat d'opéartions arithmétiques.
 //
 // Resultats:
-//    01if.expected
+//    0 < 1 + 1
+//    0 >= 1 - 1
+//    0 < 1 * 1
+//    0 != 1 / 1
+//    5 == 12 % 7
+//    12 % 7 == 5
 //
 // Historique:
 //    cree le 08/06/2022

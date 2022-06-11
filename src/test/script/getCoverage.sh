@@ -24,3 +24,5 @@ else
   color="green"
 fi
 anybadge -l coverage -v "$coverage %" -f cover.svg -c $color
+rm -rf /var/www/html/gitlab/*
+cp -r target/site/ /var/www/html/gitlab/

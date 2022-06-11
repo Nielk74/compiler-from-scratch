@@ -1,3 +1,14 @@
+// Description:
+// Test du printx et du printlnx, avec un litéral.
+//
+// Resultats:
+//  0x1.fffffep+0
+//  0x1p+1
+//  0x1.ep+2
+//  2
+//
+// Historique:
+//    crée le 10/06/2022
 {
     float x = 0x1.FFFFFEp0;
     int y = 2;

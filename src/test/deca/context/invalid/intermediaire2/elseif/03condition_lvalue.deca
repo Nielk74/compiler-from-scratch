@@ -1,8 +1,16 @@
+// Description:
+// Test de la condition du else if, que x, une simple variable ne marche pas.
+//
+// Resultats:
+//  03condition_lvalue.deca:13:16:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int x;
     if (3 < 2) {
-        print("Trop petit !");
+        print("3 < 2");
     } else if ( x ){
-        print("Trop grand !");
+        print("3 < 2 && x");
     }
 }

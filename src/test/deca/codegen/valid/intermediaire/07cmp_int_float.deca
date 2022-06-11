@@ -1,10 +1,27 @@
+// Description:
+// Test de la conversion d'int en float, lors d'une comparaison,
+// entre des variables, ou une variable et un littéral.
+// On test la conversion avec les 6 compareteurs, le ou, et le and.
+//
+// Resultats:
+//  2 < 3.5
+//  2 < 3.50000e+00
+//  3.50000e+00 != 2
+//  2.0 >= 2
+//  2 <= 2.0
+//  2 < 3.50000e+00 && 2 < 2.10000e+00
+//  2 > 3.50000e+00 || 2 < 2.10000e+00
+//  2 < 3.50000e+00 || 2 > 2.10000e+00
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int x = 2;
     float y = 3.5;
     if (x < 3.5) {
         println(x, " < 3.5");
     }
-    
+
     if (x < y) {
         println(x, " < ", y);
     }
