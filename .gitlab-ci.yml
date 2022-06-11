@@ -32,6 +32,7 @@ coverage:
   artifacts:
     paths:
         - cover.svg
+        - target/site/
   script:
     - mvn clean jacoco:prepare-agent install jacoco:report
     - getCoverage.sh
