@@ -1,0 +1,31 @@
+// Description:
+//    Programme testant le débordement de résultats 
+//    sur des opérations arithmétiques sur des entiers
+//
+// Resultats:
+//    -2147483648
+//    2147483647
+//    -2
+//    0
+//    -2147483648
+//    2147483647
+//    -2147483648
+//
+// Historique:
+//    cree le 11/06/2022
+
+{
+    int max = 2147483647;
+    int min = -2147483647 - 1;
+
+    println(max + 1);
+    println(min + -1);
+
+    println(max * 2);
+    println(min * 2);
+
+    println(max - -1);
+    println(min - 1);
+
+    println(-min);
+}

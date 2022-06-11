@@ -43,7 +43,11 @@ public class UnaryMinus extends AbstractUnaryExpr {
         this.getOperand().codeGenExp(compiler, register_name);
         GPRegister register = Register.getR(register_name);
         compiler.addInstruction(new OPP(register, register));
-        compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        
+        // overflow error only when the result is a float
+        if (this.getType().isFloat()) {
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        }
     }
 
 }

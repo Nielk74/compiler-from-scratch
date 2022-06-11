@@ -34,6 +34,9 @@ public class Multiply extends AbstractOpArith {
         }
         GPRegister rightRegister = Register.getR(register_name);
         compiler.addInstruction(new MUL(leftRegister, rightRegister));
-        compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
-    }
+        
+        // overflow error only when the result is a float
+        if (this.getType().isFloat()) {
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        }    }
 }

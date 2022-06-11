@@ -34,6 +34,10 @@ public class Minus extends AbstractOpArith {
         }
         GPRegister rightRegister = Register.getR(register_name);
         compiler.addInstruction(new SUB(leftRegister, rightRegister));
-        compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+
+        // overflow error only when the result is a float
+        if (this.getType().isFloat()) {
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        }
     }
 }

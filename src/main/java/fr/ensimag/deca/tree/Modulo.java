@@ -62,6 +62,8 @@ public class Modulo extends AbstractOpArith {
         }
         GPRegister rightRegister = Register.getR(register_name);
         compiler.addInstruction(new REM(leftRegister, rightRegister));
+
+        // the overflow error should only be triggered by x%0
         compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
     }
 }

@@ -1,5 +1,6 @@
 // Description:
-//    Programme minimaliste testant le débordement de valeur lors d'une multiplication
+//    Programme minimaliste testant le débordement de valeur 
+//    lors d'une multiplication de flottants
 //
 // Resultats:
 //    Error: Overflow
@@ -8,6 +9,6 @@
 //    cree le 08/06/2022
 
 {
-    int x = 2147483647;
-    x = x * 2;
+    float x = 3.4028234664e38;
+    x = x * 10;
 }
