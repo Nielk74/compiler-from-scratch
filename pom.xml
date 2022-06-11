@@ -190,7 +190,6 @@
                 <executions>
                     <!-- One <execution> per executable to launch. Execution
                     failure (exit status != 0) will stop the tests. -->
-                    <!--
                     <execution>
                         <id>basic-lex</id>
                         <configuration>
@@ -200,7 +199,6 @@
                                  <argument>...</argument>
                                  </arguments>
                             -->
-                        <!--
                         </configuration>
                         <phase>test</phase>
                         <goals>
@@ -218,11 +216,10 @@
                         </goals>
                     </execution>
                     
-                    <execution>-->
+                    <execution>
                         <!-- run a unit test by defining our own class with a main
                         function -->
                         <!-- warning: java assertions are not enabled -->
-                    <!--
                         <id>unit-test-symbol</id>
                         <configuration>
                             <mainClass>fr.ensimag.deca.tools.ManualTestSymbol</mainClass>
@@ -273,7 +270,6 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
-                    -->
                     <execution>
                         <id>rendu-initial</id>
                         <configuration>
