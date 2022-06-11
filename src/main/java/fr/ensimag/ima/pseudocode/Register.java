@@ -7,7 +7,6 @@ package fr.ensimag.ima.pseudocode;
  * @date 25/04/2022
  */
 public class Register extends DVal {
-    private static int lbOffsetCounter = 1;
     private String name;
 
     protected Register(String name) {
@@ -17,14 +16,6 @@ public class Register extends DVal {
     @Override
     public String toString() {
         return name;
-    }
-
-    public static int getLbOffsetCounter(){
-        return lbOffsetCounter;
-    }
-
-    public static void incrementLbOffsetCounter(){
-        lbOffsetCounter++;
     }
 
     /**

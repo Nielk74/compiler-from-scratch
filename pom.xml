@@ -273,13 +273,10 @@
                     <execution>
                         <id>rendu-initial</id>
                         <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
                             <arguments>
                                 <argument>
                                     renduInitial
-                                </argument>
-                                <argument>
-                                    decompile
                                 </argument>
                             </arguments>
                         </configuration>
@@ -291,13 +288,25 @@
                     <execution>
                         <id>rendu-intermediaire</id>
                         <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
                             <arguments>
                                 <argument>
                                     intermediaire
                                 </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>rendu-intermediaire2</id>
+                        <configuration>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
+                            <arguments>
                                 <argument>
-                                    decompile
+                                    intermediaire2
                                 </argument>
                             </arguments>
                         </configuration>
@@ -307,142 +316,10 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>printx</id>
+                        <id>test-decac-options</id>
                         <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
+                            <executable>./src/test/script/testDecacOptions.sh</executable>
                             <arguments>
-                                <argument>
-                                    intermediaire2/printx
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>elseif</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/elseif
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>arithmetiques</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/arithmetiques
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>cmp-int-float</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/cmp-int-float
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>boolean</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/boolean
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>wrong-value</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/wrongValue
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>convfloat</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/convFloat
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
-                            </arguments>
-                        </configuration>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-complementaire</id>
-                        <configuration>
-                            <executable>./src/test/script/testLauncher.sh</executable>
-                            <arguments>
-                                <argument>
-                                    intermediaire2/test-complementaire
-                                </argument>
-                                <argument>
-                                    decompile
-                                </argument>
                             </arguments>
                         </configuration>
                         <phase>test</phase>

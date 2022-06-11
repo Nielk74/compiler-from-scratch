@@ -46,8 +46,8 @@ public class Assign extends AbstractBinaryExpr {
         this.getRightOperand().codeGenExp(compiler, 2);
         DAddr offset = ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().getOperand();
         if (offset == null) {
-            offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
-            Register.incrementLbOffsetCounter();
+            offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
+            compiler.stackManager.incrementLbOffsetCounter();
         }
         compiler.addInstruction(new STORE(Register.getR(2), offset));
         ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
