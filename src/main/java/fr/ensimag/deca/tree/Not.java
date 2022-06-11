@@ -39,17 +39,20 @@ public class Not extends AbstractUnaryExpr {
     }
 
     @Override
-    public void codeGenExp(DecacCompiler compiler, int register_name){
-        this.getOperand().codeGenExp(compiler, register_name);
+    public void codeGenExp(DecacCompiler compiler, int register_name) {
         int labelNum = compiler.labelManager.createIfThenElseLabel();
         Label ifLabel = compiler.labelManager.getLabel("if_" + Integer.toString(labelNum));
         Label elseLabel = compiler.labelManager.getLabel("else_" + Integer.toString(labelNum));
         Label endIfLabel = compiler.labelManager.getLabel("end_if_" + Integer.toString(labelNum));
+        
+        // if the expression is true, load 1 in the register
         compiler.addLabel(ifLabel);
-        compiler.addInstruction(new CMP(0, Register.getR(register_name)));
-        compiler.addInstruction(new BNE(elseLabel));
+        this.codeGenCondition(compiler, false, elseLabel);
+        this.getOperand().codeGenCondition(compiler, true, elseLabel);
         compiler.addInstruction(new LOAD(1, Register.getR(register_name)));
         compiler.addInstruction(new BRA(endIfLabel));
+
+        // else, load 0 in the register
         compiler.addLabel(elseLabel);
         compiler.addInstruction(new LOAD(0, Register.getR(register_name)));
         compiler.addLabel(endIfLabel);
