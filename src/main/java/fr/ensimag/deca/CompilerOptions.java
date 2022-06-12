@@ -101,7 +101,7 @@ public class CompilerOptions {
                     } catch (Exception e) {
                         System.out.println("Argument X must be between 4 and 16 for option -r");
                         displayUsage();
-                        System.exit(0);
+                        System.exit(1);
                     }
                     break;
                 default:
