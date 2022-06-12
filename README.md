@@ -68,28 +68,38 @@ Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermedi
 
 ```c
 {
-        int rayon = 15;
+    int rayon = 15;
     int N = rayon * 2 + 1;
     int x, y, z,i, j, k;
-    boolean check;
+    boolean front;
+    boolean back;
     i = 0;
     while (i < N) {
         j = 0;
         while (j < N + 50 ) {
-            check = false;
+            front = false;
+            back = false;
             k = 0;
             while(k < N){
                 x = i - rayon;
                 y = j - rayon - 20;
                 z = k - rayon;
-                if (x * x + y * y/4 + z * z <= rayon * rayon + 3
-                && x * x + y * y/4 + z * z >= rayon * rayon - 3) {
-                    check = true;
+                if (x * x + y * y/5 + z * z <= rayon * rayon + 13
+                && x * x + y * y/5 + z * z >= rayon * rayon - 13
+                && ((y + z)%10 == 0 || (y + z)%10 == 1)) {
+                    if(k < N/2){
+                        front = true;
+                    }
+                    else{
+                        back = true;
+                    }
                 }
                 k = k + 1;
             }
-            if (check){
-                print("¤");
+            if (front){
+                print("o");
+            }else if(back){
+                print(".");
             }
             else{
                 print(" ");
@@ -100,6 +110,7 @@ Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermedi
         i = i + 1;
     }
 }
+
 ```
 - Sortie :
-<img src="https://cdn.discordapp.com/attachments/896722660027953162/985630903055290428/unknown.png" width=250>
+<img src="https://cdn.discordapp.com/attachments/896722660027953162/985658742974603324/unknown.png" width=250>
