@@ -18,7 +18,6 @@ echo "### TEST: -P parallelism ###"
 nbtests=0
 nbpassed=0
 
-
 root="$(dirname "$0")/../deca/codegen"
 tmpDir="$(dirname "$0")/../deca/tmp"
 
@@ -107,3 +106,60 @@ done
 
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
 clearTmpDir
+
+decac_help="$(decac -h)"
+if [ "$?" -ne 0 ]; then
+    echo "ERREUR: decac -h a termine avec un status different de zero."
+    exit 1
+fi
+if [ "$decac_help" = "" ]; then
+    echo "ERREUR: decac -h n'a produit aucune sortie"
+    exit 1
+fi
+if echo "$decac_help" | grep -i -e "erreur" -e "error"; then
+    echo "ERREUR: La sortie de decac -h contient erreur ou error"
+    exit 1
+fi
+echo "Pas de problème détecté avec decac -h."
+
+decac_moins_v_p=$(decac -v -p > /dev/null 2>&1)
+
+if [ "$?" -ne 1 ]; then
+    echo "ERREUR: decac -v -p a terminé avec un status different de 1."
+    exit 1
+else
+    echo "decac -v -p retourne bien une erreur."
+fi
+
+
+decac_moins_p_v=$(decac -p -v > /dev/null 2>&1)
+if [ "$?" -ne 1 ]; then
+    echo "ERREUR: decac -p -v a terminé avec un status different de 1."
+    exit 1
+else
+    echo "decac -p -v retourne bien une erreur."
+fi
+
+decac_file_not_found=$(decac file_not_found.deca > /dev/null 2>&1)
+if [ "$?" -ne 1 ]; then
+    echo "ERREUR: decac file_not_found.deca a terminé avec un status different de 1."
+    exit 1
+else
+    echo "decac file_not_found.deca retourne bien une erreur."
+fi
+
+decac_moins_r=$(decac -r)
+if [ "$?" -ne 1 ]; then
+    echo "ERREUR: decac -r sans argument a terminé avec un status different de 1."
+    exit 1
+else
+    echo "decac -r sans argument retourne bien une erreur."
+fi
+
+decac_moins_r_out_of_range=$(decac -r 17)
+if [ "$?" -ne 1 ]; then
+    echo "ERREUR: decac -r 17 a terminé avec un status different de 1."
+    exit 1
+else
+    echo "decac -r 17 retourne bien une erreur."
+fi
