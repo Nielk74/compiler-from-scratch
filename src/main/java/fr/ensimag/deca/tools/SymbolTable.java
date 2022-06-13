@@ -27,7 +27,7 @@ public class SymbolTable {
      */
     public Symbol create(String name) {
         if (name == null)
-            throw new IllegalArgumentException("name should not be null");
+            throw new IllegalArgumentException("Wrong symbol type - expected: string ≠ current: null");
         Symbol s = map.get(name);
         if (s == null) {
             s = new Symbol(name);

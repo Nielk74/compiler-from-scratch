@@ -1,3 +1,17 @@
+// Description:
+// Test d'expressions de condition complexes, avec et sans parenthèses, dans des if.
+// avec des variables. Les conditions contiennent des or, et des and, les deux différents dans une même condition.
+//
+// Resultats:
+//  2 > 3 && 1 != 2 || 3 > 1
+//  2 > 3 && (1 != 2 || 3 > 1) is false
+//  1 != 2 && 2 < 3 || 3 < 1
+//  1 != 2 || 2 == 3 && 3 < 1
+//  (1 != 2 || 2 == 3) && 3 < 1 is false
+//  1 == 2 || 2 < 3 && 3 > 1
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int x = 1, y = 2, z = 3;
 

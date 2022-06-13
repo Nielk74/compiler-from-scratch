@@ -1,7 +1,19 @@
+// Description:
+// Test du or, dans la condition d'un if simple (sans else), avec des variables.
+// On test les 6 opérateurs de comparaisons autour des and.
+//
+// Resultats:
+//  1 != 2 || 1 > 1
+//  1 >= 5 || 1 < 2
+//  !(1 > 2 || 1 == 40)
+//  !!(1 > 2 || 0 <= 2)
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int x = 1;
     int j = 2;
-    
+
     if (x != j || x > x){
         println(x, " != ", j, " || ", x, " > ", x);
     }

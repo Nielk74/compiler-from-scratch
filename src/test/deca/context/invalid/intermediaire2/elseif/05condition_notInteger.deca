@@ -1,0 +1,16 @@
+// Description:
+// Test de la condition du else if, que !x, un not d'un int marche pas.
+//
+// Resultats:
+//  05condition_notInteger.deca:13:17:
+//
+// Historique:
+//    crée le 10/06/2022
+{
+    int x;
+    if (3 < 2) {
+        print("3 < 2");
+    } else if ( !x ){
+        print("!(3 < 2) && !x");
+    }
+}

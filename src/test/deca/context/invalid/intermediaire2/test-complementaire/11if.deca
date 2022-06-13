@@ -1,0 +1,17 @@
+// Description:
+//  Programme avec une condition qui n'est pas un booleen  générant une erreur
+//
+// Resultats:
+//  11if.lis
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+  int x = 16;
+  if (x) {
+    println ( " 17 < " , x );
+  } else {
+    println (x , " <= 17 " );
+  }
+}

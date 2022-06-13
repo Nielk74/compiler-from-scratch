@@ -1,0 +1,8 @@
+{
+    boolean x  = true;
+    boolean y;
+    y = false;
+    if (x || y){
+        print("true");
+    }
+}

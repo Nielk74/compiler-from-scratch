@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    il manque une accolade fermante pour le bloc else if
+//
+// Resultats:
+//    05nobrace.deca:15:1:   
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    if (3 < 2) {
+    } else if ( 2 > 1 ){
+    
+}

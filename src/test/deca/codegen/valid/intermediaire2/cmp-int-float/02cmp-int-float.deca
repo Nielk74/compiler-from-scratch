@@ -1,0 +1,18 @@
+// Description:
+// Test de la conversion d'un int en float, lors d'une comparaison, lors de la condition d'un if.
+// On test ici pour une inégalité, avec un float à droite, et un int à gauche.
+//
+// Resultats:
+//  18 == 1.80000e+01
+//
+// Historique:
+//    crée le 10/06/2022
+{
+  int x = 18;
+  float y = 18;
+  if (x != y) {
+    println (x, " != " , y);
+  } else {
+    println (x , " == ", y);
+  }
+}

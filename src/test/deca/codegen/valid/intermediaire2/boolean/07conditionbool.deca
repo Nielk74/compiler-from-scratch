@@ -1,0 +1,18 @@
+//Exécute le if
+{
+boolean x = false;
+boolean y = false;
+if(((false) == (x)) && (false == true || (!x && (!!!x)))){
+  println("((false) == (false)) && (false == true || (!false && (!!!false)))");
+}else{
+  println("!(((false) == (false)) && (false == true || (!false && (!!!false))))");
+}
+
+//Exécute le else
+
+if(((false) == (y)) && (false == true || (!y && (!!y)))){
+  println("((false) == (false)) && (false == true || (!false && (!!!false)))");
+}else{
+  println("!(((false) == (false)) && (false == true || (!false && (!!false))))");
+}
+}

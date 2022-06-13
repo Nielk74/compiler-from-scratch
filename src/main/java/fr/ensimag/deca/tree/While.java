@@ -43,12 +43,14 @@ public class While extends AbstractInst {
         Label endWhileLabel = compiler.labelManager.getLabel("end_while_" + Integer.toString(labelNum));
 
         compiler.addLabel(whileLabel);
+        compiler.addComment(this.condition.decompile());
         this.condition.codeGenCondition(compiler, false, endWhileLabel);        
         this.body.codeGenListInst(compiler);
         // BRA
         compiler.addInstruction(new BRA(whileLabel));
         // add "end_while" label
         compiler.addLabel(endWhileLabel);
+        compiler.addComment("!"+this.condition.decompile());
     }
 
     @Override

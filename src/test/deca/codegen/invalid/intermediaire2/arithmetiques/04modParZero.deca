@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste testant le modulo par 0
+//
+// Resultats:
+//    Error: Overflow
+//
+// Historique:
+//    cree le 09/06/2022
+
+{
+    int x = 5;
+    x = x % 0;
+}

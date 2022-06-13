@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    on ne s'attend pas à une condition après le else
+//
+// Resultats:
+//    04elsenoif.deca:13:11: 
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    if (3 < 2) {
+    } else ( 2 > 1 ) {
+    }
+}

@@ -1,6 +1,7 @@
 # Projet Génie Logiciel, Ensimag.
 gl10, 25/04/2022.
 
+![https://gitlab.ensimag.fr/glapp2022/gl10/-/jobs/artifacts/develop/raw/cover.svg?job=coverage](https://gitlab.ensimag.fr/glapp2022/gl10/-/jobs/artifacts/develop/raw/cover.svg?job=coverage)
 ## Sommaire
 
  - [Implémentation effective](#implémentation-effective)
@@ -67,83 +68,49 @@ Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermedi
 
 ```c
 {
-    int i, j = 0;
-    float k;
-
-    println("Entrez un nombre entier :");
-    i = readInt();
-    println("Vous avez entré le nombre : ", i);
-
-    i = 1;
-    println("i = ", i);
-    k = 10;
-    println("k = ", k);
-
-    if(!(i > 10 || i <= 0)){
-        println("!(i > 10 || i <= 0) <=> !(",i," > 10 || ",i," <= 0) -> VRAI");
-        i = 2;
-        println("i = ", i);
+    int rayon = 15;
+    int N = rayon * 2 + 1;
+    int x, y, z,i, j, k;
+    boolean front;
+    boolean back;
+    i = 0;
+    while (i < N) {
+        j = 0;
+        while (j < N + 50 ) {
+            front = false;
+            back = false;
+            k = 0;
+            while(k < N){
+                x = i - rayon;
+                y = j - rayon - 20;
+                z = k - rayon;
+                if (x * x + y * y/5 + z * z <= rayon * rayon + 15
+                && x * x + y * y/5 + z * z >= rayon * rayon - 15
+                && ((y + z + x*2)%14 == 0 || (y + z +x*2)%14 == 1)) {
+                    if(k < N/2){
+                        front = true;
+                    }
+                    else{
+                        back = true;
+                    }
+                }
+                k = k + 1;
+            }
+            if (front){
+                print("o");
+            }else if(back){
+                print(".");
+            }
+            else{
+                print(" ");
+            }
+            j = j + 1;
+        }
+        println();
+        i = i + 1;
     }
-    else{
-        println("ERROR");
-    }
-
-    while((i > j) && (i <= k)){
-        println("---- (i > j) && (i <= k) <=> (",i," > ",j,") && (",i," <= ",k,") -> VRAI");
-        println("----> Entrée dans la boucle");
-        if(i > 2 && k == 10){ 
-            // Not expected
-            println("ERROR");
-        }
-        else {
-            println("-------- i > 2 <=> ",i," > 2 -> FAUX");
-        }
-        if(!(i != 3)){
-           println("-------- !(i != 3) <=> !(",i," != 3) -> VRAI");
-           i = 100;
-           println("-------- i = ", i);
-           println("----> Sortie prévue");
-        }
-        else {
-           println("-------- !(i != 3) <=> !(",i," != 3) -> FAUX");
-        }
-        if((i == 2 || i == 1) && k == 10){
-            println("-------- (i == 2 || i == 1) && k == 10 <=> (",i," == 2 || ",i," == 1) && ",k," == 10 -> VRAI");
-            println("-------- i E {1,2}");
-            i = 3;
-            k = 9;
-        }
-        else { 
-            // Not expected
-            println("-------- (i == 2 || i == 1) && k == 10 <=> (",i," == 2 || ",i," == 1) && ",k," == 10 -> FAUX");
-        }
-    }
-    println("----(i > j) && (i <= k) <=> (",i," > ",j,") && (",i," <= ",k,") -> FAUX");
-    println("Fin de boucle.");
 }
+
 ```
 - Sortie :
-```
-Entrez un nombre entier :
-5
-Vous avez entré le nombre : 5
-i = 1
-k = 1.00000e+01
-!(i > 10 || i <= 0) <=> !(1 > 10 || 1 <= 0) -> VRAI
-i = 2
----- (i > j) && (i <= k) <=> (2 > 0) && (2 <= 1.00000e+01) -> VRAI
-----> Entrée dans la boucle
--------- i > 2 <=> 2 > 2 -> FAUX
--------- !(i != 3) <=> !(2 != 3) -> FAUX
--------- (i == 2 || i == 1) && k == 10 <=> (2 == 2 || 2 == 1) && 1.00000e+01 == 10 -> VRAI
--------- i E {1,2}
----- (i > j) && (i <= k) <=> (3 > 0) && (3 <= 9.00000e+00) -> VRAI
-----> Entrée dans la boucle
--------- i > 2 <=> 3 > 2 -> FAUX
--------- !(i != 3) <=> !(3 != 3) -> VRAI
--------- i = 100
-----> Sortie prévue
--------- (i == 2 || i == 1) && k == 10 <=> (100 == 2 || 100 == 1) && 9.00000e+00 == 10 -> FAUX
-----(i > j) && (i <= k) <=> (100 > 0) && (100 <= 9.00000e+00) -> FAUX
-Fin de boucle.
-```
+<img src="https://cdn.discordapp.com/attachments/896722660027953162/985791297895931924/unknown.png" width=250>

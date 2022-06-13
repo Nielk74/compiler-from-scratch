@@ -7,13 +7,13 @@ import fr.ensimag.ima.pseudocode.Label;
 
 public class LabelManager {
     private Map<String, Label> map = new HashMap<String, Label>();
-    private static int ifLabelCounter = 0;
-    private static int whileLabelCounter = 0;
-    private static int condLabelCounter = 0;
+    private int ifLabelCounter = 0;
+    private int whileLabelCounter = 0;
+    private int condLabelCounter = 0;
 
     public Label createLabel(String name) {
         if (name == null)
-            throw new IllegalArgumentException("name should not be null");
+            throw new IllegalArgumentException("Wrong label type - expected: string ≠ current: null");
         Label l = map.get(name);
         if (l == null) {
             l = new Label(name);
@@ -50,4 +50,5 @@ public class LabelManager {
     public Label getLabel(String name) {
         return map.get(name);
     }
+
 }

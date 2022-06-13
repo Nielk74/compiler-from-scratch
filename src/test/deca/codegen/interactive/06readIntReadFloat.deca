@@ -1,0 +1,12 @@
+// Description:
+//    Programme minimaliste affichant le résultat d'une addition entre un readInt et un readFloat
+//
+//
+// Historique:
+//    cree le 09/06/2022
+
+{
+    float a = readInt() + readFloat();
+    println(a);
+    println(readFloat() + readInt());
+}

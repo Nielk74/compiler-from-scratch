@@ -1,0 +1,11 @@
+{
+int x = 5;
+int y = 10;
+boolean t = true || false;
+boolean f = false && true;
+if(((x < y) == t ) && ((false != t ) || !(true != (x == y)))){
+    println("((x < y) == t ) && ((false != t ) || !(true != (x == y)))");
+}else{
+    println("!(((x < y) == t ) && ((false != t ) || !(true != (x == y))))");
+}
+}

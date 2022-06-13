@@ -1,0 +1,14 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    il manque le bloc if
+//
+// Resultats:
+//    02noif.deca:12:4:   
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    else if (2 > 1) {
+    }
+}

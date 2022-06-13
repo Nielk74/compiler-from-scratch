@@ -1,0 +1,17 @@
+// Description:
+// Test de la conversion d'un int en float, lors d'une comparaison, lors de la condition d'un if.
+// Ici, lors de l'initialisation du x, on converti aussi un int en float.
+//
+// Resultats:
+//  00cmp-int-float.deca
+//
+// Historique:
+//    crée le 10/06/2022
+
+{
+    float x = 5;
+    int y = 10;
+    if (x <= y && 5 == 5.0){
+        x = y;
+    }
+}

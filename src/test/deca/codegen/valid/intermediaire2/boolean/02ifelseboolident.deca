@@ -1,0 +1,19 @@
+//Exécute forcément le if
+{
+boolean x;
+boolean y = false;
+x = true;
+if(x){
+  println("true");
+}else{
+  println("!true");
+}
+
+//N'exécute pas le if, et va directement dans le else
+
+if(y){
+  println("false");
+}else{
+  println("!false");
+}
+}

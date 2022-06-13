@@ -1,0 +1,14 @@
+// Description:
+//    Programme minimaliste testant le débordement de valeur 
+//    lors d'une soustraction de flottants
+//
+// Resultats:
+//    Error: Overflow
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    float x = -3.4028234664e38;
+    x = x - 3.4028234664e38;
+}

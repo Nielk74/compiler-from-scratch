@@ -1,24 +1,32 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.context.TypeDefinition;
+import java.io.PrintStream;
+
+import org.apache.commons.lang.Validate;
+
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
-import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BNE;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-
-import java.io.PrintStream;
-import org.apache.commons.lang.Validate;
+import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
  * Deca Identifier
@@ -172,9 +180,10 @@ public class Identifier extends AbstractIdentifier {
             ClassDefinition currentClass) throws ContextualError {
         ExpDefinition def = localEnv.get(this.getName());
         if (def == null) {
-            throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
+            throw new ContextualError("Wrong variable name: " + this.getName() + " is not defined", this.getLocation());
         }
-        this.definition = def;
+        this.setDefinition(def);
+
         return this.verifyType(compiler);
     }
 
@@ -187,11 +196,11 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         Type currentType = this.definition.getType();
         if (currentType == null) {
-            throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
+            throw new DecacInternalError("Type " + this.getName() + " is not defined");
         }
         TypeDefinition typeDef = compiler.environmentType.defOfType(currentType.getName());
         if (typeDef == null) {
-            throw new ContextualError("Identifier " + this.getName() + " is not defined", this.getLocation());
+            throw new DecacInternalError("Type definition " + this.getName() + " is not defined");
         }
         this.setType(currentType);
         return currentType;
@@ -236,5 +245,19 @@ public class Identifier extends AbstractIdentifier {
             s.println();
         }
     }
-
+    @Override
+    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
+        if (!this.getType().isBoolean()) {
+            throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
+        }
+        DVal d = this.codeGenExp(compiler);
+     
+        compiler.addInstruction(new LOAD(d, Register.R1));
+        compiler.addInstruction(new CMP(0, Register.R1));
+        if (negative) {
+            compiler.addInstruction(new BNE(l));
+        } else {
+            compiler.addInstruction(new BEQ(l));
+        }
+    }
 }

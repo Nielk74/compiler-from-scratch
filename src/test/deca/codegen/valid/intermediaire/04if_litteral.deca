@@ -1,3 +1,19 @@
+// Description:
+// Test du if then else, sans else if, avec des littéraux, et tous les opérateurs de comparaisons (==, !=, <, <=, >, >=), avec une comparaison simple par condition de if.
+// Chaque if possède un else.
+//
+// Resultats:
+//  2 == 2
+//  2 != 8
+//  3 > 2
+//  2 < 5
+//  3 >= 2
+//  2 <= 5
+//  2 >= 2
+//  2 <= 5
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int x = 2;
     if (x == 2){

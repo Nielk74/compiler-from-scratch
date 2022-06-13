@@ -1,0 +1,16 @@
+// Description:
+// Test de la condition du else if, que x = 2, une assignation ne marche pas.
+//
+// Resultats:
+//  01condition_readint.deca:13:15:
+//
+// Historique:
+//    crée le 10/06/2022
+{
+    int x;
+    if (3 < 2) {
+        print("3 < 2");
+    } else if (x = 2){
+        print("!(3 < 2) && x = 2");
+    }
+}

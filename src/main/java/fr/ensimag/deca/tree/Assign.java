@@ -33,16 +33,11 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        ExpDefinition leftDef = localEnv.get(((AbstractIdentifier) this.getLeftOperand()).getName());
-        if (leftDef == null)
-            throw new ContextualError(
-                    "Lvalue " + ((AbstractIdentifier) this.getLeftOperand()).getName().getName() + " does not exist",
-                    this.getLeftOperand().getLocation());
 
-        ((AbstractIdentifier) this.getLeftOperand()).setDefinition(leftDef);
-        Type leftType = leftDef.getType();
+        Type leftType = this.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         AbstractExpr expr = this.getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
         this.setRightOperand(expr);
+        setType(leftType);
         return leftType;
     }
 
@@ -51,8 +46,8 @@ public class Assign extends AbstractBinaryExpr {
         this.getRightOperand().codeGenExp(compiler, 2);
         DAddr offset = ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().getOperand();
         if (offset == null) {
-            offset = new RegisterOffset(Register.getLbOffsetCounter(), Register.LB);
-            Register.incrementLbOffsetCounter();
+            offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
+            compiler.stackManager.incrementLbOffsetCounter();
         }
         compiler.addInstruction(new STORE(Register.getR(2), offset));
         ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
@@ -63,4 +58,8 @@ public class Assign extends AbstractBinaryExpr {
         return "=";
     }
 
+    @Override
+    protected void codeGenExp(DecacCompiler compiler, int register_name) {
+        this.codeGenInst(compiler);
+    }
 }

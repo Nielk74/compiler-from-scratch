@@ -1,0 +1,15 @@
+// Description:
+// Test de la condition du else if, que 1, un int literal ne marche pas.
+//
+// Resultats:
+//  06condition_intLiteral.deca:12:16:
+//
+// Historique:
+//    crée le 10/06/2022
+{
+    if (3 < 2) {
+        print("3 < 2");
+    } else if ( 1 ){
+        print("!(3 < 2) && 1");
+    }
+}

@@ -13,3 +13,5 @@
 .antlr
 *.ass
 *.res
+*_decompiled.deca
+.idea/*

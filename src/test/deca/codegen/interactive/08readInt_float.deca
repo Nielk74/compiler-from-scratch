@@ -1,0 +1,12 @@
+// Description:
+// Test de la conversion d'int en float, lorsque l'int vient d'un readInt.
+// L'int converti est donc affiché en float.
+//
+//
+// Historique:
+//    crée le 10/06/2022
+{
+    float x;
+    x = readInt();
+    println(x);
+}

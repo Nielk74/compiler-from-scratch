@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <compileSource>1.8</compileSource>
-        <jacoco.skip>true</jacoco.skip>
+        <jacoco.skip>false</jacoco.skip>
         <jacoco.report_dir>${project.build.directory}/site</jacoco.report_dir>
     </properties>
 
@@ -174,7 +174,7 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.75</minimum>
+                                            <minimum>0</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -193,7 +193,7 @@
                     <execution>
                         <id>basic-lex</id>
                         <configuration>
-                            <executable>./src/test/script/basic-lex.sh</executable>
+                            <executable>./src/test/script/basic-lex.sh</executable>-->
                             <!-- If we need to pass arguments :
                                  <arguments>
                                  <argument>...</argument>
@@ -215,6 +215,7 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
+                    
                     <execution>
                         <!-- run a unit test by defining our own class with a main
                         function -->
@@ -229,7 +230,6 @@
                             <goal>java</goal>
                         </goals>
                     </execution>
-                    <!--
                     <execution>
                         <id>basic-context</id>
                         <configuration>
@@ -270,11 +270,57 @@
                             <goal>exec</goal>
                         </goals>
                     </execution>
-                    -->
                     <execution>
                         <id>rendu-initial</id>
                         <configuration>
-                            <executable>./src/test/script/renduInitial.sh</executable>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    renduInitial
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>rendu-intermediaire</id>
+                        <configuration>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    intermediaire
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>rendu-intermediaire2</id>
+                        <configuration>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    intermediaire2
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-decac-options</id>
+                        <configuration>
+                            <executable>./src/test/script/testDecacOptions.sh</executable>
+                            <arguments>
+                            </arguments>
                         </configuration>
                         <phase>test</phase>
                         <goals>

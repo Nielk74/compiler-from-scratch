@@ -1,0 +1,13 @@
+// Description:
+//    Programme initialisant une variable float avec une valeur inferieur a la valeur minimale autorisee.
+//
+// Resultats:
+//    03negFloat.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float x = -2.0E+300;
+    printx(x);
+}

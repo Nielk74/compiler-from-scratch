@@ -1,0 +1,44 @@
+#image: "maven:3-openjdk-16"
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+stages:
+  - build
+  - test
+  - coverage
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+before_script:
+  - source /bashrc
+  #- export PATH="$PWD/global_bin/bin:$PWD/src/main/bin:$PWD/src/test/script:$PWD/src/test/script/launchers:$PATH"
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_OPTS clean compile
+    
+test:
+  stage: test
+  script:
+    - mvn $MAVEN_OPTS test
+
+coverage:
+  stage: coverage
+  artifacts:
+    paths:
+        - cover.svg
+        - target/site/
+  script:
+    - mvn clean jacoco:prepare-agent install jacoco:report
+    - getCoverage.sh
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      when: always
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: always
+    - when: never

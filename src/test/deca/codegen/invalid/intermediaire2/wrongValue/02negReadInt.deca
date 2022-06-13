@@ -1,0 +1,12 @@
+// Description:
+//  readInt avec l'integer minimum 
+//
+// Resultats:
+//  02negReadInt.expected
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+    int x = readInt();
+}

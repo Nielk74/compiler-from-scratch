@@ -1,0 +1,16 @@
+// Description:
+// Test du readInt dans l'initialisation et l'assignation.
+// On déclare deux variables, x sans initialisation,
+// et y avec une initialisation avec un readInt.
+// On assigne ensuite à x une valeur avec un readInt.
+//
+//
+// Historique:
+//    crée le 10/06/2022
+{
+    int x;
+    int y = readInt();
+    x = readInt();
+    println(x);
+    println(y);
+}

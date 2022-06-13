@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 LABEL maintainer="Patrick.Reignier@imag.fr"
 RUN apt-get update
 RUN apt-get install -yq tzdata && ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+RUN apt-get diffutils
 RUN apt-get -yq install wget sudo openjdk-16-jdk-headless make gcc gnat-9 locales git time
 RUN wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -P /tmp
 RUN tar xzvf /tmp/apache-maven-*.gz -C /opt

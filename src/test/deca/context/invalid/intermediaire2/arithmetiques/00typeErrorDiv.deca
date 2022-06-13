@@ -1,0 +1,12 @@
+// Description:
+//    Programme minimaliste assignant le résultat d'un division à une variable int -> erreur de typage
+//
+// Resultats:
+//    00typeErrorDiv.deca:11:12:
+//
+// Historique:
+//    cree le 09/06/2022
+
+{
+    int x = 6 / 3;
+}

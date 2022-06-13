@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    il manque une parenthese dans le bloc else if
+//
+// Resultats:
+//    03noParentheses.deca:13:22: 
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    if (3 < 2) {
+    } else if ( 2 > 1 {
+    }
+}

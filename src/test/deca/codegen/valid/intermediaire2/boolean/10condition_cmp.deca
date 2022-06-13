@@ -1,0 +1,11 @@
+{
+int a = 5;
+int b = 10;
+boolean t = true;
+boolean f = false;
+if((a < b) && (a <= 7) && (a == 5) && (t == true) && (b > a) && (b >= 10) && (f != t) && (10 != 7)){
+    println("(a < b) && (a <= 7) && (a == 5) && (t == true) && (b > a) && (b >= 10) && (f != t) && (10 != 7))");
+}else{
+    println("!((a < b) && (a <= 7) && (a == 5) && (t == true) && (b > a) && (b >= 10) && (f != t) && (10 != 7)))");
+}
+}

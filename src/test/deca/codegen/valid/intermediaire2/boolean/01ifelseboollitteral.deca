@@ -1,0 +1,16 @@
+//Exécute forcement le if
+{
+if(true){
+  println("true");
+}else{
+  println("!true");
+}
+
+//N'exécute pas le if, et va directement dans le else
+
+if(false){
+  println("false");
+}else{
+  println("!false");
+}
+}

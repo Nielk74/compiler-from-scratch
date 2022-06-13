@@ -1,0 +1,16 @@
+// Description:
+// Test du else if, lors d'un if, avec une condition simple. Ici la condition du if est vraie,
+// et celle du else if est fausse.
+//
+// Resultats:
+//  Trop petit !
+//
+// Historique:
+//    crée le 10/06/2022
+{
+    if (1 < 2) {
+        print("1 < 2");
+    } else if (3 < 2) {
+        print("!(1 < 2) && 3 < 2");
+    }
+}

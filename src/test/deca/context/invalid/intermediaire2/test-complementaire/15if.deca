@@ -1,0 +1,17 @@
+// Description:
+//  Programme avec une chaine dans une condition générant une erreur
+//
+// Resultats:
+//  15if.lis
+// 
+// Historique:
+//    cree le 10/06/2022
+
+{
+  int x = 16;
+  if ("coucou" <= x) {
+    println ( " 17 < " , x );
+  } else {
+    println (x , " <= 17 " );
+  }
+}

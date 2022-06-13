@@ -12,13 +12,21 @@ import org.antlr.v4.runtime.ParserRuleContext;
 public class InvalidLValue extends DecaRecognitionException {
 
     private static final long serialVersionUID = 4670163376041273741L;
+    private String type;
 
     public InvalidLValue(DecaParser recognizer, ParserRuleContext ctx) {
         super(recognizer, ctx);
+        this.type = "";
     }
+
+    public InvalidLValue(DecaParser recognizer, ParserRuleContext ctx, String type) {
+        super(recognizer, ctx);
+        this.type = type;
+    }
+
 
     @Override
     public String getMessage() {
-        return "left-hand side of assignment is not an lvalue";
+        return "Wrong left value of assignment - expected: variable or field ≠ current: " + this.type;
     }
 }

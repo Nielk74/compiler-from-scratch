@@ -1,0 +1,20 @@
+// Description:
+//    Programme affichant le contenu de variables float initialisees avec des immediats et des variables int -> teste le bon fonctionnement de convFloat
+//
+// Resultats:
+//    00convFloat.expected
+//
+// Historique:
+//    cree le 10/06/2022
+
+{
+    float x = 1;
+    int y = 2;
+    float z = y;
+    println(x);
+    println(z);
+    x = y;
+    println(x);
+    x = 3;
+    println(x);
+}
