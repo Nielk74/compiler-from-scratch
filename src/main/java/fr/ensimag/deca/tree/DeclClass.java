@@ -6,8 +6,6 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
 
-import org.apache.commons.lang.Validate;
-
 /**
  * Declaration of a class (<code>class name extends superClass {members}<code>).
  * 
@@ -15,22 +13,6 @@ import org.apache.commons.lang.Validate;
  * @date 25/04/2022
  */
 public class DeclClass extends AbstractDeclClass {
-
-    final private AbstractIdentifier name;
-    final private AbstractIdentifier superclass;
-    final private ListDeclField fields;
-    final private ListDeclMethod methods;
-
-    public DeclClass(AbstractIdentifier name, AbstractIdentifier superclass, ListDeclField fields, ListDeclMethod methods) {
-        Validate.notNull(name);
-        Validate.notNull(superclass);
-        Validate.notNull(fields);
-        Validate.notNull(methods);
-        this.name = name;
-        this.superclass = superclass;
-        this.fields = fields;
-        this.methods = methods;
-    }
 
     @Override
     public void decompile(IndentPrintStream s) {
@@ -56,10 +38,7 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
-        name.prettyPrint(s, prefix, false);
-        superclass.prettyPrint(s, prefix, false);
-        fields.prettyPrint(s, prefix, false);
-        methods.prettyPrint(s, prefix, true);
+        throw new UnsupportedOperationException("Not yet supported");
     }
 
     @Override
