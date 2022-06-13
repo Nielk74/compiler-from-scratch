@@ -84,9 +84,9 @@ Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermedi
                 x = i - rayon;
                 y = j - rayon - 20;
                 z = k - rayon;
-                if (x * x + y * y/5 + z * z <= rayon * rayon + 13
-                && x * x + y * y/5 + z * z >= rayon * rayon - 13
-                && ((y + z)%10 == 0 || (y + z)%10 == 1)) {
+                if (x * x + y * y/5 + z * z <= rayon * rayon + 15
+                && x * x + y * y/5 + z * z >= rayon * rayon - 15
+                && ((y + z + x*2)%14 == 0 || (y + z +x*2)%14 == 1)) {
                     if(k < N/2){
                         front = true;
                     }
@@ -113,4 +113,4 @@ Nous avons également écrit des tests (```src/test/deca/codegen/valid/intermedi
 
 ```
 - Sortie :
-<img src="https://cdn.discordapp.com/attachments/896722660027953162/985658742974603324/unknown.png" width=250>
+<img src="https://cdn.discordapp.com/attachments/896722660027953162/985791297895931924/unknown.png" width=250>
