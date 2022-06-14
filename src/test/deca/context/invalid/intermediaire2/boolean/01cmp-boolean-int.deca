@@ -1,3 +1,11 @@
+// Description:
+// Test de l'erreur contextuelle de la comparaison entre un booléen et un entier.
+//
+// Resultats:
+//  01cmp-boolean-int.deca:11:4:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     int x = 5
     if (true == x){

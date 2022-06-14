@@ -1,11 +1,20 @@
+// Description:
+// Test de l'assignation d'expression booléenne dans une variable booléenne, dans une initialisation,
+// et d'une condition de if, utilisant des variables, des littéraux, des or, des and, et plusieurs comparateurs
+//
+// Resultats:
+//  ((x < y) == true ) && ((false != true ) || !(true != (x == y)))
+//
+// Historique:
+//    crée le 10/06/2022
 {
 int x = 5;
 int y = 10;
 boolean t = true || false;
 boolean f = false && true;
 if(((x < y) == t ) && ((false != t ) || !(true != (x == y)))){
-    println("((x < y) == t ) && ((false != t ) || !(true != (x == y)))");
+    println("((x < y) == true ) && ((false != true ) || !(true != (x == y)))");
 }else{
-    println("!(((x < y) == t ) && ((false != t ) || !(true != (x == y))))");
+    println("!(((x < y) == true ) && ((false != true ) || !(true != (x == y))))");
 }
 }

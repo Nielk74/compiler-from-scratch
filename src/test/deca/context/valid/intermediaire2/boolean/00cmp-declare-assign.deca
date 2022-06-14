@@ -1,3 +1,12 @@
+// Description:
+// Test syntaxique d'un main utilisant des variables booléennes et des littérals booléens,
+// et qui utilise ces variables booléennes dans la condition dans if
+//
+// Resultats:
+//  00cmp-declare-assign.lis
+//
+// Historique:
+//    crée le 10/06/2022
 {
     boolean x  = true;
     boolean y;

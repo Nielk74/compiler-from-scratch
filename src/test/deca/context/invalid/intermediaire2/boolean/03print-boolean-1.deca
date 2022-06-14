@@ -1,3 +1,11 @@
+// Description:
+// Test de l'erreur contextuelle de l'affichage d'un littéral booléen, chose interdite pas la spécification.
+//
+// Resultats:
+//  03print-boolean-1.deca:10:10:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     print(true);
 }
