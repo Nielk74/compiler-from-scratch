@@ -1,0 +1,16 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    il manque un /* pour le multi lignes commentaire au début
+//
+// Resultats:
+//    01_manque_debut.deca:14:4:
+//
+// Historique:
+//    cree le 14/06/2022
+{
+    a;
+    aaa;
+    aaaa;
+    */   
+
+}

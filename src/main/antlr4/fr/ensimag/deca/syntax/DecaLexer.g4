@@ -14,6 +14,7 @@ options {
 //Ignore
 LINE_COMMENT: ('//' ~[\r\n]*) { skip(); };
 SPACES: ('\r'|'\t'|'\n'|' ') { skip(); };
+MULTI_LINE_COMMENT: ('/*' .*? '*/') { skip(); };
 
 //Syntaxe
 OBRACE: '{';

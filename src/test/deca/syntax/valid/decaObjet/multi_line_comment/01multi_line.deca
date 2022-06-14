@@ -1,0 +1,17 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    il manque un espace entre le else et le if
+//
+// Resultats:
+//    01noespace.deca:14:4:    
+//
+// Historique:
+//    cree le 14/06/2022
+
+{
+    /* a
+    aaa
+    aaaa
+    */   
+
+}
