@@ -1,4 +1,13 @@
-//Exécute le if
+// Description:
+// Test de l'assignation d'expression booléenne dans une variable booléenne, dans une initialisation,
+// et de la négation de littérals booléens, et d'expression booléenne
+//
+// Resultats:
+//  (true && (5.5 < 10)) || (!true == !(true && false))
+//  !((true && (15.5 < 10)) || (!true == !(true && false)))
+//
+// Historique:
+//    crée le 10/06/2022
  {
  int y = 10;
  boolean x = (true && (5.5 < y)) || (!true == !(true && false));
@@ -9,8 +18,6 @@
  }else{
     println("!((true && (5.5 < 10)) || (!true == !(true && false)))");
  }
-
- //Exécute le else
 
  if(b){
     println("(true && (15.5 < 10)) || (!true == !(true && false))");

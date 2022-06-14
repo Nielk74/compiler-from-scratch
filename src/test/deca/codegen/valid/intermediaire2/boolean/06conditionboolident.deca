@@ -1,4 +1,12 @@
-//Exécute le if
+// Description:
+// Test des variables booléennes pour les conditions dans un if, avec des or
+//
+// Resultats:
+//  (true && (4 == 5)) || false || (true == true)
+//  !((true && (4 == 5)) || false || (true == false))
+//
+// Historique:
+//    crée le 10/06/2022
 {
 boolean x = true;
 boolean y = false;

@@ -1,38 +1,38 @@
-`> [1, 0] Program
+`> [10, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [1, 0] Main
+   `> [10, 0] Main
       +> ListDeclVar [List with 2 elements]
-      |  []> [2, 12] DeclVar
-      |  ||  +> [2, 4] Identifier (boolean)
-      |  ||  |  definition: type defined at [2, 4], type=boolean
-      |  ||  +> [2, 12] Identifier (x)
-      |  ||  |  definition: variable defined at [2, 12], type=boolean
-      |  ||  `> [2, 17] Initialization
-      |  ||     `> [2, 17] BooleanLiteral (true)
+      |  []> [11, 12] DeclVar
+      |  ||  +> [11, 4] Identifier (boolean)
+      |  ||  |  definition: type defined at [11, 4], type=boolean
+      |  ||  +> [11, 12] Identifier (x)
+      |  ||  |  definition: variable defined at [11, 12], type=boolean
+      |  ||  `> [11, 17] Initialization
+      |  ||     `> [11, 17] BooleanLiteral (true)
       |  ||        type: boolean
-      |  []> [3, 12] DeclVar
-      |      +> [3, 4] Identifier (boolean)
-      |      |  definition: type defined at [3, 4], type=boolean
-      |      +> [3, 12] Identifier (y)
-      |      |  definition: variable defined at [3, 12], type=boolean
+      |  []> [12, 12] DeclVar
+      |      +> [12, 4] Identifier (boolean)
+      |      |  definition: type defined at [12, 4], type=boolean
+      |      +> [12, 12] Identifier (y)
+      |      |  definition: variable defined at [12, 12], type=boolean
       |      `> NoInitialization
       `> ListInst [List with 2 elements]
-         []> [4, 4] Assign
+         []> [13, 4] Assign
          ||  type: boolean
-         ||  +> [4, 4] Identifier (y)
-         ||  |  definition: variable defined at [3, 12], type=boolean
-         ||  `> [4, 8] BooleanLiteral (false)
+         ||  +> [13, 4] Identifier (y)
+         ||  |  definition: variable defined at [12, 12], type=boolean
+         ||  `> [13, 8] BooleanLiteral (false)
          ||     type: boolean
-         []> [5, 4] IfThenElse
-             +> [5, 8] Or
+         []> [14, 4] IfThenElse
+             +> [14, 8] Or
              |  type: boolean
-             |  +> [5, 8] Identifier (x)
-             |  |  definition: variable defined at [2, 12], type=boolean
-             |  `> [5, 13] Identifier (y)
-             |     definition: variable defined at [3, 12], type=boolean
+             |  +> [14, 8] Identifier (x)
+             |  |  definition: variable defined at [11, 12], type=boolean
+             |  `> [14, 13] Identifier (y)
+             |     definition: variable defined at [12, 12], type=boolean
              +> ListInst [List with 1 elements]
-             |  []> [6, 8] Print
+             |  []> [15, 8] Print
              |      `> ListExpr [List with 1 elements]
-             |         []> [6, 14] StringLiteral (true)
+             |         []> [15, 14] StringLiteral (true)
              |             type: string
              `> ListInst [List with 0 elements]

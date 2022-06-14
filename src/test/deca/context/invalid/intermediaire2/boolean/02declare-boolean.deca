@@ -1,3 +1,11 @@
+// Description:
+// Test de l'erreur contextuelle de l'assignation d'un booléen dans un flottant, lors d'un initialisation.
+//
+// Resultats:
+//  02declare-boolean.deca:10:14:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     float x = true;
 }
