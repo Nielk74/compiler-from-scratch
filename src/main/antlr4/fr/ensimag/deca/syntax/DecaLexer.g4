@@ -67,6 +67,10 @@ PRINTLNX: 'printlnx';
 READINT: 'readInt';
 READFLOAT: 'readFloat';
 
+// Include
+fragment FILENAME: (LETTER | DIGIT | '.' | '-' | '_')+;
+INCLUDE: '#include' (' ')* '"' FILENAME '"' {doInclude(getText());};
+
 //Types
 TRUE: 'true';
 FALSE: 'false';
@@ -90,5 +94,4 @@ MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 IDENT: (LETTER | '$' | '_') (LETTER | DIGIT | '$' | '_')*;
-fragment FILENAME: (LETTER | DIGIT | '.' | '-' | '_')+;
-INCLUDE: '#include' (' ')* '"' FILENAME '"';
+

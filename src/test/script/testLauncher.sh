@@ -40,7 +40,7 @@ if [ -d  "${root}/syntax/valid/${feature}" ]; then
     if [ $(ls -A "${root}/syntax/valid/${feature}" | wc -l) -ne 0 ]; then
         echo "### TEST: $(pwd) ###"
         rm -f ${root}/syntax/valid/${feature}/*.{res,.ass} || exit 1
-        for f in ${root}/syntax/valid/${feature}*.deca ; do
+        for f in ${root}/syntax/valid/${feature}/*.deca ; do
             file="${f%.deca}"
             ((nbtests++))
             test_synt "${f}" > "${file}.res"
