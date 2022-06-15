@@ -1,0 +1,16 @@
+// Description:
+//    test incorrect syntaxiquement car il manque les parentheses
+//
+// Resultats:
+//    00methodTokenInvalid.deca:4:16:
+//
+// Historique:
+//    cree le 14/06/2022
+
+class Point2D {     
+    int x; // Abscisse     
+    int y; // Ordonnee        
+    Point2D get {        
+        return this;     
+    } 
+} 

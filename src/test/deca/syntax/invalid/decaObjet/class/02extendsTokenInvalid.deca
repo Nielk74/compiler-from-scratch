@@ -1,0 +1,29 @@
+// Description:
+//    test incorrect syntaxiquement (token 'extend' non reconnu)
+//
+// Resultats:
+//    02extendsTokenInvalid.deca:22:16:
+//
+// Historique:
+//    cree le 14/06/2022
+
+class Point2D {     
+    int x; // Abscisse     
+    int y; // Ordonnee      
+    void diag(int a) {         
+        x = x + a;         
+        y = y + a;     
+    }      
+    Point2D get() {        
+        return this;     
+    } 
+} 
+
+class Point3D extend Point2D {     
+    int z; // Hauteur      
+    void diag(int a) {         
+        x = x + a;         
+        y = y + a;         
+        z = z + a;     
+    } 
+} 

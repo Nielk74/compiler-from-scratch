@@ -11,8 +11,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 
 public class This extends AbstractExpr {
 
-    // la doc indique qu'il y a un attribut de type boolean
-    // mais aucune idée de ce que ça représente
+    private Boolean implicit = isImplicit();
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
@@ -22,8 +21,9 @@ public class This extends AbstractExpr {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+        if (!this.implicit){
+            s.print("this");
+        }
     }
 
     @Override
@@ -33,7 +33,8 @@ public class This extends AbstractExpr {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
+        // throw new UnsupportedOperationException("not yet implemented");
+        // leaf node => nothing to do
         
     }
 }

@@ -28,8 +28,9 @@ public class New extends AbstractExpr {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
-
+        s.print("new ");
+        this.type.decompile(s);
+        s.print("()");
     }
 
     @Override
@@ -39,8 +40,7 @@ public class New extends AbstractExpr {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
-
+        this.type.iter(f);
     }
 
 }

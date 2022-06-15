@@ -480,7 +480,7 @@ ident returns[AbstractIdentifier tree]
     : IDENT {
             $tree = new Identifier(getDecacCompiler().createSymbol($IDENT.text));
             setLocation($tree, $IDENT);
-        }
+        } 
     ;
 
 /****     Class related rules     ****/
@@ -503,6 +503,7 @@ class_decl returns[AbstractDeclClass tree]
             assert($class_body.fields != null);
             assert($class_body.methods != null);
             $tree = new DeclClass($name.tree, $superclass.tree, $class_body.fields, $class_body.methods);
+            setLocation($tree, $CLASS);
         }
     ;
 
@@ -513,6 +514,7 @@ class_extension returns[AbstractIdentifier tree]
         }
     | /* epsilon */ {
             $tree = new Identifier(getDecacCompiler().createSymbol("Object"));
+            $tree.setLocation(Location.BUILTIN);
         }
     ;
 
@@ -581,10 +583,13 @@ decl_method returns[AbstractDeclMethod tree]
             assert($block.decls != null);
             assert($block.insts != null);
             body = new MethodBody($block.decls, $block.insts);
+            setLocation(body, $block.start);
         }
       | ASM OPARENT code=multi_line_string CPARENT SEMI {
             assert($code.text != null);
             body = new MethodAsmBody($code.text);
+            setLocation($tree, $ASM);
+
         }
       ) {
             $tree = new DeclMethod($type.tree, $ident.tree, params, body);

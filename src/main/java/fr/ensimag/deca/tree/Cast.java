@@ -31,7 +31,11 @@ public class Cast extends AbstractExpr {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        s.print("(");
+        this.type.decompile(s);
+        s.print(") (");
+        this.expr.decompile(s);
+        s.print(")");
         
     }
 
@@ -43,7 +47,8 @@ public class Cast extends AbstractExpr {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
+        this.type.iter(f);
+        this.expr.iter(f);
         
     }
     

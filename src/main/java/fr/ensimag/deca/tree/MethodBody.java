@@ -37,8 +37,13 @@ public class MethodBody extends AbstractMethodBody {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented"); 
-        
+        s.println("{");
+        s.indent();
+        this.declVariables.decompile(s);
+        this.insts.decompile(s);
+        s.unindent();
+        s.println("}");
+
     }
 
     @Override
@@ -49,8 +54,8 @@ public class MethodBody extends AbstractMethodBody {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented"); 
-        
+        this.insts.iter(f);
+        this.declVariables.iter(f);        
     }
 
 }

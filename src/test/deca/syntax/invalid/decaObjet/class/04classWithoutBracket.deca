@@ -1,0 +1,13 @@
+// Description:
+//    test incorrect syntaxiquement car il manque une { après le nom de la classe
+//
+// Resultats:
+//    04classWithoutBracket.deca:11:4:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class Point2D     
+    int x; // Abscisse     
+    int y; // Ordonnee        
+} 

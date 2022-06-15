@@ -31,7 +31,9 @@ public class Selection extends AbstractLValue {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        this.expr.decompile(s);
+        s.print(".");
+        this.field.decompile(s);
         
     }
 
@@ -43,8 +45,8 @@ public class Selection extends AbstractLValue {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+        this.expr.iter(f);
+        this.field.iter(f);        
     }
     
 }

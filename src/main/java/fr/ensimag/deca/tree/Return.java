@@ -35,8 +35,9 @@ public class Return extends AbstractInst {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+        s.print("return ");
+        this.expr.decompile(s);
+        s.print(";");        
     }
 
     @Override
@@ -46,8 +47,7 @@ public class Return extends AbstractInst {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+        this.expr.iter(f);        
     }
     
 }
