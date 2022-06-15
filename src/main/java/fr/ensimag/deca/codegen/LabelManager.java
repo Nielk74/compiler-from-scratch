@@ -10,7 +10,7 @@ public class LabelManager {
     private int ifLabelCounter = 0;
     private int whileLabelCounter = 0;
     private int condLabelCounter = 0;
-
+    private int underflowCounter = 0;
     public Label createLabel(String name) {
         if (name == null)
             throw new IllegalArgumentException("Wrong label type - expected: string ≠ current: null");
@@ -47,6 +47,13 @@ public class LabelManager {
         return l;
     }
 
+    public void incrementUnderflowCounter(){
+        this.underflowCounter++;
+    }
+
+    public int getUnderflowCounter(){
+        return this.underflowCounter;
+    }
     public Label getLabel(String name) {
         return map.get(name);
     }

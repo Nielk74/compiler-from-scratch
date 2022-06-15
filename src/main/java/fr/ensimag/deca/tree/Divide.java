@@ -9,8 +9,9 @@ import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.instructions.BOV;
-import fr.ensimag.ima.pseudocode.instructions.DIV;
+import fr.ensimag.ima.pseudocode.instructions.*;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.Label;
 
 /**
  *
@@ -60,7 +61,17 @@ public class Divide extends AbstractOpArith {
             leftRegister = Register.getR(register_name + 1);
         }
         GPRegister rightRegister = Register.getR(register_name);
+
+        Label end_division =compiler.labelManager.createLabel("end_division"+Integer.toString(compiler.labelManager.getUnderflowCounter()));
+
         compiler.addInstruction(new DIV(leftRegister, rightRegister));
         compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        compiler.addInstruction(new CMP(new ImmediateFloat(0),leftRegister));
+        compiler.addInstruction(new BEQ(end_division));
+        compiler.addInstruction(new CMP(new ImmediateFloat(0),rightRegister));
+        compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.UD_ERROR)));
+        compiler.addLabel(end_division);
+        compiler.labelManager.incrementUnderflowCounter();
     }
 }
+
