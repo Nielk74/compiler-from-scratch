@@ -1,0 +1,21 @@
+// Description:
+//    test qui compare l'inégalité d'un objet à lui-même
+//
+// Resultats:
+//    a == a
+//
+// Historique:
+//    cree le 15/06/2022
+
+class A {
+    
+}
+{
+    A a = new A();
+
+    if (a != a) {
+        println("a != a");
+    } else {
+        println("a == a");
+    }
+}

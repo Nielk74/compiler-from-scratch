@@ -18,15 +18,16 @@ import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.DVal;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.BNE;
-import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
  * Deca Identifier
@@ -245,6 +246,7 @@ public class Identifier extends AbstractIdentifier {
             s.println();
         }
     }
+
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         if (!this.getType().isBoolean()) {
@@ -259,5 +261,10 @@ public class Identifier extends AbstractIdentifier {
         } else {
             compiler.addInstruction(new BEQ(l));
         }
+    }
+
+    @Override
+    protected void codeGenDeclClass(DecacCompiler compiler) {
+        compiler.addInstruction(new LEA(this.getClassDefinition().getSuperClass().getOperand(), Register.R0));
     }
 }

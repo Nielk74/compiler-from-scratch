@@ -4,8 +4,12 @@ import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
+import fr.ensimag.ima.pseudocode.DAddr;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 
+import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -49,7 +53,24 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void verifyClass(DecacCompiler compiler) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Passe 1
+        // checks if the class name is already used in a definition
+        if (compiler.environmentType.defOfType(name.getName()) != null) {
+            throw new ContextualError("Wrong class name: " + name.getName() + " is already defined", name.getLocation());
+        }
+
+        // if the superclass is Object we have to set its type and definition
+        if (superclass.getName().getName().equals("Object")) {
+            superclass.setType(compiler.environmentType.OBJECT);
+            superclass.setDefinition(compiler.environmentType.OBJECT.getDefinition());
+        }
+
+        // set the class type
+        ClassType type = compiler.environmentType.addClassType(compiler, name.getName(), superclass.getClassDefinition(), name.getLocation());
+        name.setType(type);
+        name.setDefinition(type.getDefinition());
+        name.getClassDefinition().setLocation(this.getLocation());
+        // TODO : pour le extends il faudra vérifer que superclass est bien dans EnvExp et que c'est bien une ClassType
     }
 
     @Override
@@ -80,4 +101,15 @@ public class DeclClass extends AbstractDeclClass {
         this.methods.iter(f);
     }
 
+    @Override
+    protected void codeGenDeclClass(DecacCompiler compiler) {
+        name.codeGenDeclClass(compiler);
+
+        DAddr offset = new RegisterOffset(compiler.stackManager.getGbOffsetCounter(), Register.GB);
+        compiler.stackManager.incrementGbOffsetCounter();
+        compiler.addInstruction(new STORE(Register.R0, offset));
+        name.getClassDefinition().setOperand(offset);
+
+        // TODO : incrémenter compiler.stackManager.incrementVarCounter(); pour chaque méthode
+    }
 }

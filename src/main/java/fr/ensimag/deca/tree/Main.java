@@ -29,9 +29,6 @@ public class Main extends AbstractMain {
     @Override
     protected void verifyMain(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify Main: start");
-        // FAIT : Appeler méthodes "verify*" de ListDeclVarSet et ListInst.
-        // Vous avez le droit de changer le profil fourni pour ces méthodes
-        // (mais ce n'est à priori pas nécessaire).
         EnvironmentExp localEnv = new EnvironmentExp(null);
         this.declVariables.verifyListDeclVariable(compiler, localEnv, null);
         this.insts.verifyListInst(compiler, localEnv, null, compiler.environmentType.VOID);
@@ -40,7 +37,8 @@ public class Main extends AbstractMain {
 
     @Override
     protected void codeGenMain(DecacCompiler compiler) {
-        // FAIT : traiter les déclarations de variables.
+        // update LB offset with the GB offset
+        compiler.stackManager.setLbOffsetCounter(compiler.stackManager.getGbOffsetCounter());
         compiler.addComment("Beginning of main instructions:");
         declVariables.codeGenListDeclVariable(compiler);
         insts.codeGenListInst(compiler);

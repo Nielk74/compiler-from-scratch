@@ -1,0 +1,20 @@
+// Description:
+//    test essayant de comparer deux objets (Greater or Equals)
+//
+// Resultats:
+//    02comparaison.deca:22:8:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {
+
+}
+
+{
+    A a = new A();
+    A b = new A();
+    if (a >= b) {
+
+    }
+}

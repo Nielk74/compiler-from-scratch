@@ -1,0 +1,14 @@
+class A {
+
+}
+
+{
+    A a = new A();
+    A b = new A();
+    if (a < b) {
+
+    }
+    if (a <= b) {
+
+    }
+}

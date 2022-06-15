@@ -8,13 +8,17 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 public class Null extends AbstractExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+                setType(compiler.environmentType.NULL);
+                return compiler.environmentType.NULL;
     }
 
     @Override
@@ -29,9 +33,13 @@ public class Null extends AbstractExpr {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        // throw new UnsupportedOperationException("not yet implemented");
-        // leaf node => nothing to do
+        // do nothing, child node
         
+    }
+
+    @Override
+    protected void codeGenExp(DecacCompiler compiler, int register_name) {
+        compiler.addInstruction(new LOAD(new NullOperand(), Register.getR(register_name)));
     }
     
 }

@@ -1,6 +1,5 @@
 package fr.ensimag.deca.tree;
 
-
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -20,18 +19,17 @@ public abstract class AbstractOpExactCmp extends AbstractOpCmp {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-                           ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) throws ContextualError {
         super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
 
         Type leftType = super.getLeftOperand().getType();
         Type rightType = super.getRightOperand().getType();
 
-        if(leftType.isBoolean() && rightType.isBoolean()){
+        if (leftType.isBoolean() && rightType.isBoolean() || leftType.isClassOrNull() && rightType.isClassOrNull()) {
             this.setType(compiler.environmentType.BOOLEAN);
             return this.getType();
-
-        }else{
+        } else {
             return super.verifyExpr(compiler, localEnv, currentClass);
         }
     }

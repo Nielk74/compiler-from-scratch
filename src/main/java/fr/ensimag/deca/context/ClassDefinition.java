@@ -1,6 +1,7 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.tree.Location;
+import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Label;
 import org.apache.commons.lang.Validate;
 
@@ -12,7 +13,16 @@ import org.apache.commons.lang.Validate;
  */
 public class ClassDefinition extends TypeDefinition {
 
+    public void setOperand(DAddr operand) {
+        this.operand = operand;
+    }
 
+    public DAddr getOperand() {
+        return operand;
+    }
+    
+    private DAddr operand;
+    
     public void setNumberOfFields(int numberOfFields) {
         this.numberOfFields = numberOfFields;
     }
