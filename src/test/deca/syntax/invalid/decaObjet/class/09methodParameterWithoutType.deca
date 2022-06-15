@@ -1,0 +1,16 @@
+// Description:
+//    test incorrect syntaxiquement car il manque le type du 2ème paramètre
+//
+// Resultats:
+//    09methodParameterWithoutType.deca:13:25:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class Point2D {     
+    int x; // Abscisse     
+    int y; // Ordonnee        
+    Point2D get (int t, g) {       
+        return this;     
+    } 
+} 

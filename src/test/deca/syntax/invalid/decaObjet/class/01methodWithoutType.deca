@@ -1,0 +1,22 @@
+// Description:
+//    Programme invalide syntaxiquement car une des méthodes ne renvoie aucun type 
+//
+// Resultats:
+//    01methodWithoutType.deca:17:7:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class Point2D {     
+    int x; // Abscisse     
+    int y; // Ordonnee      
+    void diag(int a) {         
+        x = x + a;         
+        y = y + a;     
+    }      
+    get() {        
+        return this;     
+    } 
+} 
+{
+}

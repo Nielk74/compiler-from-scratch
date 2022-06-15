@@ -34,8 +34,15 @@ public class MethodCall extends AbstractExpr {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+
+        if (this.expr!=null){
+            this.expr.decompile(s);
+            s.print(".");
+        }
+        this.method.decompile(s);
+        s.print("(");
+        this.args.decompile(s);
+        s.print(")");
     }
 
     @Override
@@ -47,8 +54,9 @@ public class MethodCall extends AbstractExpr {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+        this.expr.iter(f);
+        this.method.iter(f);
+        this.args.iter(f);        
     }
 
 }

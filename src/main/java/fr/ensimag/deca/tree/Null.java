@@ -19,8 +19,7 @@ public class Null extends AbstractExpr {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
-        
+        s.print("null");    
     }
 
     @Override
@@ -30,7 +29,8 @@ public class Null extends AbstractExpr {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
+        // throw new UnsupportedOperationException("not yet implemented");
+        // leaf node => nothing to do
         
     }
     

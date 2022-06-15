@@ -34,8 +34,8 @@ public class MethodAsmBody extends AbstractMethodBody {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented"); 
-        
+        s.print("asm(" + this.code + ");");
+
     }
 
     @Override
@@ -46,7 +46,8 @@ public class MethodAsmBody extends AbstractMethodBody {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented"); 
+        // throw new UnsupportedOperationException("not yet implemented"); 
+        // rien à faire car code est un string ?
         
     }
 

@@ -35,7 +35,9 @@ public class DeclParam extends AbstractDeclParam {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        this.type.decompile(s);
+        s.print(" ");
+        this.name.decompile(s);
     }
 
     @Override
@@ -46,7 +48,9 @@ public class DeclParam extends AbstractDeclParam {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
+        this.type.iter(f);
+        this.name.iter(f);
+
     }
 
 }

@@ -41,7 +41,13 @@ public class DeclField extends AbstractDeclField {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        s.print(this.visibility +" ");
+        this.type.decompile(s);
+        s.print(" ");
+        this.name.decompile(s);
+        this.init.decompile(s);
+        s.println(";");
+
     }
 
     @Override
@@ -53,7 +59,9 @@ public class DeclField extends AbstractDeclField {
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        throw new UnsupportedOperationException("not yet implemented");
         
+        this.type.iter(f);
+        this.name.iter(f);
+        this.init.iter(f);
     }
 }
