@@ -1,0 +1,28 @@
+// Description:
+//    tests de programme correct codegen : 
+//    différentes divisions (inclut MIN en 32b 1.0p-149) qui lancent pas l'exception underflow
+//
+// Resultats:
+//    2.80000e+01
+//    2.80000e+01
+//    1.56800e+02
+//    7.00649e-45
+//
+// Historique:
+//    cree le 15/06/2022
+{
+    int a = 5;
+    float b = 5.6;
+    float c;
+    
+    c = a/b;
+    printlnx(c);
+    c = b/a;
+    printlnx(c);
+    c = b/c;
+    printlnx(c);
+    c = 2;
+    b = 0x1.0p-148;
+    c = b/c;
+    printlnx(c);
+}

@@ -5,9 +5,9 @@ import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.instructions.BOV;
-import fr.ensimag.ima.pseudocode.instructions.MUL;
-
+import fr.ensimag.ima.pseudocode.instructions.*;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.Label;
 /**
  * @author gl10
  * @date 25/04/2022
@@ -32,11 +32,30 @@ public class Multiply extends AbstractOpArith {
         } else {
             leftRegister = Register.getR(register_name + 1);
         }
+        
         GPRegister rightRegister = Register.getR(register_name);
-        compiler.addInstruction(new MUL(leftRegister, rightRegister));
+
+        String index = Integer.toString(compiler.labelManager.getUnderflowCounter());
+        Label no_underflow = compiler.labelManager.createLabel("no_underflow"+index);
+        if(this.getType().isFloat()){
+            compiler.addInstruction(new CMP(new ImmediateFloat(0),leftRegister));
+            compiler.addInstruction(new BEQ(no_underflow));
+            compiler.addInstruction(new CMP(new ImmediateFloat(0),rightRegister));
+            compiler.addInstruction(new BEQ(no_underflow));
+        } 
+            compiler.addInstruction(new MUL(leftRegister, rightRegister));
         
         // overflow error only when the result is a float
         if (this.getType().isFloat()) {
+            Label end_multiply = compiler.labelManager.createLabel("end_multiply"+index);
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
-        }    }
+            compiler.addInstruction(new CMP(new ImmediateFloat(0),rightRegister));
+            compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.UD_ERROR)));
+            compiler.addInstruction(new BRA(end_multiply));
+            compiler.addLabel(no_underflow);
+            compiler.addInstruction(new LOAD(new ImmediateFloat(0), rightRegister));
+            compiler.addLabel(end_multiply);
+            compiler.labelManager.incrementUnderflowCounter();
+        }    
+    }
 }

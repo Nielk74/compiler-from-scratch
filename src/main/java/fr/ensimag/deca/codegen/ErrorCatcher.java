@@ -14,12 +14,15 @@ public class ErrorCatcher {
     public static final String IO_ERROR = "io_error";
     public static final String SO_ERROR = "so_error";
     public static final String OV_ERROR = "ov_error";
+    public static final String UD_ERROR = "ud_error";
     public static final String HO_ERROR = "ho_error";
 
     public static void createErrorLabel(DecacCompiler compiler) {
         compiler.labelManager.createLabel(IO_ERROR);
         compiler.labelManager.createLabel(SO_ERROR);
         compiler.labelManager.createLabel(OV_ERROR);
+        compiler.labelManager.createLabel(UD_ERROR);
+
         compiler.labelManager.createLabel(HO_ERROR);
     }
 
@@ -36,6 +39,9 @@ public class ErrorCatcher {
         compiler.addLabel(compiler.labelManager.getLabel(OV_ERROR));
         addErrorHandler(compiler, "Error: Overflow");
 
+        // UD_ERROR
+        compiler.addLabel(compiler.labelManager.getLabel(UD_ERROR));
+        addErrorHandler(compiler, "Error: Underflow");
         // HO_ERROR
         compiler.addLabel(compiler.labelManager.getLabel(HO_ERROR));
         addErrorHandler(compiler, "Error: Heap Overflow");
