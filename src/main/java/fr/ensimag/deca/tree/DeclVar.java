@@ -42,23 +42,18 @@ public class DeclVar extends AbstractDeclVar {
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         Symbol typeSymbol = type.getName();
-        Type t;
-        switch (typeSymbol.getName()) {
-            case "int":
-                t = compiler.environmentType.INT;
-                break;
-            case "float":
-                t = compiler.environmentType.FLOAT;
-                break;
-            case "boolean":
-                t = compiler.environmentType.BOOLEAN;
-                break;
-            default:
-                throw new ContextualError("Wrong variable type - expected: float, int or boolean ≠ current: "+
-                typeSymbol.getName(), type.getLocation());
+        
+        if (typeSymbol.getName().equals("void")) {
+            throw new ContextualError("Wrong variable type - unexpected: void", type.getLocation());
         }
+        TypeDefinition typeDef = compiler.environmentType.defOfType(typeSymbol);
+        if (typeDef == null) {
+            throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
+        }
+        Type t = typeDef.getType();
+       
         varName.setDefinition(new VariableDefinition(t, varName.getLocation()));
-        type.setDefinition(new TypeDefinition(t, type.getLocation()));
+        type.setDefinition(compiler.environmentType.defOfType(typeSymbol));
         type.setType(t);
         this.initialization.verifyInitialization(compiler, t, localEnv, currentClass);
         try {

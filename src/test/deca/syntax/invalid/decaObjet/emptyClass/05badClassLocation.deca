@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme incorrect lexicalement (token 'clas' non reconnu)
+//
+// Resultats:
+//    05badClassLocation.deca:14:0:
+//
+// Historique:
+//    cree le 13/06/2022
+
+
+{
+
+}
+class A {
+}

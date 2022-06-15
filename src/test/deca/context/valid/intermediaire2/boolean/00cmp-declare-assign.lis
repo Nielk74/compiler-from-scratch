@@ -4,7 +4,7 @@
       +> ListDeclVar [List with 2 elements]
       |  []> [11, 12] DeclVar
       |  ||  +> [11, 4] Identifier (boolean)
-      |  ||  |  definition: type defined at [11, 4], type=boolean
+      |  ||  |  definition: type (builtin), type=boolean
       |  ||  +> [11, 12] Identifier (x)
       |  ||  |  definition: variable defined at [11, 12], type=boolean
       |  ||  `> [11, 17] Initialization
@@ -12,7 +12,7 @@
       |  ||        type: boolean
       |  []> [12, 12] DeclVar
       |      +> [12, 4] Identifier (boolean)
-      |      |  definition: type defined at [12, 4], type=boolean
+      |      |  definition: type (builtin), type=boolean
       |      +> [12, 12] Identifier (y)
       |      |  definition: variable defined at [12, 12], type=boolean
       |      `> NoInitialization

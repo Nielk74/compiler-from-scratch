@@ -95,6 +95,9 @@ public abstract class AbstractExpr extends AbstractInst {
             currentType = convExpr.verifyExpr(compiler, localEnv, currentClass);
             return convExpr;
         }
+        if (currentType.isNull() && expectedType.isClass()){
+            return this;
+        }
         if (!currentType.equals(expectedType)) {
             throw new ContextualError(
                     "Wrong right value type - expected: "+expectedType+" ≠ current: "+ currentType,

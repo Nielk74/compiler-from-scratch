@@ -4,7 +4,7 @@
       +> ListDeclVar [List with 2 elements]
       |  []> [12, 8] DeclVar
       |  ||  +> [12, 4] Identifier (int)
-      |  ||  |  definition: type defined at [12, 4], type=int
+      |  ||  |  definition: type (builtin), type=int
       |  ||  +> [12, 8] Identifier (x)
       |  ||  |  definition: variable defined at [12, 8], type=int
       |  ||  `> [12, 12] Initialization
@@ -12,7 +12,7 @@
       |  ||        type: int
       |  []> [13, 8] DeclVar
       |      +> [13, 4] Identifier (int)
-      |      |  definition: type defined at [13, 4], type=int
+      |      |  definition: type (builtin), type=int
       |      +> [13, 8] Identifier (y)
       |      |  definition: variable defined at [13, 8], type=int
       |      `> [13, 12] Initialization

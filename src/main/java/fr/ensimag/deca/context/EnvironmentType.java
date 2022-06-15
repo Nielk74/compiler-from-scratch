@@ -1,6 +1,8 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
+
 import java.util.HashMap;
 import java.util.Map;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
@@ -37,8 +39,14 @@ public class EnvironmentType {
 
         Symbol stringSymb = compiler.createSymbol("string");
         STRING = new StringType(stringSymb);
-        // not added to envTypes, it's not visible for the user.
-        
+
+        Symbol objectSymb = compiler.createSymbol("Object");
+        OBJECT = new ClassType(objectSymb, Location.BUILTIN, null);
+        envTypes.put(objectSymb, OBJECT.getDefinition());
+
+
+        Symbol nullSymbol = compiler.createSymbol("null");
+        NULL = new NullType(nullSymbol);
     }
 
     private final Map<Symbol, TypeDefinition> envTypes;
@@ -47,9 +55,17 @@ public class EnvironmentType {
         return envTypes.get(s);
     }
 
+    public ClassType addClassType(DecacCompiler compiler, Symbol className, ClassDefinition superDef, Location location) {
+        ClassType classType = new ClassType(className, location, superDef);
+        envTypes.put(className, classType.getDefinition());
+        return classType;
+    }
+
     public final VoidType    VOID;
     public final IntType     INT;
     public final FloatType   FLOAT;
     public final StringType  STRING;
     public final BooleanType BOOLEAN;
+    public final ClassType   OBJECT;
+    public final NullType   NULL;
 }

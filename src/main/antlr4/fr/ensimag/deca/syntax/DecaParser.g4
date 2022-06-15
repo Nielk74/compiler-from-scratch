@@ -447,10 +447,10 @@ literal returns[AbstractExpr tree]
     : INT {
             try { 
                 $tree = new IntLiteral(Integer.parseInt($INT.text)); 
+                
             } catch (NumberFormatException e) { 
                 throw new InvalidRangeValue(this, $ctx);
             }
-            
         }
     | fd=FLOAT {
             try { 
@@ -513,7 +513,7 @@ class_extension returns[AbstractIdentifier tree]
             $tree = $ident.tree;
         }
     | /* epsilon */ {
-            $tree = new Identifier(getDecacCompiler().createSymbol("Object"));
+            $tree = new Identifier(getDecacCompiler().environmentType.OBJECT.getName());
             $tree.setLocation(Location.BUILTIN);
         }
     ;

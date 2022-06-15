@@ -10,6 +10,7 @@ import fr.ensimag.ima.pseudocode.instructions.TSTO;
 public class StackManager {
     private int varCounter = 0;
     private int lbOffsetCounter = 1;
+    private int gbOffsetCounter = 1;
 
     public void incrementVarCounter() {
         varCounter++;
@@ -26,7 +27,19 @@ public class StackManager {
         this.lbOffsetCounter++;
     }
 
+    public void incrementGbOffsetCounter(){
+        this.gbOffsetCounter++;
+    }
+
     public int getLbOffsetCounter(){
         return this.lbOffsetCounter;
+    }
+
+    public int getGbOffsetCounter(){
+        return this.gbOffsetCounter;
+    }
+
+    public void setLbOffsetCounter(int lbOffsetCounter){
+        this.lbOffsetCounter = lbOffsetCounter;
     }
 }

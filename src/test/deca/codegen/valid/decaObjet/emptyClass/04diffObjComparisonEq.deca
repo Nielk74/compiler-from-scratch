@@ -1,0 +1,22 @@
+// Description:
+//    test qui compare l'égalité de deux objets de références différentes
+//
+// Resultats:
+//   a1 != a2
+//
+// Historique:
+//    cree le 15/06/2022
+
+class A {
+    
+}
+{
+    A a1 = new A();
+    A a2 = new A();
+
+    if (a1 == a2) {
+        println("a1 == a2");
+    } else {
+        println("a1 != a2");
+    }
+}
