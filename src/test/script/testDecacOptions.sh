@@ -25,7 +25,7 @@ tmpDir="$(dirname "$0")/../deca/tmp"
 index=0
 getCodegenFiles () {
     mkdir $tmpDir || exit 1
-    find ${root} -name "*.deca" ! -name '*_decompiled.deca' | grep -v 'provided' | grep -v 'interactive' |while read f; do
+    find ${root} -name "*.deca" ! -name '*_decompiled.deca' | grep -v 'include' | grep -v 'provided' | grep -v 'interactive' |while read f; do
         file="${f%.deca}"
         cp "${f}" "${tmpDir}/$(basename $file)_${index}.deca"
         realPath="$(realpath "${file}.ass")"
