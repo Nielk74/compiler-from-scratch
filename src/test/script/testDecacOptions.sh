@@ -62,8 +62,11 @@ for f in ${tmpDir}/*.deca ; do
     echo 
 done
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
-
 clearTmpDir
+if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
+    exit 1
+fi
 
 nbpassed=0
 nbtests=0
@@ -106,6 +109,10 @@ done
 
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
 clearTmpDir
+if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
+    exit 1
+fi
 
 decac_help="$(decac -h)"
 if [ "$?" -ne 0 ]; then
@@ -213,3 +220,7 @@ done
 
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
 clearTmpDir
+if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
+    exit 1
+fi

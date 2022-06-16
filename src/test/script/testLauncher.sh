@@ -212,5 +212,6 @@ fi
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
 
 if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
     exit 1
 fi
