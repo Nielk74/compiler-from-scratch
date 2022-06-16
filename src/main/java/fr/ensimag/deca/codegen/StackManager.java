@@ -18,7 +18,9 @@ public class StackManager {
 
     public void initializeStack(DecacCompiler compiler) {
         compiler.addFirst(new ADDSP(varCounter));
-        compiler.addFirst(new BOV(compiler.labelManager.getLabel(ErrorCatcher.SO_ERROR)));
+        if (!compiler.getCompilerOptions().getNocheck()){
+            compiler.addFirst(new BOV(compiler.labelManager.getLabel(ErrorCatcher.SO_ERROR)));
+        }
         compiler.addFirst(new TSTO(varCounter));
         compiler.addFirst(new Line("stack initialization"));
     }

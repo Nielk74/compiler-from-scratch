@@ -19,32 +19,33 @@ public class ErrorCatcher {
 
     public static void createErrorLabel(DecacCompiler compiler) {
         compiler.labelManager.createLabel(IO_ERROR);
-        compiler.labelManager.createLabel(SO_ERROR);
-        compiler.labelManager.createLabel(OV_ERROR);
-        compiler.labelManager.createLabel(UD_ERROR);
-
-        compiler.labelManager.createLabel(HO_ERROR);
+        if (!compiler.getCompilerOptions().getNocheck()) {
+            compiler.labelManager.createLabel(OV_ERROR);
+            compiler.labelManager.createLabel(UD_ERROR);
+            compiler.labelManager.createLabel(SO_ERROR);
+            compiler.labelManager.createLabel(HO_ERROR);
+        }
     }
 
     public static void handleErrors(DecacCompiler compiler) {
-        // IO_ERROR
+        // IO_ERROR : 11.2
         compiler.addLabel(compiler.labelManager.getLabel(IO_ERROR));
         addErrorHandler(compiler, "Error: Input/Output error");
 
-        // SO_ERROR
-        compiler.addLabel(compiler.labelManager.getLabel(SO_ERROR));
-        addErrorHandler(compiler, "Error: Stack Overflow");
-
-        // OV_ERROR
-        compiler.addLabel(compiler.labelManager.getLabel(OV_ERROR));
-        addErrorHandler(compiler, "Error: Overflow");
-
-        // UD_ERROR
-        compiler.addLabel(compiler.labelManager.getLabel(UD_ERROR));
-        addErrorHandler(compiler, "Error: Underflow");
-        // HO_ERROR
-        compiler.addLabel(compiler.labelManager.getLabel(HO_ERROR));
-        addErrorHandler(compiler, "Error: Heap Overflow");
+        if (!compiler.getCompilerOptions().getNocheck()) {
+            // OV_ERROR : 11.1
+            compiler.addLabel(compiler.labelManager.getLabel(OV_ERROR));
+            addErrorHandler(compiler, "Error: Overflow");
+            // UD_ERROR : 11.1
+            compiler.addLabel(compiler.labelManager.getLabel(UD_ERROR));
+            addErrorHandler(compiler, "Error: Underflow");
+            // SO_ERROR : 11.3
+            compiler.addLabel(compiler.labelManager.getLabel(SO_ERROR));
+            addErrorHandler(compiler, "Error: Stack Overflow");
+            // HO_ERROR : 11.3
+            compiler.addLabel(compiler.labelManager.getLabel(HO_ERROR));
+            addErrorHandler(compiler, "Error: Heap Overflow");
+        }
     }
 
     private static void addErrorHandler(DecacCompiler compiler, String message) {

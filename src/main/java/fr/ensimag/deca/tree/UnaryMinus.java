@@ -45,7 +45,7 @@ public class UnaryMinus extends AbstractUnaryExpr {
         compiler.addInstruction(new OPP(register, register));
         
         // overflow error only when the result is a float
-        if (this.getType().isFloat()) {
+        if (this.getType().isFloat() && !compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
         }
     }

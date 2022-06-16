@@ -36,7 +36,7 @@ public class Divide extends AbstractOpArith {
         Type leftType = super.getLeftOperand().getType();
         Type rightType = super.getRightOperand().getType();
 
-        // convert int operands to float for divide 
+        // convert int operands to float for divide
         if (leftType.isInt()) {
             AbstractExpr expr = getLeftOperand().verifyRValue(compiler, localEnv, currentClass, compiler.environmentType.FLOAT);
             this.setLeftOperand(expr);
@@ -62,16 +62,20 @@ public class Divide extends AbstractOpArith {
         }
         GPRegister rightRegister = Register.getR(register_name);
 
-        Label end_division =compiler.labelManager.createLabel("end_division"+Integer.toString(compiler.labelManager.getUnderflowCounter()));
+        Label end_division = compiler.labelManager.createLabel("end_division" + Integer.toString(compiler.labelManager.getUnderflowCounter()));
 
         compiler.addInstruction(new DIV(leftRegister, rightRegister));
-        compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
-        compiler.addInstruction(new CMP(new ImmediateFloat(0),leftRegister));
-        compiler.addInstruction(new BEQ(end_division));
-        compiler.addInstruction(new CMP(new ImmediateFloat(0),rightRegister));
-        compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.UD_ERROR)));
-        compiler.addLabel(end_division);
-        compiler.labelManager.incrementUnderflowCounter();
+        if (!compiler.getCompilerOptions().getNocheck()) {
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        }
+
+        if (!compiler.getCompilerOptions().getNocheck()) {
+            compiler.addInstruction(new CMP(new ImmediateFloat(0), leftRegister));
+            compiler.addInstruction(new BEQ(end_division));
+            compiler.addInstruction(new CMP(new ImmediateFloat(0), rightRegister));
+            compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.UD_ERROR)));
+            compiler.addLabel(end_division);
+            compiler.labelManager.incrementUnderflowCounter();
+        }
     }
 }
-

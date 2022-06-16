@@ -7,6 +7,7 @@ import javax.swing.plaf.synth.Region;
 import org.apache.commons.lang.Validate;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -66,7 +67,9 @@ public class New extends AbstractExpr {
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         // TODO changer le calcul de la taille à allouer selon le nombre d'attribut
         compiler.addInstruction(new NEW(1, Register.getR(register_name)));
-        compiler.addInstruction(new BOV(compiler.labelManager.getLabel("ho_error")));
+        if (!compiler.getCompilerOptions().getNocheck()){
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel("ho_error")));
+        }
         compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R0));
         compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(0, Register.getR(register_name))));
         compiler.addInstruction(new PUSH(Register.getR(register_name)));

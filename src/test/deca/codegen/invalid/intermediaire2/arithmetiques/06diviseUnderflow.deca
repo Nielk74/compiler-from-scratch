@@ -10,5 +10,4 @@
     float a = 2;
     float b = 0x1.0p-149;
     float c = b/a;
-    printlnx(c);
 }
