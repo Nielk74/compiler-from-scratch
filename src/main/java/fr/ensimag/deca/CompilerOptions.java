@@ -40,6 +40,10 @@ public class CompilerOptions {
         return printBanner;
     }
 
+    public boolean getNocheck() {
+        return noCheck;
+    }
+
     public int getRegisterMax() {
         return registerMax;
     }
@@ -53,6 +57,7 @@ public class CompilerOptions {
     private boolean verification = false;
     private boolean parallel = false;
     private boolean printBanner = false;
+    private boolean noCheck = false;
     private int registerMax = 15;
     private List<File> sourceFiles = new ArrayList<File>();
     
@@ -82,6 +87,9 @@ public class CompilerOptions {
                     break;
                 case "-d":
                     debug++;
+                    break;
+                case "-n":
+                    noCheck = true;
                     break;
                 case "-P":
                     parallel = true;
@@ -139,6 +147,7 @@ public class CompilerOptions {
         System.out.println("  -v : verify only");
         System.out.println("  -d : activate debug, repeat for more traces");
         System.out.println("  -P : parallel compilation");
+        System.out.println("  -n : continue execution even with exceptions: divide by 0, overflow, no return, forbidden cast, pointer on null, stack overflow");
         System.out.println("  -r X : limit the number of registers to R0 to R{X-1} (4 <= X <= 16)");
     }
 

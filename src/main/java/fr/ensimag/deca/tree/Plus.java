@@ -36,7 +36,7 @@ public class Plus extends AbstractOpArith {
         compiler.addInstruction(new ADD(leftRegister, rightRegister));
 
         // overflow error only when the result is a float
-        if (this.getType().isFloat()) {
+        if (this.getType().isFloat() && !compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
         }    
     }

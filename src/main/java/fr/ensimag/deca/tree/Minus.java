@@ -22,7 +22,7 @@ public class Minus extends AbstractOpArith {
     protected String getOperatorName() {
         return "-";
     }
-    
+
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);
@@ -37,7 +37,9 @@ public class Minus extends AbstractOpArith {
 
         // overflow error only when the result is a float
         if (this.getType().isFloat()) {
-            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+            if (!compiler.getCompilerOptions().getNocheck()) {
+                compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+            }
         }
     }
 }

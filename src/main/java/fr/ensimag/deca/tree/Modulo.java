@@ -64,6 +64,8 @@ public class Modulo extends AbstractOpArith {
         compiler.addInstruction(new REM(leftRegister, rightRegister));
 
         // the overflow error should only be triggered by x%0
-        compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        if (!compiler.getCompilerOptions().getNocheck()) {
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+        }
     }
 }
