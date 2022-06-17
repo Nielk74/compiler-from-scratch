@@ -172,8 +172,8 @@ else
     echo "decac -r 17 retourne bien une erreur."
 fi
 
-
-echo "### TEST: -n no check erros OV and SO ###"
+echo
+echo "### TEST: -n no check errors ###"
 nbtests=0
 nbpassed=0
 
@@ -203,7 +203,7 @@ for f in ${tmpDir}/*.deca; do
         ima "${file}.ass" > "${file}.res"
     fi
     if [ -s "${file}.res" ]; then
-        if grep -q "Error: Input/Output error" "${file}.res"; then
+        if grep -q "Error: Input/Output error\|IMA \*\* ERREUR" "${file}.res"; then
             echo "--- ${file#*deca/}: PASSED ---"
             ((nbpassed++))
         else
@@ -215,6 +215,7 @@ for f in ${tmpDir}/*.deca; do
         echo "--- ${file#*deca/}: PASSED ---"
         ((nbpassed++))
     fi
+    echo
 
 done
 
