@@ -45,10 +45,12 @@ public class Program extends AbstractProgram {
 
     @Override
     public void codeGenProgram(DecacCompiler compiler) {
-        compiler.addComment("Main program");
         classes.codeGenListDeclClass(compiler);
+        compiler.addComment("Main program");
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
+        compiler.addComment("End main program");
+        classes.codeGenListClassInit(compiler);
     }
 
     @Override

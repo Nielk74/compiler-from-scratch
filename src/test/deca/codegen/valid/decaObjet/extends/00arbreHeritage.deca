@@ -1,0 +1,31 @@
+// Description:
+//    Programme testant l'héritage des champs
+//    via la sélection de champs en changeant le type statique
+//    (surcharge de champs)
+//
+// Resultats:
+//    
+//
+// Historique:
+//    cree le 15/06/2022
+
+class A {
+    int x = 1;
+}
+
+class B extends A {
+    int x = 2;
+}
+
+class C extends B {
+    int x = 3;
+}
+
+{
+    A a = new C();
+    B b = new C();
+    C c = new C();
+    println(a.x);
+    println(b.x);
+    println(c.x);
+}

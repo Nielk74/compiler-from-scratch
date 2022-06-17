@@ -65,15 +65,18 @@ public class New extends AbstractExpr {
 
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
-        // TODO changer le calcul de la taille à allouer selon le nombre d'attribut
-        compiler.addInstruction(new NEW(1, Register.getR(register_name)));
+        // allocate memory for the object
+        compiler.addInstruction(new NEW(type.getClassDefinition().getNumberOfFields() + 1, Register.getR(register_name)));
+
+        // initialize the object fields
         if (!compiler.getCompilerOptions().getNocheck()){
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel("ho_error")));
         }
+        
         compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R0));
         compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(0, Register.getR(register_name))));
         compiler.addInstruction(new PUSH(Register.getR(register_name)));
-        //compiler.addInstruction(new BSR(new Label("init.A")));
+        compiler.addInstruction(new BSR(new Label("init." + type.getName())));
         compiler.addInstruction(new POP(Register.getR(register_name)));
     }
 }

@@ -8,6 +8,15 @@ package fr.ensimag.deca.tree;
  */
 
 public enum Visibility {
-    PUBLIC,
-    PROTECTED
+    PUBLIC (""),
+    PROTECTED ("protected");
+
+    private final String name;
+    private Visibility(String name) {
+        this.name = name;
+    }
+
+    public String toString() {
+        return name;
+    }
 }

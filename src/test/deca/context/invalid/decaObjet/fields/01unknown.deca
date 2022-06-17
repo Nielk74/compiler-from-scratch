@@ -1,0 +1,12 @@
+// Description:
+//    Test avec type inconnu
+//
+// Resultats:
+//    01unknown.deca:11:4:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A{
+    uknownType x;
+}

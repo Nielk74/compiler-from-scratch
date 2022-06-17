@@ -15,14 +15,14 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
         }
     }
 
-    void verifyListDeclFielad(DecacCompiler compiler, EnvironmentExp localEnv,
+    void verifyListDeclMethod(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         for (AbstractDeclMethod m : getList()) {
             m.verifyDeclMethod(compiler, localEnv, currentClass);
         }
     }
 
-    public void codeGenListDeclField(DecacCompiler compiler) {
+    public void codeGenListDeclMethod(DecacCompiler compiler) {
         for (AbstractDeclMethod m : getList()) {
             m.codeGenDeclMethod(compiler);
         }

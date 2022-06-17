@@ -1,0 +1,15 @@
+// Description:
+//    Accès à un champs inexistant d'un objet
+//
+// Resultats:
+//    03undeclaredFIeld.deca:14:6:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {}
+
+{
+    A a = new A();
+    a.x = 4;
+}

@@ -37,23 +37,34 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
             c.verifyClass(compiler);
         }
         LOG.debug("verify listClass: end");
+        this.verifyListClassMembers(compiler);
     }
 
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
     public void verifyListClassMembers(DecacCompiler compiler) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verify listClassMembers: start");
+        for (AbstractDeclClass c : getList()) {
+            c.verifyClassMembers(compiler);
+        }
+        LOG.debug("verify listClassMembers: end");
+        this.verifyListClassBody(compiler);
     }
     
     /**
      * Pass 3 of [SyntaxeContextuelle]
      */
     public void verifyListClassBody(DecacCompiler compiler) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verify listClassBody: start");
+        for (AbstractDeclClass c : getList()) {
+            c.verifyClassBody(compiler);
+        }
+        LOG.debug("verify listClassBody: end");
     }
 
     public void codeGenListDeclClass(DecacCompiler compiler) {
+        compiler.addComment("Beginning of methods table:");
         codeGenClassObject(compiler);
         for (AbstractDeclClass c : getList()) {
             c.codeGenDeclClass(compiler);
@@ -61,6 +72,12 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         }
     }
 
+    public void codeGenListClassInit (DecacCompiler compiler) {
+        for (AbstractDeclClass c : getList()) {
+            c.codeGenClassInit(compiler);
+        }
+    }
+    
     private void codeGenClassObject(DecacCompiler compiler) {
         compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
         DAddr offset = new RegisterOffset(compiler.stackManager.getGbOffsetCounter(), Register.GB);

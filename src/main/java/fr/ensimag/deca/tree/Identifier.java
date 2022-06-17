@@ -19,13 +19,8 @@ import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.DAddr;
-import fr.ensimag.ima.pseudocode.DVal;
-import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.BEQ;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
@@ -248,23 +243,18 @@ public class Identifier extends AbstractIdentifier {
     }
 
     @Override
-    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        if (!this.getType().isBoolean()) {
-            throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
-        }
-        DVal d = this.codeGenExp(compiler);
-     
-        compiler.addInstruction(new LOAD(d, Register.R1));
-        compiler.addInstruction(new CMP(0, Register.R1));
-        if (negative) {
-            compiler.addInstruction(new BNE(l));
-        } else {
-            compiler.addInstruction(new BEQ(l));
-        }
+    protected void codeGenDeclClass(DecacCompiler compiler) {
+        compiler.addInstruction(new LEA(this.getClassDefinition().getSuperClass().getOperand(), Register.R0));
     }
 
     @Override
-    protected void codeGenDeclClass(DecacCompiler compiler) {
-        compiler.addInstruction(new LEA(this.getClassDefinition().getSuperClass().getOperand(), Register.R0));
+    protected DAddr codeGenLeftValue(DecacCompiler compiler) {
+        DAddr offset = this.getExpDefinition().getOperand();
+        if (offset == null) {
+            offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
+            compiler.stackManager.incrementLbOffsetCounter();
+        }
+        this.getExpDefinition().setOperand(offset);
+        return offset;
     }
 }
