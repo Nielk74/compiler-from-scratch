@@ -1,0 +1,13 @@
+// Description:
+//    instanceof avec un type inexistant
+//
+// Resultats:
+//    01wrongTypeVariable.deca:12:17:
+//
+// Historique:
+//    cree le 16/06/2022
+
+{
+    int a = 0;
+    a instanceof a;
+}

@@ -183,7 +183,8 @@ public abstract class AbstractExpr extends AbstractInst {
     // evalue l'expression et stocke son résultat dans le registre
     // Register.getR(register_name)
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
-        throw new UnsupportedOperationException("not yet implemented");
+        // throw new UnsupportedOperationException("not yet implemented");
+        // compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
     }
 
     // evalue l'expression et retourne une Dval contenant son résultat

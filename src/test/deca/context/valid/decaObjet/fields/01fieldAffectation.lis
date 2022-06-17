@@ -1,0 +1,103 @@
+`> [12, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [12, 0] DeclClass
+   |      +> [12, 6] Identifier (A)
+   |      |  definition: type defined at [12, 0], type=A
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 3 elements]
+   |      |  []> [13, 8] DeclField
+   |      |  ||  +> [13, 4] Identifier (int)
+   |      |  ||  |  definition: type (builtin), type=int
+   |      |  ||  +> [13, 8] Identifier (x)
+   |      |  ||  |  definition: field defined at [13, 8], type=int
+   |      |  ||  `> NoInitialization
+   |      |  []> [14, 12] DeclField
+   |      |  ||  +> [14, 4] Identifier (boolean)
+   |      |  ||  |  definition: type (builtin), type=boolean
+   |      |  ||  +> [14, 12] Identifier (y)
+   |      |  ||  |  definition: field defined at [14, 12], type=boolean
+   |      |  ||  `> NoInitialization
+   |      |  []> [15, 10] DeclField
+   |      |      +> [15, 4] Identifier (float)
+   |      |      |  definition: type (builtin), type=float
+   |      |      +> [15, 10] Identifier (z)
+   |      |      |  definition: field defined at [15, 10], type=float
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [17, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [18, 6] DeclVar
+      |      +> [18, 4] Identifier (A)
+      |      |  definition: type defined at [12, 0], type=A
+      |      +> [18, 6] Identifier (a)
+      |      |  definition: variable defined at [18, 6], type=A
+      |      `> [18, 10] Initialization
+      |         `> [18, 10] New
+      |            type: A
+      |            `> [18, 14] Identifier (A)
+      |               definition: type defined at [12, 0], type=A
+      `> ListInst [List with 6 elements]
+         []> [19, 4] Assign
+         ||  type: int
+         ||  +> [19, 5] Selection
+         ||  |  type: int
+         ||  |  +> [19, 4] Identifier (a)
+         ||  |  |  definition: variable defined at [18, 6], type=A
+         ||  |  `> [19, 6] Identifier (x)
+         ||  |     definition: field defined at [13, 8], type=int
+         ||  `> [19, 10] Int (1)
+         ||     type: int
+         []> [20, 4] Assign
+         ||  type: boolean
+         ||  +> [20, 5] Selection
+         ||  |  type: boolean
+         ||  |  +> [20, 4] Identifier (a)
+         ||  |  |  definition: variable defined at [18, 6], type=A
+         ||  |  `> [20, 6] Identifier (y)
+         ||  |     definition: field defined at [14, 12], type=boolean
+         ||  `> [20, 10] BooleanLiteral (true)
+         ||     type: boolean
+         []> [21, 4] Assign
+         ||  type: float
+         ||  +> [21, 5] Selection
+         ||  |  type: float
+         ||  |  +> [21, 4] Identifier (a)
+         ||  |  |  definition: variable defined at [18, 6], type=A
+         ||  |  `> [21, 6] Identifier (z)
+         ||  |     definition: field defined at [15, 10], type=float
+         ||  `> [21, 10] Float (1.0)
+         ||     type: float
+         []> [22, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [22, 12] Selection
+         ||         type: int
+         ||         +> [22, 12] Identifier (a)
+         ||         |  definition: variable defined at [18, 6], type=A
+         ||         `> [22, 14] Identifier (x)
+         ||            definition: field defined at [13, 8], type=int
+         []> [23, 4] IfThenElse
+         ||  +> [23, 8] Selection
+         ||  |  type: boolean
+         ||  |  +> [23, 8] Identifier (a)
+         ||  |  |  definition: variable defined at [18, 6], type=A
+         ||  |  `> [23, 10] Identifier (y)
+         ||  |     definition: field defined at [14, 12], type=boolean
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [24, 8] Println
+         ||  |      `> ListExpr [List with 1 elements]
+         ||  |         []> [24, 16] StringLiteral (a.y == true)
+         ||  |             type: string
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [26, 8] Println
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [26, 16] StringLiteral (a.y == false)
+         ||                type: string
+         []> [28, 4] Println
+             `> ListExpr [List with 1 elements]
+                []> [28, 12] Selection
+                    type: float
+                    +> [28, 12] Identifier (a)
+                    |  definition: variable defined at [18, 6], type=A
+                    `> [28, 14] Identifier (z)
+                       definition: field defined at [15, 10], type=float

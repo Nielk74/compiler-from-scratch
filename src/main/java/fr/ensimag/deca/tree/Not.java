@@ -48,7 +48,6 @@ public class Not extends AbstractUnaryExpr {
         // if the expression is true, load 1 in the register
         compiler.addLabel(ifLabel);
         this.codeGenCondition(compiler, false, elseLabel);
-        this.getOperand().codeGenCondition(compiler, true, elseLabel);
         compiler.addInstruction(new LOAD(1, Register.getR(register_name)));
         compiler.addInstruction(new BRA(endIfLabel));
 

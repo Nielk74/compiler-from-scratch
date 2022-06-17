@@ -1,0 +1,354 @@
+`> [15, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [15, 0] DeclClass
+   |      +> [15, 6] Identifier (A)
+   |      |  definition: type defined at [15, 0], type=A
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 3 elements]
+   |      |  []> [16, 8] DeclField
+   |      |  ||  +> [16, 4] Identifier (int)
+   |      |  ||  |  definition: type (builtin), type=int
+   |      |  ||  +> [16, 8] Identifier (x)
+   |      |  ||  |  definition: field defined at [16, 8], type=int
+   |      |  ||  `> [16, 12] Initialization
+   |      |  ||     `> [16, 12] Int (22)
+   |      |  ||        type: int
+   |      |  []> [17, 10] DeclField
+   |      |  ||  +> [17, 4] Identifier (float)
+   |      |  ||  |  definition: type (builtin), type=float
+   |      |  ||  +> [17, 10] Identifier (y)
+   |      |  ||  |  definition: field defined at [17, 10], type=float
+   |      |  ||  `> [17, 14] Initialization
+   |      |  ||     `> ConvFloat
+   |      |  ||        type: float
+   |      |  ||        `> [17, 14] Int (12)
+   |      |  ||           type: int
+   |      |  []> [18, 8] DeclField
+   |      |      +> [18, 4] Identifier (int)
+   |      |      |  definition: type (builtin), type=int
+   |      |      +> [18, 8] Identifier (z)
+   |      |      |  definition: field defined at [18, 8], type=int
+   |      |      `> [18, 12] Initialization
+   |      |         `> [18, 12] Int (12)
+   |      |            type: int
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [20, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [21, 6] DeclVar
+      |      +> [21, 4] Identifier (A)
+      |      |  definition: type defined at [15, 0], type=A
+      |      +> [21, 6] Identifier (a)
+      |      |  definition: variable defined at [21, 6], type=A
+      |      `> [21, 10] Initialization
+      |         `> [21, 10] New
+      |            type: A
+      |            `> [21, 14] Identifier (A)
+      |               definition: type defined at [15, 0], type=A
+      `> ListInst [List with 6 elements]
+         []> [22, 4] IfThenElse
+         ||  +> [22, 8] Greater
+         ||  |  type: boolean
+         ||  |  +> ConvFloat
+         ||  |  |  type: float
+         ||  |  |  `> [22, 9] Selection
+         ||  |  |     type: int
+         ||  |  |     +> [22, 8] Identifier (a)
+         ||  |  |     |  definition: variable defined at [21, 6], type=A
+         ||  |  |     `> [22, 10] Identifier (x)
+         ||  |  |        definition: field defined at [16, 8], type=int
+         ||  |  `> [22, 15] Selection
+         ||  |     type: float
+         ||  |     +> [22, 14] Identifier (a)
+         ||  |     |  definition: variable defined at [21, 6], type=A
+         ||  |     `> [22, 16] Identifier (y)
+         ||  |        definition: field defined at [17, 10], type=float
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [23, 8] Println
+         ||  |      `> ListExpr [List with 3 elements]
+         ||  |         []> [23, 16] Selection
+         ||  |         ||  type: int
+         ||  |         ||  +> [23, 16] Identifier (a)
+         ||  |         ||  |  definition: variable defined at [21, 6], type=A
+         ||  |         ||  `> [23, 18] Identifier (x)
+         ||  |         ||     definition: field defined at [16, 8], type=int
+         ||  |         []> [23, 21] StringLiteral ( > )
+         ||  |         ||  type: string
+         ||  |         []> [23, 28] Selection
+         ||  |             type: float
+         ||  |             +> [23, 28] Identifier (a)
+         ||  |             |  definition: variable defined at [21, 6], type=A
+         ||  |             `> [23, 30] Identifier (y)
+         ||  |                definition: field defined at [17, 10], type=float
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [25, 8] Println
+         ||         `> ListExpr [List with 3 elements]
+         ||            []> [25, 16] Selection
+         ||            ||  type: int
+         ||            ||  +> [25, 16] Identifier (a)
+         ||            ||  |  definition: variable defined at [21, 6], type=A
+         ||            ||  `> [25, 18] Identifier (x)
+         ||            ||     definition: field defined at [16, 8], type=int
+         ||            []> [25, 21] StringLiteral ( <= )
+         ||            ||  type: string
+         ||            []> [25, 29] Selection
+         ||                type: float
+         ||                +> [25, 29] Identifier (a)
+         ||                |  definition: variable defined at [21, 6], type=A
+         ||                `> [25, 31] Identifier (y)
+         ||                   definition: field defined at [17, 10], type=float
+         []> [28, 4] IfThenElse
+         ||  +> [28, 8] GreaterOrEqual
+         ||  |  type: boolean
+         ||  |  +> ConvFloat
+         ||  |  |  type: float
+         ||  |  |  `> [28, 9] Selection
+         ||  |  |     type: int
+         ||  |  |     +> [28, 8] Identifier (a)
+         ||  |  |     |  definition: variable defined at [21, 6], type=A
+         ||  |  |     `> [28, 10] Identifier (x)
+         ||  |  |        definition: field defined at [16, 8], type=int
+         ||  |  `> [28, 16] Selection
+         ||  |     type: float
+         ||  |     +> [28, 15] Identifier (a)
+         ||  |     |  definition: variable defined at [21, 6], type=A
+         ||  |     `> [28, 17] Identifier (y)
+         ||  |        definition: field defined at [17, 10], type=float
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [29, 8] Println
+         ||  |      `> ListExpr [List with 3 elements]
+         ||  |         []> [29, 16] Selection
+         ||  |         ||  type: int
+         ||  |         ||  +> [29, 16] Identifier (a)
+         ||  |         ||  |  definition: variable defined at [21, 6], type=A
+         ||  |         ||  `> [29, 18] Identifier (x)
+         ||  |         ||     definition: field defined at [16, 8], type=int
+         ||  |         []> [29, 21] StringLiteral ( >= )
+         ||  |         ||  type: string
+         ||  |         []> [29, 29] Selection
+         ||  |             type: float
+         ||  |             +> [29, 29] Identifier (a)
+         ||  |             |  definition: variable defined at [21, 6], type=A
+         ||  |             `> [29, 31] Identifier (y)
+         ||  |                definition: field defined at [17, 10], type=float
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [31, 8] Println
+         ||         `> ListExpr [List with 3 elements]
+         ||            []> [31, 16] Selection
+         ||            ||  type: int
+         ||            ||  +> [31, 16] Identifier (a)
+         ||            ||  |  definition: variable defined at [21, 6], type=A
+         ||            ||  `> [31, 18] Identifier (x)
+         ||            ||     definition: field defined at [16, 8], type=int
+         ||            []> [31, 21] StringLiteral ( < )
+         ||            ||  type: string
+         ||            []> [31, 28] Selection
+         ||                type: float
+         ||                +> [31, 28] Identifier (a)
+         ||                |  definition: variable defined at [21, 6], type=A
+         ||                `> [31, 30] Identifier (y)
+         ||                   definition: field defined at [17, 10], type=float
+         []> [34, 4] IfThenElse
+         ||  +> [34, 8] Lower
+         ||  |  type: boolean
+         ||  |  +> [34, 9] Selection
+         ||  |  |  type: float
+         ||  |  |  +> [34, 8] Identifier (a)
+         ||  |  |  |  definition: variable defined at [21, 6], type=A
+         ||  |  |  `> [34, 10] Identifier (y)
+         ||  |  |     definition: field defined at [17, 10], type=float
+         ||  |  `> ConvFloat
+         ||  |     type: float
+         ||  |     `> [34, 15] Selection
+         ||  |        type: int
+         ||  |        +> [34, 14] Identifier (a)
+         ||  |        |  definition: variable defined at [21, 6], type=A
+         ||  |        `> [34, 16] Identifier (x)
+         ||  |           definition: field defined at [16, 8], type=int
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [35, 8] Println
+         ||  |      `> ListExpr [List with 3 elements]
+         ||  |         []> [35, 16] Selection
+         ||  |         ||  type: float
+         ||  |         ||  +> [35, 16] Identifier (a)
+         ||  |         ||  |  definition: variable defined at [21, 6], type=A
+         ||  |         ||  `> [35, 18] Identifier (y)
+         ||  |         ||     definition: field defined at [17, 10], type=float
+         ||  |         []> [35, 21] StringLiteral ( < )
+         ||  |         ||  type: string
+         ||  |         []> [35, 28] Selection
+         ||  |             type: int
+         ||  |             +> [35, 28] Identifier (a)
+         ||  |             |  definition: variable defined at [21, 6], type=A
+         ||  |             `> [35, 30] Identifier (x)
+         ||  |                definition: field defined at [16, 8], type=int
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [37, 8] Println
+         ||         `> ListExpr [List with 3 elements]
+         ||            []> [37, 16] Selection
+         ||            ||  type: float
+         ||            ||  +> [37, 16] Identifier (a)
+         ||            ||  |  definition: variable defined at [21, 6], type=A
+         ||            ||  `> [37, 18] Identifier (y)
+         ||            ||     definition: field defined at [17, 10], type=float
+         ||            []> [37, 21] StringLiteral ( >= )
+         ||            ||  type: string
+         ||            []> [37, 29] Selection
+         ||                type: int
+         ||                +> [37, 29] Identifier (a)
+         ||                |  definition: variable defined at [21, 6], type=A
+         ||                `> [37, 31] Identifier (x)
+         ||                   definition: field defined at [16, 8], type=int
+         []> [40, 4] IfThenElse
+         ||  +> [40, 8] LowerOrEqual
+         ||  |  type: boolean
+         ||  |  +> [40, 9] Selection
+         ||  |  |  type: float
+         ||  |  |  +> [40, 8] Identifier (a)
+         ||  |  |  |  definition: variable defined at [21, 6], type=A
+         ||  |  |  `> [40, 10] Identifier (y)
+         ||  |  |     definition: field defined at [17, 10], type=float
+         ||  |  `> ConvFloat
+         ||  |     type: float
+         ||  |     `> [40, 16] Selection
+         ||  |        type: int
+         ||  |        +> [40, 15] Identifier (a)
+         ||  |        |  definition: variable defined at [21, 6], type=A
+         ||  |        `> [40, 17] Identifier (x)
+         ||  |           definition: field defined at [16, 8], type=int
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [41, 8] Println
+         ||  |      `> ListExpr [List with 3 elements]
+         ||  |         []> [41, 16] Selection
+         ||  |         ||  type: float
+         ||  |         ||  +> [41, 16] Identifier (a)
+         ||  |         ||  |  definition: variable defined at [21, 6], type=A
+         ||  |         ||  `> [41, 18] Identifier (y)
+         ||  |         ||     definition: field defined at [17, 10], type=float
+         ||  |         []> [41, 21] StringLiteral ( <= )
+         ||  |         ||  type: string
+         ||  |         []> [41, 29] Selection
+         ||  |             type: int
+         ||  |             +> [41, 29] Identifier (a)
+         ||  |             |  definition: variable defined at [21, 6], type=A
+         ||  |             `> [41, 31] Identifier (x)
+         ||  |                definition: field defined at [16, 8], type=int
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [43, 8] Println
+         ||         `> ListExpr [List with 3 elements]
+         ||            []> [43, 16] Selection
+         ||            ||  type: float
+         ||            ||  +> [43, 16] Identifier (a)
+         ||            ||  |  definition: variable defined at [21, 6], type=A
+         ||            ||  `> [43, 18] Identifier (y)
+         ||            ||     definition: field defined at [17, 10], type=float
+         ||            []> [43, 21] StringLiteral ( > )
+         ||            ||  type: string
+         ||            []> [43, 28] Selection
+         ||                type: int
+         ||                +> [43, 28] Identifier (a)
+         ||                |  definition: variable defined at [21, 6], type=A
+         ||                `> [43, 30] Identifier (x)
+         ||                   definition: field defined at [16, 8], type=int
+         []> [46, 4] IfThenElse
+         ||  +> [46, 8] NotEquals
+         ||  |  type: boolean
+         ||  |  +> ConvFloat
+         ||  |  |  type: float
+         ||  |  |  `> [46, 9] Selection
+         ||  |  |     type: int
+         ||  |  |     +> [46, 8] Identifier (a)
+         ||  |  |     |  definition: variable defined at [21, 6], type=A
+         ||  |  |     `> [46, 10] Identifier (x)
+         ||  |  |        definition: field defined at [16, 8], type=int
+         ||  |  `> [46, 16] Selection
+         ||  |     type: float
+         ||  |     +> [46, 15] Identifier (a)
+         ||  |     |  definition: variable defined at [21, 6], type=A
+         ||  |     `> [46, 17] Identifier (y)
+         ||  |        definition: field defined at [17, 10], type=float
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [47, 8] Println
+         ||  |      `> ListExpr [List with 3 elements]
+         ||  |         []> [47, 16] Selection
+         ||  |         ||  type: int
+         ||  |         ||  +> [47, 16] Identifier (a)
+         ||  |         ||  |  definition: variable defined at [21, 6], type=A
+         ||  |         ||  `> [47, 18] Identifier (x)
+         ||  |         ||     definition: field defined at [16, 8], type=int
+         ||  |         []> [47, 21] StringLiteral ( != )
+         ||  |         ||  type: string
+         ||  |         []> [47, 29] Selection
+         ||  |             type: float
+         ||  |             +> [47, 29] Identifier (a)
+         ||  |             |  definition: variable defined at [21, 6], type=A
+         ||  |             `> [47, 31] Identifier (y)
+         ||  |                definition: field defined at [17, 10], type=float
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [49, 8] Println
+         ||         `> ListExpr [List with 3 elements]
+         ||            []> [49, 16] Selection
+         ||            ||  type: int
+         ||            ||  +> [49, 16] Identifier (a)
+         ||            ||  |  definition: variable defined at [21, 6], type=A
+         ||            ||  `> [49, 18] Identifier (x)
+         ||            ||     definition: field defined at [16, 8], type=int
+         ||            []> [49, 21] StringLiteral ( == )
+         ||            ||  type: string
+         ||            []> [49, 29] Selection
+         ||                type: float
+         ||                +> [49, 29] Identifier (a)
+         ||                |  definition: variable defined at [21, 6], type=A
+         ||                `> [49, 31] Identifier (y)
+         ||                   definition: field defined at [17, 10], type=float
+         []> [52, 4] IfThenElse
+             +> [52, 8] Equals
+             |  type: boolean
+             |  +> ConvFloat
+             |  |  type: float
+             |  |  `> [52, 9] Selection
+             |  |     type: int
+             |  |     +> [52, 8] Identifier (a)
+             |  |     |  definition: variable defined at [21, 6], type=A
+             |  |     `> [52, 10] Identifier (z)
+             |  |        definition: field defined at [18, 8], type=int
+             |  `> [52, 16] Selection
+             |     type: float
+             |     +> [52, 15] Identifier (a)
+             |     |  definition: variable defined at [21, 6], type=A
+             |     `> [52, 17] Identifier (y)
+             |        definition: field defined at [17, 10], type=float
+             +> ListInst [List with 1 elements]
+             |  []> [53, 8] Println
+             |      `> ListExpr [List with 3 elements]
+             |         []> [53, 16] Selection
+             |         ||  type: int
+             |         ||  +> [53, 16] Identifier (a)
+             |         ||  |  definition: variable defined at [21, 6], type=A
+             |         ||  `> [53, 18] Identifier (z)
+             |         ||     definition: field defined at [18, 8], type=int
+             |         []> [53, 21] StringLiteral ( == )
+             |         ||  type: string
+             |         []> [53, 29] Selection
+             |             type: float
+             |             +> [53, 29] Identifier (a)
+             |             |  definition: variable defined at [21, 6], type=A
+             |             `> [53, 31] Identifier (y)
+             |                definition: field defined at [17, 10], type=float
+             `> ListInst [List with 1 elements]
+                []> [55, 8] Println
+                    `> ListExpr [List with 3 elements]
+                       []> [55, 16] Selection
+                       ||  type: int
+                       ||  +> [55, 16] Identifier (a)
+                       ||  |  definition: variable defined at [21, 6], type=A
+                       ||  `> [55, 18] Identifier (z)
+                       ||     definition: field defined at [18, 8], type=int
+                       []> [55, 21] StringLiteral ( != )
+                       ||  type: string
+                       []> [55, 29] Selection
+                           type: float
+                           +> [55, 29] Identifier (a)
+                           |  definition: variable defined at [21, 6], type=A
+                           `> [55, 31] Identifier (y)
+                              definition: field defined at [17, 10], type=float

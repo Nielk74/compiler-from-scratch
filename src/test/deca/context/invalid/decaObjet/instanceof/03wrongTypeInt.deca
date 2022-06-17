@@ -1,0 +1,13 @@
+// Description:
+//    instanceof avec un type int et non une classe
+//
+// Resultats:
+//    03wrongTypeInt.deca:12:17
+//
+// Historique:
+//    cree le 16/06/2022
+
+{
+    int a = 0;
+    a instanceof int;
+}
