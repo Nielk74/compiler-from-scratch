@@ -1,15 +1,13 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.ima.pseudocode.DAddr;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.DAddr;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 /**
  * Assignment, i.e. lvalue = expr.
@@ -44,13 +42,8 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         this.getRightOperand().codeGenExp(compiler, 2);
-        DAddr offset = ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().getOperand();
-        if (offset == null) {
-            offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
-            compiler.stackManager.incrementLbOffsetCounter();
-        }
-        compiler.addInstruction(new STORE(Register.getR(2), offset));
-        ((AbstractIdentifier) this.getLeftOperand()).getExpDefinition().setOperand(offset);
+        DAddr d = this.getLeftOperand().codeGenLeftValue(compiler);
+        compiler.addInstruction(new STORE(Register.getR(2), d));
     }
 
     @Override

@@ -16,6 +16,7 @@ public class ErrorCatcher {
     public static final String OV_ERROR = "ov_error";
     public static final String UD_ERROR = "ud_error";
     public static final String HO_ERROR = "ho_error";
+    public static final String NULL_ERROR = "null_error";
 
     public static void createErrorLabel(DecacCompiler compiler) {
         compiler.labelManager.createLabel(IO_ERROR);
@@ -24,6 +25,7 @@ public class ErrorCatcher {
             compiler.labelManager.createLabel(UD_ERROR);
             compiler.labelManager.createLabel(SO_ERROR);
             compiler.labelManager.createLabel(HO_ERROR);
+            compiler.labelManager.createLabel(NULL_ERROR);
         }
     }
 
@@ -39,6 +41,9 @@ public class ErrorCatcher {
             // UD_ERROR : 11.1
             compiler.addLabel(compiler.labelManager.getLabel(UD_ERROR));
             addErrorHandler(compiler, "Error: Underflow");
+            // NULL_ERROR : 11.1
+            compiler.addLabel(compiler.labelManager.getLabel(NULL_ERROR));
+            addErrorHandler(compiler, "Error: Null error");
             // SO_ERROR : 11.3
             compiler.addLabel(compiler.labelManager.getLabel(SO_ERROR));
             addErrorHandler(compiler, "Error: Stack Overflow");

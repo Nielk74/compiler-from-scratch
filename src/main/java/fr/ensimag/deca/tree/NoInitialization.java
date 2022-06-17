@@ -6,6 +6,11 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.FLOAT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+
 import java.io.PrintStream;
 
 /**
@@ -29,7 +34,18 @@ public class NoInitialization extends AbstractInitialization {
         // do nothing
     }
 
-
+    @Override
+    protected void codeGenInitialization(DecacCompiler compiler, int register_name, Type type) {
+        if (type.isBoolean() || type.isInt() || type.isFloat()){
+            compiler.addInstruction(new LOAD(0, Register.getR(register_name)));
+            if (type.isFloat()) {
+                compiler.addInstruction(new FLOAT(Register.getR(register_name), Register.getR(register_name)));
+            }
+        } else {
+            // case class
+            compiler.addInstruction(new LOAD(new NullOperand(), Register.getR(register_name)));
+        };
+    }
     /**
      * Node contains no real information, nothing to check.
      */

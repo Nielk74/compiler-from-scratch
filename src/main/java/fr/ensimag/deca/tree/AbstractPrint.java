@@ -73,10 +73,6 @@ public abstract class AbstractPrint extends AbstractInst {
         }
     }
 
-    private boolean getPrintHex() {
-        return printHex;
-    }
-
     @Override
     public void decompile(IndentPrintStream s) {
         if (printHex) {

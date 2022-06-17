@@ -6,6 +6,7 @@ import org.apache.commons.lang.Validate;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
@@ -14,6 +15,9 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.DVal;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BNE;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 /**
@@ -95,12 +99,21 @@ public abstract class AbstractExpr extends AbstractInst {
             currentType = convExpr.verifyExpr(compiler, localEnv, currentClass);
             return convExpr;
         }
-        if (currentType.isNull() && expectedType.isClass()){
+        if (currentType.isNull() && expectedType.isClass()) {
             return this;
+        }
+        if (currentType.isClass() && expectedType.isClass()) {
+            if (!((ClassType) currentType).isSubClassOf((ClassType) expectedType)) {
+                throw new ContextualError(
+                        "Wrong right value class type - expected: subtype of " + expectedType + " ≠ current: " + currentType,
+                        this.getLocation());
+            } else {
+                return this;
+            }
         }
         if (!currentType.equals(expectedType)) {
             throw new ContextualError(
-                    "Wrong right value type - expected: "+expectedType+" ≠ current: "+ currentType,
+                    "Wrong right value type - expected: " + expectedType + " ≠ current: " + currentType,
                     this.getLocation());
         }
         return this;
@@ -130,7 +143,7 @@ public abstract class AbstractExpr extends AbstractInst {
         Type t = this.verifyExpr(compiler, localEnv, currentClass);
 
         if (!t.isBoolean())
-            throw new ContextualError("Wrong condition type - expected: boolean ≠ current: "+ t, this.getLocation());
+            throw new ContextualError("Wrong condition type - expected: boolean ≠ current: " + t, this.getLocation());
     }
 
     /**
@@ -180,7 +193,17 @@ public abstract class AbstractExpr extends AbstractInst {
     }
 
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        throw new UnsupportedOperationException("not yet implemented");
+        if (!this.getType().isBoolean()) {
+            throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
+        }
+        DVal d = this.codeGenExp(compiler);
+     
+        compiler.addInstruction(new LOAD(d, Register.R1));
+        compiler.addInstruction(new CMP(0, Register.R1));
+        if (negative) {
+            compiler.addInstruction(new BNE(l));
+        } else {
+            compiler.addInstruction(new BEQ(l));
+        }
     }
-
 }

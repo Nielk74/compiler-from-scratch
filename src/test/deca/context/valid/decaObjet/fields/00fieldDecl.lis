@@ -1,0 +1,44 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [10, 0] DeclClass
+   |      +> [10, 6] Identifier (A)
+   |      |  definition: type defined at [10, 0], type=A
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 4 elements]
+   |      |  []> [11, 6] DeclField
+   |      |  ||  +> [11, 4] Identifier (A)
+   |      |  ||  |  definition: type defined at [10, 0], type=A
+   |      |  ||  +> [11, 6] Identifier (a)
+   |      |  ||  |  definition: field defined at [11, 6], type=A
+   |      |  ||  `> [11, 10] Initialization
+   |      |  ||     `> [11, 10] New
+   |      |  ||        type: A
+   |      |  ||        `> [11, 14] Identifier (A)
+   |      |  ||           definition: type defined at [10, 0], type=A
+   |      |  []> [12, 8] DeclField
+   |      |  ||  +> [12, 4] Identifier (int)
+   |      |  ||  |  definition: type (builtin), type=int
+   |      |  ||  +> [12, 8] Identifier (x)
+   |      |  ||  |  definition: field defined at [12, 8], type=int
+   |      |  ||  `> [12, 12] Initialization
+   |      |  ||     `> [12, 12] Int (1)
+   |      |  ||        type: int
+   |      |  []> [13, 10] DeclField
+   |      |  ||  +> [13, 4] Identifier (float)
+   |      |  ||  |  definition: type (builtin), type=float
+   |      |  ||  +> [13, 10] Identifier (y)
+   |      |  ||  |  definition: field defined at [13, 10], type=float
+   |      |  ||  `> [13, 14] Initialization
+   |      |  ||     `> ConvFloat
+   |      |  ||        type: float
+   |      |  ||        `> [13, 14] Identifier (x)
+   |      |  ||           definition: field defined at [12, 8], type=int
+   |      |  []> [14, 12] DeclField
+   |      |      +> [14, 4] Identifier (boolean)
+   |      |      |  definition: type (builtin), type=boolean
+   |      |      +> [14, 12] Identifier (b)
+   |      |      |  definition: field defined at [14, 12], type=boolean
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 0 elements]
+   `> EmptyMain

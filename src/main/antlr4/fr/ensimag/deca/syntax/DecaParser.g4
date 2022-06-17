@@ -385,6 +385,7 @@ select_expr returns[AbstractExpr tree]
             assert($e1.tree != null);
             assert($i.tree != null);
             $tree = new Selection($e1.tree, $i.tree);
+            setLocation($tree, $DOT);
         }
         (o=OPARENT args=list_expr CPARENT {
             // we matched "e1.i(args)"

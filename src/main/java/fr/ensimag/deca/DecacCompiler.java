@@ -228,11 +228,9 @@ public class DecacCompiler {
             return false;
         }
 
-        addComment("start main program");
         // create ima program error labels
         ErrorCatcher.createErrorLabel(this);
         prog.codeGenProgram(this);
-        addComment("end main program");
         // add ima program error handlers
         ErrorCatcher.handleErrors(this);
         

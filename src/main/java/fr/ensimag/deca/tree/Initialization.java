@@ -43,6 +43,10 @@ public class Initialization extends AbstractInitialization {
         this.expression.codeGenExp(compiler, register_name);
     }
 
+    @Override
+    protected void codeGenInitialization(DecacCompiler compiler, int register_name, Type type) {
+        this.codeGenInitialization(compiler, register_name);
+    }
 
     @Override
     public void decompile(IndentPrintStream s) {
