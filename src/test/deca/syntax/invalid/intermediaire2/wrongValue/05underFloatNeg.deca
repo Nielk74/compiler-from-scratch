@@ -1,0 +1,11 @@
+// Description:
+//    Programme initialisant une variable float négative avec une valeur causant un underflow
+//
+// Resultats:
+//    05underFloatNeg.lis
+//
+// Historique:
+//    cree le 17/06/2022
+{
+    float x = -1.0E-46;
+}
