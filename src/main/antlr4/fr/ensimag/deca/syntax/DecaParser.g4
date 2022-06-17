@@ -124,6 +124,7 @@ inst returns[AbstractInst tree]
         }
     | SEMI {
             $tree = new NoOperation();
+            setLocation($tree, $SEMI);
         }
     | PRINT OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);

@@ -1,0 +1,12 @@
+// Description:
+//    Test d'un programme avec une instruction vide 
+//
+// Resultats:
+//    12doubleSemicolon.expected  
+//
+// Historique:
+//    cree le 17/06/2022
+{
+    print("Hello ");;
+    println("World");
+}
