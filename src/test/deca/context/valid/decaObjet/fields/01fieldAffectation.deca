@@ -1,0 +1,29 @@
+// Description:
+//    Programme qui teste l'affectation sur des champs de type de base d'une classe
+//
+// Resultats:
+//    1
+//    a.y == true
+//    1.00000e+00
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x;
+    boolean y;
+    float z;
+}
+{
+    A a = new A();
+    a.x = 1;
+    a.y = true;
+    a.z = 1.0f;
+    println(a.x);
+    if (a.y) {
+        println("a.y == true");
+    } else {
+        println("a.y == false");
+    }
+    println(a.z);
+}

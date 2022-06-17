@@ -1,0 +1,14 @@
+// Description:
+//    instanceof avec un nom de variable invalide à gauche
+//
+// Resultats:
+//    00invalidVariable.deca:13:4:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {}
+
+{
+    A instanceof A;
+}

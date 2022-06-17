@@ -1,0 +1,512 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [10, 0] DeclClass
+   |      +> [10, 6] Identifier (A)
+   |      |  definition: type defined at [10, 0], type=A
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 2 elements]
+   |      |  []> [11, 8] DeclField
+   |      |  ||  +> [11, 4] Identifier (int)
+   |      |  ||  |  definition: type (builtin), type=int
+   |      |  ||  +> [11, 8] Identifier (x)
+   |      |  ||  |  definition: field defined at [11, 8], type=int
+   |      |  ||  `> [11, 12] Initialization
+   |      |  ||     `> [11, 12] Int (7)
+   |      |  ||        type: int
+   |      |  []> [12, 10] DeclField
+   |      |      +> [12, 4] Identifier (float)
+   |      |      |  definition: type (builtin), type=float
+   |      |      +> [12, 10] Identifier (y)
+   |      |      |  definition: field defined at [12, 10], type=float
+   |      |      `> [12, 14] Initialization
+   |      |         `> [12, 14] Float (5.6)
+   |      |            type: float
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [14, 0] Main
+      +> ListDeclVar [List with 5 elements]
+      |  []> [15, 6] DeclVar
+      |  ||  +> [15, 4] Identifier (A)
+      |  ||  |  definition: type defined at [10, 0], type=A
+      |  ||  +> [15, 6] Identifier (a_plus)
+      |  ||  |  definition: variable defined at [15, 6], type=A
+      |  ||  `> [15, 15] Initialization
+      |  ||     `> [15, 15] New
+      |  ||        type: A
+      |  ||        `> [15, 19] Identifier (A)
+      |  ||           definition: type defined at [10, 0], type=A
+      |  []> [16, 6] DeclVar
+      |  ||  +> [16, 4] Identifier (A)
+      |  ||  |  definition: type defined at [10, 0], type=A
+      |  ||  +> [16, 6] Identifier (a_moins)
+      |  ||  |  definition: variable defined at [16, 6], type=A
+      |  ||  `> [16, 16] Initialization
+      |  ||     `> [16, 16] New
+      |  ||        type: A
+      |  ||        `> [16, 20] Identifier (A)
+      |  ||           definition: type defined at [10, 0], type=A
+      |  []> [17, 6] DeclVar
+      |  ||  +> [17, 4] Identifier (A)
+      |  ||  |  definition: type defined at [10, 0], type=A
+      |  ||  +> [17, 6] Identifier (a_mult)
+      |  ||  |  definition: variable defined at [17, 6], type=A
+      |  ||  `> [17, 15] Initialization
+      |  ||     `> [17, 15] New
+      |  ||        type: A
+      |  ||        `> [17, 19] Identifier (A)
+      |  ||           definition: type defined at [10, 0], type=A
+      |  []> [18, 6] DeclVar
+      |  ||  +> [18, 4] Identifier (A)
+      |  ||  |  definition: type defined at [10, 0], type=A
+      |  ||  +> [18, 6] Identifier (a_div)
+      |  ||  |  definition: variable defined at [18, 6], type=A
+      |  ||  `> [18, 14] Initialization
+      |  ||     `> [18, 14] New
+      |  ||        type: A
+      |  ||        `> [18, 18] Identifier (A)
+      |  ||           definition: type defined at [10, 0], type=A
+      |  []> [19, 6] DeclVar
+      |      +> [19, 4] Identifier (A)
+      |      |  definition: type defined at [10, 0], type=A
+      |      +> [19, 6] Identifier (a_mod)
+      |      |  definition: variable defined at [19, 6], type=A
+      |      `> [19, 14] Initialization
+      |         `> [19, 14] New
+      |            type: A
+      |            `> [19, 18] Identifier (A)
+      |               definition: type defined at [10, 0], type=A
+      `> ListInst [List with 34 elements]
+         []> [22, 4] Assign
+         ||  type: int
+         ||  +> [22, 10] Selection
+         ||  |  type: int
+         ||  |  +> [22, 4] Identifier (a_plus)
+         ||  |  |  definition: variable defined at [15, 6], type=A
+         ||  |  `> [22, 11] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [22, 24] Plus
+         ||     type: int
+         ||     +> [22, 21] Selection
+         ||     |  type: int
+         ||     |  +> [22, 15] Identifier (a_plus)
+         ||     |  |  definition: variable defined at [15, 6], type=A
+         ||     |  `> [22, 22] Identifier (x)
+         ||     |     definition: field defined at [11, 8], type=int
+         ||     `> [22, 26] Int (1)
+         ||        type: int
+         []> [23, 4] Assign
+         ||  type: float
+         ||  +> [23, 10] Selection
+         ||  |  type: float
+         ||  |  +> [23, 4] Identifier (a_plus)
+         ||  |  |  definition: variable defined at [15, 6], type=A
+         ||  |  `> [23, 11] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [23, 24] Plus
+         ||     type: float
+         ||     +> [23, 21] Selection
+         ||     |  type: float
+         ||     |  +> [23, 15] Identifier (a_plus)
+         ||     |  |  definition: variable defined at [15, 6], type=A
+         ||     |  `> [23, 22] Identifier (y)
+         ||     |     definition: field defined at [12, 10], type=float
+         ||     `> [23, 26] Float (1.0)
+         ||        type: float
+         []> [24, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [24, 12] Selection
+         ||         type: int
+         ||         +> [24, 12] Identifier (a_plus)
+         ||         |  definition: variable defined at [15, 6], type=A
+         ||         `> [24, 19] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [25, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [25, 12] Selection
+         ||         type: float
+         ||         +> [25, 12] Identifier (a_moins)
+         ||         |  definition: variable defined at [16, 6], type=A
+         ||         `> [25, 20] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [27, 4] Assign
+         ||  type: int
+         ||  +> [27, 11] Selection
+         ||  |  type: int
+         ||  |  +> [27, 4] Identifier (a_moins)
+         ||  |  |  definition: variable defined at [16, 6], type=A
+         ||  |  `> [27, 12] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [27, 26] Minus
+         ||     type: int
+         ||     +> [27, 23] Selection
+         ||     |  type: int
+         ||     |  +> [27, 16] Identifier (a_moins)
+         ||     |  |  definition: variable defined at [16, 6], type=A
+         ||     |  `> [27, 24] Identifier (x)
+         ||     |     definition: field defined at [11, 8], type=int
+         ||     `> [27, 28] Int (1)
+         ||        type: int
+         []> [28, 4] Assign
+         ||  type: float
+         ||  +> [28, 11] Selection
+         ||  |  type: float
+         ||  |  +> [28, 4] Identifier (a_moins)
+         ||  |  |  definition: variable defined at [16, 6], type=A
+         ||  |  `> [28, 12] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [28, 26] Minus
+         ||     type: float
+         ||     +> [28, 23] Selection
+         ||     |  type: float
+         ||     |  +> [28, 16] Identifier (a_moins)
+         ||     |  |  definition: variable defined at [16, 6], type=A
+         ||     |  `> [28, 24] Identifier (y)
+         ||     |     definition: field defined at [12, 10], type=float
+         ||     `> [28, 28] Float (1.0)
+         ||        type: float
+         []> [29, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [29, 12] Selection
+         ||         type: int
+         ||         +> [29, 12] Identifier (a_moins)
+         ||         |  definition: variable defined at [16, 6], type=A
+         ||         `> [29, 20] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [30, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [30, 12] Selection
+         ||         type: float
+         ||         +> [30, 12] Identifier (a_moins)
+         ||         |  definition: variable defined at [16, 6], type=A
+         ||         `> [30, 20] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [32, 4] Assign
+         ||  type: int
+         ||  +> [32, 10] Selection
+         ||  |  type: int
+         ||  |  +> [32, 4] Identifier (a_mult)
+         ||  |  |  definition: variable defined at [17, 6], type=A
+         ||  |  `> [32, 11] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [32, 24] Multiply
+         ||     type: int
+         ||     +> [32, 21] Selection
+         ||     |  type: int
+         ||     |  +> [32, 15] Identifier (a_mult)
+         ||     |  |  definition: variable defined at [17, 6], type=A
+         ||     |  `> [32, 22] Identifier (x)
+         ||     |     definition: field defined at [11, 8], type=int
+         ||     `> [32, 26] Int (1)
+         ||        type: int
+         []> [33, 4] Assign
+         ||  type: float
+         ||  +> [33, 10] Selection
+         ||  |  type: float
+         ||  |  +> [33, 4] Identifier (a_mult)
+         ||  |  |  definition: variable defined at [17, 6], type=A
+         ||  |  `> [33, 11] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [33, 24] Multiply
+         ||     type: float
+         ||     +> [33, 21] Selection
+         ||     |  type: float
+         ||     |  +> [33, 15] Identifier (a_mult)
+         ||     |  |  definition: variable defined at [17, 6], type=A
+         ||     |  `> [33, 22] Identifier (y)
+         ||     |     definition: field defined at [12, 10], type=float
+         ||     `> [33, 26] Float (1.0)
+         ||        type: float
+         []> [34, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [34, 12] Selection
+         ||         type: int
+         ||         +> [34, 12] Identifier (a_mult)
+         ||         |  definition: variable defined at [17, 6], type=A
+         ||         `> [34, 19] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [35, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [35, 12] Selection
+         ||         type: float
+         ||         +> [35, 12] Identifier (a_mult)
+         ||         |  definition: variable defined at [17, 6], type=A
+         ||         `> [35, 19] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [37, 4] Assign
+         ||  type: float
+         ||  +> [37, 9] Selection
+         ||  |  type: float
+         ||  |  +> [37, 4] Identifier (a_div)
+         ||  |  |  definition: variable defined at [18, 6], type=A
+         ||  |  `> [37, 10] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [37, 22] Divide
+         ||     type: float
+         ||     +> [37, 19] Selection
+         ||     |  type: float
+         ||     |  +> [37, 14] Identifier (a_div)
+         ||     |  |  definition: variable defined at [18, 6], type=A
+         ||     |  `> [37, 20] Identifier (y)
+         ||     |     definition: field defined at [12, 10], type=float
+         ||     `> ConvFloat
+         ||        type: float
+         ||        `> [37, 24] Int (12)
+         ||           type: int
+         []> [38, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [38, 12] Selection
+         ||         type: int
+         ||         +> [38, 12] Identifier (a_div)
+         ||         |  definition: variable defined at [18, 6], type=A
+         ||         `> [38, 18] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [39, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [39, 12] Selection
+         ||         type: float
+         ||         +> [39, 12] Identifier (a_div)
+         ||         |  definition: variable defined at [18, 6], type=A
+         ||         `> [39, 18] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [41, 4] Assign
+         ||  type: int
+         ||  +> [41, 9] Selection
+         ||  |  type: int
+         ||  |  +> [41, 4] Identifier (a_mod)
+         ||  |  |  definition: variable defined at [19, 6], type=A
+         ||  |  `> [41, 10] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [41, 22] Modulo
+         ||     type: int
+         ||     +> [41, 19] Selection
+         ||     |  type: int
+         ||     |  +> [41, 14] Identifier (a_mod)
+         ||     |  |  definition: variable defined at [19, 6], type=A
+         ||     |  `> [41, 20] Identifier (x)
+         ||     |     definition: field defined at [11, 8], type=int
+         ||     `> [41, 24] Int (35)
+         ||        type: int
+         []> [42, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [42, 12] Selection
+         ||         type: int
+         ||         +> [42, 12] Identifier (a_mod)
+         ||         |  definition: variable defined at [19, 6], type=A
+         ||         `> [42, 18] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [44, 4] Assign
+         ||  type: int
+         ||  +> [44, 10] Selection
+         ||  |  type: int
+         ||  |  +> [44, 4] Identifier (a_plus)
+         ||  |  |  definition: variable defined at [15, 6], type=A
+         ||  |  `> [44, 11] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [44, 17] Plus
+         ||     type: int
+         ||     +> [44, 15] Int (1)
+         ||     |  type: int
+         ||     `> [44, 25] Selection
+         ||        type: int
+         ||        +> [44, 19] Identifier (a_plus)
+         ||        |  definition: variable defined at [15, 6], type=A
+         ||        `> [44, 26] Identifier (x)
+         ||           definition: field defined at [11, 8], type=int
+         []> [45, 4] Assign
+         ||  type: float
+         ||  +> [45, 10] Selection
+         ||  |  type: float
+         ||  |  +> [45, 4] Identifier (a_plus)
+         ||  |  |  definition: variable defined at [15, 6], type=A
+         ||  |  `> [45, 11] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [45, 19] Plus
+         ||     type: float
+         ||     +> [45, 15] Float (1.0)
+         ||     |  type: float
+         ||     `> [45, 27] Selection
+         ||        type: float
+         ||        +> [45, 21] Identifier (a_plus)
+         ||        |  definition: variable defined at [15, 6], type=A
+         ||        `> [45, 28] Identifier (y)
+         ||           definition: field defined at [12, 10], type=float
+         []> [46, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [46, 12] Selection
+         ||         type: int
+         ||         +> [46, 12] Identifier (a_plus)
+         ||         |  definition: variable defined at [15, 6], type=A
+         ||         `> [46, 19] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [47, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [47, 12] Selection
+         ||         type: float
+         ||         +> [47, 12] Identifier (a_plus)
+         ||         |  definition: variable defined at [15, 6], type=A
+         ||         `> [47, 19] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [49, 4] Assign
+         ||  type: int
+         ||  +> [49, 11] Selection
+         ||  |  type: int
+         ||  |  +> [49, 4] Identifier (a_moins)
+         ||  |  |  definition: variable defined at [16, 6], type=A
+         ||  |  `> [49, 12] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [49, 18] Minus
+         ||     type: int
+         ||     +> [49, 16] Int (1)
+         ||     |  type: int
+         ||     `> [49, 27] Selection
+         ||        type: int
+         ||        +> [49, 20] Identifier (a_moins)
+         ||        |  definition: variable defined at [16, 6], type=A
+         ||        `> [49, 28] Identifier (x)
+         ||           definition: field defined at [11, 8], type=int
+         []> [50, 4] Assign
+         ||  type: float
+         ||  +> [50, 11] Selection
+         ||  |  type: float
+         ||  |  +> [50, 4] Identifier (a_moins)
+         ||  |  |  definition: variable defined at [16, 6], type=A
+         ||  |  `> [50, 12] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [50, 20] Minus
+         ||     type: float
+         ||     +> [50, 16] Float (1.0)
+         ||     |  type: float
+         ||     `> [50, 29] Selection
+         ||        type: float
+         ||        +> [50, 22] Identifier (a_moins)
+         ||        |  definition: variable defined at [16, 6], type=A
+         ||        `> [50, 30] Identifier (y)
+         ||           definition: field defined at [12, 10], type=float
+         []> [51, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [51, 12] Selection
+         ||         type: int
+         ||         +> [51, 12] Identifier (a_moins)
+         ||         |  definition: variable defined at [16, 6], type=A
+         ||         `> [51, 20] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [52, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [52, 12] Selection
+         ||         type: float
+         ||         +> [52, 12] Identifier (a_moins)
+         ||         |  definition: variable defined at [16, 6], type=A
+         ||         `> [52, 20] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [54, 4] Assign
+         ||  type: int
+         ||  +> [54, 10] Selection
+         ||  |  type: int
+         ||  |  +> [54, 4] Identifier (a_mult)
+         ||  |  |  definition: variable defined at [17, 6], type=A
+         ||  |  `> [54, 11] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [54, 17] Multiply
+         ||     type: int
+         ||     +> [54, 15] Int (1)
+         ||     |  type: int
+         ||     `> [54, 25] Selection
+         ||        type: int
+         ||        +> [54, 19] Identifier (a_mult)
+         ||        |  definition: variable defined at [17, 6], type=A
+         ||        `> [54, 26] Identifier (x)
+         ||           definition: field defined at [11, 8], type=int
+         []> [55, 4] Assign
+         ||  type: float
+         ||  +> [55, 10] Selection
+         ||  |  type: float
+         ||  |  +> [55, 4] Identifier (a_mult)
+         ||  |  |  definition: variable defined at [17, 6], type=A
+         ||  |  `> [55, 11] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [55, 19] Multiply
+         ||     type: float
+         ||     +> [55, 15] Float (1.0)
+         ||     |  type: float
+         ||     `> [55, 27] Selection
+         ||        type: float
+         ||        +> [55, 21] Identifier (a_mult)
+         ||        |  definition: variable defined at [17, 6], type=A
+         ||        `> [55, 28] Identifier (y)
+         ||           definition: field defined at [12, 10], type=float
+         []> [56, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [56, 12] Selection
+         ||         type: int
+         ||         +> [56, 12] Identifier (a_mult)
+         ||         |  definition: variable defined at [17, 6], type=A
+         ||         `> [56, 19] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [57, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [57, 12] Selection
+         ||         type: float
+         ||         +> [57, 12] Identifier (a_mult)
+         ||         |  definition: variable defined at [17, 6], type=A
+         ||         `> [57, 19] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [59, 4] Assign
+         ||  type: float
+         ||  +> [59, 9] Selection
+         ||  |  type: float
+         ||  |  +> [59, 4] Identifier (a_div)
+         ||  |  |  definition: variable defined at [18, 6], type=A
+         ||  |  `> [59, 10] Identifier (y)
+         ||  |     definition: field defined at [12, 10], type=float
+         ||  `> [59, 18] Divide
+         ||     type: float
+         ||     +> [59, 14] Float (1.0)
+         ||     |  type: float
+         ||     `> [59, 25] Selection
+         ||        type: float
+         ||        +> [59, 20] Identifier (a_div)
+         ||        |  definition: variable defined at [18, 6], type=A
+         ||        `> [59, 26] Identifier (y)
+         ||           definition: field defined at [12, 10], type=float
+         []> [60, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [60, 12] Selection
+         ||         type: int
+         ||         +> [60, 12] Identifier (a_div)
+         ||         |  definition: variable defined at [18, 6], type=A
+         ||         `> [60, 18] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [61, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [61, 12] Selection
+         ||         type: float
+         ||         +> [61, 12] Identifier (a_div)
+         ||         |  definition: variable defined at [18, 6], type=A
+         ||         `> [61, 18] Identifier (y)
+         ||            definition: field defined at [12, 10], type=float
+         []> [63, 4] Assign
+         ||  type: int
+         ||  +> [63, 9] Selection
+         ||  |  type: int
+         ||  |  +> [63, 4] Identifier (a_mod)
+         ||  |  |  definition: variable defined at [19, 6], type=A
+         ||  |  `> [63, 10] Identifier (x)
+         ||  |     definition: field defined at [11, 8], type=int
+         ||  `> [63, 16] Modulo
+         ||     type: int
+         ||     +> [63, 14] Int (1)
+         ||     |  type: int
+         ||     `> [63, 23] Selection
+         ||        type: int
+         ||        +> [63, 18] Identifier (a_mod)
+         ||        |  definition: variable defined at [19, 6], type=A
+         ||        `> [63, 24] Identifier (x)
+         ||           definition: field defined at [11, 8], type=int
+         []> [64, 4] Println
+             `> ListExpr [List with 1 elements]
+                []> [64, 12] Selection
+                    type: int
+                    +> [64, 12] Identifier (a_mod)
+                    |  definition: variable defined at [19, 6], type=A
+                    `> [64, 18] Identifier (x)
+                       definition: field defined at [11, 8], type=int

@@ -1,0 +1,22 @@
+// Description:
+//    instanceof d'une classe dont il hérite
+//
+// Resultats:
+//    true
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {}
+
+class B extends A{}
+
+{
+    B b = new B();
+    if (b instanceof A){
+        println("true");
+    }
+    else {
+        println("false");
+    }
+}

@@ -68,7 +68,7 @@ public class DeclClass extends AbstractDeclClass {
             throw new ContextualError("Wrong class name: " + name.getName() + " is already defined", name.getLocation());
         }
 
-        // if the superclass is Object we have to set its type and definition
+        // if the superclass is Object we have to set its type and definition (1.3)
         if (superclass.getName().getName().equals("Object")) {
             superclass.setDefinition(compiler.environmentType.OBJECT.getDefinition());
         } else {

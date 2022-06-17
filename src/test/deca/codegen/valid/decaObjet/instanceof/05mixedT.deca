@@ -1,0 +1,24 @@
+// Description:
+//    instanceof de sa classe dynamique (qui est hérité de sa classe statique)
+//
+// Resultats:
+//    true
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {}
+
+class B extends A{}
+
+class C extends B {}
+
+{
+    C a = new C();
+    if (a instanceof C){
+        println("true");
+    }
+    else {
+        println("false");
+    }
+}

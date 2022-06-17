@@ -1,0 +1,65 @@
+// Description:
+//    Programme qui teste les opérations arithmétiques avec des champs
+//
+// Resultats:
+//    05fieldArith.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x = 7;
+    float y = 5.6;
+}
+{
+    A a_plus = new A();
+    A a_moins = new A();
+    A a_mult = new A();
+    A a_div = new A();
+    A a_mod = new A();
+
+    // selection de champs en opérande de gauche
+    a_plus.x = a_plus.x + 1;
+    a_plus.y = a_plus.y + 1.0;
+    println(a_plus.x);
+    println(a_moins.y);
+
+    a_moins.x = a_moins.x - 1;
+    a_moins.y = a_moins.y - 1.0;
+    println(a_moins.x);
+    println(a_moins.y);
+
+    a_mult.x = a_mult.x * 1;
+    a_mult.y = a_mult.y * 1.0;
+    println(a_mult.x);
+    println(a_mult.y);
+
+    a_div.y = a_div.y / 12;
+    println(a_div.x);
+    println(a_div.y);
+
+    a_mod.x = a_mod.x % 35;
+    println(a_mod.x);
+
+    a_plus.x = 1 + a_plus.x;
+    a_plus.y = 1.0 + a_plus.y;
+    println(a_plus.x);
+    println(a_plus.y);
+
+    a_moins.x = 1 - a_moins.x;
+    a_moins.y = 1.0 - a_moins.y;
+    println(a_moins.x);
+    println(a_moins.y);
+
+    a_mult.x = 1 * a_mult.x;
+    a_mult.y = 1.0 * a_mult.y;
+    println(a_mult.x);
+    println(a_mult.y);
+
+    a_div.y = 1.0 / a_div.y;
+    println(a_div.x);
+    println(a_div.y);
+
+    a_mod.x = 1 % a_mod.x;
+    println(a_mod.x);
+}
