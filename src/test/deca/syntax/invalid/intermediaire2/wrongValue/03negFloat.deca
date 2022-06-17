@@ -2,7 +2,7 @@
 //    Programme initialisant une variable float avec une valeur inferieur a la valeur minimale autorisee.
 //
 // Resultats:
-//    03negFloat.expected
+//    03negFloat.lis
 //
 // Historique:
 //    cree le 10/06/2022

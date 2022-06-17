@@ -456,6 +456,20 @@ literal returns[AbstractExpr tree]
     | fd=FLOAT {
             try { 
                 $tree = new FloatLiteral(Float.parseFloat($fd.text));
+                int i = 0;
+                boolean isUnderflow = false;
+                if (Float.parseFloat($fd.text) == 0) {
+                    while (i < $fd.text.length() && $fd.text.charAt(i) != 'E' && $fd.text.charAt(i) != 'p')
+                    {
+                        if ($fd.text.charAt(i) != '0' && $fd.text.charAt(i) != '.') { 
+                            isUnderflow = true;
+                        }
+                        i++;
+                    }
+                    if (isUnderflow) { 
+                        throw new InvalidRangeValue(this, $ctx);
+                    }
+                }
             } catch (Exception e) { 
                 throw new InvalidRangeValue(this, $ctx);
             }

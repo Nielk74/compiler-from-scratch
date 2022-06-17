@@ -1,0 +1,12 @@
+// Description:
+//    Programme initialisant une variable float en hexa très petite pouvant causer un underflow 
+//
+// Resultats:
+//    00underFloatHexa.lis
+//
+// Historique:
+//    cree le 17/06/2022
+{
+    float x = 0x1.0p-149;
+    printx(x);
+}
