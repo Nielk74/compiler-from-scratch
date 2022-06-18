@@ -1,0 +1,26 @@
+// Description:
+// vérifie le bon fonctionnement du else avec un if
+//
+// Resultats:
+// ok1
+// ok2
+// ok3
+//
+// Historique:
+//    crée le 18/06/2022
+{
+   if(false){
+
+   }
+   else{
+        if(true){
+            println("ok1");
+        }
+        if(false){
+
+        }else{
+            println("ok2");
+        }
+        println("ok3");
+    }
+}
