@@ -462,7 +462,7 @@ literal returns[AbstractExpr tree]
                 if (Float.parseFloat($fd.text) == 0) {
                     while (i < $fd.text.length() && $fd.text.charAt(i) != 'E' && $fd.text.charAt(i) != 'p')
                     {
-                        if ($fd.text.charAt(i) != '0' && $fd.text.charAt(i) != '.') { 
+                        if ($fd.text.charAt(i) != '0' && $fd.text.charAt(i) != '.' && $fd.text.charAt(i) != 'x') { 
                             isUnderflow = true;
                         }
                         i++;
