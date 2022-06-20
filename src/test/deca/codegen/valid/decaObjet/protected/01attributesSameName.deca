@@ -1,0 +1,20 @@
+// Description:
+//    tests avec des attributes de meme nom
+//
+// Resultats:
+//    2
+//
+// Historique:
+//    cree le 14/06/2022
+
+class A {
+    protected int x = 1;
+}
+
+class B extends A{
+    int x = 2;
+}
+{
+    B b = new B();
+    println(b.x);
+}

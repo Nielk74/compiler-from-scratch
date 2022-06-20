@@ -1,0 +1,19 @@
+// Description:
+//    test avec des attributes de same nom et l'access depuis main
+//
+// Resultats:
+//    01attributeSameName.lis
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x = 2;
+}
+class B extends A {
+    protected float x  = 4;
+}
+{
+    B b = new B();
+    println(b.x);
+}

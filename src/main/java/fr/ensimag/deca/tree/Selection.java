@@ -21,7 +21,6 @@ import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 public class Selection extends AbstractLValue {
 
@@ -40,27 +39,36 @@ public class Selection extends AbstractLValue {
             throws ContextualError {
 
         // verify expression returns a class in environment
-        Type type = expr.verifyExpr(compiler, localEnv, currentClass);
-        if (!type.isClass()) {
+        Type typeExpr = expr.verifyExpr(compiler, localEnv, currentClass);
+        if (!typeExpr.isClass()) {
             throw new ContextualError("Wrong expression: cannot select a field of a non-class type",
                     expr.getLocation());
         }
 
-        expr.setType(type);
+        expr.setType(typeExpr);
 
-        ClassDefinition classDef = ((ClassType) (type)).getDefinition();
+        ClassDefinition classDef = ((ClassType) (typeExpr)).getDefinition();
 
         // verify that the field exists in the class
-        ExpDefinition fieldDef = classDef.getMembers().get(field.getName());
-        if (fieldDef == null) {
+        ExpDefinition def = classDef.getMembers().get(field.getName());
+        if (def == null) {
             throw new ContextualError("Unknown field: " + field.getName(), field.getLocation());
         }
-        if (!fieldDef.isField()) {
-            throw new ContextualError("Wrong field name: " + field.getName(), field.getLocation());
-        }
-        fieldDef = (FieldDefinition) fieldDef;
+        FieldDefinition fieldDef = def.asFieldDefinition("Wrong field name: " + field.getName(), field.getLocation());
         field.setDefinition(fieldDef);
         this.setType(fieldDef.getType());
+
+        if (fieldDef.getVisibility() == Visibility.PROTECTED) {
+            if (currentClass == null) {
+                throw new ContextualError("Cannot access protected field: " + field.getName(), field.getLocation());
+            }
+            // regle de verification de visibilite 3.66
+            if (!(((ClassType) typeExpr).isSubClassOf(currentClass.getType())
+                    && currentClass.getType().isSubClassOf(fieldDef.getContainingClass().getType()))) {
+                throw new ContextualError("Cannot access protected field: " + field.getName(), field.getLocation());
+            }
+        }
+
         return fieldDef.getType();
     }
 
