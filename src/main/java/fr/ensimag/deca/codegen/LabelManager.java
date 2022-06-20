@@ -59,7 +59,7 @@ public class LabelManager {
     }
 
     public Label createEndMethodLabel() {
-        String name = "end_method" + Integer.toString(endMethodCounter);
+        String name = "end_method_" + Integer.toString(endMethodCounter);
         endMethodCounter++;
         return createLabel(name);
     }

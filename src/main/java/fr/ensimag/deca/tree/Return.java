@@ -41,7 +41,7 @@ public class Return extends AbstractInst {
     protected void codeGenInst(DecacCompiler compiler) {
         DVal result = expr.codeGenExp(compiler);
         compiler.addInstruction(new LOAD(result, Register.R0));
-        Label endLabel = compiler.labelManager.getLabel("end_method"+ Integer.toString(compiler.labelManager.getEndMethodCounter() - 1));
+        Label endLabel = compiler.labelManager.getLabel("end_method_"+ Integer.toString(compiler.labelManager.getEndMethodCounter() - 1));
         compiler.addInstruction(new BRA(endLabel));    
     }
 
