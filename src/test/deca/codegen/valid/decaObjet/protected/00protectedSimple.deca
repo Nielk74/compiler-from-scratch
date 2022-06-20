@@ -1,0 +1,20 @@
+// Description:
+//    tests de programme correct codegen :  protected
+//
+// Resultats:
+//    5
+//
+// Historique:
+//    cree le 14/06/2022
+
+class A {
+    protected int x = 5 ;
+    int getX(){
+        return this.x;
+    }
+}
+
+{
+    A a = new A();
+    println(a.getX());
+}
