@@ -1,0 +1,23 @@
+// Description:
+//     Test d'une méthode en asm de type qui renvoie l'addition de deux entiers.
+//
+// Resultats:
+//    10
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int m(int x, int y) asm ("
+        LOAD -3(LB), R1
+        LOAD -4(LB), R0
+        ADD R1, R0
+        RTS
+    ");
+}
+
+{
+    A a = new A();
+    int res = a.m(7, 3);
+    println(res);
+}

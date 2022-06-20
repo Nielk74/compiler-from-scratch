@@ -1,16 +1,11 @@
 package fr.ensimag.deca.tree;
 
-import java.util.ArrayList;
-
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.DAddr;
-import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.LabelOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -39,11 +34,12 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
         }
     }
 
-    public void codeGenImplementMethod(DecacCompiler compiler, ClassDefinition currentClass) {
+    public void codeGenImplementMethod(DecacCompiler compiler) {
         for (AbstractDeclMethod m : getList()) {
-            m.codeGenImplementMethod(compiler, currentClass);
+            m.codeGenImplementMethod(compiler);
         }
     }
+    
     /* Store table of methodes in class */
     public void codeGenListDeclMethod(DecacCompiler compiler, ClassDefinition currentClass) {
         for (int i = 0; i <= currentClass.getNumberOfMethods(); i++) {

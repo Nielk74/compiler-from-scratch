@@ -10,8 +10,6 @@ public abstract class AbstractDeclParam extends Tree {
     protected abstract Type verifyDeclParam(DecacCompiler compiler)
             throws ContextualError;
 
-    protected abstract void codeGenDeclParam(DecacCompiler compiler);
-
     protected abstract void verifyDeclParamEnv(DecacCompiler compiler, EnvironmentExp localEnv) throws ContextualError;
     
     protected abstract void setIndex(int index);

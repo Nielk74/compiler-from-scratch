@@ -1,0 +1,12 @@
+// Description:
+//    test incorrect syntaxiquement car il y a des accolades au lieu de parenthèses
+//
+// Resultats:
+//    10asmMethodNoParent.deca:11:17:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class Point2D {     
+    void m() asm {}
+} 
