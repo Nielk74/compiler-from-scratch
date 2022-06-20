@@ -1,9 +1,13 @@
 package fr.ensimag.deca.context;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import net.bytebuddy.description.method.MethodList;
 
 /**
  * Dictionary associating identifier's ExpDefinition to their names.
@@ -28,8 +32,7 @@ public class EnvironmentExp {
     // environnement (association nom -> définition, avec possibilité
     // d'empilement).
 
-    public Map<Symbol, ExpDefinition> dictionary = new HashMap<>();
-
+    private Map<Symbol, ExpDefinition> dictionary = new HashMap<>();
     EnvironmentExp parentEnvironment;
 
     public EnvironmentExp(EnvironmentExp parentEnvironment) {
@@ -60,6 +63,20 @@ public class EnvironmentExp {
         return null;
     }
 
+    public MethodDefinition getMethod(int index) {
+        for (ExpDefinition expDef : this.dictionary.values()) {
+            if (expDef.isMethod()) {
+                if (((MethodDefinition) expDef).getIndex() == index) {
+                    return (MethodDefinition) expDef;
+                }
+            }
+        }
+        if (this.parentEnvironment != null) {
+            return this.parentEnvironment.getMethod(index);
+        }
+        return null;
+    }
+
     /**
      * Add the definition def associated to the symbol name in the environment.
      * 
@@ -81,5 +98,4 @@ public class EnvironmentExp {
             throw new DoubleDefException("Wrong variable name: "+ name.getName() + " is already defined");
         this.dictionary.put(name, def);
     }
-
 }

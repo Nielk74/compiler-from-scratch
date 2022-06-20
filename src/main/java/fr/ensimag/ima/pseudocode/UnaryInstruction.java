@@ -27,4 +27,8 @@ public abstract class UnaryInstruction extends Instruction {
         return operand;
     }
 
+    protected void setOperand(Operand operand) {
+        Validate.notNull(operand);
+        this.operand = operand;
+    }
 }

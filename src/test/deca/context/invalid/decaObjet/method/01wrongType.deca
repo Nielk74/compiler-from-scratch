@@ -1,0 +1,15 @@
+// Description:
+// Test d'une méthode renvoyant un type qui n'est pas défini 
+//
+// Resultats:
+//      01wrongType.deca:10:4:
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D {          
+    Point2 get() {        
+        return this;     
+    } 
+} 
+{     
+}

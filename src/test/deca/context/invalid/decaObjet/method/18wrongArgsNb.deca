@@ -1,0 +1,17 @@
+// Description:
+// Test d'un appel de méthode avec trop d'argument
+//
+// Resultats:
+//     18wrongArgsNb.deca:16:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    void m() {}
+}
+
+{
+    A a = new A();
+    a.m(1);
+}

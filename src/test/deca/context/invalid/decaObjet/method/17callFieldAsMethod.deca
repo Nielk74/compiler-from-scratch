@@ -1,0 +1,17 @@
+// Description:
+// Test d'un appel de méthode avec le nom d'un champs
+//
+// Resultats:
+//     17callFieldAsMethod.deca:16:6:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    int x;
+}
+
+{
+    A a = new A();
+    a.x();
+}

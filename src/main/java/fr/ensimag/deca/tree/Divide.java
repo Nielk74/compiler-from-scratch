@@ -67,9 +67,6 @@ public class Divide extends AbstractOpArith {
         compiler.addInstruction(new DIV(leftRegister, rightRegister));
         if (!compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
-        }
-
-        if (!compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new CMP(new ImmediateFloat(0), leftRegister));
             compiler.addInstruction(new BEQ(end_division));
             compiler.addInstruction(new CMP(new ImmediateFloat(0), rightRegister));

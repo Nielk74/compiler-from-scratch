@@ -1,9 +1,13 @@
 package fr.ensimag.deca.context;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.Validate;
+
+import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.Location;
 import fr.ensimag.ima.pseudocode.DAddr;
-import fr.ensimag.ima.pseudocode.Label;
-import org.apache.commons.lang.Validate;
 
 /**
  * Definition of a class.
@@ -12,7 +16,6 @@ import org.apache.commons.lang.Validate;
  * @date 25/04/2022
  */
 public class ClassDefinition extends TypeDefinition {
-
     public void setOperand(DAddr operand) {
         this.operand = operand;
     }
@@ -85,6 +88,7 @@ public class ClassDefinition extends TypeDefinition {
         }
         members = new EnvironmentExp(parent);
         this.superClass = superClass;
+
     }
     
 }

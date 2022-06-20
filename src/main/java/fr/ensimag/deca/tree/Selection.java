@@ -99,6 +99,7 @@ public class Selection extends AbstractLValue {
         if (!compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.NULL_ERROR)));
         }
+
         Type type = expr.getType();
         ClassDefinition classDef = ((ClassType) (type)).getDefinition();
         ExpDefinition fieldDef = classDef.getMembers().get(field.getName());

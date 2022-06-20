@@ -41,4 +41,9 @@ public abstract class AbstractDeclClass extends Tree {
          * Codegen constructors of classses
          */
         protected abstract void codeGenClassInit(DecacCompiler compiler);
+
+        /**
+         * Codegen implementation of method
+         */
+        protected abstract void codeGenMethodImplementation(DecacCompiler compiler);
 }

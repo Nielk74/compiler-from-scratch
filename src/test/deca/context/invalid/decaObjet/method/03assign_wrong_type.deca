@@ -1,0 +1,18 @@
+// Description:
+// Test de l'assignation du résultat d'une méthode, à une variables, qui n'ont pas de types compatibles.
+//
+// Resultats:
+//  03assign_wrong_type.deca:17:12:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    boolean getx(){
+        return true;
+    }
+}
+
+{
+    int x = new A().getx();
+}

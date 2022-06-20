@@ -1,0 +1,15 @@
+// Description:
+//    test valid context de field declaration
+//
+// Resultats:
+//    
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    A a = new A();
+    int x = 1;
+    float y = x;
+    boolean b;
+}

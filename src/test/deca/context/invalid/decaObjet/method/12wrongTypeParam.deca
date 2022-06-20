@@ -1,0 +1,14 @@
+// Description:
+// Test d'une méthode dont un paramètre est de type inconnu
+//
+// Resultats:
+//      12wrongTypeParam.deca:11:12:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {          
+    void a (B b) {}
+} 
+{     
+}

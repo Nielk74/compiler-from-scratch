@@ -12,6 +12,8 @@ public class LabelManager {
     private int condLabelCounter = 0;
     private int underflowCounter = 0;
     private int instanceOfCounter = 0;
+    private int endMethodCounter = 0;
+
     public Label createLabel(String name) {
         if (name == null)
             throw new IllegalArgumentException("Wrong label type - expected: string ≠ current: null");
@@ -48,13 +50,18 @@ public class LabelManager {
         return l;
     }
 
-
     public int createInstanceOfLabel() {
         String name = "instanceof_trueBranch_" + Integer.toString(instanceOfCounter);
         createLabel(name);
         name = "instanceof_end_" + Integer.toString(instanceOfCounter);
         createLabel(name);
         return instanceOfCounter++;
+    }
+
+    public Label createEndMethodLabel() {
+        String name = "end_method" + Integer.toString(endMethodCounter);
+        endMethodCounter++;
+        return createLabel(name);
     }
 
     public void incrementUnderflowCounter(){
@@ -64,6 +71,11 @@ public class LabelManager {
     public int getUnderflowCounter(){
         return this.underflowCounter;
     }
+
+    public int getEndMethodCounter() {
+        return endMethodCounter;
+    }
+
     public Label getLabel(String name) {
         return map.get(name);
     }

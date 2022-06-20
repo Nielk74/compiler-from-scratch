@@ -24,4 +24,22 @@ public class Signature {
         return args.size();
     }
 
+    public boolean sameSignature(Signature otherSig) {
+        if (otherSig.size() != otherSig.size()){
+            return false;
+        }
+        else {
+            for (int index = 0; index < size(); index++) {
+                if (!paramNumber(index).sameType(otherSig.paramNumber(index))){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return args.toString();
+    }
 }

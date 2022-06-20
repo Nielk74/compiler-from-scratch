@@ -1,0 +1,15 @@
+// Description:
+// Test d'un appel de méthode avec une variable locale dont symbol est un identificateur existant
+//
+// Resultats:
+//     20varLocalAlreadyExist.lis
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    void m(int x) {
+        float x;
+    }
+}
+{}

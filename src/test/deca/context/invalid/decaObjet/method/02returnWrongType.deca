@@ -1,0 +1,15 @@
+// Description:
+// Test d'une méthode renvoyant le mauvais type par rapport à sa définition
+//
+// Resultats:
+//  02returnWrongType.deca:11:8:
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D {          
+    int get() {        
+        return true;     
+    } 
+} 
+{     
+}

@@ -16,15 +16,16 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
     }
 
     /* Pass 2 */
-    void verifyListDeclField(DecacCompiler compiler, EnvironmentExp localEnv,
+    void verifyListDeclField(DecacCompiler compiler,
             ClassDefinition currentClass) throws ContextualError {
         for (AbstractDeclField f : getList()) {
-            f.verifyDeclField(compiler, localEnv, currentClass);
+            f.verifyDeclField(compiler, currentClass);
         }
     }
 
     /* Pass 3 */
-    void verifyListDeclFieldInit(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
+    void verifyListDeclFieldInit(DecacCompiler compiler, ClassDefinition currentClass)
+            throws ContextualError {
         for (AbstractDeclField f : getList()) {
             f.verifyDeclFieldInit(compiler, currentClass);
         }

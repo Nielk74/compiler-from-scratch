@@ -1,0 +1,18 @@
+// Description:
+// Test d'un programme où l'on passe un mauvais type de paramètre à une méthode
+//
+// Resultats:
+//  09wrongTypeParameter.deca:17:11:
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D { 
+    int x; // Abscisse         
+    void diag(Point2D a) {         
+    } 
+} 
+{
+    int x = 5;
+    Point2D p = new Point2D();
+    p.diag(x);     
+}
