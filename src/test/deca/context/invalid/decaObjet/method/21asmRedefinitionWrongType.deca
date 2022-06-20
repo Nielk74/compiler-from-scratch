@@ -1,0 +1,13 @@
+// Description:
+// Redéfinition de la méthode Object.equals en asm avec un mauvais type de retour
+//
+// Resultats:
+//     21asmRedefinitionWrongType.deca:11:4:
+//
+// Historique:
+//    crée le 20/06/2022
+
+class A {
+    int equals(Object object) asm("");
+}
+{}

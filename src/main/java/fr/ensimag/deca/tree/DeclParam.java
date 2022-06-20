@@ -8,7 +8,6 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
-import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.ParamDefinition;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.TypeDefinition;
@@ -67,10 +66,6 @@ public class DeclParam extends AbstractDeclParam {
             throw new ContextualError("Wrong parameter definition: Parameter name " + name.getName().getName()
             + " is already defined", name.getLocation());
         }
-    }
-
-    @Override
-    protected void codeGenDeclParam(DecacCompiler compiler) {
         ((ParamDefinition) name.getDefinition()).setOperand(new RegisterOffset(-(index + 3), Register.LB));
     }
 

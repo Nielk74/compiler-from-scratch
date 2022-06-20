@@ -115,49 +115,11 @@ public class DeclMethod extends AbstractDeclMethod {
     }
 
     @Override
-    protected void codeGenImplementMethod(DecacCompiler compiler, ClassDefinition currentClass) {
-        // reset the var counter to use it in method bloc
-        compiler.stackManager.resetVarCounter();
-        params.codeGenListDeclParam(compiler);
-
-        Label endLabel = compiler.labelManager.createEndMethodLabel();
+    protected void codeGenImplementMethod(DecacCompiler compiler) {
         Label label = name.getMethodDefinition().getLabel();
         compiler.addLabel(label);
-
-        TSTO tsto = new TSTO(0);
-        compiler.addInstruction(tsto);
-        if (!compiler.getCompilerOptions().getNocheck()) {
-            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.SO_ERROR)));
-        }
-        // local variables
-        ADDSP addsp = new ADDSP(0);
-        compiler.addInstruction(addsp);
-
-        // save registers R2 to RMAX
-        for (int i = 2; i <= compiler.registerManager.getNbRegisterMax(); i++) {
-            compiler.addInstruction(new PUSH(Register.getR(i)));
-            compiler.stackManager.incrementVarCounter();
-        }
-
         // generate code for the body
-        body.codeGenMethodBody(compiler);
-
-        // return type != void
-        if (!type.getType().isVoid() && !compiler.getCompilerOptions().getNocheck()) {
-            compiler.addInstruction(new BRA(compiler.labelManager.getLabel(ErrorCatcher.RET_ERROR)));
-        }
-        compiler.addLabel(endLabel);
-
-        // restore registers R2 to RMAX
-        for (int i = compiler.registerManager.getNbRegisterMax(); i > 1; i--) {
-            compiler.addInstruction(new POP(Register.getR(i)));
-        }
-
-        compiler.addInstruction(new RTS());
-
-        // update the tsto value
-        tsto.setValue(compiler.stackManager.getStackSize());
-        addsp.setValue(compiler.stackManager.getVarCounter());
+        body.codeGenMethodBody(compiler, type.getType());
     }
 
     @Override

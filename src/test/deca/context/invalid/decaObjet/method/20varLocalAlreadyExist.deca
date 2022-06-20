@@ -1,5 +1,5 @@
 // Description:
-// Test d'un appel de méthode avec une variable locale dont symbol est un identificateur existant
+// Test d'une déclaration de méthode dans laquelle on déclare une variable dont le nom est déjà utilisé en paramètre
 //
 // Resultats:
 //     20varLocalAlreadyExist.lis

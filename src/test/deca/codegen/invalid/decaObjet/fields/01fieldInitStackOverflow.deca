@@ -1,0 +1,15 @@
+// Description:
+// Test qui provoque une erreur Stack Overflow car on initialise le champs "a" des objet A à l'infini
+//
+// Resultats:
+//      Error: Stack Overflow
+//
+// Historique:
+//    crée le 20/06/2022
+
+class A {
+    A a = new A();
+}
+{
+    A a = new A();
+}
