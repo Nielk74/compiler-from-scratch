@@ -61,16 +61,21 @@ public class Divide extends AbstractOpArith {
             leftRegister = Register.getR(register_name + 1);
         }
         GPRegister rightRegister = Register.getR(register_name);
-
+        String index = Integer.toString(compiler.labelManager.getUnderflowCounter());
+        Label no_underflow = compiler.labelManager.createLabel("no_underflow" + index);
         Label end_division = compiler.labelManager.createLabel("end_division" + Integer.toString(compiler.labelManager.getUnderflowCounter()));
-
+        if (this.getType().isFloat() && !compiler.getCompilerOptions().getNocheck()) {
+            compiler.addInstruction(new CMP(new ImmediateFloat(0), rightRegister));
+            compiler.addInstruction(new BEQ(no_underflow));
+        }
         compiler.addInstruction(new DIV(leftRegister, rightRegister));
         if (!compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
-            compiler.addInstruction(new CMP(new ImmediateFloat(0), leftRegister));
-            compiler.addInstruction(new BEQ(end_division));
             compiler.addInstruction(new CMP(new ImmediateFloat(0), rightRegister));
             compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.UD_ERROR)));
+            compiler.addInstruction(new BRA(end_division));
+            compiler.addLabel(no_underflow);
+            compiler.addInstruction(new LOAD(new ImmediateFloat(0), rightRegister));
             compiler.addLabel(end_division);
             compiler.labelManager.incrementUnderflowCounter();
         }
