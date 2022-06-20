@@ -1,0 +1,15 @@
+// Description:
+// Test qui provoque une erreur Heap Overflow car on instancie des objets à l'infini
+// Resultats:
+//      Error: Heap Overflow
+//
+// Historique:
+//    crée le 20/06/2022
+
+class A {
+}
+{
+    while (true) {
+        new A();
+    }
+}
