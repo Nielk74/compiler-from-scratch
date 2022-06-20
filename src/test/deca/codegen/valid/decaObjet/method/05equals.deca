@@ -1,0 +1,54 @@
+// Description:
+//      Equals method entre des classes
+//
+// Resultats:
+//    05equals.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A{
+    int x = 1;
+}
+
+class B extends A {
+    int x = 1;
+    boolean equals(Object o) {
+        return this == o;
+    }
+}
+{
+    A a = new A();
+    B b = new B();
+    B b2 = b;
+    if (a.equals(b)){
+        println("a == b");
+    } else {
+        println("a != b");
+    }
+
+    if (b.equals(a)){
+        println("b == a");
+    } else {
+        println("b != a");
+    }
+
+    if (a.equals(null)){
+        println("a == null");
+    }else {
+        println("a != null");
+    }
+
+    if (b2 == b){
+        println("b2 == b");
+    } else {
+        println("b2 != b");
+    }
+    a = b2;
+
+    if (a == b2){
+        println("a == b2");
+    } else {
+        println("a != b2");
+    }
+}

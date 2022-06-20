@@ -1,0 +1,33 @@
+// Description:
+//      Test l'appel de methods sur des non-identifiers
+//
+// Resultats:
+//    06methodCallNotVariable.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+
+class A {
+    int x = 1;
+    A a;
+
+    void printX() {
+        println(x);
+    }
+    void printX1() {
+    println(1 + x);
+    }
+
+    A getNewA() {
+        return new A();
+    }
+}
+
+{
+    A a = new A();
+    new A().printX();
+    a.a = new A();
+    a.a.printX();
+    a.getNewA().printX();
+}

@@ -1,0 +1,20 @@
+// Description:
+// Test de définir deux fois exactement la même méthode.
+//
+// Resultats:
+//  05double_definition.deca:14:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    boolean getx(){
+        return true;
+    }
+    boolean getx(){
+        return true;
+    }
+}
+
+{
+}

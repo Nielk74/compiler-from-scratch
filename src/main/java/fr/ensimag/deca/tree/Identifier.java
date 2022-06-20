@@ -207,7 +207,13 @@ public class Identifier extends AbstractIdentifier {
     // Register.getR(register_name)
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
-        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
+        if (this.definition.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(register_name)));
+            int index = ((FieldDefinition) this.definition).getIndex();
+            compiler.addInstruction(new LOAD(new RegisterOffset(index, Register.getR(register_name)), Register.getR(register_name)));
+        } else {
+            compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
+        }
     }
 
     private Definition definition;
@@ -245,6 +251,7 @@ public class Identifier extends AbstractIdentifier {
 
     @Override
     protected void codeGenDeclClass(DecacCompiler compiler) {
+        compiler.addComment("Load superclass of "+getName());
         compiler.addInstruction(new LEA(this.getClassDefinition().getSuperClass().getOperand(), Register.R0));
     }
 

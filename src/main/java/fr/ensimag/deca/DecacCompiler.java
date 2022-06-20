@@ -233,9 +233,6 @@ public class DecacCompiler {
         prog.codeGenProgram(this);
         // add ima program error handlers
         ErrorCatcher.handleErrors(this);
-        
-        // initialise la pile
-        stackManager.initializeStack(this);
 
         LOG.debug("Generated assembly code:" + nl + program.display());
         LOG.info("Output file assembly file is: " + destName);

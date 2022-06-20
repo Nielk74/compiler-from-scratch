@@ -2,8 +2,6 @@ package fr.ensimag.deca.tree;
 
 import java.io.PrintStream;
 
-import javax.swing.plaf.synth.Region;
-
 import org.apache.commons.lang.Validate;
 
 import fr.ensimag.deca.DecacCompiler;
@@ -70,7 +68,7 @@ public class New extends AbstractExpr {
 
         // initialize the object fields
         if (!compiler.getCompilerOptions().getNocheck()){
-            compiler.addInstruction(new BOV(compiler.labelManager.getLabel("ho_error")));
+            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.HO_ERROR)));
         }
         
         compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R0));

@@ -15,4 +15,7 @@ public abstract class UnaryInstructionImmInt extends UnaryInstruction {
         super(new ImmediateInteger(i));
     }
 
+    public void setValue(int i) {
+        super.setOperand(new ImmediateInteger(i));
+    }
 }

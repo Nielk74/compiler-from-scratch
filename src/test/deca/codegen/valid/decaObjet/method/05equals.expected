@@ -1,0 +1,5 @@
+a != b
+b != a
+a != null
+b2 == b
+a == b2

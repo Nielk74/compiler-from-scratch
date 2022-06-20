@@ -8,6 +8,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 
 public class MethodBody extends AbstractMethodBody {
@@ -23,16 +24,17 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
-    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented"); 
-        
+        declVariables.verifyListDeclVariable(compiler, localEnv, currentClass); 
+        insts.verifyListInst(compiler, localEnv, currentClass, returnType);       
     }
 
+    /* codegen of declaration variable and instructions */
     @Override
     protected void codeGenMethodBody(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented"); 
-        
+        declVariables.codeGenListDeclVariable(compiler);
+        insts.codeGenListInst(compiler);
     }
 
     @Override

@@ -8,6 +8,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.EnvironmentExp.DoubleDefException;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.TypeDefinition;
@@ -42,8 +43,12 @@ public class DeclVar extends AbstractDeclVar {
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         Symbol typeSymbol = type.getName();
-        
-        if (typeSymbol.getName().equals("void")) {
+
+        TypeDefinition def = compiler.environmentType.defOfType(typeSymbol);
+        if (def == null) {
+            throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
+        }
+        if (def.getType().isVoid()) {
             throw new ContextualError("Wrong variable type - unexpected: void", type.getLocation());
         }
         TypeDefinition typeDef = compiler.environmentType.defOfType(typeSymbol);
@@ -51,7 +56,7 @@ public class DeclVar extends AbstractDeclVar {
             throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
         }
         Type t = typeDef.getType();
-       
+
         varName.setDefinition(new VariableDefinition(t, varName.getLocation()));
         type.setDefinition(compiler.environmentType.defOfType(typeSymbol));
         type.setType(t);

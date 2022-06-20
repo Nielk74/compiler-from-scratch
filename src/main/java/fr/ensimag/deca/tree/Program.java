@@ -49,8 +49,9 @@ public class Program extends AbstractProgram {
         compiler.addComment("Main program");
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
+        compiler.stackManager.initializeStack(compiler);
         compiler.addComment("End main program");
-        classes.codeGenListClassInit(compiler);
+        classes.codeGenMethodImplementation(compiler);
     }
 
     @Override

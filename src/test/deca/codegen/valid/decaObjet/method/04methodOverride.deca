@@ -1,0 +1,51 @@
+// Description:
+//      Override method
+//
+// Resultats:
+//    04methodOverride.deca
+//
+// Historique:
+//    cree le 16/06/2022
+
+class Parent {
+    void m1()
+    {
+        println("From parent m1()");
+    }
+  
+    void m2()
+    {
+        println("From parent m2()");
+    }
+}
+  
+class Child extends Parent {
+    // new m1() method
+    // unique to Child class
+    void m1()
+    {
+        println("From child m1()");
+    }
+  
+
+}
+
+class GrandChild extends Child{
+    void m2()
+    {
+        println("From grand child m2()");
+    }
+}
+
+
+{
+    Parent parent = new Parent();
+    Child child = new Child();
+    GrandChild grandChild = new GrandChild();
+    parent.m1();
+    parent.m2();
+    child.m1();
+    child.m2();
+    grandChild.m1();
+    grandChild.m2();
+}

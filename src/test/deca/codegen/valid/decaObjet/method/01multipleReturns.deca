@@ -1,0 +1,29 @@
+// Description:
+//    Test des methods de print
+//
+// Resultats:
+//    01multiplReturns.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A{
+    int m(int a){
+        if (a == 1){
+            return 1;
+        }
+        else if (a==2){
+            return 2;
+        }
+        else    {
+            return 3;
+        }
+    }
+}
+
+{
+    A a = new A();
+    println(a.m(1));
+    println(a.m(2));
+    println(a.m(3));
+}

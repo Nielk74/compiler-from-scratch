@@ -40,36 +40,34 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
-    protected void verifyDeclField(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+    protected void verifyDeclField(DecacCompiler compiler, ClassDefinition currentClass)
             throws ContextualError {
         Symbol typeSymbol = type.getName();
 
-        // check if type == void
-        if (typeSymbol.getName().equals("void")) {
-            throw new ContextualError("Wrong variable type - unexpected: void", type.getLocation());
-        }
-
-        // get type definition of field
         TypeDefinition typeDef = compiler.environmentType.defOfType(typeSymbol);
         if (typeDef == null) {
             throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
+        }
+        
+        // check if type == void
+        if (typeDef.getType().isVoid()) {
+            throw new ContextualError("Wrong type: void is forbidden", type.getLocation());
         }
 
         // check if the field name is already defined in the superclass env
         // and that it is a FieldDefinition
         EnvironmentExp superEnvironment = currentClass.getSuperClass().getMembers();
         ExpDefinition superDef = superEnvironment.get(name.getName());
-        if (superDef != null && !(superDef instanceof FieldDefinition)) {
+        if (superDef != null && !(superDef.isField())) {
             throw new ContextualError("Wrong field name: " + name.getName()
                     + " is already defined in the super class as a: " + superDef.getClass(), name.getLocation());
         }
 
         // set the type and the definition of the type identifier
         Type t = typeDef.getType();
-        type.setDefinition(compiler.environmentType.defOfType(typeSymbol));
+        type.setDefinition(typeDef);
         type.setType(t);
 
-        // set the type and the definition of the name identifier
         currentClass.incNumberOfFields();
         FieldDefinition fieldDefinition = new FieldDefinition(t, name.getLocation(), visibility, currentClass,
                 currentClass.getNumberOfFields());
@@ -93,6 +91,7 @@ public class DeclField extends AbstractDeclField {
 
     @Override
     protected void codeGenDeclField(DecacCompiler compiler) {
+        compiler.addComment("attribute " + name.getName() + " of type " + type.getType());
         init.codeGenInitialization(compiler, 0, type.getType());
         RegisterOffset offset = new RegisterOffset(-2, Register.LB);
         compiler.addInstruction(new LOAD(offset, Register.R1));

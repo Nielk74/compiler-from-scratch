@@ -392,6 +392,7 @@ select_expr returns[AbstractExpr tree]
             // we matched "e1.i(args)"
             assert($args.tree != null);
             $tree = new MethodCall($e1.tree, $i.tree, $args.tree);
+            setLocation($tree, $i.start);
         }
         | /* epsilon */ {
             // we matched "e.i"
@@ -405,8 +406,17 @@ primary_expr returns[AbstractExpr tree]
             $tree = $ident.tree;
         }
     | m=ident OPARENT args=list_expr CPARENT {
+            // we matched "m(args)"
             assert($args.tree != null);
             assert($m.tree != null);
+
+            AbstractExpr thisExpr = new This();
+            ((This)thisExpr).setImplicit(true);
+            
+            thisExpr.setLocation($m.tree.getLocation());
+            $tree = new MethodCall(thisExpr, $m.tree, $args.tree);
+            setLocation($tree, $m.start);
+
         }
     | OPARENT expr CPARENT {
             assert($expr.tree != null);
@@ -486,6 +496,7 @@ literal returns[AbstractExpr tree]
         }
     | THIS {
             $tree = new This();
+            setLocation($tree, $THIS);
         }
     | NULL {
             $tree = new Null();
