@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Location in a file (File, line, positionInLine).
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Location implements Serializable {
     /*
@@ -21,6 +21,8 @@ public class Location implements Serializable {
     /**
      * Display the (line, positionInLine) as a String. The file is not
      * displayed.
+     * 
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
@@ -31,14 +33,30 @@ public class Location implements Serializable {
         }
     }
 
+    /**
+     * Accesor: return the field line of the class.
+     * 
+     * @return int
+     */
     public int getLine() {
         return line;
     }
 
+
+    /**
+     * Accesor: return the field positionInLine of the class.
+     * 
+     * @return int
+     */
     public int getPositionInLine() {
         return positionInLine;
     }
 
+    /**
+     * Accesor: return the field filename (or NO_SOURCE_NAME if filename does not exist) of the class.
+     * 
+     * @return String
+     */
     public String getFilename() {
         if (filename != null) {
             return filename;
@@ -48,10 +66,18 @@ public class Location implements Serializable {
         }
     }
 
+    // line
     private final int line;
+    // column 
     private final int positionInLine;
+    // filename
     private final String filename;
 
+    /**
+    *@param line line in code
+    *@param positionInLine column in code
+    *@param filename
+     */
     public Location(int line, int positionInLine, String filename) {
         super();
         this.line = line;

@@ -15,6 +15,10 @@ public class Main {
 
     private static final Logger LOG = Logger.getLogger(Main.class);
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         // A FAIRE : lire et modifier le fichier src/main/resources/log4j.properties
         // A FAIRE : pour controler le comportement de ces affichages.

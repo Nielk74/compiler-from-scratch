@@ -20,13 +20,29 @@ import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 
+/**
+ * Declaration of a field.
+ * 
+ * @author gl10
+ * 
+ */
 public class DeclField extends AbstractDeclField {
 
+    // Type of the field
     final private AbstractIdentifier type;
+    // Name of the field
     final private AbstractIdentifier name;
+    // Initialization of the field
     final private AbstractInitialization init;
+    // Visibility of the field
     final private Visibility visibility;
 
+    /**
+     * @param type Type of the field
+     * @param name Name of the field
+     * @param init Initialization of the field
+     * @param visibility Visibility of the field
+     */
     public DeclField(AbstractIdentifier type, AbstractIdentifier name, AbstractInitialization init,
             Visibility visibility) {
         Validate.notNull(type);
@@ -39,6 +55,9 @@ public class DeclField extends AbstractDeclField {
         this.visibility = visibility;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyDeclField(DecacCompiler compiler, ClassDefinition currentClass)
             throws ContextualError {
@@ -83,16 +102,21 @@ public class DeclField extends AbstractDeclField {
     }
 
     /* Pass 3 */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyDeclFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         Type t = type.getType();
         this.init.verifyInitialization(compiler, t, currentClass.getMembers(), currentClass);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenDeclField(DecacCompiler compiler) {
         compiler.addComment("attribute " + name.getName() + " of type " + type.getType());
-        // TODO register allocation
         init.codeGenInitialization(compiler, 2, type.getType());
         RegisterOffset offset = new RegisterOffset(-2, Register.LB);
         compiler.addInstruction(new LOAD(offset, Register.R1));
@@ -100,6 +124,9 @@ public class DeclField extends AbstractDeclField {
         compiler.addInstruction(new STORE(Register.getR(2), offset));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print(this.visibility + " ");
@@ -111,6 +138,9 @@ public class DeclField extends AbstractDeclField {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, false);
@@ -118,6 +148,9 @@ public class DeclField extends AbstractDeclField {
         init.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
 

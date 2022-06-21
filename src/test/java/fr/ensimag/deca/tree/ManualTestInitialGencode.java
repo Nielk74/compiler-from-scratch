@@ -10,10 +10,14 @@ import fr.ensimag.deca.DecacCompiler;
 /**
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class ManualTestInitialGencode {
     
+    
+    /** 
+     * @return AbstractProgram
+     */
     public static AbstractProgram initTest1() {
         ListInst linst = new ListInst();
         AbstractProgram source =
@@ -28,6 +32,11 @@ public class ManualTestInitialGencode {
         return source;
     }
     
+    
+    /** 
+     * @param source
+     * @return String
+     */
     public static String gencodeSource(AbstractProgram source) {
         DecacCompiler compiler = new DecacCompiler(null,null);
         source.codeGenProgram(compiler);
@@ -52,6 +61,10 @@ public class ManualTestInitialGencode {
 
         
         
+    
+    /** 
+     * @param args[]
+     */
     public static void main(String args[]) {
         test1();
     }

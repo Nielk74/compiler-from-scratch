@@ -17,6 +17,10 @@ import org.antlr.v4.runtime.Token;
 class DecaRecognitionException extends RecognitionException {
     private static final long serialVersionUID = -4104122409998903414L;
     Location location;
+    
+    /** 
+     * @return Location
+     */
     Location getLocation() {
         if (location != null) {
             return location;
@@ -47,6 +51,10 @@ class DecaRecognitionException extends RecognitionException {
         setOffendingToken(offendingToken);
     }
 
+    
+    /** 
+     * @param err
+     */
     void display(PrintStream err) {
         new LocationException(getMessage(), getLocation()).display(err);
     }

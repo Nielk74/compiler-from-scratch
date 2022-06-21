@@ -5,21 +5,31 @@ import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
- *
+ * Operator Lower than between two AbstractExpr
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class LowerOrEqual extends AbstractOpIneq {
+
+    /**
+    * @param leftOperand
+    * @param rightOperand
+     */
     public LowerOrEqual(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "<=";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         super.codeGenCondition(compiler, negative, l);

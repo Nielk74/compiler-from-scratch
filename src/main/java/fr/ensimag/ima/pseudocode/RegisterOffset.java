@@ -4,7 +4,7 @@ package fr.ensimag.ima.pseudocode;
  * Operand representing a register indirection with offset, e.g. 42(R3).
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class RegisterOffset extends DAddr {
     public int getOffset() {

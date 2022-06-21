@@ -12,16 +12,24 @@ import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.REM;
 
 /**
- *
+ * Operator Modulo between two AbstractExpr: %
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Modulo extends AbstractOpArith {
 
+    /**
+    * @param leftOperand
+    * @param rightOperand
+     */
     public Modulo(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -45,11 +53,18 @@ public class Modulo extends AbstractOpArith {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "%";
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);

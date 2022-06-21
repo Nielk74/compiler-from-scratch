@@ -5,7 +5,7 @@ import fr.ensimag.ima.pseudocode.UnaryInstructionImmInt;
 
 /**
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class TSTO extends UnaryInstructionImmInt {
     public TSTO(ImmediateInteger i) {

@@ -1,8 +1,10 @@
 package fr.ensimag.deca.tree;
 
 /**
+ * Print.
+ * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Print extends AbstractPrint {
     /**
@@ -13,6 +15,9 @@ public class Print extends AbstractPrint {
         super(printHex, arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String getSuffix() {
         return "";

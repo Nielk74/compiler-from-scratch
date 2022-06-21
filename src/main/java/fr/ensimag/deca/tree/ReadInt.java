@@ -1,26 +1,30 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
+import java.io.PrintStream;
+
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.RINT;
-import java.io.PrintStream;
 
 /**
+ * ReadInt.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class ReadInt extends AbstractReadExpr {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -28,23 +32,35 @@ public class ReadInt extends AbstractReadExpr {
         return this.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("readInt()");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
+    /**
+     * {@inheritDoc} 
+     * evalue l'expression et stocke son résultat dans le registre
+     * Register.getR(register_name)
+     */
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
         compiler.addInstruction(new RINT());

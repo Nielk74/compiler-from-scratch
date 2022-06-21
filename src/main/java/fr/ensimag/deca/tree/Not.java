@@ -1,30 +1,40 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.ima.pseudocode.ImmediateFloat;
-import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 /**
+ * The not operator.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Not extends AbstractUnaryExpr {
 
+    /**
+     * @param operand The operand on which the not is applied.
+     */
     public Not(AbstractExpr operand) {
         super(operand);
     }
 
+    
+    /** 
+     * {@inheritDoc}
+     * 
+     * @param compiler
+     * @param localEnv
+     * @param currentClass
+     * @return Type
+     * @throws ContextualError
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -33,11 +43,26 @@ public class Not extends AbstractUnaryExpr {
         return this.getType();
     }
 
+    
+    /** 
+     * {@inheritDoc}
+     * 
+     * @param compiler
+     * @param negative
+     * @param l
+     */
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         this.getOperand().codeGenCondition(compiler, !negative, l);
     }
 
+    
+    /** 
+     * {@inheritDoc}
+     * 
+     * @param compiler
+     * @param register_name
+     */
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
         int labelNum = compiler.labelManager.createIfThenElseLabel();
@@ -56,6 +81,12 @@ public class Not extends AbstractUnaryExpr {
         compiler.addInstruction(new LOAD(0, Register.getR(register_name)));
         compiler.addLabel(endIfLabel);
     }
+    
+    /**
+     * {@inheritDoc}
+     * 
+     * @return String
+     */
     @Override
     protected String getOperatorName() {
         return "!";

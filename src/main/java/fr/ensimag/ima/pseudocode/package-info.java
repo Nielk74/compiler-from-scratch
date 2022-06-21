@@ -7,6 +7,6 @@
  * (represented as a String).
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 package fr.ensimag.ima.pseudocode;

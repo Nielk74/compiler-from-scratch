@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * Abstract representation of an IMA program, i.e. set of Lines.
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class IMAProgram {
     private final LinkedList<AbstractLine> lines = new LinkedList<AbstractLine>();

@@ -5,22 +5,32 @@ import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
+ * The not equals operator.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class NotEquals extends AbstractOpExactCmp {
 
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public NotEquals(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "!=";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         super.codeGenCondition(compiler, negative, l);

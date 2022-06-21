@@ -7,16 +7,25 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 
 /**
+ * Abstract class for the equals and not equals operators.
+ * exact comparator (==, !=).
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractOpExactCmp extends AbstractOpCmp {
 
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public AbstractOpExactCmp(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {

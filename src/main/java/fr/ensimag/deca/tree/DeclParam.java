@@ -15,13 +15,25 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-
+/**
+ * Declaration of a parameter. 
+ * 
+ * @author gl10
+ * 
+ */
 public class DeclParam extends AbstractDeclParam {
 
+    // Type of the parameter. 
     private AbstractIdentifier type;
+    // Name of the parameter. 
     private AbstractIdentifier name;
+    // Index of the parameter. 
     private int index;
 
+    /**
+     * @param type Type of the parameter. 
+     * @param name Name of the parameter.
+     */
     public DeclParam(AbstractIdentifier type, AbstractIdentifier name) {
         Validate.notNull(type);
         Validate.notNull(name);
@@ -29,11 +41,17 @@ public class DeclParam extends AbstractDeclParam {
         this.name = name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Type verifyDeclParam(DecacCompiler compiler) throws ContextualError {
         // verify type
@@ -55,6 +73,9 @@ public class DeclParam extends AbstractDeclParam {
         return t;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyDeclParamEnv(DecacCompiler compiler, EnvironmentExp localEnv) throws ContextualError {
         ParamDefinition paramDef = new ParamDefinition(type.getType(), name.getLocation());
@@ -69,6 +90,9 @@ public class DeclParam extends AbstractDeclParam {
         ((ParamDefinition) name.getDefinition()).setOperand(new RegisterOffset(-(index + 3), Register.LB));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         this.type.decompile(s);
@@ -76,12 +100,18 @@ public class DeclParam extends AbstractDeclParam {
         this.name.decompile(s);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, false);
         name.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.type.iter(f);

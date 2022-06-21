@@ -23,15 +23,29 @@ import fr.ensimag.ima.pseudocode.instructions.POP;
 import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 
+/**
+ * The new operator.
+ * 
+ * @author gl10
+ */
 public class New extends AbstractExpr {
 
+    /**
+     * The type of the new variable.
+     */
     private AbstractIdentifier type;
 
+    /**
+     * @param type The type of the new variable.
+     */
     public New(AbstractIdentifier type) {
         Validate.notNull(type);
         this.type = type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -44,6 +58,9 @@ public class New extends AbstractExpr {
         return t.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("new ");
@@ -51,16 +68,25 @@ public class New extends AbstractExpr {
         s.print("()");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.type.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         // allocate memory for the object

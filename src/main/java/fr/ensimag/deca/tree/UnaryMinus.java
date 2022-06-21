@@ -12,15 +12,22 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 
 /**
+ * Unary minus, the unary expression.
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class UnaryMinus extends AbstractUnaryExpr {
 
+    /**
+     * @param operand Operand of the unary minus.
+     */
     public UnaryMinus(AbstractExpr operand) {
         super(operand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -32,12 +39,17 @@ public class UnaryMinus extends AbstractUnaryExpr {
         return typeOperand;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "-";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         this.getOperand().codeGenExp(compiler, register_name);

@@ -6,7 +6,7 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 
 /**
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class FMA extends BinaryInstructionDValToReg {
     public FMA(DVal op1, GPRegister op2) {

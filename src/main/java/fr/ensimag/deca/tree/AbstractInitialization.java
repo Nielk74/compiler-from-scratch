@@ -10,7 +10,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * Initialization (of variable, field, ...)
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractInitialization extends Tree {
     
@@ -26,8 +26,18 @@ public abstract class AbstractInitialization extends Tree {
             Type t, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError;
 
-
+    /**
+     * Generate assembly code for the initialization
+     * @param compiler
+     * @param register_name 
+     */
     protected abstract void codeGenInitialization(DecacCompiler compiler, int register_name);
 
+    /**
+     * Generate assembly code for the initialization with default values
+     * @param compiler
+     * @param register_name
+     * @param type Type of the variable to initialize with default value in fonction of the type
+     */
     protected abstract void codeGenInitialization(DecacCompiler compiler, int register_name, Type type);
 }

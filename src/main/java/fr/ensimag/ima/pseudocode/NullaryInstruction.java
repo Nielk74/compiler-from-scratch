@@ -6,7 +6,7 @@ import java.io.PrintStream;
  * Instruction without operand.
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public abstract class NullaryInstruction extends Instruction {
     @Override

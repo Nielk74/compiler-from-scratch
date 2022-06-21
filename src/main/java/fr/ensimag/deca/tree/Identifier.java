@@ -28,10 +28,13 @@ import fr.ensimag.ima.pseudocode.instructions.LOAD;
  * Deca Identifier
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Identifier extends AbstractIdentifier {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void checkDecoration() {
         if (getDefinition() == null) {
@@ -39,20 +42,16 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Definition getDefinition() {
         return definition;
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * ClassDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a class definition.
+     * {@inheritDoc}
      */
     @Override
     public ClassDefinition getClassDefinition() {
@@ -67,14 +66,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * MethodDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a method definition.
+     * {@inheritDoc}
      */
     @Override
     public MethodDefinition getMethodDefinition() {
@@ -89,14 +81,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * FieldDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a field definition.
+     * {@inheritDoc}
      */
     @Override
     public FieldDefinition getFieldDefinition() {
@@ -111,14 +96,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * VariableDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a field definition.
+     * {@inheritDoc}
      */
     @Override
     public VariableDefinition getVariableDefinition() {
@@ -133,14 +111,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * ExpDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a field definition.
+     * {@inheritDoc}
      */
     @Override
     public ExpDefinition getExpDefinition() {
@@ -154,23 +125,36 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setDefinition(Definition definition) {
         this.definition = definition;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Symbol getName() {
         return name;
     }
 
+    // Name of the identifier. 
     private Symbol name;
 
+    /**
+     * @param name Name of the identifier. 
+     */
     public Identifier(Symbol name) {
         Validate.notNull(name);
         this.name = name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -184,9 +168,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Implements non-terminal "type" of [SyntaxeContextuelle] in the 3 passes
-     * 
-     * @param compiler contains "env_types" attribute
+     * {@inheritDoc}
      */
     @Override
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
@@ -202,28 +184,44 @@ public class Identifier extends AbstractIdentifier {
         return currentType;
     }
 
+    // Definition of the identifier. 
     private Definition definition;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print(name.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String prettyPrintNode() {
         return "Identifier (" + getName() + ")";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintType(PrintStream s, String prefix) {
         Definition d = getDefinition();
@@ -235,12 +233,18 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenDeclClass(DecacCompiler compiler) {
         compiler.addComment("Load superclass of "+getName());
         compiler.addInstruction(new LEA(this.getClassDefinition().getSuperClass().getOperand(), Register.R0));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected DAddr codeGenLeftValue(DecacCompiler compiler, int register_name) {
         DAddr offset;

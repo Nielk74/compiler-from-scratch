@@ -28,11 +28,23 @@ import fr.ensimag.ima.pseudocode.instructions.INT;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
+/**
+ * Cast/convert an expression in a certain type
+ * @author gl10
+ * 
+ */
 public class Cast extends AbstractExpr {
 
+    // conversion in type
     private AbstractIdentifier type;
+    // expression to convert/cast
     private AbstractExpr expr;
 
+
+    /**
+    * @param type
+    * @param expr
+     */
     public Cast(AbstractIdentifier type, AbstractExpr expr) {
         Validate.notNull(type);
         Validate.notNull(expr);
@@ -40,6 +52,9 @@ public class Cast extends AbstractExpr {
         this.expr = expr;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -78,6 +93,9 @@ public class Cast extends AbstractExpr {
         return this.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         // Create labels
@@ -155,6 +173,9 @@ public class Cast extends AbstractExpr {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("(");
@@ -165,12 +186,18 @@ public class Cast extends AbstractExpr {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, false);
         expr.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.type.iter(f);

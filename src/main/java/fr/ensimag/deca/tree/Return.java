@@ -16,15 +16,27 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
+/**
+ * The return of a method.
+ */
 public class Return extends AbstractInst {
 
+    /**
+     * The returned expression.
+     */
     private AbstractExpr expr;
 
+    /**
+     * @param expr The returned expression.
+     */
     public Return(AbstractExpr expr) {
         Validate.notNull(expr);
         this.expr = expr;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass,
             Type returnType) throws ContextualError {
@@ -37,6 +49,9 @@ public class Return extends AbstractInst {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         DVal result = expr.codeGenExp(compiler);
@@ -45,6 +60,9 @@ public class Return extends AbstractInst {
         compiler.addInstruction(new BRA(endLabel));    
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("return ");
@@ -52,11 +70,17 @@ public class Return extends AbstractInst {
         s.print(";");        
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         expr.prettyPrint(s, prefix, true);                
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.expr.iter(f);        

@@ -24,12 +24,13 @@ import fr.ensimag.ima.pseudocode.instructions.LOAD;
  * Expression, i.e. anything that has a value.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractExpr extends AbstractInst {
     /**
-     * @return true if the expression does not correspond to any concrete token
+     * Return true if the expression does not correspond to any concrete token
      *         in the source code (and should be decompiled to the empty string).
+     * @return boolean
      */
     boolean isImplicit() {
         return false;
@@ -38,18 +39,26 @@ public abstract class AbstractExpr extends AbstractInst {
     /**
      * Get the type decoration associated to this expression (i.e. the type computed
      * by contextual verification).
+     * @return Type
      */
     public Type getType() {
         return type;
     }
 
+    /**
+     * Set the type of the expression. 
+     */
     protected void setType(Type type) {
         Validate.notNull(type);
         this.type = type;
     }
 
+    // Type of the expression
     private Type type;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void checkDecoration() {
         if (getType() == null) {
@@ -62,7 +71,8 @@ public abstract class AbstractExpr extends AbstractInst {
      * 
      * implements non-terminals "expr" and "lvalue"
      * of [SyntaxeContextuelle] in pass 3
-     *
+     * Return the Type of the expression
+     *         (corresponds to the "type" attribute)
      * @param compiler     (contains the "env_types" attribute)
      * @param localEnv
      *                     Environment in which the expression should be checked
@@ -71,8 +81,7 @@ public abstract class AbstractExpr extends AbstractInst {
      *                     Definition of the class containing the expression
      *                     (corresponds to the "class" attribute)
      *                     is null in the main bloc.
-     * @return the Type of the expression
-     *         (corresponds to the "type" attribute)
+     * @return Type
      */
     public abstract Type verifyExpr(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
@@ -82,12 +91,12 @@ public abstract class AbstractExpr extends AbstractInst {
      * Verify the expression in right hand-side of (implicit) assignments
      * 
      * implements non-terminal "rvalue" of [SyntaxeContextuelle] in pass 3
-     *
+     * Return this with an additional ConvFloat if needed...
      * @param compiler     contains the "env_types" attribute
      * @param localEnv     corresponds to the "env_exp" attribute
      * @param currentClass corresponds to the "class" attribute
      * @param expectedType corresponds to the "type1" attribute
-     * @return this with an additional ConvFloat if needed...
+     * @return AbstractExpr
      */
     public AbstractExpr verifyRValue(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass,
@@ -124,6 +133,9 @@ public abstract class AbstractExpr extends AbstractInst {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
@@ -163,17 +175,26 @@ public abstract class AbstractExpr extends AbstractInst {
         compiler.addInstruction(new LOAD(d, Register.R1));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         this.codeGenExp(compiler, 2);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void decompileInst(IndentPrintStream s) {
         decompile(s);
         s.print(";");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintType(PrintStream s, String prefix) {
         Type t = getType();
@@ -184,20 +205,29 @@ public abstract class AbstractExpr extends AbstractInst {
             s.println();
         }
     }
+    /**
+     * Evaluate the expression and store the result in the register
+     * Register.getR(register_name)
+     * @param compiler
+     * @param register_name
+     */
+    protected abstract void codeGenExp(DecacCompiler compiler, int register_name);
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
-    protected void codeGenExp(DecacCompiler compiler, int register_name) {
-        // throw new UnsupportedOperationException("not yet implemented");
-        // compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
-    }
-
-    // evalue l'expression et retourne une Dval contenant son résultat
+    /**
+     * Evaluate the expression and return a Dval containing its result
+     * @param compiler
+     */
     protected DVal codeGenExp(DecacCompiler compiler) {
         this.codeGenExp(compiler, 2);
         return Register.getR(2);
     }
 
+    /**
+     * Generate assembly code for a conditional expression
+     * @param compiler
+     * @param negative Indicates if the expression have to be its negative.
+     * @param l Label to jump on if the expression is false.
+     */
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         DVal d = this.codeGenExp(compiler);
      

@@ -14,14 +14,21 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * Arithmetic binary operations (+, -, /, ...)
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractOpArith extends AbstractBinaryExpr {
 
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public AbstractOpArith(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -56,6 +63,9 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         return this.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         if (compiler.getCompilerOptions().getRegisterMax() == register_name) {

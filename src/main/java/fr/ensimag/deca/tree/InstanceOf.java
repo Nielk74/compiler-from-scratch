@@ -5,7 +5,6 @@ import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -22,11 +21,23 @@ import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
+/**
+ * InstanceOf
+ * 
+ * @author gl10
+ * 
+ */
 public class InstanceOf extends AbstractExpr {
 
+    // Type of the instanceOf
     private AbstractIdentifier type;
+    // Expression of the instanceOf
     private AbstractExpr expr;
 
+    /**
+     * @param type Type of the InstanceOf
+     * @param expr Expression of the InstanceOf
+     */
     public InstanceOf(AbstractIdentifier type, AbstractExpr expr) {
         Validate.notNull(type);
         Validate.notNull(expr);
@@ -34,6 +45,9 @@ public class InstanceOf extends AbstractExpr {
         this.expr = expr;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -58,6 +72,9 @@ public class InstanceOf extends AbstractExpr {
         return compiler.environmentType.BOOLEAN;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("(");
@@ -68,12 +85,18 @@ public class InstanceOf extends AbstractExpr {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, true);
         expr.prettyPrint(s, prefix, false);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.type.iter(f);
@@ -81,6 +104,9 @@ public class InstanceOf extends AbstractExpr {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         compiler.addComment("InstanceOf");

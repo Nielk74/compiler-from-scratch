@@ -21,11 +21,26 @@ import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 
+/**
+ * The selection of the field of a class.
+ * 
+ * @author gl10
+ */
 public class Selection extends AbstractLValue {
 
+    /**
+     * The expression of the selection.
+     */
     private AbstractExpr expr;
+    /**
+     * The field of the selection.
+     */
     private AbstractIdentifier field;
 
+    /**
+     * @param expr The expression of the selection.
+     * @param field The field of the selection.
+     */
     public Selection(AbstractExpr expr, AbstractIdentifier field) {
         Validate.notNull(expr);
         Validate.notNull(field);
@@ -33,6 +48,9 @@ public class Selection extends AbstractLValue {
         this.field = field;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -71,6 +89,9 @@ public class Selection extends AbstractLValue {
         return fieldDef.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         this.expr.decompile(s);
@@ -79,18 +100,27 @@ public class Selection extends AbstractLValue {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         expr.prettyPrint(s, prefix, false);
         field.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.expr.iter(f);
         this.field.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected DAddr codeGenLeftValue(DecacCompiler compiler, int register_name) {
         expr.codeGenExp(compiler, register_name);

@@ -7,8 +7,15 @@ import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 
+/**
+ * A class' list of parameter declarations 
+ *  @author gl10
+ */
 public class ListDeclParam extends TreeList<AbstractDeclParam> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         for (AbstractDeclParam p : getList()) {
@@ -18,6 +25,12 @@ public class ListDeclParam extends TreeList<AbstractDeclParam> {
         }
     }
 
+     /**
+     * Verify contextually each parameter declaration.
+     * 
+     * @param compiler
+     * @return Signature create a signature of a function with the paramaters types
+     */
     Signature verifyListDeclParam(DecacCompiler compiler) throws ContextualError {
         Signature sig = new Signature();
         Type t;
@@ -28,6 +41,12 @@ public class ListDeclParam extends TreeList<AbstractDeclParam> {
         return sig;
     }
 
+    /**
+     * Verify contextually each parameter declaration with the local environment.
+     * 
+     * @param compiler
+     * @param localEnv 
+     */
     public void verifyListDeclParamEnv(DecacCompiler compiler, EnvironmentExp localEnv) throws ContextualError {
         int i = 0;
         for (AbstractDeclParam p : getList()) {

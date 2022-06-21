@@ -14,9 +14,7 @@ import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.DVal;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -28,12 +26,26 @@ import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import fr.ensimag.ima.pseudocode.instructions.SUBSP;
 
+/**
+ * MethodCall
+ *
+ * @author gl10
+ * 
+ */
 public class MethodCall extends AbstractExpr {
 
+    // Expression of the method call.
     private AbstractExpr expr;
+    // Method to call.
     private AbstractIdentifier method;
+    // Arguments of the method.
     private ListExpr args;
 
+    /**
+     * @param expr Expression of the method call.
+     * @param method Method to call. 
+     * @param args Arguments of the method. 
+     */
     public MethodCall(AbstractExpr expr, AbstractIdentifier method, ListExpr args) {
         Validate.notNull(expr);
         Validate.notNull(method);
@@ -43,6 +55,9 @@ public class MethodCall extends AbstractExpr {
         this.args = args;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -77,6 +92,9 @@ public class MethodCall extends AbstractExpr {
         return methodDef.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
 
@@ -94,6 +112,9 @@ public class MethodCall extends AbstractExpr {
         s.print(")");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         ClassDefinition classDef = ((ClassType) (expr.getType())).getDefinition();
@@ -145,6 +166,9 @@ public class MethodCall extends AbstractExpr {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         expr.prettyPrint(s, prefix, false);
@@ -152,6 +176,9 @@ public class MethodCall extends AbstractExpr {
         args.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.expr.iter(f);
