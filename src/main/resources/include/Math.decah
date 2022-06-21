@@ -2,22 +2,429 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
+    float deux_PI = 0x1.921fb6p2;
+	float PI = 0x1.921fb6p1;
+	float PI_deux = 0x1.921fb6p0;
+	float PI_quatre = 0x1.921fb6p-1;
+
+	float S1 = -0x1.555556p-3;
+	float S2 = 0x1.111112p-7;
+	float S3 = -0x1.a01ap-13;
+	float S4 = 0x1.71de2ap-19;
+	float S5 = -0x1.ae6456p-26;
+	float S6 = 0x1.612462p-33;
+
+	float C1 = 0x1.555556p-5;
+	float C2 = -0x1.6c16c2p-10;
+	float C3 = 0x1.a01a02p-16;
+	float C4 = -0x1.27e4f8p-22;
+	float C5 = 0x1.1ee9ecp-29;
+	float C6 = -0x1.8fae9cp-37;
+
+	float A1 = 0x1.555556p-3;
+	float A2 = 0x1.333334p-4;
+	float A3 = 0x1.6db6dcp-5;
+	float A4 = 0x1.f1c71cp-6;
+	float A5 = 0x1.6e8ba2p-6;
+	float A6 = 0x1.1c4ec4p-6;
+
     float sin(float f) {
-        println("sin(f) not yet implemented");
+        float pow, puissance_2;
+        boolean neg = false;
+        float somme = 0;
+        if (f < 0) {
+            f = -f;
+            neg = true;
+        }
+        f = _modulo2PI(f);
+	    if(f>=PI) {
+	    	neg = !neg;
+	    	f = deux_PI - f;
+	    }
+	    if(f>=PI_deux) {
+	    	f = PI - f;
+	    }
+	    if(f>=PI_quatre){
+	    	f = PI_deux - f;
+			if(neg){
+				return -cos(f);
+			}
+			else{
+				return cos(f);
+			}
+	    } else {	
+	    	// FORMULE SIN
+	    	somme = f;
+	     	pow = f;
+	    	if(f>0x1.0p-49){
+	     		puissance_2 = f*f;
+	     		pow = pow*puissance_2;
+	     		somme = somme + S1*pow;
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + S2*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + S3*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + S4*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + S5*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + S6*pow;
+	    		}
+	    	}
+	    }
+	    if(neg) {
+	    	somme = -somme;
+	    }
+	    return somme;
     }
     float cos(float f) {
-        println("cos(f) not yet implemented");
+        float pow, puissance_2;
+        boolean neg = false;
+        float somme = 0.0;
+		if (f < 0) {
+			f = -f;
+		}
+        f = _modulo2PI(f);
+	    if(f>=PI) {
+	    	f = deux_PI - f;
+	    }
+	    if(f>=PI_deux) {
+	    	neg = !neg;
+	    	f = PI - f;
+	    }
+	    if(f>=PI_quatre){
+	    	f = PI_deux - f;
+	    	if(neg){
+	    		return -sin(f);
+	    	}
+	    	else{
+	    		return sin(f);
+	    	}
+	    } else {
+	    	// FORMULE COS
+	    	somme = 1;
+	    	if(f>0x1.0p-72){
+	    		somme = somme-f*f/2;
+	     		pow = f*f;
+	     		puissance_2 = f*f;
+	    		// Cx are at least 0x1.0p-30
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + C1*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + C2*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + C3*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + C4*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + C5*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			somme = somme + C6*pow;
+	    		}
+	    	}
+	    }
+	    if(neg) {
+		    somme = -somme;
+	    }
+        return somme;
     }
-    float asin(float f) {
-        println("asin(f) not yet implemented");
-    }
-    float atan(float f) {
-        println("atan(f) not yet implemented");
-    }
-    float ulp(float f) {
-        println("ulp(f) not yet implemented");
-    }
-}
 
+    float asin(float f) {
+		float pow, puissance_2;
+    	float res = 0;
+    	float fact = 0, resDiv;
+    	boolean neg = false;
+		if(f==0.0){
+			return 0.0;
+		}
+    	if(f<0.0){
+    	    f = -f;
+    	    neg = true;
+    	}
+		if(f>1.0){
+			println("Wrong : f for asin(f) must be between -1 and 1");
+			print(0/0);
+		}
+		if(f==1.0){
+			res = PI_deux;
+		}else if(f<0.3){
+			// FORMULE ASIN
+	    	if(f>0x1.0p-49){
+				res = f;
+	     		puissance_2 = f*f;
+	     		pow = f*puissance_2;
+	     		res = res + A1*pow;
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			res = res + A2*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			res = res + A3*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			res = res + A4*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			res = res + A5*pow;
+	    		}
+	    		if(pow > 0x1.0p-59){ 
+	     			pow = pow*puissance_2;
+	     			res = res + A6*pow;
+	    		}
+	    	}
+		}else{
+			fact = 2*f -1;
+			res = 2.420122797 - 2.169670497*f;
+			res = res - 0.2667407008*fact*fact;
+			res = res + 0.1783360790*fact*fact*fact;
+			resDiv = 1.941200684 - 1.960601847*f;
+			resDiv = resDiv + 0.07820047988*fact*fact;
+			resDiv = resDiv + 0.04436068112*fact*fact*fact;
+			res = res/resDiv;
+			res = res - _sqrt(1.0 - f*f);
+		}
+    	if(neg){
+    	    res = -res;
+    	}
+		return res;
+    }
+
+	float _atan_1(float f) {
+		boolean neg = false, inverse = false;
+    	float res = 0.0;
+		float pow2;
+    	if(f == 0){
+    	    return 0.0;
+    	}
+    	if(f<0.0){
+    	    f = -f;
+    	    neg = true;
+    	}
+    	if(f>1.0){
+    	    f = 1.0/f;
+    	    inverse = true;
+    	}
+		if(f==1.0){
+			res = 0x1.921fb6p-1;
+		}else{
+			if(f > 0x1.0p-49){ 
+				//f(x) = 0.785398163 + 0.5*(x-1) + (-1/4)*(x-1)^2 +(1/12)*(x-1)^3 + 0 + (-1.0/40)*(x-1)^5 + (1/48)*(x-1)^6 + + (-1/112)(x-1)^7
+				res = 0x1.921fb6p-1;
+				pow2 = f-1;
+				res = res + 0x1.0p-1*pow2;
+				if(_getExponentHex(pow2)+_getExponentHex(f-1)>-125){
+					pow2 = (f-1)*pow2;
+					res = res - 0x1.0p-2*pow2;
+				}
+				if(_getExponentHex(pow2)+_getExponentHex(f-1)>-123){
+					pow2 = (f-1)*pow2;
+					res = res + 0x1.555556p-4*pow2;
+				}
+				if(_getExponentHex(pow2)+_getExponentHex(f-1)>-121){
+					pow2 = (f-1)*pow2;
+					pow2 = (f-1)*pow2;
+					res = res - 0x1.99999ap-6*pow2;
+				}
+				if(_getExponentHex(pow2)+_getExponentHex(f-1)>-121){
+					pow2 = (f-1)*pow2;
+					res = res + 0x1.555556p-6*pow2;
+				}
+				if(_getExponentHex(pow2)+_getExponentHex(f-1)>-120){
+					pow2 = (f-1)*pow2;
+					res = res - 0x1.24924ap-7*pow2;
+				}
+			}
+    	}
+    	if(inverse){
+    	    res = PI_deux - res;
+    	}
+    	if(neg){
+    	    res = -res;
+    	}
+		return res;
+	}
+
+	float atan(float f) {
+        boolean neg = false, inverse = false;
+    	float res = 0.0;
+    	float pow, puissance2;
+    	if(f == 0){
+    	    return 0.0;
+    	}
+    	if(f<0.0){
+    	    f = -f;
+    	    neg = true;
+    	}
+    	if(f>1.0){
+    	    f = 1.0/f;
+    	    inverse = true;
+    	}
+		if(f==1.0){
+			res = 0x1.921fb6p-1;
+		}else if( (f>0.54 && f<1.86) || (f>-1.86 && f<-0.54)){
+			res = _atan_1(f);
+		}else{
+    	// série de taylor
+    	// -149 /3 = -49 (f*f*f)
+			res = f;
+			if(f > 0x1.0p-49){ 
+				puissance2 = f*f;
+				pow = f*puissance2;
+				res = res - pow/3.0;
+				if(pow > 0x1.0p-59){ 
+					pow = pow*puissance2;
+					res = res + pow/5.0;
+				}
+				if(pow > 0x1.0p-59){ 
+					pow = pow*puissance2;
+					res = res - pow/7.0;
+				}
+				if(pow > 0x1.0p-59){ 
+					pow = pow*puissance2;
+					res = res + pow/9.0;
+				}
+				if(pow > 0x1.0p-59){ 
+					pow = pow*puissance2;
+					res = res - pow/11.0;
+				}
+				if(pow > 0x1.0p-59){ 
+					pow = pow*puissance2;
+					res = res + pow/13.0;
+				}
+			}
+    	}
+    	if(inverse){
+    	    res = PI_deux - res;
+    	}
+    	if(neg){
+    	    res = -res;
+    	}
+		return res;
+    }
+
+    float ulp(float f) {
+        int k;
+        float power_k;
+        if(f < 0){
+            f = -f;
+        }
+        if(f <= 0x1.0p-126){
+            f = 0x1.0p-149;
+        }else{
+            k = _getExponentHex(f) - 23;
+            power_k = _2puissanceK(k);
+            if(k < -149){
+                f = 0x1.0p-149;
+            }
+            else{
+                f = power_k;
+            }
+            f = power_k;
+        }
+        return f;
+    }
+
+    float _2puissanceK(int k){
+        if( k==1 ){ return 0x1.0p1; } else if( k==2 ){ return 0x1.0p2; } else if( k==3 ){ return 0x1.0p3; } else if( k==4 ){ return 0x1.0p4; } else if( k==5 ){ return 0x1.0p5; } else if( k==6 ){ return 0x1.0p6; } else if( k==7 ){ return 0x1.0p7; } else if( k==8 ){ return 0x1.0p8; } else if( k==9 ){ return 0x1.0p9; } else if( k==10 ){ return 0x1.0p10; } else if( k==11 ){ return 0x1.0p11; } else if( k==12 ){ return 0x1.0p12; } else if( k==13 ){ return 0x1.0p13; } else if( k==14 ){ return 0x1.0p14; } else if( k==15 ){ return 0x1.0p15; } else if( k==16 ){ return 0x1.0p16; } else if( k==17 ){ return 0x1.0p17; } else if( k==18 ){ return 0x1.0p18; } else if( k==19 ){ return 0x1.0p19; } else if( k==20 ){ return 0x1.0p20; } else if( k==21 ){ return 0x1.0p21; } else if( k==22 ){ return 0x1.0p22; } else if( k==23 ){ return 0x1.0p23; } else if( k==24 ){ return 0x1.0p24; } else if( k==25 ){ return 0x1.0p25; } else if( k==26 ){ return 0x1.0p26; } else if( k==27 ){ return 0x1.0p27; } else if( k==28 ){ return 0x1.0p28; } else if( k==29 ){ return 0x1.0p29; } else if( k==30 ){ return 0x1.0p30; } else if( k==31 ){ return 0x1.0p31; } else if( k==32 ){ return 0x1.0p32; } else if( k==33 ){ return 0x1.0p33; } else if( k==34 ){ return 0x1.0p34; } else if( k==35 ){ return 0x1.0p35; } else if( k==36 ){ return 0x1.0p36; } else if( k==37 ){ return 0x1.0p37; } else if( k==38 ){ return 0x1.0p38; } else if( k==39 ){ return 0x1.0p39; } else if( k==40 ){ return 0x1.0p40; } else if( k==41 ){ return 0x1.0p41; } else if( k==42 ){ return 0x1.0p42; } else if( k==43 ){ return 0x1.0p43; } else if( k==44 ){ return 0x1.0p44; } else if( k==45 ){ return 0x1.0p45; } else if( k==46 ){ return 0x1.0p46; } else if( k==47 ){ return 0x1.0p47; } else if( k==48 ){ return 0x1.0p48; } else if( k==49 ){ return 0x1.0p49; } else if( k==50 ){ return 0x1.0p50; } else if( k==51 ){ return 0x1.0p51; } else if( k==52 ){ return 0x1.0p52; } else if( k==53 ){ return 0x1.0p53; } else if( k==54 ){ return 0x1.0p54; } else if( k==55 ){ return 0x1.0p55; } else if( k==56 ){ return 0x1.0p56; } else if( k==57 ){ return 0x1.0p57; } else if( k==58 ){ return 0x1.0p58; } else if( k==59 ){ return 0x1.0p59; } else if( k==60 ){ return 0x1.0p60; } else if( k==61 ){ return 0x1.0p61; } else if( k==62 ){ return 0x1.0p62; } else if( k==63 ){ return 0x1.0p63; } else if( k==64 ){ return 0x1.0p64; } else if( k==65 ){ return 0x1.0p65; } else if( k==66 ){ return 0x1.0p66; } else if( k==67 ){ return 0x1.0p67; } else if( k==68 ){ return 0x1.0p68; } else if( k==69 ){ return 0x1.0p69; } else if( k==70 ){ return 0x1.0p70; } else if( k==71 ){ return 0x1.0p71; } else if( k==72 ){ return 0x1.0p72; } else if( k==73 ){ return 0x1.0p73; } else if( k==74 ){ return 0x1.0p74; } else if( k==75 ){ return 0x1.0p75; } else if( k==76 ){ return 0x1.0p76; } else if( k==77 ){ return 0x1.0p77; } else if( k==78 ){ return 0x1.0p78; } else if( k==79 ){ return 0x1.0p79; } else if( k==80 ){ return 0x1.0p80; } else if( k==81 ){ return 0x1.0p81; } else if( k==82 ){ return 0x1.0p82; } else if( k==83 ){ return 0x1.0p83; } else if( k==84 ){ return 0x1.0p84; } else if( k==85 ){ return 0x1.0p85; } else if( k==86 ){ return 0x1.0p86; } else if( k==87 ){ return 0x1.0p87; } else if( k==88 ){ return 0x1.0p88; } else if( k==89 ){ return 0x1.0p89; } else if( k==90 ){ return 0x1.0p90; } else if( k==91 ){ return 0x1.0p91; } else if( k==92 ){ return 0x1.0p92; } else if( k==93 ){ return 0x1.0p93; } else if( k==94 ){ return 0x1.0p94; } else if( k==95 ){ return 0x1.0p95; } else if( k==96 ){ return 0x1.0p96; } else if( k==97 ){ return 0x1.0p97; } else if( k==98 ){ return 0x1.0p98; } else if( k==99 ){ return 0x1.0p99; } else if( k==100 ){ return 0x1.0p100; } else if( k==101 ){ return 0x1.0p101; } else if( k==102 ){ return 0x1.0p102; } else if( k==103 ){ return 0x1.0p103; } else if( k==104 ){ return 0x1.0p104; } else if( k==105 ){ return 0x1.0p105; } else if( k==106 ){ return 0x1.0p106; } else if( k==107 ){ return 0x1.0p107; } else if( k==108 ){ return 0x1.0p108; } else if( k==109 ){ return 0x1.0p109; } else if( k==110 ){ return 0x1.0p110; } else if( k==111 ){ return 0x1.0p111; } else if( k==112 ){ return 0x1.0p112; } else if( k==113 ){ return 0x1.0p113; } else if( k==114 ){ return 0x1.0p114; } else if( k==115 ){ return 0x1.0p115; } else if( k==116 ){ return 0x1.0p116; } else if( k==117 ){ return 0x1.0p117; } else if( k==118 ){ return 0x1.0p118; } else if( k==119 ){ return 0x1.0p119; } else if( k==120 ){ return 0x1.0p120; } else if( k==121 ){ return 0x1.0p121; } else if( k==122 ){ return 0x1.0p122; } else if( k==123 ){ return 0x1.0p123; } else if( k==124 ){ return 0x1.0p124; } else if( k==125 ){ return 0x1.0p125; } else if( k==126 ){ return 0x1.0p126; }  else if( k==127 ){ return 0x1.0p127; }
+        if( k==-149 ){ return 0x1.0p-149; } else if( k==-148 ){ return 0x1.0p-148; } else if( k==-147 ){ return 0x1.0p-147; } else if( k==-146 ){ return 0x1.0p-146; } else if( k==-145 ){ return 0x1.0p-145; } else if( k==-144 ){ return 0x1.0p-144; } else if( k==-143 ){ return 0x1.0p-143; } else if( k==-142 ){ return 0x1.0p-142; } else if( k==-141 ){ return 0x1.0p-141; } else if( k==-140 ){ return 0x1.0p-140; } else if( k==-139 ){ return 0x1.0p-139; } else if( k==-138 ){ return 0x1.0p-138; } else if( k==-137 ){ return 0x1.0p-137; } else if( k==-136 ){ return 0x1.0p-136; } else if( k==-135 ){ return 0x1.0p-135; } else if( k==-134 ){ return 0x1.0p-134; } else if( k==-133 ){ return 0x1.0p-133; } else if( k==-132 ){ return 0x1.0p-132; } else if( k==-131 ){ return 0x1.0p-131; } else if( k==-130 ){ return 0x1.0p-130; } else if( k==-129 ){ return 0x1.0p-129; } else if( k==-128 ){ return 0x1.0p-128; } else if( k==-127 ){ return 0x1.0p-127; } else if( k==-126 ){ return 0x1.0p-126; } else if( k==-125 ){ return 0x1.0p-125; } else if( k==-124 ){ return 0x1.0p-124; } else if( k==-123 ){ return 0x1.0p-123; } else if( k==-122 ){ return 0x1.0p-122; } else if( k==-121 ){ return 0x1.0p-121; } else if( k==-120 ){ return 0x1.0p-120; } else if( k==-119 ){ return 0x1.0p-119; } else if( k==-118 ){ return 0x1.0p-118; } else if( k==-117 ){ return 0x1.0p-117; } else if( k==-116 ){ return 0x1.0p-116; } else if( k==-115 ){ return 0x1.0p-115; } else if( k==-114 ){ return 0x1.0p-114; } else if( k==-113 ){ return 0x1.0p-113; } else if( k==-112 ){ return 0x1.0p-112; } else if( k==-111 ){ return 0x1.0p-111; } else if( k==-110 ){ return 0x1.0p-110; } else if( k==-109 ){ return 0x1.0p-109; } else if( k==-108 ){ return 0x1.0p-108; } else if( k==-107 ){ return 0x1.0p-107; } else if( k==-106 ){ return 0x1.0p-106; } else if( k==-105 ){ return 0x1.0p-105; } else if( k==-104 ){ return 0x1.0p-104; } else if( k==-103 ){ return 0x1.0p-103; } else if( k==-102 ){ return 0x1.0p-102; } else if( k==-101 ){ return 0x1.0p-101; } else if( k==-100 ){ return 0x1.0p-100; } else if( k==-99 ){ return 0x1.0p-99; } else if( k==-98 ){ return 0x1.0p-98; } else if( k==-97 ){ return 0x1.0p-97; } else if( k==-96 ){ return 0x1.0p-96; } else if( k==-95 ){ return 0x1.0p-95; } else if( k==-94 ){ return 0x1.0p-94; } else if( k==-93 ){ return 0x1.0p-93; } else if( k==-92 ){ return 0x1.0p-92; } else if( k==-91 ){ return 0x1.0p-91; } else if( k==-90 ){ return 0x1.0p-90; } else if( k==-89 ){ return 0x1.0p-89; } else if( k==-88 ){ return 0x1.0p-88; } else if( k==-87 ){ return 0x1.0p-87; } else if( k==-86 ){ return 0x1.0p-86; } else if( k==-85 ){ return 0x1.0p-85; } else if( k==-84 ){ return 0x1.0p-84; } else if( k==-83 ){ return 0x1.0p-83; } else if( k==-82 ){ return 0x1.0p-82; } else if( k==-81 ){ return 0x1.0p-81; } else if( k==-80 ){ return 0x1.0p-80; } else if( k==-79 ){ return 0x1.0p-79; } else if( k==-78 ){ return 0x1.0p-78; } else if( k==-77 ){ return 0x1.0p-77; } else if( k==-76 ){ return 0x1.0p-76; } else if( k==-75 ){ return 0x1.0p-75; } else if( k==-74 ){ return 0x1.0p-74; } else if( k==-73 ){ return 0x1.0p-73; } else if( k==-72 ){ return 0x1.0p-72; } else if( k==-71 ){ return 0x1.0p-71; } else if( k==-70 ){ return 0x1.0p-70; } else if( k==-69 ){ return 0x1.0p-69; } else if( k==-68 ){ return 0x1.0p-68; } else if( k==-67 ){ return 0x1.0p-67; } else if( k==-66 ){ return 0x1.0p-66; } else if( k==-65 ){ return 0x1.0p-65; } else if( k==-64 ){ return 0x1.0p-64; } else if( k==-63 ){ return 0x1.0p-63; } else if( k==-62 ){ return 0x1.0p-62; } else if( k==-61 ){ return 0x1.0p-61; } else if( k==-60 ){ return 0x1.0p-60; } else if( k==-59 ){ return 0x1.0p-59; } else if( k==-58 ){ return 0x1.0p-58; } else if( k==-57 ){ return 0x1.0p-57; } else if( k==-56 ){ return 0x1.0p-56; } else if( k==-55 ){ return 0x1.0p-55; } else if( k==-54 ){ return 0x1.0p-54; } else if( k==-53 ){ return 0x1.0p-53; } else if( k==-52 ){ return 0x1.0p-52; } else if( k==-51 ){ return 0x1.0p-51; } else if( k==-50 ){ return 0x1.0p-50; } else if( k==-49 ){ return 0x1.0p-49; } else if( k==-48 ){ return 0x1.0p-48; } else if( k==-47 ){ return 0x1.0p-47; } else if( k==-46 ){ return 0x1.0p-46; } else if( k==-45 ){ return 0x1.0p-45; } else if( k==-44 ){ return 0x1.0p-44; } else if( k==-43 ){ return 0x1.0p-43; } else if( k==-42 ){ return 0x1.0p-42; } else if( k==-41 ){ return 0x1.0p-41; } else if( k==-40 ){ return 0x1.0p-40; } else if( k==-39 ){ return 0x1.0p-39; } else if( k==-38 ){ return 0x1.0p-38; } else if( k==-37 ){ return 0x1.0p-37; } else if( k==-36 ){ return 0x1.0p-36; } else if( k==-35 ){ return 0x1.0p-35; } else if( k==-34 ){ return 0x1.0p-34; } else if( k==-33 ){ return 0x1.0p-33; } else if( k==-32 ){ return 0x1.0p-32; } else if( k==-31 ){ return 0x1.0p-31; } else if( k==-30 ){ return 0x1.0p-30; } else if( k==-29 ){ return 0x1.0p-29; } else if( k==-28 ){ return 0x1.0p-28; } else if( k==-27 ){ return 0x1.0p-27; } else if( k==-26 ){ return 0x1.0p-26; } else if( k==-25 ){ return 0x1.0p-25; } else if( k==-24 ){ return 0x1.0p-24; } else if( k==-23 ){ return 0x1.0p-23; } else if( k==-22 ){ return 0x1.0p-22; } else if( k==-21 ){ return 0x1.0p-21; } else if( k==-20 ){ return 0x1.0p-20; } else if( k==-19 ){ return 0x1.0p-19; } else if( k==-18 ){ return 0x1.0p-18; } else if( k==-17 ){ return 0x1.0p-17; } else if( k==-16 ){ return 0x1.0p-16; } else if( k==-15 ){ return 0x1.0p-15; } else if( k==-14 ){ return 0x1.0p-14; } else if( k==-13 ){ return 0x1.0p-13; } else if( k==-12 ){ return 0x1.0p-12; } else if( k==-11 ){ return 0x1.0p-11; } else if( k==-10 ){ return 0x1.0p-10; } else if( k==-9 ){ return 0x1.0p-9; } else if( k==-8 ){ return 0x1.0p-8; } else if( k==-7 ){ return 0x1.0p-7; } else if( k==-6 ){ return 0x1.0p-6; } else if( k==-5 ){ return 0x1.0p-5; } else if( k==-4 ){ return 0x1.0p-4; } else if( k==-3 ){ return 0x1.0p-3; } else if( k==-2 ){ return 0x1.0p-2; } else if( k==-1 ){ return 0x1.0p-1; } else if( k==0 ){ return 0x1.0p0; }
+        println("Wrong : 2^",k," cannot be represented in float");
+		print(0/0);
+        return 0.0;
+    }
+
+	float _modulo2PI(float f){
+
+        float mod_k;
+        float somme =0.0;
+        int k;
+        while(f>=deux_PI) {
+            //k = exposant hexadecimal de f
+            k = _getExponentHex(f);
+	    	if( k ==1 ){ mod_k = 0x1.0p1; } else if( k ==2 ){ mod_k = 0x1.0p2; } else if( k ==3 ){ mod_k = 0x1.b7812ap0; } else if( k ==4 ){ mod_k = 0x1.b7812ap1; } else if( k ==5 ){ mod_k = 0x1.2b0baep-1; } else if( k ==6 ){ mod_k = 0x1.2b0baep0; } else if( k ==7 ){ mod_k = 0x1.2b0baep1; } else if( k ==8 ){ mod_k = 0x1.2b0baep2; } else if( k ==9 ){ mod_k = 0x1.87ef4ap1; } else if( k ==10 ){ mod_k = 0x1.87ef4ap2; } else if( k ==11 ){ mod_k = 0x1.7dbeep2; } else if( k ==12 ){ mod_k = 0x1.695e0cp2; } else if( k ==13 ){ mod_k = 0x1.409c62p2; } else if( k ==14 ){ mod_k = 0x1.de321cp1; } else if( k ==15 ){ mod_k = 0x1.30499ap0; } else if( k ==16 ){ mod_k = 0x1.30499ap1; } else if( k ==17 ){ mod_k = 0x1.30499ap2; } else if( k ==18 ){ mod_k = 0x1.9ce6fcp1; } else if( k ==19 ){ mod_k = 0x1.58e8ecp-3; } else if( k ==20 ){ mod_k = 0x1.58e8ecp-2; } else if( k ==21 ){ mod_k = 0x1.58e8ecp-1; } else if( k ==22 ){ mod_k = 0x1.58e8ecp0; } else if( k ==23 ){ mod_k = 0x1.58e8ecp1; } else if( k ==24 ){ mod_k = 0x1.58e8ecp2; } else if( k ==25 ){ mod_k = 0x1.1fb222p2; } else if( k ==26 ){ mod_k = 0x1.5a892p1; } else if( k ==27 ){ mod_k = 0x1.5a892p2; } else if( k ==28 ){ mod_k = 0x1.22f28cp2; } else if( k ==29 ){ mod_k = 0x1.678ac8p1; } else if( k ==30 ){ mod_k = 0x1.678ac8p2; } else if( k ==31 ){ mod_k = 0x1.3cf5dcp2; } else if( k ==32 ){ mod_k = 0x1.cf9802p1; } else if( k ==33 ){ mod_k = 0x1.ebc26cp-1; } else if( k ==34 ){ mod_k = 0x1.ebc26cp0; } else if( k ==35 ){ mod_k = 0x1.ebc26cp1; } else if( k ==36 ){ mod_k = 0x1.668adap0; } else if( k ==37 ){ mod_k = 0x1.668adap1; } else if( k ==38 ){ mod_k = 0x1.668adap2; } else if( k ==39 ){ mod_k = 0x1.3af5fep2; } else if( k ==40 ){ mod_k = 0x1.c7988ap1; } else if( k ==41 ){ mod_k = 0x1.abc6aap-1; } else if( k ==42 ){ mod_k = 0x1.abc6aap0; } else if( k ==43 ){ mod_k = 0x1.abc6aap1; } else if( k ==44 ){ mod_k = 0x1.9a6f58p-2; } else if( k ==45 ){ mod_k = 0x1.9a6f58p-1; } else if( k ==46 ){ mod_k = 0x1.9a6f58p0; } else if( k ==47 ){ mod_k = 0x1.9a6f58p1; } else if( k ==48 ){ mod_k = 0x1.09f468p-3; } else if( k ==49 ){ mod_k = 0x1.09f468p-2; } else if( k ==50 ){ mod_k = 0x1.09f468p-1; } else if( k ==51 ){ mod_k = 0x1.09f468p0; } else if( k ==52 ){ mod_k = 0x1.09f468p1; } else if( k ==53 ){ mod_k = 0x1.09f468p2; } else if( k ==54 ){ mod_k = 0x1.039236p1; } else if( k ==55 ){ mod_k = 0x1.039236p2; } else if( k ==56 ){ mod_k = 0x1.d412dep0; } else if( k ==57 ){ mod_k = 0x1.d412dep1; } else if( k ==58 ){ mod_k = 0x1.07cca4p0; } else if( k ==59 ){ mod_k = 0x1.07cca4p1; } else if( k ==60 ){ mod_k = 0x1.07cca4p2; } else if( k ==61 ){ mod_k = 0x1.f5e64cp0; } else if( k ==62 ){ mod_k = 0x1.f5e64cp1; } else if( k ==63 ){ mod_k = 0x1.8f1a5cp0; } else if( k ==64 ){ mod_k = 0x1.8f1a5cp1; } else if( k ==65 ){ mod_k = 0x1.8f1a5cp2; } else if( k ==66 ){ mod_k = 0x1.8c1504p2; } else if( k ==67 ){ mod_k = 0x1.860a52p2; } else if( k ==68 ){ mod_k = 0x1.79f4eep2; } else if( k ==69 ){ mod_k = 0x1.61ca24p2; } else if( k ==70 ){ mod_k = 0x1.317494p2; } else if( k ==71 ){ mod_k = 0x1.a192e8p1; } else if( k ==72 ){ mod_k = 0x1.ee663ap-3; } else if( k ==73 ){ mod_k = 0x1.ee663ap-2; } else if( k ==74 ){ mod_k = 0x1.ee663ap-1; } else if( k ==75 ){ mod_k = 0x1.ee663ap0; } else if( k ==76 ){ mod_k = 0x1.ee663ap1; } else if( k ==77 ){ mod_k = 0x1.711a12p0; } else if( k ==78 ){ mod_k = 0x1.711a12p1; } else if( k ==79 ){ mod_k = 0x1.711a12p2; } else if( k ==80 ){ mod_k = 0x1.50146cp2; } else if( k ==81 ){ mod_k = 0x1.0e0924p2; } else if( k ==82 ){ mod_k = 0x1.13e528p1; } else if( k ==83 ){ mod_k = 0x1.13e528p2; } else if( k ==84 ){ mod_k = 0x1.2b5532p1; } else if( k ==85 ){ mod_k = 0x1.2b5532p2; } else if( k ==86 ){ mod_k = 0x1.89156p1; } else if( k ==87 ){ mod_k = 0x1.89156p2; } else if( k ==88 ){ mod_k = 0x1.800b0cp2; } else if( k ==89 ){ mod_k = 0x1.6df662p2; } else if( k ==90 ){ mod_k = 0x1.49cd0ep2; } else if( k ==91 ){ mod_k = 0x1.017a68p2; } else if( k ==92 ){ mod_k = 0x1.c35466p0; } else if( k ==93 ){ mod_k = 0x1.c35466p1; } else if( k ==94 ){ mod_k = 0x1.89a58cp-1; } else if( k ==95 ){ mod_k = 0x1.89a58cp0; } else if( k ==96 ){ mod_k = 0x1.89a58cp1; } else if( k ==97 ){ mod_k = 0x1.89a58cp2; } else if( k ==98 ){ mod_k = 0x1.812b64p2; } else if( k ==99 ){ mod_k = 0x1.703712p2; } else if( k ==100 ){ mod_k = 0x1.4e4e6ep2; } else if( k ==101 ){ mod_k = 0x1.0a7d26p2; } else if( k ==102 ){ mod_k = 0x1.05b52ap1; } else if( k ==103 ){ mod_k = 0x1.05b52ap2; } else if( k ==104 ){ mod_k = 0x1.e52a7ap0; } else if( k ==105 ){ mod_k = 0x1.e52a7ap1; } else if( k ==106 ){ mod_k = 0x1.4c2b14p0; } else if( k ==107 ){ mod_k = 0x1.4c2b14p1; } else if( k ==108 ){ mod_k = 0x1.4c2b14p2; } else if( k ==109 ){ mod_k = 0x1.063674p2; } else if( k ==110 ){ mod_k = 0x1.e934cap0; } else if( k ==111 ){ mod_k = 0x1.e934cap1; } else if( k ==112 ){ mod_k = 0x1.5c545p0; } else if( k ==113 ){ mod_k = 0x1.5c545p1; } else if( k ==114 ){ mod_k = 0x1.5c545p2; } else if( k ==115 ){ mod_k = 0x1.2688eap2; } else if( k ==116 ){ mod_k = 0x1.75e44p1; } else if( k ==117 ){ mod_k = 0x1.75e44p2; } else if( k ==118 ){ mod_k = 0x1.59a8cap2; } else if( k ==119 ){ mod_k = 0x1.2131dep2; } else if( k ==120 ){ mod_k = 0x1.60880cp1; } else if( k ==121 ){ mod_k = 0x1.60880cp2; } else if( k ==122 ){ mod_k = 0x1.2ef064p2; } else if( k ==123 ){ mod_k = 0x1.978226p1; } else if( k ==124 ){ mod_k = 0x1.589bfcp-4; } else if( k ==125 ){ mod_k = 0x1.589bfcp-3; } else if( k ==126 ){ mod_k = 0x1.589bfcp-2; } else if( k ==127 ){ mod_k = 0x1.589bfcp-1;}
+	    	somme = somme + mod_k;
+	    	if(somme>=deux_PI) {
+	         	somme = somme - deux_PI;
+	    	}
+	    	f = f - _2puissanceK(k);
+	    }
+        f = somme + f;
+	    while(f>=deux_PI) {
+	        f = f - deux_PI;
+	    }
+		return f;
+    }
+
+    int _getExponentHex(float f){
+        int k = 0;
+        boolean overflow = false, neg;
+        float xTmp, tmp;
+        if(f < 0)
+        {
+            f = -f;
+        }
+        if(f <= 0x1.0p-1){
+                neg = true;
+                tmp = 1/f;
+        }else{
+                neg = false;
+                tmp = f;
+        }
+        k = 0;
+        xTmp = 1;
+        while(((!neg && xTmp <= tmp) || (neg && xTmp < tmp))&& !overflow) {
+	        k = k + 1;
+	        if(xTmp > 0x1.0p126){
+	    		overflow = true;
+	    	}else{
+	        	xTmp = xTmp + xTmp; // xTmp * 2
+	    	}
+	    }
+        if(neg){
+            k = -k + 1;
+        }
+	    return k - 1;
+    }
+
+	float _sqrt(float f){
+		// méthode babylonienne
+    	float low = 1.0, high = f, resTmp = 0.0;
+    	int loop = 0;
+    	if(f<0.0){
+    	    println("Wrong: parameter must be positive for sqrt");
+    	    print(1/0);
+    	}
+    	while(resTmp != high){
+    	    resTmp = high;
+    	    high = (high+low)*0.5;
+    	    low = f/high;
+    	    loop = loop + 1;
+    	}
+		return high;
+	}
+}
 
 // End of Deca Math library
