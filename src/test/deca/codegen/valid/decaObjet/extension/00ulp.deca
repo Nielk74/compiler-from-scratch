@@ -1,0 +1,21 @@
+// Description:
+//   test ULP
+//
+// Resultats:
+//    00ulp.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+#include "Math.decah"
+{
+    Math m = new Math();
+    float x;
+    int a = 0;
+    while(a < 34){
+        a = a + 1;
+        x = readFloat();
+        x = m.ulp(x);
+        printlnx(x);
+    }
+}
