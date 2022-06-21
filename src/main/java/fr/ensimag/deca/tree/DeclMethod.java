@@ -5,7 +5,6 @@ import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.ContextualError;
@@ -19,22 +18,31 @@ import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.ADDSP;
-import fr.ensimag.ima.pseudocode.instructions.BOV;
-import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.POP;
-import fr.ensimag.ima.pseudocode.instructions.PUSH;
-import fr.ensimag.ima.pseudocode.instructions.RTS;
-import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
+/**
+ * Declaration of a method.
+ * 
+ * @author gl10
+ * 
+ */
 public class DeclMethod extends AbstractDeclMethod {
 
+    // Type of the method. 
     private AbstractIdentifier type;
+    // Name of the method. 
     private AbstractIdentifier name;
+    // Parameters of the method. 
     private ListDeclParam params;
+    // Body of the method. 
     private AbstractMethodBody body;
 
+    /**
+     * @param type Type of the method. 
+     * @param name Name of the method. 
+     * @param params Parameters of the method.
+     * @param body Body of the method.
+     * 
+     */
     public DeclMethod(AbstractIdentifier type, AbstractIdentifier name, ListDeclParam params, AbstractMethodBody body) {
         Validate.notNull(type);
         Validate.notNull(name);
@@ -46,6 +54,9 @@ public class DeclMethod extends AbstractDeclMethod {
         this.body = body;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyDeclMethod(DecacCompiler compiler, ClassDefinition currentClass)
             throws ContextualError {
@@ -106,6 +117,9 @@ public class DeclMethod extends AbstractDeclMethod {
         name.setDefinition(newMethodDef);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyDeclMethodBody(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         // new environment with parameters
@@ -114,6 +128,9 @@ public class DeclMethod extends AbstractDeclMethod {
         body.verifyMethodBody(compiler, paramEnv, currentClass, type.getType());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenImplementMethod(DecacCompiler compiler) {
         Label label = name.getMethodDefinition().getLabel();
@@ -122,6 +139,9 @@ public class DeclMethod extends AbstractDeclMethod {
         body.codeGenMethodBody(compiler, type.getType());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         this.type.decompile(s);
@@ -133,6 +153,9 @@ public class DeclMethod extends AbstractDeclMethod {
         this.body.decompile(s);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, false);
@@ -141,6 +164,9 @@ public class DeclMethod extends AbstractDeclMethod {
         body.prettyPrint(s, prefix, false);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.type.iter(f);

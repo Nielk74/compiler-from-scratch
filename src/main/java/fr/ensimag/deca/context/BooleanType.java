@@ -1,14 +1,12 @@
 package fr.ensimag.deca.context;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.SymbolTable;
-import fr.ensimag.ima.pseudocode.DVal;
-import fr.ensimag.ima.pseudocode.ImmediateInteger;
 
 /**
+ * Definition of the string type
  *
- * @author Ensimag
- * @date 25/04/2022
+ * @author gl10
+ * 
  */
 public class BooleanType extends Type {
 
@@ -16,11 +14,19 @@ public class BooleanType extends Type {
         super(name);
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isBoolean() {
         return true;
     }
 
+    
+    /** 
+     * {@inheritDoc}
+     */
     @Override
     public boolean sameType(Type otherType) {
         return otherType.isBoolean();

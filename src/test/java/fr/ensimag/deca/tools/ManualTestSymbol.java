@@ -21,6 +21,10 @@ public class ManualTestSymbol {
         }
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         SymbolTable t = new SymbolTable();
         Symbol s1 = t.create("foo");

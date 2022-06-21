@@ -16,14 +16,22 @@ import org.apache.commons.lang.Validate;
  * Full if/else if/else statement.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class IfThenElse extends AbstractInst {
 
+    // Condition of the if
     private final AbstractExpr condition;
+    // Instructions in the then
     private final ListInst thenBranch;
+    // Instructions in the else
     private ListInst elseBranch;
 
+    /**
+     * @param condition Condition of the if
+     * @param thenBranch Instructions in the then
+     * @param elseBranch Instructions in the else
+     */
     public IfThenElse(AbstractExpr condition, ListInst thenBranch, ListInst elseBranch) {
         Validate.notNull(condition);
         Validate.notNull(thenBranch);
@@ -33,6 +41,9 @@ public class IfThenElse extends AbstractInst {
         this.elseBranch = elseBranch;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
@@ -42,6 +53,9 @@ public class IfThenElse extends AbstractInst {
         this.elseBranch.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         int labelNum = compiler.labelManager.createIfThenElseLabel();
@@ -57,18 +71,18 @@ public class IfThenElse extends AbstractInst {
         compiler.addLabel(endIfLabel);
     }
 
-    protected void codeGenElseIf(DecacCompiler compiler, Label if_fin, Label jmp, boolean fin) {
-        this.condition.codeGenCondition(compiler, false, jmp);
-        this.thenBranch.codeGenListInst(compiler);
-        if (fin)
-            compiler.addInstruction(new BRA(if_fin));
-    }
-
+    /**
+     * Set else branch
+     * @param newElse Instructions in the else
+     */
     public void setElse(ListInst newElse) {
         Validate.notNull(elseBranch);
         this.elseBranch = newElse;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("if(");
@@ -85,6 +99,9 @@ public class IfThenElse extends AbstractInst {
         s.print("}");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         condition.iter(f);
@@ -92,6 +109,9 @@ public class IfThenElse extends AbstractInst {
         elseBranch.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         condition.prettyPrint(s, prefix, false);

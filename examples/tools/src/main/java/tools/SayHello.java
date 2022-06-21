@@ -14,14 +14,26 @@ class SayHello {
     public SayHello() {
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getMessage() {
         return "Hello, world";
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getOtherMessage() {
         return "Good bye";
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getBothMessages() {
         return getMessage() + "\n" + getOtherMessage();
     }
@@ -36,6 +48,10 @@ class SayHello {
         System.out.println(getOtherMessage());
     }
 
+    
+    /** 
+     * @param name
+     */
     public void sayItTo(String name) {
         Validate.notNull(name);
         System.out.println("Hello, " + name);

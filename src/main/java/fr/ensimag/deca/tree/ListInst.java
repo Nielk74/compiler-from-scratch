@@ -1,17 +1,16 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
 
 /**
- * 
+ * List of instructions
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class ListInst extends TreeList<AbstractInst> {
 
@@ -31,13 +30,20 @@ public class ListInst extends TreeList<AbstractInst> {
             i.verifyInst(compiler, localEnv, currentClass, returnType);
         }
     }
-
+    /**
+     * Generate code assembly for each instruction.
+     *
+     * @param compiler
+     */
     public void codeGenListInst(DecacCompiler compiler) {
         for (AbstractInst i : getList()) {
             i.codeGenInst(compiler);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         for (AbstractInst i : getList()) {

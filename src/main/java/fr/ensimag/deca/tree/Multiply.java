@@ -14,19 +14,30 @@ import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.MUL;
 
 /**
+ * Multiply operator between two AbstractExpr: *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Multiply extends AbstractOpArith {
+    /**
+     * @param leftOperand Left operand of the operation
+     * @param rightOperand Right operand of the operation
+     */
     public Multiply(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "*";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);

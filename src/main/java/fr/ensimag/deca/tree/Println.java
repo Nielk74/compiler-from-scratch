@@ -1,12 +1,13 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.WNL;
 
 /**
+ * Println, the print with a new line at the end.
+ * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Println extends AbstractPrint {
 
@@ -18,12 +19,18 @@ public class Println extends AbstractPrint {
         super(printHex, arguments);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         super.codeGenInst(compiler);
         compiler.addInstruction(new WNL());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String getSuffix() {
         return "ln";

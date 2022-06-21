@@ -12,19 +12,38 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
+
+/**
+ * Class for the this, for the classes and the main.
+ * 
+ * @author gl10
+ */
 public class This extends AbstractExpr {
 
     // by default, all identifiers are not implicit 
     public Boolean implicit = false;
 
+    /**
+     * Set the implicit variable with the input variable.
+     * 
+     * @param implicit
+     */
     public void setImplicit(Boolean implicit) {
         this.implicit = implicit;
     }
 
+    /**
+     * Return the implicit variable, true if this is implicit, otherwise false.
+     * 
+     * @return boolean
+     */
     boolean isImplicit() {
         return implicit;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -35,6 +54,9 @@ public class This extends AbstractExpr {
         return currentClass.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         if (!this.implicit){
@@ -42,20 +64,27 @@ public class This extends AbstractExpr {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
         compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(register_name)));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // do nothing, child node
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
-        // throw new UnsupportedOperationException("not yet implemented");
         // leaf node => nothing to do
-        
     }
 }

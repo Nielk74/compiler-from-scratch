@@ -6,7 +6,7 @@ import fr.ensimag.ima.pseudocode.Label;
 /**
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class BGT extends BranchInstruction {
 

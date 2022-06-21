@@ -8,20 +8,31 @@ import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.SUB;
 
 /**
+ * Operator Minus 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Minus extends AbstractOpArith {
+
+    /**
+     * @param leftOperand Left operand of the operation
+     * @param rightOperand Right operand of the operation
+     */
     public Minus(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "-";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);

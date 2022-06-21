@@ -8,20 +8,32 @@ import fr.ensimag.ima.pseudocode.instructions.ADD;
 import fr.ensimag.ima.pseudocode.instructions.BOV;
 
 /**
+ * The plus operator.
+ * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Plus extends AbstractOpArith {
+
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public Plus(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
  
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "+";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);

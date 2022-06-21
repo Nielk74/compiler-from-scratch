@@ -6,7 +6,7 @@ import fr.ensimag.ima.pseudocode.UnaryInstructionToReg;
 /**
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class SGT extends UnaryInstructionToReg {
 

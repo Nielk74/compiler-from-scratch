@@ -21,11 +21,23 @@ import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import fr.ensimag.ima.pseudocode.instructions.RTS;
 import fr.ensimag.ima.pseudocode.instructions.TSTO;
 
+/**
+ * MethodBody
+ *
+ * @author gl10
+ * 
+ */
 public class MethodBody extends AbstractMethodBody {
 
+    // List of variable declaration
     private ListDeclVar declVariables;
+    // List of instructions 
     private ListInst insts;
 
+    /**
+     * @param declVariables List of variable declaration
+     * @param insts List of instructions
+     */
     public MethodBody(ListDeclVar declVariables, ListInst insts) {
         Validate.notNull(declVariables);
         Validate.notNull(insts);
@@ -33,6 +45,9 @@ public class MethodBody extends AbstractMethodBody {
         this.insts = insts;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType)
             throws ContextualError {
@@ -41,6 +56,9 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     /* codegen of declaration variable and instructions */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenMethodBody(DecacCompiler compiler, Type returnType) {
         // reset the var counter to use it in method bloc
@@ -84,6 +102,9 @@ public class MethodBody extends AbstractMethodBody {
         addsp.setValue(compiler.stackManager.getVarCounter());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.println("{");
@@ -95,12 +116,18 @@ public class MethodBody extends AbstractMethodBody {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         declVariables.prettyPrint(s, prefix, false);
         insts.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.insts.iter(f);

@@ -13,10 +13,13 @@ import fr.ensimag.ima.pseudocode.instructions.STORE;
  * Assignment, i.e. lvalue = expr.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Assign extends AbstractBinaryExpr {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AbstractLValue getLeftOperand() {
         // The cast succeeds by construction, as the leftOperand has been set
@@ -24,10 +27,17 @@ public class Assign extends AbstractBinaryExpr {
         return (AbstractLValue) super.getLeftOperand();
     }
 
+    /**
+     * @param leftOperand Left operand of the expression. 
+     * @param rightOperand Right operand of the expression.
+     */
     public Assign(AbstractLValue leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -39,6 +49,9 @@ public class Assign extends AbstractBinaryExpr {
         return leftType;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         this.getRightOperand().codeGenExp(compiler, 2);
@@ -46,11 +59,17 @@ public class Assign extends AbstractBinaryExpr {
         compiler.addInstruction(new STORE(Register.getR(2), d));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "=";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         this.codeGenInst(compiler);

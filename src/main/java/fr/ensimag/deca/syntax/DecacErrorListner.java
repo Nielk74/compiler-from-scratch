@@ -29,6 +29,15 @@ public class DecacErrorListner implements ANTLRErrorListener {
         this.input = input;
     }
 
+    
+    /** 
+     * @param recognizer
+     * @param offendingSymbol
+     * @param line
+     * @param charPositionInLine
+     * @param msg
+     * @param e
+     */
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
         // When trying to recover from an error, e can actually be null
@@ -63,16 +72,44 @@ public class DecacErrorListner implements ANTLRErrorListener {
                 new LocationException(msg, l));
     }
 
+    
+    /** 
+     * @param recognizer
+     * @param dfa
+     * @param startIndex
+     * @param stopIndex
+     * @param exact
+     * @param ambigAlts
+     * @param configs
+     */
     @Override
     public void reportAmbiguity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, boolean exact, BitSet ambigAlts, ATNConfigSet configs) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    
+    /** 
+     * @param recognizer
+     * @param dfa
+     * @param startIndex
+     * @param stopIndex
+     * @param conflictingAlts
+     * @param configs
+     */
     @Override
     public void reportAttemptingFullContext(Parser recognizer, DFA dfa, int startIndex, int stopIndex, BitSet conflictingAlts, ATNConfigSet configs) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    
+    /** 
+     * @param recognizer
+     * @param dfa
+     * @param startIndex
+     * @param stopIndex
+     * @param prediction
+     * @param configs
+     */
     @Override
     public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, int prediction, ATNConfigSet configs) {
         throw new UnsupportedOperationException("Not supported yet.");

@@ -28,7 +28,7 @@ import fr.ensimag.ima.pseudocode.instructions.TSTO;
  * Declaration of a class (<code>class name extends superClass {members}<code>).
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class DeclClass extends AbstractDeclClass {
 
@@ -37,6 +37,12 @@ public class DeclClass extends AbstractDeclClass {
     final private ListDeclField fields;
     final private ListDeclMethod methods;
 
+    /**
+     * @param name Name of the class
+     * @param superclass The super class of the class
+     * @param fields List of fields
+     * @param methods List of methods
+     */
     public DeclClass(AbstractIdentifier name, AbstractIdentifier superclass, ListDeclField fields, ListDeclMethod methods) {
         Validate.notNull(name);
         Validate.notNull(superclass);
@@ -48,6 +54,9 @@ public class DeclClass extends AbstractDeclClass {
         this.methods = methods;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("class ");
@@ -64,6 +73,9 @@ public class DeclClass extends AbstractDeclClass {
     }
 
     /* Pass 1 */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyClass(DecacCompiler compiler) throws ContextualError {
         // checks if the class name is already used in a definition
@@ -87,6 +99,9 @@ public class DeclClass extends AbstractDeclClass {
     }
 
     /* Pass 2 */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyClassMembers(DecacCompiler compiler) throws ContextualError {
         // update the number of fields and methods of the current class
@@ -99,6 +114,9 @@ public class DeclClass extends AbstractDeclClass {
     }
     
     /* Pass 3 */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
         ClassDefinition currentClass = this.name.getClassDefinition();
@@ -106,7 +124,9 @@ public class DeclClass extends AbstractDeclClass {
         methods.verifyListDeclMethodBody(compiler, currentClass);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         name.prettyPrint(s, prefix, false);
@@ -115,6 +135,9 @@ public class DeclClass extends AbstractDeclClass {
         methods.prettyPrint(s, prefix, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         this.name.iter(f);
@@ -123,6 +146,9 @@ public class DeclClass extends AbstractDeclClass {
         this.methods.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenDeclClass(DecacCompiler compiler) {
         // load superclass
@@ -135,6 +161,9 @@ public class DeclClass extends AbstractDeclClass {
         methods.codeGenListDeclMethod(compiler, name.getClassDefinition());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenClassInit(DecacCompiler compiler) {
         // reset the var counter to use it in init bloc
@@ -177,6 +206,9 @@ public class DeclClass extends AbstractDeclClass {
         tsto.setValue(compiler.stackManager.getStackSize());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenMethodImplementation(DecacCompiler compiler) {
         compiler.addComment("Initialisation and methods code of class " + name.getName());

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * of tests.
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class TestPlusWithoutMock {
     static final Type INT = new IntType(null);
@@ -52,15 +52,24 @@ public class TestPlusWithoutMock {
         protected void iterChildren(TreeFunction f) {
             throw new UnsupportedOperationException("Should not be called.");
         }
-
+        
         /**
          * Check that the object has been properly used after the test.
          */
         public void checkProperUse() {
             assertTrue(hasBeenVerified, "verifyExpr has not been called");
         }
+
+        @Override
+        protected void codeGenExp(DecacCompiler compiler, int register_name){
+            //Do nothing.
+        }
     }
 
+
+/** 
+ *
+ */
 //    @Test
     public void testType() throws ContextualError {
         DecacCompiler compiler = new DecacCompiler(null, null);

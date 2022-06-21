@@ -10,14 +10,21 @@ import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
 /**
+ * Main block of a Deca program (code whiwh is not in any class).
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Main extends AbstractMain {
     private static final Logger LOG = Logger.getLogger(Main.class);
     
+    // list of variables declarations
     private ListDeclVar declVariables;
+    // list of instructions
     private ListInst insts;
+    /**
+    * @param declVariables
+    * @param insts
+     */
     public Main(ListDeclVar declVariables,
             ListInst insts) {
         Validate.notNull(declVariables);
@@ -26,6 +33,9 @@ public class Main extends AbstractMain {
         this.insts = insts;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyMain(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify Main: start");
@@ -35,6 +45,9 @@ public class Main extends AbstractMain {
         LOG.debug("verify Main: end");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenMain(DecacCompiler compiler) {
         // update LB offset with the GB offset
@@ -44,7 +57,10 @@ public class Main extends AbstractMain {
         insts.codeGenListInst(compiler);
         compiler.addComment("End of main instructions:");
     }
-    
+
+     /**
+     * {@inheritDoc}
+     */   
     @Override
     public void decompile(IndentPrintStream s) {
         s.println("{");
@@ -55,12 +71,18 @@ public class Main extends AbstractMain {
         s.println("}");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         declVariables.iter(f);
         insts.iter(f);
     }
- 
+
+    /**
+     * {@inheritDoc}
+     */ 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         declVariables.prettyPrint(s, prefix, false);

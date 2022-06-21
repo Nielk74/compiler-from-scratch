@@ -6,10 +6,12 @@ import fr.ensimag.ima.pseudocode.instructions.WNL;
 import fr.ensimag.ima.pseudocode.instructions.ERROR;
 
 /**
+ * makes it easier to handle runtime errors
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class ErrorCatcher {
+    // Types of error
     public static final String IO_ERROR = "io_error";
     public static final String SO_ERROR = "so_error";
     public static final String OV_ERROR = "ov_error";
@@ -19,6 +21,13 @@ public class ErrorCatcher {
     public static final String RET_ERROR = "ret_error";
     public static final String CAST_ERROR = "cast_error";
 
+    /**
+     * Create errors label.
+     * IO_ERROR is always created.
+     * All others errors(OV, UD, SO, HO, NULL, RET, CAST : rules 11.1 and 11.3) are only created if the compiler is runed without the option n (No Check errors).
+     * 
+     * @param compiler
+     */
     public static void createErrorLabel(DecacCompiler compiler) {
         compiler.labelManager.createLabel(IO_ERROR);
         if (!compiler.getCompilerOptions().getNocheck()) {
@@ -32,6 +41,14 @@ public class ErrorCatcher {
         }
     }
 
+
+    /**
+     * Add errors label and errors handler.
+     * IO_ERROR is always added and handled (rule 11.2).
+     * All others errors(OV, UD, SO, HO, NULL, RET, CAST) are only added and handled if the compiler is runed without the option n (No Check errors).
+     * 
+     * @param compiler
+     */
     public static void handleErrors(DecacCompiler compiler) {
         // IO_ERROR : 11.2
         compiler.addLabel(compiler.labelManager.getLabel(IO_ERROR));
@@ -62,6 +79,11 @@ public class ErrorCatcher {
         }
     }
 
+    /**
+     * Generate code assembly of errors 
+     * @param compiler
+     * @param message message to display
+     */
     private static void addErrorHandler(DecacCompiler compiler, String message) {
         compiler.addInstruction(new WSTR(message));
         compiler.addInstruction(new WNL());

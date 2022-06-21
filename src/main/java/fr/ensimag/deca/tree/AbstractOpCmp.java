@@ -10,16 +10,26 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
+ * Abstract class for all the comparison operators.
+ * Comparison operators : lower, lower or equals, greater,
+ * greater or equals, equals, not equals
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractOpCmp extends AbstractBinaryExpr {
 
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public AbstractOpCmp(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -49,6 +59,9 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
         return this.getType();
     }
 
+    /**
+     * Add the assembly code for the compute of the comparison operator.
+     */
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         getLeftOperand().codeGenExp(compiler, 2);
         getRightOperand().codeGenExp(compiler, 3);

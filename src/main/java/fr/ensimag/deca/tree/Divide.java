@@ -18,21 +18,32 @@ import fr.ensimag.ima.pseudocode.instructions.DIV;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 /**
+ * Operator divide
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Divide extends AbstractOpArith {
+
+    /**
+     * @param leftOperand Left operand of the division
+     * @param rightOperand Right operand of the division
+     */
     public Divide(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "/";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -55,6 +66,9 @@ public class Divide extends AbstractOpArith {
         return this.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);

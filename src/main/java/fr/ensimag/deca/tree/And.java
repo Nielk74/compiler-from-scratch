@@ -4,21 +4,32 @@ import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.deca.DecacCompiler;
 
 /**
- *
+ * Operator and
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class And extends AbstractOpBool {
 
+    /**
+     * @param leftOperand Left operand of the expression. 
+     * @param rightOperand Right operand of the expression. 
+     */
     public And(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "&&";
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         if (negative) {
             Label end = compiler.labelManager.createCondLabel();

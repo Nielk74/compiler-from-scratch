@@ -15,11 +15,17 @@ import org.apache.log4j.Logger;
  * Main class for the command-line Deca compiler.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class DecacMain {
     private static Logger LOG = Logger.getLogger(DecacMain.class);
 
+    
+    /** 
+     * Function for option -P to compile with multiple threads. 
+     * @param options
+     * @return boolean
+     */
     private static boolean compileParallel(CompilerOptions options) {
         boolean error = false;
         List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
@@ -59,6 +65,11 @@ public class DecacMain {
         return error;
     }
 
+    
+    /** 
+     * Main program
+     * @param args
+     */
     public static void main(String[] args) {
         // example log4j message.
         LOG.info("Decac compiler started");

@@ -11,13 +11,20 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * Conversion of an int into a float. Used for implicit conversions.
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class ConvFloat extends AbstractUnaryExpr {
+
+    /**
+     * @param operand Operand of unary expression
+     */
     public ConvFloat(AbstractExpr operand) {
         super(operand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) {
@@ -25,14 +32,17 @@ public class ConvFloat extends AbstractUnaryExpr {
         return this.getType();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "/* conv float */";
     }
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
         this.getOperand().codeGenExp(compiler, register_name);

@@ -18,23 +18,36 @@ import org.apache.log4j.Logger;
  * code because of the superClass option in the .g file.
  *
  * @author gl10, Based on template by Jim Idle - Temporal Wave LLC - jimi@temporal-wave.com
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractDecaParser extends Parser {
     Logger LOG = Logger.getLogger(AbstractDecaParser.class);
 
     private DecacCompiler decacCompiler;
 
+    
+    /** 
+     * @return DecacCompiler
+     */
     protected DecacCompiler getDecacCompiler() {
         return decacCompiler;
     }
 
+    
+    /** 
+     * @param decacCompiler
+     */
     public void setDecacCompiler(DecacCompiler decacCompiler) {
         this.decacCompiler = decacCompiler;
     }
 
     protected abstract AbstractProgram parseProgram();
     
+    
+    /** 
+     * @param err
+     * @return AbstractProgram
+     */
     public AbstractProgram parseProgramAndManageErrors(PrintStream err) {
         try {
             AbstractProgram result = parseProgram();
@@ -56,6 +69,8 @@ public abstract class AbstractDecaParser extends Parser {
 
     /**
      * Extract the Location of a token.
+     * 
+     * @param token
      */
     protected Location tokenLocation(Token token) {
         return new Location(token.getLine(),

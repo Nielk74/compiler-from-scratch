@@ -5,7 +5,7 @@ package fr.ensimag.deca;
  * source file unreadable).
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class DecacFatalError extends Exception {
     private static final long serialVersionUID = 6141682385316820966L;

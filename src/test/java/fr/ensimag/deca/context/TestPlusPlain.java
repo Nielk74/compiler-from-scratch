@@ -15,12 +15,16 @@ import static org.mockito.Mockito.*;
  * was done without using Mockito.
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class TestPlusPlain {
     final Type INT = new IntType(null);
     final Type FLOAT = new FloatType(null);
 
+
+/** 
+ * @throws ContextualError
+ */
 //    @Test
     public void testType() throws ContextualError {
         DecacCompiler compiler = new DecacCompiler(null, null);
