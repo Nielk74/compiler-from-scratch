@@ -13,11 +13,14 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.TypeDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BGE;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.FLOAT;
@@ -77,6 +80,11 @@ public class Cast extends AbstractExpr {
 
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
+        // Create labels
+        int labelNum = compiler.labelManager.createWhileLabel();
+        Label whileLabel = compiler.labelManager.getLabel("while_" + Integer.toString(labelNum));
+        Label endWhileLabel = compiler.labelManager.getLabel("end_while_" + Integer.toString(labelNum));
+        
         compiler.addComment("Cast to type " + type.getName());
 
         // Load adress of expression in register register_name
@@ -84,18 +92,33 @@ public class Cast extends AbstractExpr {
 
         // conversion from float to int
         if (type.getDefinition().getType().isInt()) {
+            // check if the value is too big for le cast to int
+
+            compiler.addComment("Cast to int");
+            Label outOfRangeLabel = compiler.labelManager.createLabel("outOfRange_" + Integer.toString(labelNum));
+            Label endLabel = compiler.labelManager.createLabel("end_check_outOfRange_" + Integer.toString(labelNum));
+            compiler.addInstruction(new CMP(new ImmediateFloat(2147483648.0f), Register.getR(register_name)));
+            compiler.addInstruction(new BGE(outOfRangeLabel));
+
             compiler.addInstruction(new INT(Register.getR(register_name), Register.getR(register_name)));
+            compiler.addInstruction(new BRA(endLabel));
+
+            compiler.addLabel(outOfRangeLabel);
+            compiler.addInstruction(new LOAD(new ImmediateInteger(2147483647), Register.getR(register_name)));
+            compiler.addLabel(endLabel);
+            compiler.addComment("End cast to int");
+
             return;
         // conversion from int to float
         } else if (type.getDefinition().getType().isFloat()){
+            compiler.addComment("Cast to float");
+
             compiler.addInstruction(new FLOAT(Register.getR(register_name), Register.getR(register_name)));
+            compiler.addComment("End cast to float");
+
             return;   
         }
 
-        // Create labels
-        int labelNum = compiler.labelManager.createWhileLabel();
-        Label whileLabel = compiler.labelManager.getLabel("while_" + Integer.toString(labelNum));
-        Label endWhileLabel = compiler.labelManager.getLabel("end_while_" + Integer.toString(labelNum));
 
         compiler.addComment("check if object is null ");
 
