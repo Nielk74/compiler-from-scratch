@@ -1,0 +1,20 @@
+// Description:
+//    instanceof d'une classe avec Object
+//
+// Resultats:
+//    a is instance of Object
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {}
+
+{
+    A a = new A();
+
+    if (a instanceof Object) {
+        println("a is instance of Object");
+    } else {
+        println("a is not instance of Object");
+    }
+}

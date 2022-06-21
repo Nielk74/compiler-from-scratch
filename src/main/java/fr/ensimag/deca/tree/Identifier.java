@@ -242,7 +242,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     @Override
-    protected DAddr codeGenLeftValue(DecacCompiler compiler) {
+    protected DAddr codeGenLeftValue(DecacCompiler compiler, int register_name) {
         DAddr offset;
         if (this.definition.isField()) {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));

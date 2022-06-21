@@ -15,13 +15,13 @@ public abstract class AbstractLValue extends AbstractExpr {
     /*
      * Returns the register containing the left value
      */
-    protected abstract DAddr codeGenLeftValue(DecacCompiler compiler);
+    protected abstract DAddr codeGenLeftValue(DecacCompiler compiler, int register_name);
 
     // evalue l'expression et stocke son résultat dans le registre
     // Register.getR(register_name)
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
-        DAddr offset = this.codeGenLeftValue(compiler);
+        DAddr offset = this.codeGenLeftValue(compiler, register_name);
         compiler.addInstruction(new LOAD(offset, Register.getR(register_name)));
     }
 }

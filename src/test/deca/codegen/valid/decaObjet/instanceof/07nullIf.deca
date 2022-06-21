@@ -2,7 +2,7 @@
 //    instanceof avec le literal null dans un if
 //
 // Resultats:
-//    null not instanceof A
+//    null instanceof A
 //
 // Historique:
 //    cree le 17/06/2022

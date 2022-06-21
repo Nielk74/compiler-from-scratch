@@ -85,20 +85,28 @@
       |  ||  +> [25, 6] Identifier (b2)
       |  ||  |  definition: variable defined at [25, 6], type=A
       |  ||  `> [25, 11] Initialization
-      |  ||     `> [25, 11] New
-      |  ||        type: B
-      |  ||        `> [25, 15] Identifier (B)
-      |  ||           definition: type defined at [14, 0], type=B
+      |  ||     `> Cast
+      |  ||        type: A
+      |  ||        +> Identifier (A)
+      |  ||        |  definition: type defined at [10, 0], type=A
+      |  ||        `> [25, 11] New
+      |  ||           type: B
+      |  ||           `> [25, 15] Identifier (B)
+      |  ||              definition: type defined at [14, 0], type=B
       |  []> [26, 6] DeclVar
       |      +> [26, 4] Identifier (B)
       |      |  definition: type defined at [14, 0], type=B
       |      +> [26, 6] Identifier (c2)
       |      |  definition: variable defined at [26, 6], type=B
       |      `> [26, 11] Initialization
-      |         `> [26, 11] New
-      |            type: C
-      |            `> [26, 15] Identifier (C)
-      |               definition: type defined at [18, 0], type=C
+      |         `> Cast
+      |            type: B
+      |            +> Identifier (B)
+      |            |  definition: type defined at [14, 0], type=B
+      |            `> [26, 11] New
+      |               type: C
+      |               `> [26, 15] Identifier (C)
+      |                  definition: type defined at [18, 0], type=C
       `> ListInst [List with 5 elements]
          []> [28, 4] Println
          ||  `> ListExpr [List with 2 elements]

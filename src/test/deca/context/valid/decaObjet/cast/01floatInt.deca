@@ -1,0 +1,13 @@
+// Description:
+//    test valid context de field declaration
+//
+// Resultats:
+//    01floatInt.lis
+//
+// Historique:
+//    cree le 20/06/2022
+
+{
+    int x = 2;
+    float y = (float)(x);
+}

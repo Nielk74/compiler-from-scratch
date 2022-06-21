@@ -1,0 +1,22 @@
+// Description:
+//    Cast d'un d'un objet null par n'importe quelle classe (car  null sous-type de n'importe quelle classe)
+//
+// Resultats:
+//    a is null
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    int x = 0;
+}
+
+{
+    A a = null;
+    a = (A)(a);
+    if (a == null){
+        println("a is null");
+    } else {
+        println("a is not null");
+    }
+}

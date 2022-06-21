@@ -92,12 +92,12 @@ public class Selection extends AbstractLValue {
     }
 
     @Override
-    protected DAddr codeGenLeftValue(DecacCompiler compiler) {
-        expr.codeGenExp(compiler, 0);
-        
+    protected DAddr codeGenLeftValue(DecacCompiler compiler, int register_name) {
+        expr.codeGenExp(compiler, register_name);
+
         // check null pointer
         if (!compiler.getCompilerOptions().getNocheck()) {
-            compiler.addInstruction(new CMP(new NullOperand(), Register.getR(0)));
+            compiler.addInstruction(new CMP(new NullOperand(), Register.getR(register_name)));
             compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.NULL_ERROR)));
         }
 
@@ -105,7 +105,7 @@ public class Selection extends AbstractLValue {
         ClassDefinition classDef = ((ClassType) (type)).getDefinition();
         ExpDefinition fieldDef = classDef.getMembers().get(field.getName());
         int fieldIndex = ((FieldDefinition) fieldDef).getIndex();
-        RegisterOffset offset = new RegisterOffset(fieldIndex, Register.getR(0));
+        RegisterOffset offset = new RegisterOffset(fieldIndex, Register.getR(register_name));
         return offset;
     }
 }
