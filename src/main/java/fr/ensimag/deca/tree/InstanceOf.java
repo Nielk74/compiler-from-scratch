@@ -102,9 +102,15 @@ public class InstanceOf extends AbstractExpr {
 
         // Load expression dynamic type's class address in R0
         compiler.addInstruction(new LOAD(Register.getR(register_name), Register.R0));
-        compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.R0), Register.R0));
+
         // Initialization of register register_name with 1 (in case verification is true)
         compiler.addInstruction(new LOAD(1,Register.getR(register_name)));
+        
+        // If expr has a type Null, instanceof is always true
+        compiler.addInstruction(new CMP(new NullOperand(), Register.R0));
+        compiler.addInstruction(new BEQ(endWhileLabel));
+
+        compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.R0), Register.R0));
 
         // Load address of type's class in R1
         compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R1));
