@@ -1,0 +1,11 @@
+// Description:
+// Test du moins unaire sur un booléen, chose interdite.
+//
+// Resultats:
+//  06neq_non_boolean.deca:10:13:
+//
+// Historique:
+//    crée le 16/06/2022
+{
+    int x = !5;
+}

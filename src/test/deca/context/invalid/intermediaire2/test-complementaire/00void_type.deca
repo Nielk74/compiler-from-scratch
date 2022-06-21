@@ -1,0 +1,11 @@
+// Description:
+//  Test de la création d'un variable de type void.
+//
+// Resultats:
+//  00void_type.deca:10:2: Wrong variable type - unexpected: void
+//
+// Historique:
+//    cree le 17/06/2022
+{
+  void x;
+}

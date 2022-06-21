@@ -1,3 +1,11 @@
+// Description:
+// Test de l'oubli du p dans l'écriture d'une valeur en hexadécimale dans le printlnx
+//
+// Resultats:
+//  01printlnx.deca:2:
+//
+// Historique:
+//    crée le 17/06/2022
 {
     printlnx(0x1.FFFFFE0);
 }

@@ -1,0 +1,11 @@
+// Description:
+//  Test de nommer une variable avec un nom commençant par un chiffre, ce qui est interdit.
+//
+// Resultats:
+//  01nom_var.deca:10:8:
+//
+// Historique:
+//    cree le 17/06/2022
+{
+    int 5x;
+}

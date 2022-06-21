@@ -2,12 +2,12 @@
 //    tests de programme incorrect lexicalement (operation sans operande de gauche)
 //
 // Resultats:
-//  01plusIncomplete.deca:12:8:
+//  08percentIncomplete.deca:12:11:
 //
 // Historique:
-//    cree le 08/06/2022
+//    cree le 16/06/2022
 
 {
     int x;
-    x = + 5;
+    x = 1 %;
 }

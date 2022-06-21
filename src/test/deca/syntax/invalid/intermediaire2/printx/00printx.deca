@@ -1,3 +1,11 @@
+// Description:
+// Test de l'oubli du p dans l'écriture d'une valeur en hexadécimale dans le printx
+//
+// Resultats:
+//  00printx.deca:2:
+//
+// Historique:
+//    crée le 17/06/2022
 {
     printx(01.FFFFFE0);
 }

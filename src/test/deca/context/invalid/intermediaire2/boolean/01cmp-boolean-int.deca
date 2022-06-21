@@ -9,6 +9,6 @@
 {
     int x = 5
     if (true == x){
-        print("should not print");
+        print("true == x");
     }
 }

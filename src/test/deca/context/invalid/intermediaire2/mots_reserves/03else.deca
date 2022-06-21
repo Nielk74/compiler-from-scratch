@@ -1,0 +1,11 @@
+// Description:
+// Test du mettre le mot réservé else, en nom de variable.
+//
+// Resultats:
+//  03else.deca:10:8:
+//
+// Historique:
+//    crée le 17/06/2022
+{
+    int else;
+}

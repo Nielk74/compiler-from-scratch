@@ -1,0 +1,12 @@
+// Description:
+// Test du moins unaire sur un booléen dans une variable, chose interdite.
+//
+// Resultats:
+//  07minus_boolean_var.deca:11:16:
+//
+// Historique:
+//    crée le 16/06/2022
+{
+    boolean y = true;
+    boolean x = -y;
+}
