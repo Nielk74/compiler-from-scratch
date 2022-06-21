@@ -1,0 +1,41 @@
+// Description:
+//    Test de cast pour l'expression assign
+//
+// Resultats:
+//      12castAssign.expected
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    int x=1;
+    void m(){
+        println("from A");
+    }
+}
+class B extends A{
+    int x=2;
+    void m(){
+        println("from B");
+    }
+}
+class C extends B{
+    int x=3;
+    void m(){
+        println("from C");
+    }
+}
+
+
+{
+    A a;
+    B b;
+    B b1 = (B)(a = b = new C());
+
+    a.m();
+    b.m();
+    b1.m();
+    println(a.x);
+    println(b.x);
+    println(b1.x);
+}

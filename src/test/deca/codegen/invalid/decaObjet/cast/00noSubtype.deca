@@ -1,0 +1,20 @@
+// Description:
+//    Caster en un type statique dont le type dynamique n'hérite pas/n'est pas le sous-type
+//
+// Resultats:
+//    Error: Cast error
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+}
+
+class B extends A{
+}
+
+
+{
+    A a = new A();
+    B b = (B)(a);
+}

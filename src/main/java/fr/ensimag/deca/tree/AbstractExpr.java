@@ -108,6 +108,11 @@ public abstract class AbstractExpr extends AbstractInst {
                         "Wrong right value class type - expected: subtype of " + expectedType + " ≠ current: " + currentType,
                         this.getLocation());
             } else {
+                if (!expectedType.sameType(currentType)){
+                    Cast castObject  = new Cast(new Identifier(expectedType.getName()), this);
+                    castObject.verifyExpr(compiler, localEnv, currentClass);
+                    return castObject;
+                }
                 return this;
             }
         }
@@ -194,9 +199,6 @@ public abstract class AbstractExpr extends AbstractInst {
     }
 
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        if (!this.getType().isBoolean()) {
-            throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
-        }
         DVal d = this.codeGenExp(compiler);
      
         compiler.addInstruction(new LOAD(d, Register.R1));

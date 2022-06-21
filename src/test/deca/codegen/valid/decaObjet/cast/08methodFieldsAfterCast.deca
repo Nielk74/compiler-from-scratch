@@ -1,0 +1,39 @@
+// Description:
+// Test de l'appel de method et l'access de champ apres cast
+//
+// Resultats:
+//  08methodFieldsAfterCast.expected
+// Historique:
+//    crée le 10/06/2022
+class A {
+    int x=1;
+    void m(){
+        println("This is from A");
+    }
+}
+class B extends A {
+    int x=2;
+    void m(){
+        println("This is from B");
+    }
+}
+class C extends B {
+    int x=3;
+    void m(){
+        println("This is from C");
+    }
+}
+
+{
+    A c = new C();
+    B b;
+    C c1;
+    println(c.x);
+    c.m();
+    b = (B)(c);
+    println(b.x);
+    b.m();
+    c1 = (C)(c);
+    println(c1.x);
+    c1.m();
+}

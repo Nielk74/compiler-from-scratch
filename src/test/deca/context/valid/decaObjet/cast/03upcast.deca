@@ -1,0 +1,17 @@
+// Description:
+//    cast d'un objet en une super-classe
+//
+// Resultats:
+//    02upcast.lis
+//
+// Historique:
+//    cree le 20/06/2022
+
+class A {}
+
+class B extends A {}
+
+{
+    B b = new B();
+    A a = (A)(b);
+}

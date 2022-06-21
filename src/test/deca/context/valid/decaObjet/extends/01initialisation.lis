@@ -22,8 +22,12 @@
       |      +> [15, 6] Identifier (b)
       |      |  definition: variable defined at [15, 6], type=A
       |      `> [15, 10] Initialization
-      |         `> [15, 10] New
-      |            type: B
-      |            `> [15, 14] Identifier (B)
-      |               definition: type defined at [12, 0], type=B
+      |         `> Cast
+      |            type: A
+      |            +> Identifier (A)
+      |            |  definition: type defined at [10, 0], type=A
+      |            `> [15, 10] New
+      |               type: B
+      |               `> [15, 14] Identifier (B)
+      |                  definition: type defined at [12, 0], type=B
       `> ListInst [List with 0 elements]

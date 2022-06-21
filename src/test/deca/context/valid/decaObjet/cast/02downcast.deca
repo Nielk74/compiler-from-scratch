@@ -1,0 +1,17 @@
+// Description:
+//    cast d'un objet en une sous-classe
+//
+// Resultats:
+//    02downcast.lis
+//
+// Historique:
+//    cree le 20/06/2022
+
+class A {}
+
+class B extends A {}
+
+{
+    A a = new A();
+    B b = (B)(a);
+}

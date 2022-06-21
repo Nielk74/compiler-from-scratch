@@ -17,6 +17,7 @@ public class ErrorCatcher {
     public static final String HO_ERROR = "ho_error";
     public static final String NULL_ERROR = "null_error";
     public static final String RET_ERROR = "ret_error";
+    public static final String CAST_ERROR = "cast_error";
 
     public static void createErrorLabel(DecacCompiler compiler) {
         compiler.labelManager.createLabel(IO_ERROR);
@@ -27,6 +28,7 @@ public class ErrorCatcher {
             compiler.labelManager.createLabel(HO_ERROR);
             compiler.labelManager.createLabel(NULL_ERROR);
             compiler.labelManager.createLabel(RET_ERROR);
+            compiler.labelManager.createLabel(CAST_ERROR);
         }
     }
 
@@ -45,6 +47,9 @@ public class ErrorCatcher {
             // NULL_ERROR : 11.1
             compiler.addLabel(compiler.labelManager.getLabel(NULL_ERROR));
             addErrorHandler(compiler, "Error: Null error");
+            // CAST_ERROR : 11.1
+            compiler.addLabel(compiler.labelManager.getLabel(CAST_ERROR));
+            addErrorHandler(compiler, "Error: Cast error");
             // RET_ERROR : 11.1
             compiler.addLabel(compiler.labelManager.getLabel(RET_ERROR));
             addErrorHandler(compiler, "Error: Missing return statement");

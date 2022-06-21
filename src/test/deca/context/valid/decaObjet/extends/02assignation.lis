@@ -27,7 +27,11 @@
              type: A
              +> [16, 4] Identifier (b)
              |  definition: variable defined at [15, 6], type=A
-             `> [16, 8] New
-                type: B
-                `> [16, 12] Identifier (B)
-                   definition: type defined at [12, 0], type=B
+             `> Cast
+                type: A
+                +> Identifier (A)
+                |  definition: type defined at [10, 0], type=A
+                `> [16, 8] New
+                   type: B
+                   `> [16, 12] Identifier (B)
+                      definition: type defined at [12, 0], type=B

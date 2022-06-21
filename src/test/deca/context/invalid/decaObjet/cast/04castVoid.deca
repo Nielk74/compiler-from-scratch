@@ -1,0 +1,19 @@
+// Description:
+// Cast un objet en void
+//
+// Resultats:
+//  04castVoid.deca:18:8:
+//
+// Historique:
+//    crée le 17/06/2022
+class Point2D {
+    int x; // Abscisse
+    int y; // Ordonnee
+} 
+class Point3D extends Point2D {
+    int z; // Hauteur
+}  
+{             
+    Point3D p = null;
+    p = (void) (p);
+}

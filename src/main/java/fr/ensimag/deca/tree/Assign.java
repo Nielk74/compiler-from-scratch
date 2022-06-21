@@ -42,7 +42,7 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         this.getRightOperand().codeGenExp(compiler, 2);
-        DAddr d = this.getLeftOperand().codeGenLeftValue(compiler);
+        DAddr d = this.getLeftOperand().codeGenLeftValue(compiler, 3);
         compiler.addInstruction(new STORE(Register.getR(2), d));
     }
 

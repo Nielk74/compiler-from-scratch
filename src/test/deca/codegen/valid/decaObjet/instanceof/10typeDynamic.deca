@@ -1,0 +1,35 @@
+// Description:
+//    instanceof sur valeur de retour d'une méthode
+//
+// Resultats:
+//    
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    int a;
+    D constructorD(){
+        return new D();
+    }
+}
+
+class B extends A {
+
+}
+
+class C extends B {
+
+}
+
+class D{
+
+}
+{
+    A a = new A();
+    if (a.constructorD() instanceof D) {
+        println("a.constructorD() is of type D");
+    } else {
+        println("a.constructorD() is not of type D");
+    }
+}

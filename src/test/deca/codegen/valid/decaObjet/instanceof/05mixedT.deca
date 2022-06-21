@@ -14,7 +14,7 @@ class B extends A{}
 class C extends B {}
 
 {
-    C a = new C();
+    A a = new C();
     if (a instanceof C){
         println("true");
     }

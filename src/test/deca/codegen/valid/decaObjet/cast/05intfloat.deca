@@ -1,0 +1,14 @@
+// Description:
+//    test qui cast un int en float
+//
+// Resultats:
+//    2.0
+//
+// Historique:
+//    cree le 21/06/2022
+
+{
+    int x = 2;
+    float y = (float)(x *x + x* x);
+    println(y);
+}
