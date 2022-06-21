@@ -2,12 +2,16 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.codegen.ErrorCatcher;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.instructions.*;
 import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.MUL;
 
 /**
  * @author gl10
@@ -27,7 +31,7 @@ public class Multiply extends AbstractOpArith {
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);
         GPRegister leftRegister;
-        if (compiler.registerManager.getNbRegisterMax() == register_name) {
+        if (compiler.getCompilerOptions().getRegisterMax() == register_name) {
             leftRegister = Register.R1;
         } else {
             leftRegister = Register.getR(register_name + 1);

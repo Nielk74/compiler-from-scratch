@@ -103,7 +103,9 @@ public class MethodCall extends AbstractExpr {
         compiler.addComment(
                 "Call of method " + classDef.getType().getName().getName() + "." + method.getName().getName());
         compiler.addInstruction(new ADDSP(methodDef.getSignature().size() + 1));
-        compiler.stackManager.setMaxMethodCallParamNb(methodDef.getSignature().size() + 1);
+
+        // +3 for BSR and the class address
+        compiler.stackManager.setMaxMethodCallParamNb(methodDef.getSignature().size() + 3);
         
         // load address of class
         compiler.addComment("Push address of class");
@@ -137,7 +139,7 @@ public class MethodCall extends AbstractExpr {
         compiler.addInstruction(new SUBSP(methodDef.getSignature().size() + 1));
 
         // load return value
-        if (methodDef.getType() != null) {
+        if (!methodDef.getType().isVoid()) {
             compiler.addComment("Load return value");
             compiler.addInstruction(new LOAD(Register.R0, Register.getR(register_name)));
         }

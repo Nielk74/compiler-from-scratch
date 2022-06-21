@@ -23,7 +23,6 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 /**
  * Deca Identifier
@@ -203,19 +202,6 @@ public class Identifier extends AbstractIdentifier {
         return currentType;
     }
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
-    @Override
-    public void codeGenExp(DecacCompiler compiler, int register_name) {
-        if (this.definition.isField()) {
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(register_name)));
-            int index = ((FieldDefinition) this.definition).getIndex();
-            compiler.addInstruction(new LOAD(new RegisterOffset(index, Register.getR(register_name)), Register.getR(register_name)));
-        } else {
-            compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
-        }
-    }
-
     private Definition definition;
 
     @Override
@@ -257,12 +243,19 @@ public class Identifier extends AbstractIdentifier {
 
     @Override
     protected DAddr codeGenLeftValue(DecacCompiler compiler) {
-        DAddr offset = this.getExpDefinition().getOperand();
-        if (offset == null) {
-            offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
-            compiler.stackManager.incrementLbOffsetCounter();
+        DAddr offset;
+        if (this.definition.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));
+            int index = ((FieldDefinition) this.definition).getIndex();
+            offset = new RegisterOffset(index, Register.getR(0));
+        } else {
+            offset = this.getExpDefinition().getOperand();
+            if (offset == null) {
+                offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
+                compiler.stackManager.incrementLbOffsetCounter();
+            }
+            this.getExpDefinition().setOperand(offset);
         }
-        this.getExpDefinition().setOperand(offset);
         return offset;
     }
 }

@@ -44,7 +44,7 @@ public class MethodBody extends AbstractMethodBody {
     @Override
     protected void codeGenMethodBody(DecacCompiler compiler, Type returnType) {
         // reset the var counter to use it in method bloc
-        compiler.stackManager.resetVarCounter();
+        compiler.stackManager.resetStackCounters();
 
         Label endLabel = compiler.labelManager.createEndMethodLabel();
 
@@ -58,9 +58,9 @@ public class MethodBody extends AbstractMethodBody {
         compiler.addInstruction(addsp);
 
         // save registers R2 to RMAX
-        for (int i = 2; i <= compiler.registerManager.getNbRegisterMax(); i++) {
+        for (int i = 2; i <= compiler.getCompilerOptions().getRegisterMax(); i++) {
             compiler.addInstruction(new PUSH(Register.getR(i)));
-            compiler.stackManager.incrementVarCounter();
+            compiler.stackManager.incrementSavedRegisterCounter();
         }
 
         declVariables.codeGenListDeclVariable(compiler);
@@ -73,7 +73,7 @@ public class MethodBody extends AbstractMethodBody {
         compiler.addLabel(endLabel);
 
         // restore registers R2 to RMAX
-        for (int i = compiler.registerManager.getNbRegisterMax(); i > 1; i--) {
+        for (int i = compiler.getCompilerOptions().getRegisterMax(); i > 1; i--) {
             compiler.addInstruction(new POP(Register.getR(i)));
         }
 

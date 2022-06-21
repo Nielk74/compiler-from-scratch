@@ -105,7 +105,7 @@ public class CompilerOptions {
                         if (x < 4 || x > 16) {
                             throw new Exception();
                         }
-                        this.registerMax = x;
+                        this.registerMax = x - 1;
                     } catch (Exception e) {
                         System.out.println("Argument X must be between 4 and 16 for option -r");
                         displayUsage();
