@@ -58,9 +58,9 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
 
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
-        if (compiler.registerManager.getNbRegisterMax() == register_name) {
+        if (compiler.getCompilerOptions().getRegisterMax() == register_name) {
             // add space in the stack for the expression
-            compiler.stackManager.incrementVarCounter();
+            compiler.stackManager.incrementSavedRegisterCounter();
             getLeftOperand().codeGenExp(compiler, register_name);
             compiler.addInstruction(new PUSH(Register.getR(register_name)));
             getRightOperand().codeGenExp(compiler, register_name);

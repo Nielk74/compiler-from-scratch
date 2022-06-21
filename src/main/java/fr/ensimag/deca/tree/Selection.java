@@ -20,7 +20,6 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 public class Selection extends AbstractLValue {
 
@@ -93,18 +92,12 @@ public class Selection extends AbstractLValue {
     }
 
     @Override
-    protected void codeGenExp(DecacCompiler compiler, int register_name) {
-        DAddr offset = this.codeGenLeftValue(compiler);
-        compiler.addInstruction(new LOAD(offset, Register.getR(register_name)));
-    }
-
-    @Override
     protected DAddr codeGenLeftValue(DecacCompiler compiler) {
         expr.codeGenExp(compiler, 0);
-        compiler.addInstruction(new CMP(new NullOperand(), Register.getR(0)));
-
+        
         // check null pointer
         if (!compiler.getCompilerOptions().getNocheck()) {
+            compiler.addInstruction(new CMP(new NullOperand(), Register.getR(0)));
             compiler.addInstruction(new BEQ(compiler.labelManager.getLabel(ErrorCatcher.NULL_ERROR)));
         }
 

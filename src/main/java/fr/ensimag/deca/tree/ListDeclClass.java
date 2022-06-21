@@ -92,6 +92,9 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
 
         // table of method for object
         compiler.environmentType.OBJECT.getDefinition().setOperand(new RegisterOffset(1, Register.GB));
+
+        // space for Object's superclass (null) and the method equals 
+        compiler.stackManager.incrementVarCounter();
         compiler.stackManager.incrementVarCounter();
     }
 

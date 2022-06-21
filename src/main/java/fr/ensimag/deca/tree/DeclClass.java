@@ -138,7 +138,7 @@ public class DeclClass extends AbstractDeclClass {
     @Override
     protected void codeGenClassInit(DecacCompiler compiler) {
         // reset the var counter to use it in init bloc
-        compiler.stackManager.resetVarCounter();
+        compiler.stackManager.resetStackCounters();
         compiler.addLabel(compiler.labelManager.createLabel("init." + name.getName()));
 
         TSTO tsto = new TSTO(0);
@@ -148,13 +148,15 @@ public class DeclClass extends AbstractDeclClass {
         }
 
         // save registers R2 to RMAX
-        for(int i = 2; i <= compiler.registerManager.getNbRegisterMax(); i++) {
+        for(int i = 2; i <= compiler.getCompilerOptions().getRegisterMax(); i++) {
             compiler.addInstruction(new PUSH(Register.getR(i)));
-            compiler.stackManager.incrementVarCounter();
+            compiler.stackManager.incrementSavedRegisterCounter();
         }
 
         // codegen superclass fields init
         if (superclass.getClassDefinition().getType() != compiler.environmentType.OBJECT) {
+            // add space for super class init call and BSR
+            compiler.stackManager.setMaxMethodCallParamNb(3);
             RegisterOffset offset = new RegisterOffset(-2, Register.LB);
             compiler.addInstruction(new LOAD(offset, Register.R0));
             compiler.addInstruction(new PUSH(Register.R0));
@@ -165,7 +167,7 @@ public class DeclClass extends AbstractDeclClass {
         fields.codeGenListDeclField(compiler);
 
         // restore registers R2 to RMAX
-        for(int i = compiler.registerManager.getNbRegisterMax(); i > 1; i--) {
+        for(int i = compiler.getCompilerOptions().getRegisterMax(); i > 1; i--) {
             compiler.addInstruction(new POP(Register.getR(i)));
         }
 
