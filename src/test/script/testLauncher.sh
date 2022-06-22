@@ -115,17 +115,10 @@ if [ -d  "${root}/codegen/invalid/${feature}" ]; then
             if [ "$2" != "" ]; then
                 decac -p "${f}" > "${file}_decompiled.deca"
             fi
-            if [ -f "${file}.in" ]; then
-                        if [ "$2" != "" ]; then
-                decac "${file}_decompiled.deca" && (cat "${file}.in" | ima "${file}_decompiled.ass" > "${file}_decompiled.res")
-                fi
-                decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
-            else
-                if [ "$2" != "" ]; then
-                    decac "${file}_decompiled.deca" && (ima "${file}_decompiled.ass" > "${file}_decompiled.res")
-                fi
-                decac "${f}" && (ima "${file}.ass" > "${file}.res")
+            if [ "$2" != "" ]; then
+                decac "${file}_decompiled.deca" && (ima "${file}_decompiled.ass" > "${file}_decompiled.res")
             fi
+            decac "${f}" && (ima "${file}.ass" > "${file}.res")
             if [ -f "${file}.res" ]; then
         	if diff -q "${file}.res" "${file}.expected" > /dev/null ; then
             if [ "$2" != "" ]; then
@@ -167,17 +160,10 @@ if [ -d  "${root}/codegen/valid/${feature}" ]; then
             if [ "$2" != "" ]; then
                 decac -p "${f}" > "${file}_decompiled.deca"
             fi
-            if [ -f "${file}.in" ]; then
-                if [ "$2" != "" ]; then
-                    decac "${file}_decompiled.deca" && (cat "${file}.in" | ima "${file}_decompiled.ass" > "${file}_decompiled.res")
-                fi
-                decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
-            else
-                if [ "$2" != "" ]; then
-                    decac "${file}_decompiled.deca" && (ima "${file}_decompiled.ass" > "${file}_decompiled.res")
-                fi
-                decac "${f}" && (ima "${file}.ass" > "${file}.res")
+            if [ "$2" != "" ]; then
+                decac "${file}_decompiled.deca" && (ima "${file}_decompiled.ass" > "${file}_decompiled.res")
             fi
+            decac "${f}" && (ima "${file}.ass" > "${file}.res")
             if [ -f "${file}.res" ]; then
         	    if diff -q "${file}.res" "${file}.expected" > /dev/null ; then
                     if [ "$2" != "" ]; then
@@ -208,6 +194,50 @@ if [ -d  "${root}/codegen/valid/${feature}" ]; then
     fi
 fi
 
+if [ -d  "${root}/codegen/interactive/valid" ]; then
+    if [ $(ls -A "${root}/codegen/interactive/valid" | wc -l) -ne 0 ]; then
+        echo "### TEST: $(pwd) ###"
+        rm -f ${root}/codegen/interactive/valid/*{.res,.ass} || exit 1
+        for f in ${root}/codegen/interactive/valid/*.deca ; do
+            file="${f%.deca}"
+            ((nbtests++))
+            decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
+            if [ -f "${file}.res" ]; then
+        	    if diff -q "${file}.res" "${file}.expected" > /dev/null ; then
+        	        echo "--- ${file#*deca/}: PASSED ---"
+        	        ((nbpassed++))
+        	    else
+        	        echo "--- ${file#*deca/}: FAILED ---"
+                    diff "${file}.expected" "${file}.res" 
+        	    fi
+            else
+        	    echo "--- ${file#*deca/}: KO ---"
+            fi
+        done
+    fi
+fi
+if [ -d  "${root}/codegen/interactive/invalid" ]; then
+    if [ $(ls -A "${root}/codegen/interactive/invalid" | wc -l) -ne 0 ]; then
+        echo "### TEST: $(pwd) ###"
+        rm -f ${root}/codegen/interactive/invalid/*{.res,.ass} || exit 1
+        for f in ${root}/codegen/interactive/invalid/*.deca ; do
+            file="${f%.deca}"
+            ((nbtests++))
+            decac "${f}" && (cat "${file}.in" | ima "${file}.ass" > "${file}.res")
+            if [ -f "${file}.res" ]; then
+        	    if diff -q "${file}.res" "${file}.expected" > /dev/null ; then
+        	        echo "--- ${file#*deca/}: PASSED ---"
+        	        ((nbpassed++))
+        	    else
+        	        echo "--- ${file#*deca/}: FAILED ---"
+                    diff "${file}.expected" "${file}.res" 
+        	    fi
+            else
+        	    echo "--- ${file#*deca/}: KO ---"
+            fi
+        done
+    fi
+fi
 
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
 
