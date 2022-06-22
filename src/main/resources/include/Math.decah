@@ -44,7 +44,7 @@ class Math {
 	    if(f>=PI_deux) {
 	    	f = PI - f;
 	    }
-	    if(f>=PI_quatre){
+	    if(f>PI_quatre){
 	    	f = PI_deux - f;
 			if(neg){
 				return -cos(f);
@@ -102,7 +102,7 @@ class Math {
 	    	neg = !neg;
 	    	f = PI - f;
 	    }
-	    if(f>=PI_quatre){
+	    if(f>PI_quatre){
 	    	f = PI_deux - f;
 	    	if(neg){
 	    		return -sin(f);
