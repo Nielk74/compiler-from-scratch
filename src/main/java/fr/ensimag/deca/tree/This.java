@@ -48,7 +48,7 @@ public class This extends AbstractExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         if (currentClass == null){
-            throw new ContextualError("this is null", this.getLocation());
+            throw new ContextualError("Null error: object 'this' is null", this.getLocation());
         }
         setType(currentClass.getType());
         return currentClass.getType();

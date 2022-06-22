@@ -66,7 +66,7 @@ public class DeclParam extends AbstractDeclParam {
 
         // check if type == void
         if (t.isVoid()) {
-            throw new ContextualError("Wrong type: void is forbidden", type.getLocation());
+            throw new ContextualError("Forbidden type: void", type.getLocation());
         }
         type.setType(t);
         type.setDefinition(typeDef);
@@ -84,7 +84,7 @@ public class DeclParam extends AbstractDeclParam {
         try {
             localEnv.declare(name.getName(), name.getExpDefinition());
         } catch (DoubleDefException e) {
-            throw new ContextualError("Wrong parameter definition: Parameter name " + name.getName().getName()
+            throw new ContextualError("Wrong parameter name: " + name.getName().getName()
             + " is already defined", name.getLocation());
         }
         ((ParamDefinition) name.getDefinition()).setOperand(new RegisterOffset(-(index + 3), Register.LB));
