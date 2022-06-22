@@ -10,16 +10,26 @@ import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
+ * Abstract class for all the comparison operators.
+ * Comparison operators : lower, lower or equals, greater,
+ * greater or equals, equals, not equals
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractOpCmp extends AbstractBinaryExpr {
 
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public AbstractOpCmp(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -35,16 +45,23 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             AbstractExpr expr = getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
             this.setRightOperand(expr);
         } else if (!leftType.sameType(rightType)) {
-            throw new ContextualError("Wrong right value type - expected: " + leftType + " ≠ current: " + rightType,
+            throw new ContextualError("Wrong left value type - expected: " + leftType + " ≠ current: " + rightType,
                     this.getLocation());
         } else if (leftType.isBoolean() || rightType.isBoolean()) {
-            throw new ContextualError("Wrong type: boolean is forbidden", this.getLocation());
+            throw new ContextualError("Forbidden type: boolean", this.getLocation());
+        } else if (leftType.isClassOrNull() || rightType.isClassOrNull()) {
+            throw new ContextualError("Forbidden type: class", this.getLocation());
+        } else if (leftType.isString() || rightType.isString()) {
+            throw new ContextualError("Forbidden type: string", this.getLocation());
         }
 
         this.setType(compiler.environmentType.BOOLEAN);
         return this.getType();
     }
 
+    /**
+     * Add the assembly code for the compute of the comparison operator.
+     */
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         getLeftOperand().codeGenExp(compiler, 2);
         getRightOperand().codeGenExp(compiler, 3);

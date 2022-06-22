@@ -1,0 +1,13 @@
+// Description:
+//    test incorrect syntaxiquement car il manque le type dans la déclaration des attributs
+//
+// Resultats:
+//    05fieldWithoutType.deca:11:5:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class Point2D {
+    x; // Abscisse     
+    int y; // Ordonnee        
+} 

@@ -1,0 +1,22 @@
+// Description:
+// Test d'accès à une méthode à laquelle on n'a pas accès
+//
+// Resultats:
+// 02accessWrongMethod.lis 
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D {
+    int x; // Abscisse
+    int y; // Ordonnee
+} 
+class Point3D extends Point2D {
+    int z; // Hauteur
+    int getX() {
+        return x;
+    }
+}  
+{             
+    Point2D p = new Point3D();
+    int x = p.getX();
+}

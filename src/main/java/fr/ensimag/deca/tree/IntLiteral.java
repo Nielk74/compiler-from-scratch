@@ -16,19 +16,30 @@ import java.io.PrintStream;
  * Integer literal
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class IntLiteral extends AbstractExpr {
+
+    /**
+     * Return the value of the int. 
+     */
     public int getValue() {
         return value;
     }
 
+    // Value of the int. 
     private int value;
 
+    /**
+     * @param value Value of the int. 
+     */
     public IntLiteral(int value) {
         this.value = value;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -36,28 +47,41 @@ public class IntLiteral extends AbstractExpr {
         return compiler.environmentType.INT;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String prettyPrintNode() {
         return "Int (" + getValue() + ")";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print(Integer.toString(value));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name) {
         compiler.addInstruction(new LOAD(new ImmediateInteger(this.getValue()), Register.getR(register_name)));

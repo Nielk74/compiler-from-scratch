@@ -1,0 +1,27 @@
+// Description:
+//    Programme avec une classe avec des champs de type de base (int, float, boolean)
+//    et qui affiche ces champs
+//
+// Resultats:
+//    5
+//    a.y == true
+//    9.58600e+01
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x = 5;
+    boolean y = true;
+    float z = 95.86;
+}
+{
+    A a = new A();
+    println(a.x);
+    if (!a.y) {
+        println("a.y == false");
+    } else {
+        println("a.y == true");
+    }
+    println(a.z);
+}

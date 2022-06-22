@@ -1,0 +1,16 @@
+// Description:
+//    Programme instanciant un objet avec un sous type
+//
+// Resultats:
+//    01initialisation.lis
+//
+// Historique:
+//    cree le 15/06/2022
+
+class A {}
+
+class B extends A {}
+
+{
+    A b = new B();
+}

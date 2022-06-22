@@ -1,30 +1,44 @@
 package fr.ensimag.deca.context;
 
-import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.SymbolTable;
-import fr.ensimag.ima.pseudocode.DVal;
 
 /**
- *
+ * Definition of the string type
+ * 
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class NullType extends Type {
 
+    /**
+     * @param name The name of the type.
+     */
     public NullType(SymbolTable.Symbol name) {
         super(name);
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean sameType(Type otherType) {
-        throw new UnsupportedOperationException("not yet implemented");
+        return otherType.isNull();
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isNull() {
         return true;
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isClassOrNull() {
         return true;

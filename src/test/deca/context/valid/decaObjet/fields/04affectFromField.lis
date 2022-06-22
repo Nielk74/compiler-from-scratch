@@ -1,0 +1,72 @@
+`> [11, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [11, 0] DeclClass
+   |      +> [11, 6] Identifier (A)
+   |      |  definition: type defined at [11, 0], type=A
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 2 elements]
+   |      |  []> [12, 8] DeclField
+   |      |  ||  +> [12, 4] Identifier (int)
+   |      |  ||  |  definition: type (builtin), type=int
+   |      |  ||  +> [12, 8] Identifier (x)
+   |      |  ||  |  definition: field defined at [12, 8], type=int
+   |      |  ||  `> [12, 12] Initialization
+   |      |  ||     `> [12, 12] Int (22)
+   |      |  ||        type: int
+   |      |  []> [13, 10] DeclField
+   |      |      +> [13, 4] Identifier (float)
+   |      |      |  definition: type (builtin), type=float
+   |      |      +> [13, 10] Identifier (y)
+   |      |      |  definition: field defined at [13, 10], type=float
+   |      |      `> [13, 14] Initialization
+   |      |         `> ConvFloat
+   |      |            type: float
+   |      |            `> [13, 14] Int (12)
+   |      |               type: int
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [15, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [16, 6] DeclVar
+      |  ||  +> [16, 4] Identifier (A)
+      |  ||  |  definition: type defined at [11, 0], type=A
+      |  ||  +> [16, 6] Identifier (a)
+      |  ||  |  definition: variable defined at [16, 6], type=A
+      |  ||  `> [16, 10] Initialization
+      |  ||     `> [16, 10] New
+      |  ||        type: A
+      |  ||        `> [16, 14] Identifier (A)
+      |  ||           definition: type defined at [11, 0], type=A
+      |  []> [17, 8] DeclVar
+      |  ||  +> [17, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [17, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [17, 8], type=int
+      |  ||  `> [17, 12] Initialization
+      |  ||     `> [17, 12] Selection
+      |  ||        type: int
+      |  ||        +> [17, 12] Identifier (a)
+      |  ||        |  definition: variable defined at [16, 6], type=A
+      |  ||        `> [17, 14] Identifier (x)
+      |  ||           definition: field defined at [12, 8], type=int
+      |  []> [18, 10] DeclVar
+      |      +> [18, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [18, 10] Identifier (y)
+      |      |  definition: variable defined at [18, 10], type=float
+      |      `> [18, 14] Initialization
+      |         `> [18, 14] Selection
+      |            type: float
+      |            +> [18, 14] Identifier (a)
+      |            |  definition: variable defined at [16, 6], type=A
+      |            `> [18, 16] Identifier (y)
+      |               definition: field defined at [13, 10], type=float
+      `> ListInst [List with 2 elements]
+         []> [19, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [19, 12] Identifier (x)
+         ||         definition: variable defined at [17, 8], type=int
+         []> [20, 4] Println
+             `> ListExpr [List with 1 elements]
+                []> [20, 12] Identifier (y)
+                    definition: variable defined at [18, 10], type=float

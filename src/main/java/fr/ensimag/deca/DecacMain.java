@@ -1,7 +1,5 @@
 package fr.ensimag.deca;
 
-import static org.mockito.Answers.valueOf;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +15,17 @@ import org.apache.log4j.Logger;
  * Main class for the command-line Deca compiler.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class DecacMain {
     private static Logger LOG = Logger.getLogger(DecacMain.class);
 
+    
+    /** 
+     * Function for option -P to compile with multiple threads. 
+     * @param options
+     * @return boolean
+     */
     private static boolean compileParallel(CompilerOptions options) {
         boolean error = false;
         List<Callable<Boolean>> tasks = new ArrayList<Callable<Boolean>>();
@@ -30,7 +34,6 @@ public class DecacMain {
                 @Override
                 public Boolean call() throws Exception {
                     DecacCompiler compiler = new DecacCompiler(options, file);
-                    compiler.registerManager.setNbRegisterMax(options.getRegisterMax());
                     if (compiler.compile()) {
                         return Boolean.FALSE;
                     }
@@ -62,6 +65,11 @@ public class DecacMain {
         return error;
     }
 
+    
+    /** 
+     * Main program
+     * @param args
+     */
     public static void main(String[] args) {
         // example log4j message.
         LOG.info("Decac compiler started");
@@ -86,7 +94,6 @@ public class DecacMain {
         } else {
             for (File source : options.getSourceFiles()) {
                 DecacCompiler compiler = new DecacCompiler(options, source);
-                compiler.registerManager.setNbRegisterMax(options.getRegisterMax());
                 if (compiler.compile()) {
                     error = true;
                 }

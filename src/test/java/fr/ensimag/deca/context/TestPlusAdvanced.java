@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
  * Test for the Plus node using mockito, using @Mock and @Before annotations.
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class TestPlusAdvanced {
 
@@ -33,6 +33,10 @@ public class TestPlusAdvanced {
 
     DecacCompiler compiler;
     
+    
+    /** 
+     * @throws ContextualError
+     */
     @BeforeEach
     public void setup() throws ContextualError {
         MockitoAnnotations.initMocks(this);
@@ -43,6 +47,10 @@ public class TestPlusAdvanced {
         when(floatexpr2.verifyExpr(compiler, null, null)).thenReturn(FLOAT);
     }
 
+
+/** 
+ * @throws ContextualError
+ */
 //    @Test
     public void testIntInt() throws ContextualError {
         Plus t = new Plus(intexpr1, intexpr2);
@@ -53,6 +61,10 @@ public class TestPlusAdvanced {
         verify(intexpr2).verifyExpr(compiler, null, null);
     }
 
+
+/** 
+ * @throws ContextualError
+ */
 //    @Test
     public void testIntFloat() throws ContextualError {
         Plus t = new Plus(intexpr1, floatexpr1);
@@ -66,6 +78,10 @@ public class TestPlusAdvanced {
         verify(floatexpr1).verifyExpr(compiler, null, null);
     }
 
+ 
+ /** 
+  * @throws ContextualError
+  */
  //   @Test
     public void testFloatInt() throws ContextualError {
         Plus t = new Plus(floatexpr1, intexpr1);

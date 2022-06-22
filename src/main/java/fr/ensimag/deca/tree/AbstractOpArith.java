@@ -14,14 +14,21 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * Arithmetic binary operations (+, -, /, ...)
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractOpArith extends AbstractBinaryExpr {
 
+    /**
+     * @param leftOperand
+     * @param rightOperand
+     */
     public AbstractOpArith(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -50,17 +57,20 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             this.setType(compiler.environmentType.FLOAT);
         }
         else if (!leftType.sameType(rightType)) {
-            throw new ContextualError("Type mismatch in AbstractExpr.verifyRValue", this.getLocation());
+            throw new ContextualError("Wrong type: expected int or float ≠ current: " + leftType +" "+ rightType, this.getLocation());
         }
 
         return this.getType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
-        if (compiler.registerManager.getNbRegisterMax() == register_name) {
+        if (compiler.getCompilerOptions().getRegisterMax() == register_name) {
             // add space in the stack for the expression
-            compiler.stackManager.incrementVarCounter();
+            compiler.stackManager.incrementSavedRegisterCounter();
             getLeftOperand().codeGenExp(compiler, register_name);
             compiler.addInstruction(new PUSH(Register.getR(register_name)));
             getRightOperand().codeGenExp(compiler, register_name);

@@ -1,0 +1,16 @@
+// Description:
+//    tests de programme incorrect lexicalement : 
+//    il y a un / en trop pour le multi lignes commentaire à la fin
+//
+// Resultats:
+//    08_plus_slash_fin.deca:14:6:
+//
+// Historique:
+//    cree le 14/06/2022
+{
+    /*a
+    aaa
+    aaaa
+    *//
+
+}

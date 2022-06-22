@@ -1,0 +1,15 @@
+// Description:
+// Test d'une méthode dont le nom est déjà utilisé en tant que champs
+//
+// Resultats:
+//      00methodNameUsed.deca:13:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    int x;
+
+    boolean x() {
+    }
+}

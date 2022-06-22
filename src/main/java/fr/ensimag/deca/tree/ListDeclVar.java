@@ -10,10 +10,13 @@ import fr.ensimag.deca.tools.IndentPrintStream;
  * List of declarations (e.g. int x; float y,z).
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class ListDeclVar extends TreeList<AbstractDeclVar> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         for (AbstractDeclVar d : getList()) {
@@ -40,6 +43,12 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
         }
     }
 
+    /**
+    *
+    * Generate assembly code for each variable declaration.
+    *
+    *@param compiler 
+    */
     public void codeGenListDeclVariable(DecacCompiler compiler) {
         for (AbstractDeclVar d : getList()) {
             d.codeGenDeclVar(compiler);

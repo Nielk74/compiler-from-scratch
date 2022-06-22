@@ -1,21 +1,20 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Definition;
+import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
-import fr.ensimag.deca.context.ExpDefinition;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.tools.SymbolTable;
 
 /**
- *
+ * Abstract identifier for the code factorization.
+ * 
  * @author gl10
- * @date 25/04/2022
  */
 public abstract class AbstractIdentifier extends AbstractLValue {
 
@@ -25,8 +24,7 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      *
      * This method essentially performs a cast, but throws an explicit exception
      * when the cast fails.
-     *
-     * @throws DecacInternalError
+     * throws DecacInternalError
      *             if the definition is not a class definition.
      */
     public abstract ClassDefinition getClassDefinition();
@@ -40,7 +38,7 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      * This method essentially performs a cast, but throws an explicit exception
      * when the cast fails.
      *
-     * @throws DecacInternalError
+     * throws DecacInternalError
      *             if the definition is not a field definition.
      */
     public abstract FieldDefinition getFieldDefinition();
@@ -52,11 +50,14 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      * This method essentially performs a cast, but throws an explicit exception
      * when the cast fails.
      *
-     * @throws DecacInternalError
+     * throws DecacInternalError
      *             if the definition is not a method definition.
      */
     public abstract MethodDefinition getMethodDefinition();
 
+    /**
+     * Return the name in the deca code. 
+     */
     public abstract SymbolTable.Symbol getName();
 
     /**
@@ -65,7 +66,7 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      * This method essentially performs a cast, but throws an explicit exception
      * when the cast fails.
      *
-     * @throws DecacInternalError
+     * throws DecacInternalError
      *             if the definition is not a field definition.
      */
     public abstract ExpDefinition getExpDefinition();
@@ -77,18 +78,28 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      * This method essentially performs a cast, but throws an explicit exception
      * when the cast fails.
      *
-     * @throws DecacInternalError
+     * throws DecacInternalError
      *             if the definition is not a field definition.
      */
     public abstract VariableDefinition getVariableDefinition();
 
+    /**
+     * Set the definition
+     */
     public abstract void setDefinition(Definition definition);
 
     /**
-     * Implements non-terminal "type" of [SyntaxeContextuelle] in the 3 passes
+     * Implements non-terminal "type" of [SyntaxeContextuelle] in the 3 passes.
+     * Return the type corresponding to this identifier
+     *         (corresponds to the "type" attribute).
      * @param compiler contains "env_types" attribute
-     * @return the type corresponding to this identifier
-     *         (corresponds to the "type" attribute)
+     * @return Type
      */
     public abstract Type verifyType(DecacCompiler compiler) throws ContextualError;
+
+    /**
+     * Generate assembly code for the class declaration
+     * @param compiler contains "env_types" attribute
+     */
+    protected abstract void codeGenDeclClass(DecacCompiler compiler);
 }

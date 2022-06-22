@@ -1,0 +1,11 @@
+// Description:
+// Test du mettre le mot réservé while, en nom de variable.
+//
+// Resultats:
+//  19while.deca:10:8:
+//
+// Historique:
+//    crée le 17/06/2022
+{
+    int while;
+}

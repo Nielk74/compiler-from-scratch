@@ -3,7 +3,7 @@ package fr.ensimag.ima.pseudocode;
 /**
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public abstract class UnaryInstructionImmInt extends UnaryInstruction {
 
@@ -15,4 +15,7 @@ public abstract class UnaryInstructionImmInt extends UnaryInstruction {
         super(new ImmediateInteger(i));
     }
 
+    public void setValue(int i) {
+        super.setOperand(new ImmediateInteger(i));
+    }
 }

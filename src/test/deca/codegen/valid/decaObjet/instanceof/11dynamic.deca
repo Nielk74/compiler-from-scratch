@@ -1,0 +1,30 @@
+// Description:
+//    instanceof sur un objet dont le type dynamique est différent du type statique
+//
+// Resultats:
+//    a is instance of A
+//    a1 is instance of B
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {}
+
+class B extends A {}
+
+{
+    Object a = new A();
+    A a1 = new B();
+
+    if (a instanceof A) {
+        println("a is instance of A");
+    } else {
+        println("a is not instance of A");
+    }
+
+    if (a1 instanceof B) {
+        println("a1 is instance of B");
+    } else {
+        println("a1 is not instance of B");
+    }
+}

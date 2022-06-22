@@ -25,7 +25,7 @@ tmpDir="$(dirname "$0")/../deca/tmp"
 index=0
 getCodegenFiles () {
     mkdir $tmpDir || exit 1
-    find ${root} -name "*.deca" ! -name '*_decompiled.deca' | grep -v 'provided' | grep -v 'interactive' |while read f; do
+    find ${root} -name "*.deca" ! -name '*_decompiled.deca' | grep -v 'include' | grep -v 'provided' | grep -v 'interactive' |while read f; do
         file="${f%.deca}"
         cp "${f}" "${tmpDir}/$(basename $file)_${index}.deca"
         realPath="$(realpath "${file}.ass")"
@@ -62,8 +62,11 @@ for f in ${tmpDir}/*.deca ; do
     echo 
 done
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
-
 clearTmpDir
+if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
+    exit 1
+fi
 
 nbpassed=0
 nbtests=0
@@ -106,6 +109,10 @@ done
 
 echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
 clearTmpDir
+if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
+    exit 1
+fi
 
 decac_help="$(decac -h)"
 if [ "$?" -ne 0 ]; then
@@ -120,6 +127,7 @@ if echo "$decac_help" | grep -i -e "erreur" -e "error"; then
     echo "ERREUR: La sortie de decac -h contient erreur ou error"
     exit 1
 fi
+
 echo "Pas de problème détecté avec decac -h."
 
 decac_moins_v_p=$(decac -v -p > /dev/null 2>&1)
@@ -162,4 +170,58 @@ if [ "$?" -ne 1 ]; then
     exit 1
 else
     echo "decac -r 17 retourne bien une erreur."
+fi
+
+echo
+echo "### TEST: -n no check errors ###"
+nbtests=0
+nbpassed=0
+
+
+getCodegenFilesOptionN () {
+    mkdir $tmpDir || exit 1
+    find ${root}/invalid/* -name "*.deca" ! -name '*_decompiled.deca' |while read f; do
+        file="${f%.deca}"
+        cp "${f}" "${tmpDir}/$(basename $file)_${index}.deca"
+        if [ -f "${file}.in" ]; then
+                cp "${file}.in" "${tmpDir}/$(basename $file)_${index}.in"
+        fi
+        index=$((index+1))
+    done
+}
+
+getCodegenFilesOptionN
+decac -n "${tmpDir}"/*.deca
+
+for f in ${tmpDir}/*.deca; do
+    file="${f%.deca}"
+    ((nbtests++))   
+    decac -n "${f}" 
+    if [ -f "${file}.in" ]; then
+        cat "${file}.in" | ima "${file}.ass" > "${file}.res"
+    else
+        ima "${file}.ass" > "${file}.res"
+    fi
+    if [ -s "${file}.res" ]; then
+        if grep -q "Error: Input/Output error\|IMA \*\* ERREUR" "${file}.res"; then
+            echo "--- ${file#*deca/}: PASSED ---"
+            ((nbpassed++))
+        else
+            cat "${file}.res"
+            echo "--- ${file#*deca/}: FAILED ---"
+        fi
+
+    else
+        echo "--- ${file#*deca/}: PASSED ---"
+        ((nbpassed++))
+    fi
+    echo
+
+done
+
+echo "### SCORE: ${nbpassed} PASSED / ${nbtests} TESTS ###"
+clearTmpDir
+if [ $nbpassed -ne $nbtests ]; then
+    echo "ERREUR: Le nombre de tests passés est différent du nombre de tests effectués."
+    exit 1
 fi

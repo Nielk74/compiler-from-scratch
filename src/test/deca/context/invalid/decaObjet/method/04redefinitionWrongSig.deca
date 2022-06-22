@@ -1,0 +1,14 @@
+// Description:
+// Test de rédéfinition d'une méthode de superclasse avec signature différente
+//
+// Resultats:
+//  04redefinitionWrongSig.deca:11:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    boolean equals(int a) {
+        return true;
+    }
+}

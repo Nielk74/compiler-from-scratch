@@ -1,0 +1,13 @@
+// Description:
+// Redéfinition de la méthode Object.equals en asm avec une signature vide
+//
+// Resultats:
+//     22asmRedefinitionWrongSig.deca:11:4:
+//
+// Historique:
+//    crée le 20/06/2022
+
+class A {
+    boolean equals() asm("");
+}
+{}

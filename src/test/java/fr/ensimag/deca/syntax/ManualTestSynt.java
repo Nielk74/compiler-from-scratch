@@ -11,9 +11,14 @@ import org.antlr.v4.runtime.CommonTokenStream;
  * Driver to test the Parser (and lexer).
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class ManualTestSynt {
+    
+    /** 
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         // Uncomment the following line to activate debug traces
         // unconditionally for test_synt

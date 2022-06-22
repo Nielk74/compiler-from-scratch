@@ -1,0 +1,20 @@
+// Description:
+// Test de redéfinir une méthode déjà existante
+//
+// Resultats:
+//  07redefinition.deca:14:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    boolean getx(){
+        return true;
+    }
+    boolean getx(int x){
+        return true;
+    }
+}
+
+{
+}

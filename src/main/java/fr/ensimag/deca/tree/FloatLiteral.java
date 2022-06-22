@@ -17,16 +17,24 @@ import org.apache.commons.lang.Validate;
  * Single precision, floating-point literal
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class FloatLiteral extends AbstractExpr {
 
+    /**
+     * Return the value of the float
+     * @return float
+     */
     public float getValue() {
         return value;
     }
 
+    // Value of the float
     private float value;
 
+    /**
+     * @param value Value of the float
+     */
     public FloatLiteral(float value) {
         Validate.isTrue(!Float.isInfinite(value),
                 "literal values cannot be infinite");
@@ -35,6 +43,9 @@ public class FloatLiteral extends AbstractExpr {
         this.value = value;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -42,28 +53,41 @@ public class FloatLiteral extends AbstractExpr {
         return compiler.environmentType.FLOAT;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print(java.lang.Float.toHexString(value));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String prettyPrintNode() {
         return "Float (" + getValue() + ")";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void codeGenExp(DecacCompiler compiler, int register_name){
         compiler.addInstruction(new LOAD(new ImmediateFloat(this.getValue()), Register.getR(register_name)));

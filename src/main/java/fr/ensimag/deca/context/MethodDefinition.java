@@ -8,40 +8,10 @@ import org.apache.commons.lang.Validate;
  * Definition of a method
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class MethodDefinition extends ExpDefinition {
 
-    @Override
-    public boolean isMethod() {
-        return true;
-    }
-
-    public Label getLabel() {
-        Validate.isTrue(label != null,
-                "setLabel() should have been called before");
-        return label;
-    }
-
-    public void setLabel(Label label) {
-        this.label = label;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    private int index;
-
-    @Override
-    public MethodDefinition asMethodDefinition(String errorMessage, Location l)
-            throws ContextualError {
-        return this;
-    }
-
-    private final Signature signature;
-    private Label label;
-    
     /**
      * 
      * @param type Return type of the method
@@ -55,15 +25,81 @@ public class MethodDefinition extends ExpDefinition {
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isMethod() {
+        return true;
+    }
+
+    
+    /**
+     * Return the Label of the methode, its name on assembly: code.<classname>.<methodename> if it exists, 
+     * otherwise, return "setLabel() should have been called before".
+     * @return Label
+     */
+    public Label getLabel() {
+        Validate.isTrue(label != null,
+                "setLabel() should have been called before");
+        return label;
+    }
+
+    
+    /** 
+     * Set the label of the methode, its name on assembly: code.<classname>.<methodename>.
+     * @param label
+     */
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    
+    /** 
+     * Return the value of the current index.
+     * @return int
+     */
+    public int getIndex() {
+        return index;
+    }
+
+    private int index;
+
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MethodDefinition asMethodDefinition(String errorMessage, Location l)
+            throws ContextualError {
+        return this;
+    }
+
+    private final Signature signature;
+    private Label label;
+
+    /**
+     * Returns the Signature of the method
+     * 
+     * @return Signature
+     */
     public Signature getSignature() {
         return signature;
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getNature() {
         return "method";
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExpression() {
         return false;

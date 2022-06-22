@@ -6,13 +6,24 @@ import java.io.PrintStream;
  * Exception corresponding to an error at a particular location in a file.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class LocationException extends Exception {
+
+    /**
+     * Accesor: return the field location of the class.
+     * 
+     * @return Location
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Display error with its location: filename, line and colum
+     * 
+     * @param s standard output(stdout)
+     */
     public void display(PrintStream s) {
         Location loc = getLocation();
         String line;
@@ -28,8 +39,13 @@ public class LocationException extends Exception {
     }
 
     private static final long serialVersionUID = 7628400022855935597L;
+    // error's location
     protected Location location;
 
+    /**
+     * @param message
+     * @param location
+     */
     public LocationException(String message, Location location) {
         super(message);
         assert(location == null || location.getFilename() != null);

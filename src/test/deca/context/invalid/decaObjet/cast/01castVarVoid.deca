@@ -1,0 +1,19 @@
+// Description:
+//    cast d'un retour de fonction de type void en int
+//
+// Resultats:
+//    01castVarVoid.deca:18:13:
+//
+// Historique:
+//    cree le 20/06/2022
+
+class A {
+    void affiche() {
+        println("Je suis A");
+    }
+}
+
+{
+    A a = new A();
+    int b = (int)(a.affiche());
+}

@@ -1,0 +1,18 @@
+// Description:
+// Test de rédéfinition d'une méthode de superclasse avec un type de retour qui n'est pas un sous-type de la méthode de la superclasse.
+//
+// Resultats:
+//  11redefinitionWrongReturnType.deca:16:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    B m() {
+    }
+}
+
+class B extends A {
+    A m() {
+    }
+}

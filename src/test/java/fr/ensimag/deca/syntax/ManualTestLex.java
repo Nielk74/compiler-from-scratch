@@ -7,9 +7,14 @@ import org.apache.log4j.Logger;
 /**
  * 
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class ManualTestLex {
+    
+    /** 
+     * @param args
+     * @throws IOException
+     */
     // This is a test class, we do not try to give user-friendly error messages
     // but just throw exception to the user if something goes wrong (=> throws
     // IOException)

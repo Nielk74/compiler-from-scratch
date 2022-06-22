@@ -1,4 +1,12 @@
-//Exécute le if
+// Description:
+// Test des littérals booléens pour les conditions dans un if, avec des or et des and
+//
+// Resultats:
+//  ((false) == (false)) && (false == true || (!false && (!!!false)))
+//  !(((false) == (false)) && (false == true || (!false && (!!false))))
+//
+// Historique:
+//    crée le 10/06/2022
 {
 boolean x = false;
 boolean y = false;

@@ -1,3 +1,11 @@
+// Description:
+// Test de l'erreur contextuelle de l'affichage d'une variable booléenne, chose interdite pas la spécification.
+//
+// Resultats:
+//  04print-boolean-2.deca:11:10:
+//
+// Historique:
+//    crée le 10/06/2022
 {
     boolean x = true;
     print(x);

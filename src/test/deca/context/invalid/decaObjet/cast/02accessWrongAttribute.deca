@@ -1,0 +1,19 @@
+// Description:
+// Test d'accès à un attribut auquel on a pas accès 
+//
+// Resultats:
+// 01accessWrongAttribute.lis 
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D {
+    int x; // Abscisse
+    int y; // Ordonnee
+} 
+class Point3D extends Point2D {
+    int z; // Hauteur
+}  
+{             
+    Point2D p = new Point3D();
+    int x = p.z;
+}

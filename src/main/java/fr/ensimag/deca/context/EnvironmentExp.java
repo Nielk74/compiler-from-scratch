@@ -21,24 +21,41 @@ import fr.ensimag.deca.tools.SymbolTable.Symbol;
  * dictionary.
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class EnvironmentExp {
     // DONE : implémenter la structure de donnée représentant un
     // environnement (association nom -> définition, avec possibilité
     // d'empilement).
 
-    public Map<Symbol, ExpDefinition> dictionary = new HashMap<>();
-
+    /** 
+     * @param dictionary Data structure representing an environment (association name -> definition, with possibility of stacking).
+     */
+    private Map<Symbol, ExpDefinition> dictionary = new HashMap<>();
+    /** 
+     * @param dictionary Environment parent. 
+     */
     EnvironmentExp parentEnvironment;
 
+    /** 
+     * @param parentEnvironment Environment parent. 
+     */
     public EnvironmentExp(EnvironmentExp parentEnvironment) {
         this.parentEnvironment = parentEnvironment;
     }
 
+    /**
+    * Exception raised when a definition is declared as a duplicate.
+    * 
+    * @author gl10
+    * 
+    */
     public static class DoubleDefException extends Exception {
         private static final long serialVersionUID = -2733379901827316441L;
 
+        /** 
+        * @param message Message of the error.
+        */
         public DoubleDefException(String message) {
             super(message);
         }
@@ -47,6 +64,7 @@ public class EnvironmentExp {
     /**
      * Return the definition of the symbol in the environment, or null if the
      * symbol is undefined.
+     * @param key Potential key of the hashmap to find a definition. 
      */
     public ExpDefinition get(Symbol key) {
         ExpDefinition expDef = this.dictionary.get(key);
@@ -56,6 +74,25 @@ public class EnvironmentExp {
             if (this.parentEnvironment != null) {
                 return this.parentEnvironment.get(key);
             }
+        }
+        return null;
+    }
+
+    /**
+     * Return the definition of the method at the given index in the class or the super class, or null if the
+     * index doesn't exist in the class and the super class.
+     * @param index Potential index of a method definition. 
+     */
+    public MethodDefinition getMethod(int index) {
+        for (ExpDefinition expDef : this.dictionary.values()) {
+            if (expDef.isMethod()) {
+                if (((MethodDefinition) expDef).getIndex() == index) {
+                    return (MethodDefinition) expDef;
+                }
+            }
+        }
+        if (this.parentEnvironment != null) {
+            return this.parentEnvironment.getMethod(index);
         }
         return null;
     }
@@ -81,5 +118,4 @@ public class EnvironmentExp {
             throw new DoubleDefException("Wrong variable name: "+ name.getName() + " is already defined");
         this.dictionary.put(name, def);
     }
-
 }

@@ -2,32 +2,42 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.codegen.ErrorCatcher;
-import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.SUB;
 
 /**
+ * Operator Minus 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Minus extends AbstractOpArith {
+
+    /**
+     * @param leftOperand Left operand of the operation
+     * @param rightOperand Right operand of the operation
+     */
     public Minus(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "-";
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         super.codeGenExp(compiler, register_name);
         GPRegister leftRegister;
-        if (compiler.registerManager.getNbRegisterMax() == register_name) {
+        if (compiler.getCompilerOptions().getRegisterMax() == register_name) {
             leftRegister = Register.R1;
         } else {
             leftRegister = Register.getR(register_name + 1);
@@ -37,7 +47,9 @@ public class Minus extends AbstractOpArith {
 
         // overflow error only when the result is a float
         if (this.getType().isFloat()) {
-            compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+            if (!compiler.getCompilerOptions().getNocheck()) {
+                compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
+            }
         }
     }
 }

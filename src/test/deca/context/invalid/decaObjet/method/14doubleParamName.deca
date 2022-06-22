@@ -1,0 +1,14 @@
+// Description:
+// Test d'une méthode dont un nom de paramètre est utilisé deux fois
+//
+// Resultats:
+//     14doubleParamName.deca:11:25:
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {          
+    void a (int b, float b) {}
+} 
+{     
+}

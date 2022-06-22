@@ -1,0 +1,15 @@
+// Description:
+// Test d'une méthode avec un return alors que le type renvoyé par la méthode est void
+//
+// Resultats:
+//  6returnVoid.deca:11:8:
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D {          
+    void get() {        
+        return this;     
+    } 
+} 
+{     
+}

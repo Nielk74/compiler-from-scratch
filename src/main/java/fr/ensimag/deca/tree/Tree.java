@@ -14,24 +14,46 @@ import org.apache.log4j.Logger;
  * (location in source-code, pretty-printing, ...).
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  *
  */
 public abstract class Tree {
 
     private static final Logger LOG = Logger.getLogger(Main.class);
 
+    /**
+     * Return the location of the tree.
+     * 
+     * @return Location
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Set the location of the tree.
+     * 
+     * @param location
+     */
     public void setLocation(Location location) {
         this.location = location;
     }
 
+    /**
+     * Set the location of the tree, with the line, the column and the filename, 
+     * and not a Location variable.
+     * 
+     * @param line
+     * @param column
+     * @param filename
+     */
     public void setLocation(int line, int column, String filename) {
         this.location = new Location(line, column, filename);
     }
+
+    /**
+     * The location of the tree.
+     */
     private Location location;
 
     /**
@@ -41,12 +63,19 @@ public abstract class Tree {
      */
     public abstract void decompile(IndentPrintStream s);
 
+    /**
+     * The input function of the decompile one.
+     * 
+     *  @param s The string to print.
+     */
     public void decompile(PrintStream s) {
         decompile(new IndentPrintStream(s));
     }
 
     /**
      * Display the tree as a (compilable) source program
+     * 
+     * @return String
      */
     public String decompile() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -64,7 +93,7 @@ public abstract class Tree {
      * @param prefix
      * @param last
      * @param inlist
-     * @return The prefix to use for the next recursive calls to
+     * @return String - The prefix to use for the next recursive calls to
      *         {@link #prettyPrint()}.
      */
     protected String printNodeLine(PrintStream s, String prefix, boolean last,
@@ -83,7 +112,7 @@ public abstract class Tree {
      * @param last
      * @param inlist
      * @param nodeName
-     * @return The prefix to use for the next recursive calls to
+     * @return String - The prefix to use for the next recursive calls to
      * {@link #prettyPrint()}.
      */
     String printNodeLine(PrintStream s, String prefix, boolean last,
@@ -121,14 +150,20 @@ public abstract class Tree {
     }
 
     /**
-     * Pretty-print the type of the tree, if applicable
+     * Pretty-print the type of the tree, if applicable.
+     * 
+     * @param s
+     * @param prefix
      */
     protected void prettyPrintType(PrintStream s, String prefix) {
         // Nothing by default
     }
 
     /**
-     * Pretty-print the definition of the tree, if applicable
+     * Pretty-print the definition of the tree, if applicable.
+     * 
+     * @param s
+     * @param newPrefix
      */
     protected void prettyPrintDefinition(PrintStream s, String newPrefix) {
         // Nothing by default
@@ -138,6 +173,8 @@ public abstract class Tree {
      * Print the node information on a single line.
      *
      * Does not print the children (the recursive call is done by prettyPrint).
+     * 
+     * @return String
      */
     String prettyPrintNode() {
         return this.getClass().getSimpleName();
@@ -156,6 +193,8 @@ public abstract class Tree {
     /**
      * Pretty-print the tree as a String, using ASCII-art to show the tree
      * hierarchy. Useful for debugging.
+     * 
+     * @return String
      */
     public final String prettyPrint() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -164,6 +203,12 @@ public abstract class Tree {
         return out.toString();
     }
 
+    /**
+     * The input function of the prettyPrint one.
+     * 
+     * @param s The string to print.
+     * @param prefix
+     */
     protected final void prettyPrint(PrintStream s, String prefix,
             boolean last) {
         prettyPrint(s, prefix, last, false);
@@ -230,9 +275,11 @@ public abstract class Tree {
      *
      * Useful for debugging/defensive programming.
      *
-     * @return true. Raises an exception in case of error. The return value is
+     * Raises an exception in case of error. The return value is
      * meant to allow assert(tree.checkAllLocations()), to enable the defensive
      * check only if assertions are enabled.
+     * 
+     * @return true
      */
     public boolean checkAllDecorations() {
         iter(new TreeFunction() {
@@ -265,9 +312,11 @@ public abstract class Tree {
      *
      * Useful for debugging/defensive programming.
      *
-     * @return true. Raises an exception in case of error. The return value is
+     * Raises an exception in case of error. The return value is
      * meant to allow assert(tree.checkAllLocations()), to enable the defensive
      * check only if assertions are enabled.
+     * 
+     * @return true
      */
     public boolean checkAllLocations() {
         iter(new TreeFunction() {
@@ -281,11 +330,12 @@ public abstract class Tree {
 
     /**
      * Call decompile() if the compiler has a debug level greater than 1.
+     * return decompilation, or the empty string.
      * 
      * Useful for debugging.
      * 
      * @param compiler
-     * @return Decompilation, or the empty string.
+     * @return String
      */
     protected String decompileIfDebug(DecacCompiler compiler) {
         if (compiler.getCompilerOptions().getDebug() > 1) {

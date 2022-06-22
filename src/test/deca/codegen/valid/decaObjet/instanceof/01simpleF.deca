@@ -1,0 +1,22 @@
+// Description:
+//    instanceof d'une autre classe
+//
+// Resultats:
+//    false
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {}
+
+class B {}
+
+{
+    A a = new A();
+    if (a instanceof B){
+        println("true");
+    }
+    else{
+        println("false");
+    }
+}

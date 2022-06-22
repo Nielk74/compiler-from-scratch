@@ -1,0 +1,15 @@
+// Description:
+//    test essayant de créer un objet de type statique qui n'existe pas
+//
+// Resultats:
+//    01classNotExists.deca:14:4:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {
+    
+}
+{
+    B a = new A();
+}

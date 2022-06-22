@@ -18,24 +18,23 @@ import fr.ensimag.deca.context.VariableDefinition;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
-import fr.ensimag.ima.pseudocode.DVal;
-import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.BEQ;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
-import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LEA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.WSTR;
 
 /**
  * Deca Identifier
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Identifier extends AbstractIdentifier {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void checkDecoration() {
         if (getDefinition() == null) {
@@ -43,20 +42,16 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Definition getDefinition() {
         return definition;
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * ClassDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a class definition.
+     * {@inheritDoc}
      */
     @Override
     public ClassDefinition getClassDefinition() {
@@ -71,14 +66,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * MethodDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a method definition.
+     * {@inheritDoc}
      */
     @Override
     public MethodDefinition getMethodDefinition() {
@@ -93,14 +81,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * FieldDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a field definition.
+     * {@inheritDoc}
      */
     @Override
     public FieldDefinition getFieldDefinition() {
@@ -115,14 +96,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * VariableDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a field definition.
+     * {@inheritDoc}
      */
     @Override
     public VariableDefinition getVariableDefinition() {
@@ -137,14 +111,7 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Like {@link #getDefinition()}, but works only if the definition is a
-     * ExpDefinition.
-     * 
-     * This method essentially performs a cast, but throws an explicit exception
-     * when the cast fails.
-     * 
-     * @throws DecacInternalError
-     *                            if the definition is not a field definition.
+     * {@inheritDoc}
      */
     @Override
     public ExpDefinition getExpDefinition() {
@@ -158,23 +125,36 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setDefinition(Definition definition) {
         this.definition = definition;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Symbol getName() {
         return name;
     }
 
+    // Name of the identifier. 
     private Symbol name;
 
+    /**
+     * @param name Name of the identifier. 
+     */
     public Identifier(Symbol name) {
         Validate.notNull(name);
         this.name = name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
@@ -188,53 +168,56 @@ public class Identifier extends AbstractIdentifier {
     }
 
     /**
-     * Implements non-terminal "type" of [SyntaxeContextuelle] in the 3 passes
-     * 
-     * @param compiler contains "env_types" attribute
+     * {@inheritDoc}
      */
     @Override
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         Type currentType = this.definition.getType();
         if (currentType == null) {
-            throw new DecacInternalError("Type " + this.getName() + " is not defined");
-        }
-        TypeDefinition typeDef = compiler.environmentType.defOfType(currentType.getName());
-        if (typeDef == null) {
-            throw new DecacInternalError("Type definition " + this.getName() + " is not defined");
+            throw new ContextualError("Unknown type: Type " + this.getName() + " is not defined", getLocation());
         }
         this.setType(currentType);
         return currentType;
     }
 
-    // evalue l'expression et stocke son résultat dans le registre
-    // Register.getR(register_name)
-    @Override
-    public void codeGenExp(DecacCompiler compiler, int register_name) {
-        compiler.addInstruction(new LOAD(this.getExpDefinition().getOperand(), Register.getR(register_name)));
-    }
-
+    // Definition of the identifier. 
     private Definition definition;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print(name.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String prettyPrintNode() {
         return "Identifier (" + getName() + ")";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintType(PrintStream s, String prefix) {
         Definition d = getDefinition();
@@ -245,19 +228,34 @@ public class Identifier extends AbstractIdentifier {
             s.println();
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
-        if (!this.getType().isBoolean()) {
-            throw new DecacInternalError("Type non boolean forbidden in AbstractExpr.codeGenCondition");
-        }
-        DVal d = this.codeGenExp(compiler);
-     
-        compiler.addInstruction(new LOAD(d, Register.R1));
-        compiler.addInstruction(new CMP(0, Register.R1));
-        if (negative) {
-            compiler.addInstruction(new BNE(l));
+    protected void codeGenDeclClass(DecacCompiler compiler) {
+        compiler.addComment("Load superclass of "+getName());
+        compiler.addInstruction(new LEA(this.getClassDefinition().getSuperClass().getOperand(), Register.R0));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected DAddr codeGenLeftValue(DecacCompiler compiler, int register_name) {
+        DAddr offset;
+        if (this.definition.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.getR(0)));
+            int index = ((FieldDefinition) this.definition).getIndex();
+            offset = new RegisterOffset(index, Register.getR(0));
         } else {
-            compiler.addInstruction(new BEQ(l));
+            offset = this.getExpDefinition().getOperand();
+            if (offset == null) {
+                offset = new RegisterOffset(compiler.stackManager.getLbOffsetCounter(), Register.LB);
+                compiler.stackManager.incrementLbOffsetCounter();
+            }
+            this.getExpDefinition().setOperand(offset);
         }
+        return offset;
     }
 }

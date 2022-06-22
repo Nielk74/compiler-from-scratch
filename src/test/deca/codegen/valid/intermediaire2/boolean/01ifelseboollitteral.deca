@@ -1,12 +1,18 @@
-//Exécute forcement le if
+// Description:
+// Test des littérals booléens pour les conditions dans un if
+//
+// Resultats:
+//  true
+//  !false
+//
+// Historique:
+//    crée le 10/06/2022
 {
 if(true){
   println("true");
 }else{
   println("!true");
 }
-
-//N'exécute pas le if, et va directement dans le else
 
 if(false){
   println("false");

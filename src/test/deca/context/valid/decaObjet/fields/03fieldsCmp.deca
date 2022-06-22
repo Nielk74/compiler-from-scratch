@@ -1,0 +1,58 @@
+// Description:
+//    Programme qui teste les opérations de comparaison avec deux champs
+//
+// Resultats:
+//    22 > 1.20000e+01
+//    22 >= 1.20000e+01
+//    1.20000e+01 < 22
+//    1.20000e+01 <= 22
+//    22 != 1.20000e+01
+//    12 == 1.20000e+01
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x = 22;
+    float y = 12;
+    int z = 12;
+}
+{
+    A a = new A();
+    if (a.x > a.y) {
+        println(a.x, " > ", a.y);
+    } else {
+        println(a.x, " <= ", a.y);
+    }
+
+    if (a.x >= a.y) {
+        println(a.x, " >= ", a.y);
+    } else {
+        println(a.x, " < ", a.y);
+    }
+
+    if (a.y < a.x) {
+        println(a.y, " < ", a.x);
+    } else {
+        println(a.y, " >= ", a.x);
+    }
+
+    if (a.y <= a.x) {
+        println(a.y, " <= ", a.x);
+    } else {
+        println(a.y, " > ", a.x);
+    }
+
+    if (a.x != a.y) {
+        println(a.x, " != ", a.y);
+    } else {
+        println(a.x, " == ", a.y);
+    }
+
+    if (a.z == a.y) {
+        println(a.z, " == ", a.y);
+    } else {
+        println(a.z, " != ", a.y);
+    }
+
+}

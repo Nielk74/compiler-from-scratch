@@ -1,0 +1,25 @@
+// Description:
+//    test essayant de comparer deux objets de type différent
+//
+// Resultats:
+//    02comparaison.deca:22:8:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {
+    
+}
+
+class B {
+
+}
+
+{
+    A a = new A();
+    B b = new B();
+
+    if (a == b) {
+        
+    }
+}

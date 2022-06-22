@@ -8,20 +8,29 @@ import fr.ensimag.ima.pseudocode.instructions.*;
  * Operator "x >= y"
  * 
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class GreaterOrEqual extends AbstractOpIneq {
 
+    /**
+     * @param leftOperand Left operand of the inequality
+     * @param rightOperand Right operand of the inequality
+     */
     public GreaterOrEqual(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return ">=";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         super.codeGenCondition(compiler, negative, l);

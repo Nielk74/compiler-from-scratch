@@ -1,4 +1,13 @@
-//Passe dans la boucle une fois, puis en sort à cause du x
+// Description:
+// Test des littérals booléen pour les conditions dans un while
+//
+// Resultats:
+//  true && (5 < 10)
+//  !(true && (10 < 10))
+//  !(false && (5 < 10))
+//
+// Historique:
+//    crée le 10/06/2022
 {
 int x = 5;
 int y = 5;
@@ -7,8 +16,6 @@ while(true && (x < 10)){
   x = 10;
 }
 println("!(true && (10 < 10))");
-
-//Ne passe pas dans la boucle à cause du false
 
 while(false && (y < 10)){
   println("false && (y < 10)");

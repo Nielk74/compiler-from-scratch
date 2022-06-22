@@ -13,31 +13,53 @@ import org.apache.commons.lang.Validate;
  * Binary expressions.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractBinaryExpr extends AbstractExpr {
 
+    /**
+     * Return the left operand. 
+     * @return AbstractExpr
+     */
     public AbstractExpr getLeftOperand() {
         return leftOperand;
     }
 
+    /**
+     * Return the right operand. 
+     * @return AbstractExpr
+     */
     public AbstractExpr getRightOperand() {
         return rightOperand;
     }
 
+    /**
+     * Set the left operand. 
+     * @param leftOperand Left operand of the expression
+     */
     protected void setLeftOperand(AbstractExpr leftOperand) {
         Validate.notNull(leftOperand);
         this.leftOperand = leftOperand;
     }
 
+    /**
+     * Set the right operand. 
+     * @param rightOperand Right operand of the expression
+     */
     protected void setRightOperand(AbstractExpr rightOperand) {
         Validate.notNull(rightOperand);
         this.rightOperand = rightOperand;
     }
 
+    // Left operand of the operation
     private AbstractExpr leftOperand;
+    // Right operand of the operation
     private AbstractExpr rightOperand;
 
+    /**
+     * @param leftOperand Left operand of the expression
+     * @param rightOperand Right operand of the expression
+     */
     public AbstractBinaryExpr(AbstractExpr leftOperand,
             AbstractExpr rightOperand) {
         Validate.notNull(leftOperand, "left operand cannot be null");
@@ -47,7 +69,9 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
         this.rightOperand = rightOperand;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("(");
@@ -57,14 +81,24 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
         s.print(")");
     }
 
+    /**
+     * Return the name of the operator. 
+     * @return String
+     */
     abstract protected String getOperatorName();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         leftOperand.iter(f);
         rightOperand.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         leftOperand.prettyPrint(s, prefix, false);
@@ -72,6 +106,9 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
     }
 
     // Code generation for boolean binary expressions (AbstractOpBool, AbstractOpCmp) 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name){
         int labelNum = compiler.labelManager.createIfThenElseLabel();

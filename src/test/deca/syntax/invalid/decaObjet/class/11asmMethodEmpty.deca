@@ -1,0 +1,12 @@
+// Description:
+//    test incorrect syntaxiquement car il y a il n'y a pas de chaîne pour le code en asm
+//
+// Resultats:
+//    11asmMethodEmpty.deca:11:18:
+
+// Historique:
+//    cree le 20/06/2022
+
+class Point2D {     
+    void m() asm ();
+} 

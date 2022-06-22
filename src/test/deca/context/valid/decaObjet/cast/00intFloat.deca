@@ -1,0 +1,13 @@
+// Description:
+//    cast d'un float en int
+//
+// Resultats:
+//    00intFloat.lis
+//
+// Historique:
+//    cree le 20/06/2022
+
+{
+    float x = 2.5;
+    int y = (int)(x);
+}

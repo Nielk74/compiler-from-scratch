@@ -1,0 +1,27 @@
+// Description:
+//    Test des methods de print
+//
+// Resultats:
+//    00voidMethodWithPrint.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A{
+    void m(int a, float b, int c){
+        println("method 1: ");
+        print(a);
+        print(b);
+        println(c);
+    }
+    void p(){
+        println("method 2: no parameter");
+    }
+
+}
+
+{
+    A a = new A();
+    a.m(1, 2.0f, 3);
+    a.p();
+}

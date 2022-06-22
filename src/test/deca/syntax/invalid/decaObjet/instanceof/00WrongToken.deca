@@ -1,0 +1,16 @@
+// Description:
+//    tests de programme incorrect lexicalement (token 'instanceo' non reconnu)
+//
+// Resultats:
+//    00WrongToken:15:18:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {}
+
+{
+    A a = new A();
+
+    boolean b = a instanceo A;
+}

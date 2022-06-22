@@ -1,0 +1,36 @@
+// Description:
+//      Test redoublant identifiers de variables locales/ parametres/ attributs.
+//
+// Resultats:
+//    07varLocalAndParameter.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+
+class A{
+    int x =1;
+}
+
+class B extends A {
+    void incrementX(int x){
+        this.x = this.x + x;
+    }
+    void increment4(){
+        int x = 4;
+        this.x = this.x + x;
+    }
+    int multiply2(){
+        return 2 * x;
+    }
+}
+
+{
+    B b = new B();
+    b.incrementX(1);
+    println("x +1 = ",b.x);
+    b.increment4();
+    println("then x + 4 =",b.x);
+    println("then x * 2 =",b.multiply2());
+
+}

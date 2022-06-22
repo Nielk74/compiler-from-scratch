@@ -316,6 +316,21 @@
                         </goals>
                     </execution>
                     <execution>
+                        <id>rendu-final</id>
+                        <configuration>
+                            <executable>./src/test/script/wrapperTestLauncher.sh</executable>
+                            <arguments>
+                                <argument>
+                                    decaObjet
+                                </argument>
+                            </arguments>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
                         <id>test-decac-options</id>
                         <configuration>
                             <executable>./src/test/script/testDecacOptions.sh</executable>
@@ -418,6 +433,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <additionalOptions>-Xdoclint:none</additionalOptions>
+                    <additionalJOption>-Xdoclint:none</additionalJOption>
+                </configuration>
             </plugin>
         </plugins>
 

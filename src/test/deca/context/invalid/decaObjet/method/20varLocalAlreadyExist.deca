@@ -1,0 +1,15 @@
+// Description:
+// Test d'une déclaration de méthode dans laquelle on déclare une variable dont le nom est déjà utilisé en paramètre
+//
+// Resultats:
+//     20varLocalAlreadyExist.lis
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    void m(int x) {
+        float x;
+    }
+}
+{}

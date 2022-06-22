@@ -1,4 +1,13 @@
-//Passe dans la boucle une fois, puis en sort à cause du x
+// Description:
+// Test des variables booléennes pour les conditions dans un while
+//
+// Resultats:
+//  true && (5 < 10)
+//  !(true && (10 < 10))
+//  !(false && (5 < 10))
+//
+// Historique:
+//    crée le 10/06/2022
 {
 int x = 5;
 boolean y = true;
@@ -9,8 +18,6 @@ while(y && (x < 10)){
   x = 10;
 }
 println("!(true && (10 < 10))");
-
-//Ne passe pas dans la boucle à cause du y = false
 
 while(b && (a < 10)){
   println("false && (5 < 10)");

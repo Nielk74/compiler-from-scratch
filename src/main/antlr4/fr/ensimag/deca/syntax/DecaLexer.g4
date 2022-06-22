@@ -14,6 +14,8 @@ options {
 //Ignore
 LINE_COMMENT: ('//' ~[\r\n]*) { skip(); };
 SPACES: ('\r'|'\t'|'\n'|' ') { skip(); };
+MULTI_LINE_COMMENT: ('/*' .*? '*/') { skip(); };
+
 //Syntaxe
 OBRACE: '{';
 CBRACE: '}';
@@ -23,6 +25,8 @@ COMMA: ',';
 EQUALS: '=';
 SEMI: ';';
 EOL: '\n';
+DOT: '.';
+
 //Logique
 AND: '&&';
 OR: '||';
@@ -33,17 +37,29 @@ LT: '<';
 LEQ: '<=';
 GT: '>';
 GEQ: '>=';
+
 // Arithmétique
 PLUS: '+';
 MINUS: '-';
 TIMES: '*';
 SLASH: '/';
 PERCENT: '%';
+
 //Mots réservés
 WHILE: 'while';
 IF: 'if';
 ELSE: 'else';
 ELSEIF: 'elseif';
+ASM: 'asm';
+CLASS: 'class';
+EXTENDS: 'extends';
+INSTANCEOF: 'instanceof';
+NEW: 'new';
+NULL: 'null';
+PROTECTED: 'protected';
+RETURN: 'return';
+THIS: 'this';
+
 //Fonctions
 PRINT: 'print';
 PRINTLN: 'println';
@@ -51,6 +67,10 @@ PRINTX: 'printx';
 PRINTLNX: 'printlnx';
 READINT: 'readInt';
 READFLOAT: 'readFloat';
+
+// Include
+fragment FILENAME: (LETTER | DIGIT | '.' | '-' | '_')+;
+INCLUDE: '#include' (' ')* '"' FILENAME '"' {doInclude(getText());};
 
 //Types
 TRUE: 'true';
@@ -71,11 +91,8 @@ INT: '0' | (POSITIVE_DIGIT DIGIT*);
 
 fragment STRING_CAR: ~('"' | '\\' | '\n');
 STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
-fragment MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
+MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
-IDENT: (LETTER | DIGIT | '$' | '_')+;
+IDENT: (LETTER | '$' | '_') (LETTER | DIGIT | '$' | '_')*;
 
-// Deca lexer rules.
-// DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
-                // A FAIRE : Il faut la supprimer et la remplacer par les vraies règles.

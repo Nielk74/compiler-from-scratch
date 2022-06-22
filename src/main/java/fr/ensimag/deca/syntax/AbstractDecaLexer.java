@@ -1,8 +1,8 @@
 package fr.ensimag.deca.syntax;
 
 import java.io.File;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Stack;
 
@@ -27,7 +27,7 @@ import fr.ensimag.deca.tree.LocationException;
  * 
  * @author gl10, Based on template by Jim Idle - Temporal Wave LLC
  *         (jimi@idle.ws)
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractDecaLexer extends Lexer {
     private static final Logger LOG = Logger.getLogger(AbstractDecaLexer.class);
@@ -35,14 +35,26 @@ public abstract class AbstractDecaLexer extends Lexer {
     private DecacCompiler decacCompiler;
     private File source;
 
+    
+    /** 
+     * @param source
+     */
     public void setSource(File source) {
         this.source = source;
     }
 
+    
+    /** 
+     * @return DecacCompiler
+     */
     protected DecacCompiler getDecacCompiler() {
         return decacCompiler;
     }
 
+    
+    /** 
+     * @param decacCompiler
+     */
     public void setDecacCompiler(DecacCompiler decacCompiler) {
         this.decacCompiler = decacCompiler;
     }
@@ -122,6 +134,10 @@ public abstract class AbstractDecaLexer extends Lexer {
         return lex;
     }
 
+    
+    /** 
+     * @return File
+     */
     protected File getSource() {
         if (getDecacCompiler() != null
                 && getDecacCompiler().getSource() != null) {

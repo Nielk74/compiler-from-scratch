@@ -1,0 +1,18 @@
+// Description:
+//    instanceof avec le literal null dans un if
+//
+// Resultats:
+//    null instanceof A
+//
+// Historique:
+//    cree le 17/06/2022
+
+class A {}
+
+{
+    if (null instanceof A) {
+        println("null instanceof A");
+    } else {
+        println("null not instanceof A");
+    }
+}

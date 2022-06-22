@@ -1,0 +1,22 @@
+// Description:
+//    tests de programme incorrect lexicalement (token 'instanceo' non reconnu)
+//
+// Resultats:
+//    a is not instance of B
+//
+// Historique:
+//    cree le 17/06/2022
+
+class A {}
+
+class B {}
+
+{
+    A a = new A();
+
+    if (a instanceof B == false) {
+        println("a is not instance of B");
+    } else {
+        println("a is instance of B");
+    }
+}

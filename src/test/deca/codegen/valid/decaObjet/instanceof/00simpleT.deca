@@ -1,0 +1,20 @@
+// Description:
+//    instanceof de la même classe
+//
+// Resultats:
+//    true
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {}
+
+{
+    A a = new A();
+    if (a instanceof A){
+        println("true");
+    }
+    else{
+        println("false");
+    }
+}
