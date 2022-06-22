@@ -69,7 +69,7 @@ public class Cast extends AbstractExpr {
         Type typeType = type.getDefinition().getType();
 
         if (exprType.isVoid()) {
-            throw new ContextualError("Wrong type : void is forbidden", type.getLocation());
+            throw new ContextualError("Forbidden type : void", type.getLocation());
         }
 
         else if ((exprType.isInt() && typeType.isFloat())) {
@@ -87,7 +87,7 @@ public class Cast extends AbstractExpr {
             }
         } else {
             throw new ContextualError(
-                    "Cannot cast " + exprType + " in " + typeType,
+                    "Wrong cast: Cannot cast " + exprType + " to " + typeType,
                     this.getLocation());
         }
         return this.getType();

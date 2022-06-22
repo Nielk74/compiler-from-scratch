@@ -41,11 +41,11 @@ public class Modulo extends AbstractOpArith {
 
         // modulo works only when operands are int type
         if (!leftType.isInt()) {
-            throw new ContextualError("Left type is not int in Modulo.verifyExpr", this.getLocation());
+            throw new ContextualError("Wrong type: expected int ≠ current: " + leftType, this.getLocation());
         }
 
         if (!rightType.isInt()) {
-            throw new ContextualError("Right type is not int in Modulo.verifyExpr", this.getLocation());
+            throw new ContextualError("Wrong type: expected int ≠ current: " + rightType, this.getLocation());
         }
 
         this.setType(compiler.environmentType.INT);

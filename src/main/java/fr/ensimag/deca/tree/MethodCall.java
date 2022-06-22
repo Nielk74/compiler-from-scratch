@@ -63,7 +63,7 @@ public class MethodCall extends AbstractExpr {
             throws ContextualError {
         Type typeClass =expr.verifyExpr(compiler, localEnv, currentClass);
         if (typeClass.isNull()) {
-            throw new ContextualError("Cannot call method on null", this.getLocation());
+            throw new ContextualError("Wrong method call: Cannot call method on null", this.getLocation());
         }
         ClassDefinition classDef = ((ClassType) typeClass).getDefinition();
         ExpDefinition defTest = classDef.getMembers().get(method.getName());
@@ -71,14 +71,14 @@ public class MethodCall extends AbstractExpr {
             throw new ContextualError("Unknown method: " + method.getName(), method.getLocation());
         }
         if (!defTest.isMethod()) {
-            throw new ContextualError("Not a method: " + method.getName(), method.getLocation());
+            throw new ContextualError("Wrong method call: " + method.getName() + " is not a method", method.getLocation());
         }
         MethodDefinition methodDef = (MethodDefinition) defTest;
         method.setDefinition(methodDef);
         Signature sig = methodDef.getSignature();
 
         if (args.size() != sig.size()) {
-            throw new ContextualError("Wrong number of arguments in the call of method " + typeClass.getName().getName()
+            throw new ContextualError("Wrong method call: mismatched number of arguments in the call of method " + typeClass.getName().getName()
                     + "." + method.getName().getName(), this.getLocation());
         }
 

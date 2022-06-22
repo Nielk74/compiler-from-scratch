@@ -57,7 +57,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             this.setType(compiler.environmentType.FLOAT);
         }
         else if (!leftType.sameType(rightType)) {
-            throw new ContextualError("Type mismatch in AbstractExpr.verifyRValue", this.getLocation());
+            throw new ContextualError("Wrong type: expected int or float ≠ current: " + leftType +" "+ rightType, this.getLocation());
         }
 
         return this.getType();

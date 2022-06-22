@@ -174,11 +174,7 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         Type currentType = this.definition.getType();
         if (currentType == null) {
-            throw new DecacInternalError("Type " + this.getName() + " is not defined");
-        }
-        TypeDefinition typeDef = compiler.environmentType.defOfType(currentType.getName());
-        if (typeDef == null) {
-            throw new DecacInternalError("Type definition " + this.getName() + " is not defined");
+            throw new ContextualError("Unknown type: Type " + this.getName() + " is not defined", getLocation());
         }
         this.setType(currentType);
         return currentType;

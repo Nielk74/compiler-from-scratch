@@ -51,7 +51,7 @@ public class New extends AbstractExpr {
             throws ContextualError {
         TypeDefinition t = compiler.environmentType.defOfType(type.getName());
         if (t == null) {
-            throw new ContextualError("Type " + type.getName() + " not found", type.getLocation());
+            throw new ContextualError("Wrong initialization object: Type " + type.getName() + " is not defined", type.getLocation());
         }
         type.setDefinition(t);
         this.setType(t.getType());

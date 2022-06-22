@@ -70,7 +70,7 @@ public class DeclField extends AbstractDeclField {
         
         // check if type == void
         if (typeDef.getType().isVoid()) {
-            throw new ContextualError("Wrong type: void is forbidden", type.getLocation());
+            throw new ContextualError("Forbidden type: void", type.getLocation());
         }
 
         // check if the field name is already defined in the superclass env

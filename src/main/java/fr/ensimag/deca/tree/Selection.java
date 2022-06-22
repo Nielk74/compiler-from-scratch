@@ -77,12 +77,12 @@ public class Selection extends AbstractLValue {
 
         if (fieldDef.getVisibility() == Visibility.PROTECTED) {
             if (currentClass == null) {
-                throw new ContextualError("Cannot access protected field: " + field.getName(), field.getLocation());
+                throw new ContextualError("Wrong field access: Cannot access protected field: " + field.getName(), field.getLocation());
             }
             // regle de verification de visibilite 3.66
             if (!(((ClassType) typeExpr).isSubClassOf(currentClass.getType())
                     && currentClass.getType().isSubClassOf(fieldDef.getContainingClass().getType()))) {
-                throw new ContextualError("Cannot access protected field: " + field.getName(), field.getLocation());
+                throw new ContextualError("Wrong field access: Cannot access protected field: " + field.getName(), field.getLocation());
             }
         }
 

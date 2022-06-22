@@ -33,7 +33,7 @@ public class UnaryMinus extends AbstractUnaryExpr {
             ClassDefinition currentClass) throws ContextualError {
         Type typeOperand = getOperand().verifyExpr(compiler, localEnv, currentClass);
         if (!typeOperand.isFloat() && !typeOperand.isInt()){
-            throw new ContextualError("Unary minus cannot be applied to a value other than float or int ", getLocation());
+            throw new ContextualError("Wrong left type - expected: float or int ≠ current: "+ typeOperand, getLocation());
         }
         setType(typeOperand);
         return typeOperand;

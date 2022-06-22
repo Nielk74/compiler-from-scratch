@@ -54,7 +54,7 @@ public class InstanceOf extends AbstractExpr {
         // Verify the variable
         Type classType = expr.verifyExpr(compiler, localEnv, currentClass);
         if (!(classType.isClassOrNull())) {
-            throw new ContextualError("Wrong type : " + expr.getType() + " is not a Class type", type.getLocation());
+            throw new ContextualError("Wrong type - expected: Class type ≠ current: " + type.getName(), type.getLocation());
         }
 
         // Retrieve definition of the type
@@ -64,7 +64,7 @@ public class InstanceOf extends AbstractExpr {
         }
 
         if (!(typeType.isClass())) {
-            throw new ContextualError("Wrong type : " + type.getName() + " is not a Class type", type.getLocation());
+            throw new ContextualError("Wrong type - expected: Class type ≠ current: " + type.getName(), type.getLocation());
         }
         type.setDefinition(typeType);
 

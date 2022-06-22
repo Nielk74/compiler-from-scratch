@@ -58,7 +58,7 @@ public class DeclVar extends AbstractDeclVar {
             throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
         }
         if (def.getType().isVoid()) {
-            throw new ContextualError("Wrong variable type - unexpected: void", type.getLocation());
+            throw new ContextualError("Forbidden variable type: void", type.getLocation());
         }
         TypeDefinition typeDef = compiler.environmentType.defOfType(typeSymbol);
         if (typeDef == null) {

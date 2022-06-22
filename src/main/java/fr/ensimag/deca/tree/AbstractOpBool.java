@@ -32,7 +32,7 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr {
         Type type1 = super.getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type type2 = super.getRightOperand().verifyExpr(compiler, localEnv, currentClass);
         if (!(type1.isBoolean() && type2.isBoolean())) {
-            throw new ContextualError("Invalid type for one operand (must be boolean)", this.getLocation());
+            throw new ContextualError("Wrong type - expected: boolean boolean ≠ current: " + type1 + " " + type2, this.getLocation());
         } 
         this.setType(compiler.environmentType.BOOLEAN);
         return this.getType();
