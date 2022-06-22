@@ -1,0 +1,14 @@
+// Description:
+//   test sur 2 inclusion de fichier
+//
+// Resultats:
+//    00include.expected
+//
+// Historique:
+//    cree le 13/06/2022
+
+#include "include.decah"
+#include "include1.decah"
+    println("x + 1 in main = " , x+ 1);
+    println("hello world!");
+}

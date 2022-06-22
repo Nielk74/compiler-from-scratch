@@ -1,0 +1,15 @@
+// Description:
+//    instanceof sur un int literal (et non une variable de type classe ou null)
+//
+// Resultats:
+//    09wrongTypeInt.deca:13:17:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A{}
+
+{
+    A a = new A(); 
+    a instanceof 1;
+}

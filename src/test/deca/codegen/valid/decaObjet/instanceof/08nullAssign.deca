@@ -1,0 +1,19 @@
+// Description:
+//    assignation du résultat d'un instanceof avec null à une variable boolean
+//
+// Resultats:
+//    null is instance of A
+//
+// Historique:
+//    cree le 17/06/2022
+
+class A {}
+
+{
+    boolean b = null instanceof A;
+    if (b) {
+        println("null is instance of A");
+    } else {
+        println("null is not instance of A");
+    }
+}

@@ -1,0 +1,52 @@
+`> [11, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [11, 0] DeclClass
+   |  ||  +> [11, 6] Identifier (A)
+   |  ||  |  definition: type defined at [11, 0], type=A
+   |  ||  +> [builtin] Identifier (Object)
+   |  ||  |  definition: type (builtin), type=Object
+   |  ||  +> ListDeclField [List with 0 elements]
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [12, 0] DeclClass
+   |      +> [12, 6] Identifier (B)
+   |      |  definition: type defined at [12, 0], type=B
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [14, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [15, 6] DeclVar
+      |  ||  +> [15, 4] Identifier (A)
+      |  ||  |  definition: type defined at [11, 0], type=A
+      |  ||  +> [15, 6] Identifier (a)
+      |  ||  |  definition: variable defined at [15, 6], type=A
+      |  ||  `> [15, 10] Initialization
+      |  ||     `> [15, 10] New
+      |  ||        type: A
+      |  ||        `> [15, 14] Identifier (A)
+      |  ||           definition: type defined at [11, 0], type=A
+      |  []> [16, 6] DeclVar
+      |      +> [16, 4] Identifier (B)
+      |      |  definition: type defined at [12, 0], type=B
+      |      +> [16, 6] Identifier (b)
+      |      |  definition: variable defined at [16, 6], type=B
+      |      `> [16, 10] Initialization
+      |         `> [16, 10] New
+      |            type: B
+      |            `> [16, 14] Identifier (B)
+      |               definition: type defined at [12, 0], type=B
+      `> ListInst [List with 1 elements]
+         []> [17, 4] IfThenElse
+             +> [17, 8] Equals
+             |  type: boolean
+             |  +> [17, 8] Identifier (a)
+             |  |  definition: variable defined at [15, 6], type=A
+             |  `> [17, 13] Identifier (b)
+             |     definition: variable defined at [16, 6], type=B
+             +> ListInst [List with 1 elements]
+             |  []> [18, 8] Print
+             |      `> ListExpr [List with 1 elements]
+             |         []> [18, 14] StringLiteral (a = b)
+             |             type: string
+             `> ListInst [List with 0 elements]

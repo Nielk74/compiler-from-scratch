@@ -1,0 +1,30 @@
+// Description:
+//    instanceof dans un if avec comparaison avec un boolean
+//
+// Resultats:
+//    a instanceof A
+//    a not instanceof B
+//
+// Historique:
+//    cree le 17/06/2022
+
+class A {}
+
+class B {}
+
+{
+    A a = new A();
+    boolean b = true;
+
+    if (b == a instanceof A) {
+        println("a instanceof A");
+    } else {
+        println("a not instanceof A");
+    }
+
+    if (b == a instanceof B) {
+        println("a instanceof B");
+    } else {
+        println("a not instanceof B");
+    }
+}

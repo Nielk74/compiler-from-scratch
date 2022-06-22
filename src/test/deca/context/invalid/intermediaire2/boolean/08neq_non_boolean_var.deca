@@ -1,0 +1,12 @@
+// Description:
+// Test du moins unaire sur un booléen dans une variable, chose interdite.
+//
+// Resultats:
+//  08neq_non_boolean_var.deca:11:13
+//
+// Historique:
+//    crée le 16/06/2022
+{
+    int y;
+    int x = !y;
+}

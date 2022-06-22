@@ -1,0 +1,10 @@
+// Description:
+//    Programme déclarant une classe qui s'étend elle-même
+//
+// Resultats:
+//    01extendsItself.deca:10:16:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class A extends A {}

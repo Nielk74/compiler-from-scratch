@@ -7,7 +7,7 @@ import org.antlr.v4.runtime.IntStream;
  * includes a file which has already been included.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class CircularInclude extends DecaRecognitionException {
     private static final long serialVersionUID = -3517868082633812254L;
@@ -18,6 +18,10 @@ public class CircularInclude extends DecaRecognitionException {
         this.name = name;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String getMessage() {
         return "Circular include for file " + name;

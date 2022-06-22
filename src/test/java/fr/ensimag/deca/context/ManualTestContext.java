@@ -16,9 +16,14 @@ import org.apache.log4j.Logger;
  * Driver to test the contextual analysis (together with lexer/parser)
  * 
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class ManualTestContext {
+    
+    /** 
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         //Logger.getRootLogger().setLevel(Level.DEBUG);
         DecaLexer lex = AbstractDecaLexer.createLexerFromArgs(args);

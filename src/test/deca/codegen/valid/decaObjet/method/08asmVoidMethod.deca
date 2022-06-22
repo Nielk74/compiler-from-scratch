@@ -1,0 +1,22 @@
+// Description:
+//     Test d'une méthode en asm de type void qui affiche un paramètre
+//
+// Resultats:
+//    7
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    void m(int x) asm ("
+        LOAD -3(LB), R1
+        WINT
+        WNL
+        RTS
+    ");
+}
+
+{
+    A a = new A();
+    a.m(7);
+}

@@ -2,10 +2,10 @@ package fr.ensimag.deca.tree;
 
 
 /**
- * read...() statement.
+ * Abstract class to factorize the code of the ReadFloat and the ReadInt.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractReadExpr extends AbstractExpr {
 

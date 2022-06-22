@@ -1,0 +1,20 @@
+// Description:
+//    Programme qui teste le cast de this
+//
+// Resultats:
+//    07castThis.expected
+//
+// Historique:
+//    cree le 16/06/2022
+class A {
+    int x = 10;
+}
+
+class B extends A {
+    float x = ((A)(this)).x * 2.5;
+}
+
+{
+    B b = new B();
+    println("b.x = " ,b.x);
+}

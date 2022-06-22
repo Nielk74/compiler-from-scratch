@@ -1,0 +1,11 @@
+// Description:
+// Test du mettre le mot réservé instanceof, en nom de variable.
+//
+// Resultats:
+//  06instanceof.deca:10:18:
+//
+// Historique:
+//    crée le 17/06/2022
+{
+    int instanceof;
+}

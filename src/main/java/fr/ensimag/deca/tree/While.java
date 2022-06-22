@@ -13,22 +13,43 @@ import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 
 /**
+ * While control structure.
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class While extends AbstractInst {
+    /**
+     * Condition de la boucle while.
+     */
     private AbstractExpr condition;
+    /**
+     * The body to execute.
+     */
     private ListInst body;
 
+    /**
+     * Return the condition of the while.
+     * 
+     * @return AbstractExpr
+     */
     public AbstractExpr getCondition() {
         return condition;
     }
 
+    /**
+     * Return the body of the while.
+     * 
+     * @return ListInst
+     */
     public ListInst getBody() {
         return body;
     }
 
+    /**
+     * @param condition Condition of the while.
+     * @param body Body of the while.
+     */
     public While(AbstractExpr condition, ListInst body) {
         Validate.notNull(condition);
         Validate.notNull(body);
@@ -36,6 +57,9 @@ public class While extends AbstractInst {
         this.body = body;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         int labelNum = compiler.labelManager.createWhileLabel();
@@ -53,6 +77,9 @@ public class While extends AbstractInst {
         compiler.addComment("!"+this.condition.decompile());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
@@ -61,6 +88,9 @@ public class While extends AbstractInst {
         this.body.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("while (");
@@ -72,12 +102,18 @@ public class While extends AbstractInst {
         s.print("}");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         condition.iter(f);
         body.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         condition.prettyPrint(s, prefix, false);

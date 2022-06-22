@@ -1,8 +1,8 @@
 // Description:
-//    Programme affichant le contenu de variables float initialisees avec des immediats et des variables int -> teste le bon fonctionnement de convFloat
+//    Programme syntaxiquement invalide car il initialise un int trop grand
 //
 // Resultats:
-//    00int.expected
+//    00int.lis
 //
 // Historique:
 //    cree le 10/06/2022

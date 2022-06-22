@@ -1,0 +1,30 @@
+// Description:
+//    instanceof sur un objet dont le type dynamique est null
+//    instanceof sur l'objet null
+//
+// Resultats:
+//    a is instance of B
+//    null is instance of Object
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {}
+
+class B {}
+
+{
+    A a = null;
+
+    if (a instanceof B) {
+        println("a is instance of B");
+    } else {
+        println("a is not instance of B");
+    }
+
+    if (null instanceof Object) {
+        println("null is instance of Object");
+    } else {
+        println("null is not instance of Object");
+    }
+}

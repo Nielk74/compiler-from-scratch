@@ -1,0 +1,21 @@
+// Description:
+//    Programme qui fait affecte les champs d'un objet dans des variables
+//
+// Resultats:
+//    22
+//    1.20000e+01
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x = 22;
+    float y = 12;
+}
+{
+    A a = new A();
+    int x = a.x;
+    float y = a.y;
+    println(x);
+    println(y);
+}

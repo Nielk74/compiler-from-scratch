@@ -12,32 +12,44 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 
 /**
+ * Unary minus, the unary expression.
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class UnaryMinus extends AbstractUnaryExpr {
 
+    /**
+     * @param operand Operand of the unary minus.
+     */
     public UnaryMinus(AbstractExpr operand) {
         super(operand);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         Type typeOperand = getOperand().verifyExpr(compiler, localEnv, currentClass);
         if (!typeOperand.isFloat() && !typeOperand.isInt()){
-            throw new ContextualError("Unary minus cannot be applied to a value other than float or int ", getLocation());
+            throw new ContextualError("Wrong left type - expected: float or int ≠ current: "+ typeOperand, getLocation());
         }
         setType(typeOperand);
         return typeOperand;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "-";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenExp(DecacCompiler compiler, int register_name) {
         this.getOperand().codeGenExp(compiler, register_name);
@@ -45,7 +57,7 @@ public class UnaryMinus extends AbstractUnaryExpr {
         compiler.addInstruction(new OPP(register, register));
         
         // overflow error only when the result is a float
-        if (this.getType().isFloat()) {
+        if (this.getType().isFloat() && !compiler.getCompilerOptions().getNocheck()) {
             compiler.addInstruction(new BOV(compiler.labelManager.getLabel(ErrorCatcher.OV_ERROR)));
         }
     }

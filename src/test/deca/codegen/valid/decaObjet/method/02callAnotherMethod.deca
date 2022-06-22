@@ -1,0 +1,43 @@
+// Description:
+//    Test avec appels des methodes dans la classe
+//
+// Resultats:
+//    02callAnotherMethod.deca
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x;
+
+    void m() {
+        d();
+        println("this is method m");
+    }
+
+    void d(){
+        f();
+        println("this is method d");
+    }
+
+    void f(){
+        println("this is method f");
+    }
+
+  int method1(int att1){
+    if(att1 == 0){
+      return method1(method1(1));
+    }
+    if(att1 == 1){
+      return 2;
+    }else{
+      return 1;
+    }
+  }
+}
+{
+    A a = new A();
+    a.m();
+    println(a.method1(0));
+
+}

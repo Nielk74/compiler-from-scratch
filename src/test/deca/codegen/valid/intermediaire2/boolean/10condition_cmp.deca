@@ -1,11 +1,22 @@
+// Description:
+// Test de l'assignation d'expression booléenne dans une variable booléenne, dans une assignation,
+// et d'une condition de if, utilisant des variables, des littéraux, des and, et plusieurs comparateurs
+//
+// Resultats:
+//  (a < b) && (a <= 7) && (a == 5) && (true == true) && (b > a) && (b >= 10) && (false != true) && (10 != 7))
+//
+// Historique:
+//    crée le 10/06/2022
 {
 int a = 5;
 int b = 10;
-boolean t = true;
-boolean f = false;
+boolean t;
+boolean f;
+t = true || false;
+f = false && true;
 if((a < b) && (a <= 7) && (a == 5) && (t == true) && (b > a) && (b >= 10) && (f != t) && (10 != 7)){
-    println("(a < b) && (a <= 7) && (a == 5) && (t == true) && (b > a) && (b >= 10) && (f != t) && (10 != 7))");
+    println("(a < b) && (a <= 7) && (a == 5) && (true == true) && (b > a) && (b >= 10) && (false != true) && (10 != 7))");
 }else{
-    println("!((a < b) && (a <= 7) && (a == 5) && (t == true) && (b > a) && (b >= 10) && (f != t) && (10 != 7)))");
+    println("!((a < b) && (a <= 7) && (a == 5) && (true == true) && (b > a) && (b >= 10) && (false != true) && (10 != 7)))");
 }
 }

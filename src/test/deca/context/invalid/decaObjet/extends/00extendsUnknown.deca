@@ -1,0 +1,10 @@
+// Description:
+//    Programme déclarant une classe qui étend une classe inconnue
+//
+// Resultats:
+//    00extendsUnknown.deca:10:16:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class A extends B {}

@@ -1,0 +1,17 @@
+// Description:
+//    test protected dans la doc
+//
+// Resultats:
+//    00notSubClass2.lis
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    protected int x;
+}
+class B extends A {
+    int getX(A a) {
+        return a.x;
+    }
+}

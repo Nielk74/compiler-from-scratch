@@ -1,1 +1,1 @@
-((x < y) == t ) && ((false != t ) || !(true != (x == y)))
+((x < y) == true ) && ((false != true ) || !(true != (x == y)))

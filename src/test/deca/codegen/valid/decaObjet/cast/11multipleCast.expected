@@ -1,0 +1,35 @@
+// Description:
+//    Test de plusieurs cast
+//
+// Resultats:
+//      11multipleCast.expected
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    int x=1;
+    void m(){
+        println("from A");
+    }
+}
+class B extends A{
+    int x=2;
+    void m(){
+        println("from B");
+    }
+}
+class C extends B{
+    int x=3;
+    void m(){
+        println("from C");
+    }
+}
+
+
+{
+    B a = (B)((C)((B)(new C())));
+    a.m();
+    println(a.x);
+
+}

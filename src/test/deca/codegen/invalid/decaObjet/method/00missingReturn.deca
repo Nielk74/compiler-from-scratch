@@ -1,0 +1,17 @@
+// Description:
+// Test d'un appel de méthode dont il manque l'instruction return
+//
+// Resultats:
+//      Error: Missing return statement
+//
+// Historique:
+//    crée le 16/06/2022
+
+class A {
+    int m() {
+    }
+}
+{
+    A a = new A();
+    a.m();
+}

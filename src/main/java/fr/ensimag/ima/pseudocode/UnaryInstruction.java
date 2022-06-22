@@ -7,7 +7,7 @@ import org.apache.commons.lang.Validate;
  * Instruction with a single operand.
  *
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public abstract class UnaryInstruction extends Instruction {
     private Operand operand;
@@ -27,4 +27,8 @@ public abstract class UnaryInstruction extends Instruction {
         return operand;
     }
 
+    protected void setOperand(Operand operand) {
+        Validate.notNull(operand);
+        this.operand = operand;
+    }
 }

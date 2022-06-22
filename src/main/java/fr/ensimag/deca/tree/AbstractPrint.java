@@ -18,25 +18,48 @@ import org.apache.commons.lang.Validate;
  * Print statement (print, println, ...).
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public abstract class AbstractPrint extends AbstractInst {
 
+    /**
+     * True if we want to print the number in hexadecimal, otherwise false. 
+     */
     private boolean printHex;
+    /**
+     * The arguments list to print.
+     */
     private ListExpr arguments = new ListExpr();
     
+    /**
+     * Return the suffix.
+     * 
+     * @return String
+     */
     abstract String getSuffix();
 
+    /**
+     * @param printHex True if we want to print in hexadecimal, otherwise false.
+     * @param arguments List of expression to print.
+     */
     public AbstractPrint(boolean printHex, ListExpr arguments) {
         Validate.notNull(arguments);
         this.arguments = arguments;
         this.printHex = printHex;
     }
 
+    /**
+     * Return the arguments variable.
+     * 
+     * @return ListExpr
+     */
     public ListExpr getArguments() {
         return arguments;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
@@ -49,6 +72,9 @@ public abstract class AbstractPrint extends AbstractInst {
         } 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
@@ -59,6 +85,12 @@ public abstract class AbstractPrint extends AbstractInst {
         }
     }
 
+    /**
+     * Add in the assembly code, the instruction to print, according to the type to print.
+     * 
+     * @param compiler
+     * @param a The expression to print, to know the type to print.
+     */
     protected void addInstructionPrint(DecacCompiler compiler, AbstractExpr a) {
         if (a.getType().isFloat()) {
             if (printHex) {
@@ -73,10 +105,9 @@ public abstract class AbstractPrint extends AbstractInst {
         }
     }
 
-    private boolean getPrintHex() {
-        return printHex;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         if (printHex) {
@@ -93,11 +124,17 @@ public abstract class AbstractPrint extends AbstractInst {
         s.print(");");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         arguments.iter(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         arguments.prettyPrint(s, prefix, true);

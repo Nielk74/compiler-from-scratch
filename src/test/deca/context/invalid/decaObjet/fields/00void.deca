@@ -1,0 +1,12 @@
+// Description:
+//    déclaration d'un champs de type void
+//
+// Resultats:
+//    00void.deca:11:4:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    void x;
+}

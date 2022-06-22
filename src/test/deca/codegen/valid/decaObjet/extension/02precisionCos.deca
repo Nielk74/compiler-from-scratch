@@ -1,0 +1,2259 @@
+// Description:
+//   test la précision à coef * ULP près de la valeur de cos(x)
+//
+// Resultats:
+//    02precisionCos.expected
+//
+// Historique:
+//    cree le 16/06/2022
+
+
+#include "Math.decah"
+{
+    Math m = new Math();
+    int k = 0;
+    float input, expected, res, ULP;
+    int coef = 140;
+    int passed = 0, tests = 0;
+   tests = tests + 1;
+input = 0x1.4484cp-100;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.07abdcp-96;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.ac7746p-93;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.5c20e8p-89;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.1adabcp-85;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.cba372p-82;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.7574ccp-78;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.2f6ee6p-74;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.ed1436p-71;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.90a06cp-67;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.458258p-63;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.0879e8p-59;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.adc618p-56;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.5d30f4p-52;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.1bb7c6p-48;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.cd0aa2p-45;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.7698a4p-41;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.305c06p-37;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.ee958ap-34;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.91d98p-30;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.4680b8p-26;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.094896p-22;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.af15f4p-19;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.5e41d6p-15;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.1c957ep-11;
+expected =0x1.fffffcp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.ce72ecp-8;
+expected =0x1.fffcbcp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.77bd6p-4;
+expected =0x1.fdd8e6p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.3149dep0;
+expected =0x1.7a2b8ep-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.f01808p3;
+expected =-0x1.f546bp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.931386p7;
+expected =0x1.c7093ep-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.477fdcp11;
+expected =0x1.fdcdap-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.0a17e2p15;
+expected =0x1.6d2efcp-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.b066dp18;
+expected =-0x1.ff9826p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.5f5388p22;
+expected =-0x1.edc92ap-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.1d73dep26;
+expected =-0x1.7bb882p-4;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.cfdc48p29;
+expected =-0x1.2f7b46p-4;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.78e2fap33;
+expected =0x1.346ef8p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.32386cp37;
+expected =0x1.b0c854p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.f19bbp40;
+expected =0x1.fabb66p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.944e8p44;
+expected =-0x1.2eabdp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.487fc8p48;
+expected =-0x1.dda682p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.0ae7d2p52;
+expected =-0x1.9f051p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.b1b8b6p55;
+expected =-0x1.ea1f72p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.606614p59;
+expected =-0x1.9fd904p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.1e52fp63;
+expected =-0x1.dace22p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.d146c6p66;
+expected =-0x1.146f58p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.7a098p70;
+expected =-0x1.f0d634p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.3327b8p74;
+expected =0x1.ffc47p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.f3208cp77;
+expected =-0x1.a01a34p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.958a72p81;
+expected =-0x1.d29caep-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.49807cp85;
+expected =0x1.49fe5p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.0bb864p89;
+expected =-0x1.9993c2p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.b30ba2p92;
+expected =0x1.cd6d5ep-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.617974p96;
+expected =-0x1.e39d7cp-3;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.1f32aep100;
+expected =0x1.9850bp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.d2b25ap103;
+expected =-0x1.28af16p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.7b30eap107;
+expected =-0x1.bcf6e8p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.3417bep111;
+expected =0x1.6c3cc8p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.f4a694p114;
+expected =-0x1.4cf8bp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.96c758p118;
+expected =0x1.ffcbbcp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = 0x1.4a81f8p122;
+expected =0x1.f1f724p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.4484cp-100;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.07abdcp-96;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.ac7746p-93;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.5c20e8p-89;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.1adabcp-85;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.cba372p-82;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.7574ccp-78;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.2f6ee6p-74;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.ed1436p-71;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.90a06cp-67;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.458258p-63;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.0879e8p-59;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.adc618p-56;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.5d30f4p-52;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.1bb7c6p-48;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.cd0aa2p-45;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.7698a4p-41;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.305c06p-37;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.ee958ap-34;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.91d98p-30;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.4680b8p-26;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.094896p-22;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.af15f4p-19;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.5e41d6p-15;
+expected =0x1.0p0;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.1c957ep-11;
+expected =0x1.fffffcp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.ce72ecp-8;
+expected =0x1.fffcbcp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.77bd6p-4;
+expected =0x1.fdd8e6p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.3149dep0;
+expected =0x1.7a2b8ep-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.f01808p3;
+expected =-0x1.f546bp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.931386p7;
+expected =0x1.c7093ep-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.477fdcp11;
+expected =0x1.fdcdap-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.0a17e2p15;
+expected =0x1.6d2efcp-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.b066dp18;
+expected =-0x1.ff9826p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.5f5388p22;
+expected =-0x1.edc92ap-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.1d73dep26;
+expected =-0x1.7bb882p-4;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.cfdc48p29;
+expected =-0x1.2f7b46p-4;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.78e2fap33;
+expected =0x1.346ef8p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.32386cp37;
+expected =0x1.b0c854p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.f19bbp40;
+expected =0x1.fabb66p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.944e8p44;
+expected =-0x1.2eabdp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.487fc8p48;
+expected =-0x1.dda682p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.0ae7d2p52;
+expected =-0x1.9f051p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.b1b8b6p55;
+expected =-0x1.ea1f72p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.606614p59;
+expected =-0x1.9fd904p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.1e52fp63;
+expected =-0x1.dace22p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.d146c6p66;
+expected =-0x1.146f58p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.7a098p70;
+expected =-0x1.f0d634p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.3327b8p74;
+expected =0x1.ffc47p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.f3208cp77;
+expected =-0x1.a01a34p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.958a72p81;
+expected =-0x1.d29caep-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.49807cp85;
+expected =0x1.49fe5p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.0bb864p89;
+expected =-0x1.9993c2p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.b30ba2p92;
+expected =0x1.cd6d5ep-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.617974p96;
+expected =-0x1.e39d7cp-3;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.1f32aep100;
+expected =0x1.9850bp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.d2b25ap103;
+expected =-0x1.28af16p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.7b30eap107;
+expected =-0x1.bcf6e8p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.3417bep111;
+expected =0x1.6c3cc8p-2;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.f4a694p114;
+expected =-0x1.4cf8bp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+
+input = -0x1.96c758p118;
+expected =0x1.ffcbbcp-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+tests = tests + 1;
+input = -0x1.4a81f8p122;
+expected =0x1.f1f724p-1;
+res = m.cos(input);
+ULP = m.ulp(res); 
+if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+	passed = passed + 1;
+	println("PASSED");
+}
+else{
+	println("-------------------------------------------------");
+	println("FAILED");
+	printlnx("Input: " , input);
+	printlnx("Expected: " , expected);
+	printlnx("Result: " , res); 
+	println("------------------------------------------------");
+}
+
+
+    println("-------------------------------------------------");
+    println("Résultats: " , passed , "/" , tests);
+}
+/*
+ while(k< 122){
+        k = k + 1;
+        tests = tests + 1;
+
+        input = readFloat();
+        expected = readFloat();
+        res = m.cos(input);
+        ULP = m.ulp(res); 
+        if(res+coef*ULP >= expected && res-coef*ULP <= expected){
+            passed = passed + 1;
+            println("PASSED");
+        }
+        else{
+            println("-------------------------------------------------");
+            println("FAILED");
+            printlnx("Expected: " , expected);
+            printlnx("Result: " , res); 
+            println("------------------------------------------------");
+        }
+    }
+input généré grâce à :
+public class MyClass {
+    public static void main(String args[]) {
+     int k = 0;
+     float x = (float)1E-30;
+     while(k <61){
+        k ++;
+        System.out.print(x+" ");
+        System.out.print((float)Math.cos(x)+" ");
+        x = x * 13;
+    }
+    k = 0;
+    x = (float)-1E-30;
+    while(k <61){
+        k ++;
+        System.out.print(x+" ");
+        System.out.print((float)Math.cos(x)+" ");
+        x = x * 13;
+    }
+    }
+}
+*/

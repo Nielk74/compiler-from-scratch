@@ -1,0 +1,12 @@
+// Description:
+//    Initilisation d'un champs int avec un type float
+//
+// Resultats:
+//    04wrongTypeInit.deca:11:12:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+    int x = 1.5;
+}

@@ -1,0 +1,14 @@
+// Description:
+//    instanceof sur une variable de type int (et non classe)
+//
+// Resultats:
+//    04wrongExprVarInt.deca:13:17:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A{}
+
+{   int a = 1;
+    a instanceof A;
+}

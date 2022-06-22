@@ -1,0 +1,25 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [11, 10] DeclVar
+      |  ||  +> [11, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [11, 10] Identifier (x)
+      |  ||  |  definition: variable defined at [11, 10], type=float
+      |  ||  `> [11, 14] Initialization
+      |  ||     `> [11, 14] Float (2.5)
+      |  ||        type: float
+      |  []> [12, 8] DeclVar
+      |      +> [12, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [12, 8] Identifier (y)
+      |      |  definition: variable defined at [12, 8], type=int
+      |      `> [12, 12] Initialization
+      |         `> [12, 12] Cast
+      |            type: int
+      |            +> [12, 13] Identifier (int)
+      |            |  definition: type (builtin), type=int
+      |            `> [12, 18] Identifier (x)
+      |               definition: variable defined at [11, 10], type=float
+      `> ListInst [List with 0 elements]

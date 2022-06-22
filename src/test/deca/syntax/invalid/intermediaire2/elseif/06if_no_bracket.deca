@@ -1,0 +1,14 @@
+// Description:
+//    tests de programme incorrect lexicalement :
+//    il manque les accolades, pour un if simple.
+//
+// Resultats:
+//    05nobrace.deca:15:1:
+//
+// Historique:
+//    cree le 08/06/2022
+
+{
+    if (3 < 2)
+      print("3 < 2");
+}

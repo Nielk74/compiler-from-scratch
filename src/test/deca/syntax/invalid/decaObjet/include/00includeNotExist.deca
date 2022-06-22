@@ -1,0 +1,14 @@
+// Description:
+//   test avec fichier inclus non existant
+//
+// Resultats:
+//    00includeNotExist.deca:1:25:
+//
+// Historique:
+//    cree le 13/06/2022
+
+#include "notExist.decah"
+
+{
+    println("Should not display this");
+}

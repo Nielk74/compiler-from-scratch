@@ -1,0 +1,19 @@
+// Description:
+//    test essayant de comparer 1 objet de type Class avec un objet non Class
+//
+// Resultats:
+//    02comparaison.deca:22:8:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {
+
+}
+
+{
+    A a = new A();
+    if (a == 5) {
+
+    }
+}

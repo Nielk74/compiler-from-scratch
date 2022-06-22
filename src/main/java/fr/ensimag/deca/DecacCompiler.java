@@ -1,9 +1,19 @@
 package fr.ensimag.deca;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.apache.log4j.Logger;
+
 import fr.ensimag.deca.codegen.ErrorCatcher;
 import fr.ensimag.deca.codegen.LabelManager;
-import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.deca.codegen.StackManager;
+import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -18,15 +28,6 @@ import fr.ensimag.ima.pseudocode.Instruction;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Line;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.apache.log4j.Logger;
-
 /**
  * Decac compiler instance.
  *
@@ -40,7 +41,7 @@ import org.apache.log4j.Logger;
  * compiler.addInstruction() instead of compiler.getProgram().addInstruction()).
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
@@ -50,6 +51,10 @@ public class DecacCompiler {
      */
     private static final String nl = System.getProperty("line.separator", "\n");
 
+    /**
+     * @param compilerOptions object which handle the options of the compiler
+     * @param source the compiler compiles this source file
+     */
     public DecacCompiler(CompilerOptions compilerOptions, File source) {
         super();
         this.compilerOptions = compilerOptions;
@@ -58,6 +63,8 @@ public class DecacCompiler {
 
     /**
      * Source file associated with this compiler instance.
+     * Accessor : return the field source
+     * @return File
      */
     public File getSource() {
         return source;
@@ -66,6 +73,8 @@ public class DecacCompiler {
     /**
      * Compilation options (e.g. when to stop compilation, number of registers
      * to use, ...).
+     * Accessor : return the field compilerOptions
+     * @return CompilerOptions
      */
     public CompilerOptions getCompilerOptions() {
         return compilerOptions;
@@ -74,6 +83,8 @@ public class DecacCompiler {
     /**
      * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#add(fr.ensimag.ima.pseudocode.AbstractLine)
+     * Add a line to the program
+     * @param line
      */
     public void add(AbstractLine line) {
         program.add(line);
@@ -81,6 +92,8 @@ public class DecacCompiler {
 
     /**
      * @see fr.ensimag.ima.pseudocode.IMAProgram#addComment(java.lang.String)
+     * Add a comment to the program
+     * @param comment
      */
     public void addComment(String comment) {
         program.addComment(comment);
@@ -89,6 +102,8 @@ public class DecacCompiler {
     /**
      * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#addLabel(fr.ensimag.ima.pseudocode.Label)
+     * Add a label to the program.
+     * @param label
      */
     public void addLabel(Label label) {
         program.addLabel(label);
@@ -97,6 +112,8 @@ public class DecacCompiler {
     /**
      * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#addInstruction(fr.ensimag.ima.pseudocode.Instruction)
+     * Add an instruction to the program.
+     * @param instruction
      */
     public void addInstruction(Instruction instruction) {
         program.addInstruction(instruction);
@@ -106,6 +123,9 @@ public class DecacCompiler {
      * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#addInstruction(fr.ensimag.ima.pseudocode.Instruction,
      * java.lang.String)
+     * Add an instruction and a comment to the program.
+     * @param instruction
+     * @param comment
      */
     public void addInstruction(Instruction instruction, String comment) {
         program.addInstruction(instruction, comment);
@@ -114,6 +134,8 @@ public class DecacCompiler {
     /**
      * @see 
      * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Instruction)
+     * Add an instruction in first position in the program.
+     * @param i instruction
      */
     public void addFirst(Instruction i) {
         program.addFirst(i);
@@ -122,6 +144,8 @@ public class DecacCompiler {
     /**
      * @see 
      * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Line)
+     * Add an line in first position in the program.
+     * @param l line
      */
     public void addFirst(Line l) {
         program.addFirst(l);
@@ -130,34 +154,44 @@ public class DecacCompiler {
     /**
      * @see 
      * fr.ensimag.ima.pseudocode.IMAProgram#display()
+     * Display assembly code .ass in the strandard output
+     * @return String
      */
     public String displayIMAProgram() {
         return program.display();
     }
     
+    //object which handle the options of the compiler
     private final CompilerOptions compilerOptions;
+    //source the compiler compiles this source file
     private final File source;
     /**
      * The main program. Every instruction generated will eventually end up here.
      */
     private final IMAProgram program = new IMAProgram();
  
+    /** The global environment codegen managers */
+    // Manage the labels
+    public final LabelManager labelManager = new LabelManager();
+    // Manage the stack
+    public final StackManager stackManager = new StackManager();
 
     /** The global environment for types (and the symbolTable) */
     public final SymbolTable symbolTable = new SymbolTable();
     public final EnvironmentType environmentType = new EnvironmentType(this);
 
+    
+    /** 
+     * Create a symbol in the symbol table.
+     * @param name
+     * @return Symbol
+     */
     public Symbol createSymbol(String name) {
         return symbolTable.create(name);
     }
-
-    /** The global environment codegen managers */
-    public final LabelManager labelManager = new LabelManager();
-    public final StackManager stackManager = new StackManager();
-    public final RegisterManager registerManager = new RegisterManager();
     
     /**
-     * Run the compiler (parse source file, generate code)
+     * Run the compiler (parse source file, generate code) and catch errors and exceptions.
      *
      * @return true on error
      */
@@ -228,16 +262,11 @@ public class DecacCompiler {
             return false;
         }
 
-        addComment("start main program");
         // create ima program error labels
         ErrorCatcher.createErrorLabel(this);
         prog.codeGenProgram(this);
-        addComment("end main program");
         // add ima program error handlers
         ErrorCatcher.handleErrors(this);
-        
-        // initialise la pile
-        stackManager.initializeStack(this);
 
         LOG.debug("Generated assembly code:" + nl + program.display());
         LOG.info("Output file assembly file is: " + destName);

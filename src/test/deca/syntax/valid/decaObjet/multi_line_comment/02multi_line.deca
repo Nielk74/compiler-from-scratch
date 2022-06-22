@@ -1,0 +1,46 @@
+// Description:
+//    Programme qui test les commentaires sur une ligne et plusieurs lignes avec des caractères spéciaux
+//
+// Resultats:
+// ok
+//
+// Historique:
+//    cree le 14/06/2022
+
+
+{
+    // bbb
+    /* a
+    // bbb
+    aaa
+    aaaa
+    */   
+
+    //bbb 
+    /* avc 
+    <
+    >
+    &
+    !
+    ;
+    =!
+    a==b
+    (
+        [ | ] 
+    )
+    print("test"); 
+    // 
+    +
+     - + % / 
+     printx("toto");
+     printlnx("toto");
+     while
+     return
+    if
+    then else
+    && || >= <= 
+    readInt() readFloat() new this null true false
+    {'aaa'}: * / /*
+    println("test"); 
+    */
+}

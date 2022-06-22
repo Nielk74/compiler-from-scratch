@@ -1,0 +1,23 @@
+// Description:
+//    test qui cast dans une classe en type object
+//
+// Resultats:
+//    
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    boolean equals(Object o){
+        return true;
+    }
+}
+class B extends A{
+}
+{
+    A a = new A();
+    Object o = (Object)(a);
+  
+    B b = null;
+    A a2 = (A)(b);
+}

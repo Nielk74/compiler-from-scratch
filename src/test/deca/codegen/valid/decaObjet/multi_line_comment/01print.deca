@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme correct codegen : 
+//    commenter print
+//
+// Resultats:
+//    ok
+//
+// Historique:
+//    cree le 14/06/2022
+{
+    /* println("ko1");
+    println("ko2");
+    */
+     println("ok");
+}

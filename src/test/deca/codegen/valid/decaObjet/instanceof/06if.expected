@@ -1,0 +1,2 @@
+a instanceof A
+a not instanceof B

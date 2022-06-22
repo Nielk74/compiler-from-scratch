@@ -1,0 +1,19 @@
+// Description:
+// Test d'un cast avec un type n'existant pas 
+//
+// Resultats:
+//  00invalidCastType.deca:18:9:
+//
+// Historique:
+//    crée le 16/06/2022
+class Point2D {
+    int x; // Abscisse
+    int y; // Ordonnee
+} 
+class Point3D extends Point2D {
+    int z; // Hauteur
+}  
+{             
+    Point3D p = null;
+    p = (Point2) (p);
+}

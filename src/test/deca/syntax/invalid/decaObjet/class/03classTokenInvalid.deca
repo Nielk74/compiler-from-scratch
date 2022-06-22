@@ -1,0 +1,16 @@
+// Description:
+//    test incorrect syntaxiquement car il y a des parentheses après le nom de la classe
+//
+// Resultats:
+//    03classTokenInvalid.deca:10:14:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class Point2D (){     
+    int x; // Abscisse     
+    int y; // Ordonnee        
+    Point2D get() {        
+        return this;     
+    } 
+} 

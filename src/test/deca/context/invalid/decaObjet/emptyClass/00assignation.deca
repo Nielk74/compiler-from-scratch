@@ -1,0 +1,19 @@
+// Description:
+//    test essayant d'assigner un objet de type A à un objet de type B sans heritage
+//
+// Resultats:
+//    00assignation.deca:18:10:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {
+    
+}
+class B {
+
+}
+{
+    A a = new A();
+    B b = a;
+}

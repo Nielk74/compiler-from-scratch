@@ -1,0 +1,34 @@
+// Description:
+//    Test de cast pour l'expression new
+//
+// Resultats:
+//      09castNew.expected
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    int x=1;
+    void m(){
+        println("This is from A");
+    }
+}
+class B extends A {
+    int x=2;
+    void m(){
+        println("This is from B");
+    }
+}
+class C extends B {
+    int x=3;
+    void m(){
+        println("This is from C");
+    }
+}
+
+{
+    A c = (B)(new C());
+    c.m();
+    println(c.x);
+    println(((A)(new B())).x);
+}

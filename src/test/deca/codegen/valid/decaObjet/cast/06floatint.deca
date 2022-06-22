@@ -1,0 +1,16 @@
+// Description:
+//    test qui cast un float en int (arrondi le float à l'entier le plus proche de 0)
+//
+// Resultats:
+//    7
+//    2147483647
+//
+// Historique:
+//    cree le 21/06/2022
+
+{
+    float x = 2.6;
+    int y = (int)(x * x + x - 2);
+    println(y);
+    println((int)(0x1.0p120));
+}

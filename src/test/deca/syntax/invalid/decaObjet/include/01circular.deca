@@ -1,0 +1,10 @@
+// Description:
+//   test sur inclusion ciculaire de fichier
+//
+// Resultats:
+//    circular2.decah:1:26:
+//
+// Historique:
+//    cree le 13/06/2022
+
+#include "circular1.decah"

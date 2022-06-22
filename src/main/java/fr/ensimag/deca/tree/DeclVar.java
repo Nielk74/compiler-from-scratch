@@ -19,8 +19,9 @@ import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 
 /**
+ * Variable declaration
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class DeclVar extends AbstractDeclVar {
 
@@ -37,28 +38,36 @@ public class DeclVar extends AbstractDeclVar {
         this.initialization = initialization;
     }
 
+    
+    /** 
+     * {@inheritDoc}
+     * 
+     * @param compiler
+     * @param localEnv
+     * @param currentClass
+     * @throws ContextualError
+     */
     @Override
     protected void verifyDeclVar(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         Symbol typeSymbol = type.getName();
-        Type t;
-        switch (typeSymbol.getName()) {
-            case "int":
-                t = compiler.environmentType.INT;
-                break;
-            case "float":
-                t = compiler.environmentType.FLOAT;
-                break;
-            case "boolean":
-                t = compiler.environmentType.BOOLEAN;
-                break;
-            default:
-                throw new ContextualError("Wrong variable type - expected: float, int or boolean ≠ current: "+
-                typeSymbol.getName(), type.getLocation());
+
+        TypeDefinition def = compiler.environmentType.defOfType(typeSymbol);
+        if (def == null) {
+            throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
         }
+        if (def.getType().isVoid()) {
+            throw new ContextualError("Forbidden variable type: void", type.getLocation());
+        }
+        TypeDefinition typeDef = compiler.environmentType.defOfType(typeSymbol);
+        if (typeDef == null) {
+            throw new ContextualError("Unknown type: " + typeSymbol.getName(), type.getLocation());
+        }
+        Type t = typeDef.getType();
+
         varName.setDefinition(new VariableDefinition(t, varName.getLocation()));
-        type.setDefinition(new TypeDefinition(t, type.getLocation()));
+        type.setDefinition(compiler.environmentType.defOfType(typeSymbol));
         type.setType(t);
         this.initialization.verifyInitialization(compiler, t, localEnv, currentClass);
         try {
@@ -68,6 +77,10 @@ public class DeclVar extends AbstractDeclVar {
         }
     }
 
+    
+    /** {@inheritDoc}
+     * @param compiler
+     */
     @Override
     protected void codeGenDeclVar(DecacCompiler compiler) {
         this.initialization.codeGenInitialization(compiler, 2);
@@ -82,6 +95,10 @@ public class DeclVar extends AbstractDeclVar {
         ((AbstractIdentifier) this.varName).getExpDefinition().setOperand(offset);
     }
 
+    
+    /** 
+     * @param s
+     */
     @Override
     public void decompile(IndentPrintStream s) {
         type.decompile(s);
@@ -91,6 +108,10 @@ public class DeclVar extends AbstractDeclVar {
         s.println(";");
     }
 
+    
+    /** 
+     * @param f
+     */
     @Override
     protected void iterChildren(TreeFunction f) {
         type.iter(f);
@@ -98,6 +119,11 @@ public class DeclVar extends AbstractDeclVar {
         initialization.iter(f);
     }
 
+    
+    /** 
+     * @param s
+     * @param prefix
+     */
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         type.prettyPrint(s, prefix, false);

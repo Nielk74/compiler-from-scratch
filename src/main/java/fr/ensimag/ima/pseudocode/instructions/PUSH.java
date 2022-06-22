@@ -5,7 +5,7 @@ import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
 /**
  * @author Ensimag
- * @date 25/04/2022
+ * 
  */
 public class PUSH extends UnaryInstruction {
     public PUSH(Register op1) {

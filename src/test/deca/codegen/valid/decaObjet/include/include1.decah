@@ -1,0 +1,1 @@
+    println("x in imported file test.deca: ", x);

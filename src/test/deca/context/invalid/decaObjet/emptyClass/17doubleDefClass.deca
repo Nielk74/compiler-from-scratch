@@ -1,0 +1,15 @@
+// Description:
+//    Test de double définition d'une classe avec le même nom
+//
+// Resultats:
+//    17doubleDefClass.deca:13:6:
+//
+// Historique:
+//    cree le 16/06/2022
+
+class A {
+
+}
+class A {
+
+}

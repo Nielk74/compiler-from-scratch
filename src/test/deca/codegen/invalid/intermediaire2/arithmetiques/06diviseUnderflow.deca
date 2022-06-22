@@ -1,0 +1,13 @@
+// Description:
+//    Programme test l'erreur underflow pour division avec la limite coté erreur (limite à 0x1.0p-150)
+//
+// Resultats:
+//    Error: Underflow
+//
+// Historique:
+//    cree le 15/06/2022
+{
+    float a = 2;
+    float b = 0x1.0p-149;
+    float c = b/a;
+}

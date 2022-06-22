@@ -5,22 +5,32 @@ import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
+ * Operator equals
  *
  * @author gl10
- * @date 25/04/2022
+ * 
  */
 public class Equals extends AbstractOpExactCmp {
 
+    /**
+     * @param leftOperand Left operand of the equality
+     * @param rightOperand Right operand of the equality
+     */
     public Equals(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getOperatorName() {
         return "==";
     }    
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void codeGenCondition(DecacCompiler compiler, boolean negative, Label l) {
         super.codeGenCondition(compiler, negative, l);

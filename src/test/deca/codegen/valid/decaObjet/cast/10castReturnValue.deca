@@ -1,0 +1,32 @@
+// Description:
+//    Test de cast pour l'expression return value
+//
+// Resultats:
+//      10castReturnValue.expected
+//
+// Historique:
+//    cree le 21/06/2022
+
+class A {
+    int x=1;
+    B m(){
+        return new B();
+    }
+    void p(){
+        println("from A");
+    }
+}
+class B extends A{
+    int x=2;
+    void m1(){
+        println("from B");
+    }
+}
+
+
+{
+    A a = new A();
+    A b = (A)(a.m());
+    println(b.x);
+    b.p();
+}

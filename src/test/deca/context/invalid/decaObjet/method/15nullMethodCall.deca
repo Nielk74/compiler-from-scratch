@@ -1,0 +1,12 @@
+// Description:
+// Test d'un appel de méthode de null
+//
+// Resultats:
+//     15nullMethodCall.deca:11:4:
+//
+// Historique:
+//    crée le 16/06/2022
+
+{
+    null.equals(null);
+}

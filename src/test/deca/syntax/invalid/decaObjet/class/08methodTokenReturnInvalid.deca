@@ -1,0 +1,16 @@
+// Description:
+//    test incorrect syntaxiquement car return est mal écrit
+//
+// Resultats:
+//    08methodTokenReturnInvalid.deca:14:14:
+//
+// Historique:
+//    cree le 15/06/2022
+
+class Point2D {     
+    int x; // Abscisse     
+    int y; // Ordonnee        
+    Point2D get () {       
+        retun this;     
+    } 
+} 

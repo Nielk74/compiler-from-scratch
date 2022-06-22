@@ -1,0 +1,17 @@
+// Description:
+//    test assignant la même valeur à deux objets par une double assignation
+//
+// Resultats:
+//    02comparaison.deca:22:8:
+//
+// Historique:
+//    cree le 13/06/2022
+
+class A {
+
+}
+
+{
+    A a;
+    A a1 = a = new A();
+}

@@ -1,0 +1,19 @@
+// Description:
+//    instanceof dans une condition greater or equals
+//
+// Resultats:
+//    06greaterOrEquals.deca:16:10:
+//
+// Historique:
+//    cree le 17/06/2022
+
+class A {}
+
+{
+    A a = new A();
+    boolean b = true;
+
+    if (b >= a instanceof A) {
+        
+    }
+}
