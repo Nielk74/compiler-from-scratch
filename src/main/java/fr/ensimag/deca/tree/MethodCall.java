@@ -65,6 +65,9 @@ public class MethodCall extends AbstractExpr {
         if (typeClass.isNull()) {
             throw new ContextualError("Wrong method call: Cannot call method on null", this.getLocation());
         }
+        if (typeClass.isString()) {
+            throw new ContextualError("Wrong method call: Cannot call method on string", this.getLocation());
+        }
         ClassDefinition classDef = ((ClassType) typeClass).getDefinition();
         ExpDefinition defTest = classDef.getMembers().get(method.getName());
         if (defTest == null) {
