@@ -5,9 +5,12 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+
+import javax.xml.namespace.QName;
 
 import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
 import fr.ensimag.ima.pseudocode.instructions.WFLOATX;
@@ -66,6 +69,13 @@ public abstract class AbstractPrint extends AbstractInst {
             throws ContextualError {
         for (AbstractExpr a : getArguments().getList()) {
             Type t = a.verifyExpr(compiler, localEnv, currentClass);
+            if(a.getClass() == Identifier.class){
+                //methode
+                ExpDefinition def = ((Identifier)a).getExpDefinition();
+                if(def.isMethod()){
+                    throw new ContextualError("Wrong parameter type of print - expected: int, float or string ≠ current: method", a.getLocation());
+                }
+            }
             if (!t.isInt() && !t.isFloat() && !t.isString()) {
                 throw new ContextualError("Wrong parameter type of print - expected: int, float or string ≠ current: "+ t, a.getLocation());
             }
@@ -78,6 +88,7 @@ public abstract class AbstractPrint extends AbstractInst {
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
         for (AbstractExpr a : getArguments().getList()) {
+            
             a.codeGenPrint(compiler);
             if (a.getType().isFloat() || a.getType().isInt()) {
                 addInstructionPrint(compiler, a);
