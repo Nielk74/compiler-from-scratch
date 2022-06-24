@@ -1,0 +1,12 @@
+// Description:
+//    test du new sur un type qui n'est pas une classe
+//
+// Resultats:
+//    test05.lis
+//
+// Historique:
+//    cree le 16/06/2022
+
+{
+  println(new int());
+}
