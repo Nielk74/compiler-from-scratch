@@ -1,0 +1,17 @@
+class A {
+  int m() {
+    println(m);
+    return 2 ; 
+  }
+}
+
+{
+  A a = new A() ; 
+  int r = a.m();
+   
+  if (r == 2) {
+    println("ok");
+  } else {
+    println("ko - get: ", r);
+  }
+}
