@@ -1,0 +1,21 @@
+// Ok
+
+class A {
+  float a() {
+    return 2 ; 
+  }
+  int A() {
+    return (int)(2) ; 
+  }
+}
+
+{
+  A a = new A() ; 
+   
+  if (a.a() == a.A()) {
+    println("ok");
+  } else {
+    println("ko");
+  }
+
+}
