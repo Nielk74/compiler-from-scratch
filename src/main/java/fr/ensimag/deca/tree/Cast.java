@@ -67,7 +67,8 @@ public class Cast extends AbstractExpr {
 
         type.setDefinition(typeDefType);
         Type typeType = type.getDefinition().getType();
-
+        this.setType(typeType);
+        type.setType(typeType);
         if (exprType.isVoid()) {
             throw new ContextualError("Forbidden type : void", type.getLocation());
         }
@@ -85,7 +86,7 @@ public class Cast extends AbstractExpr {
                         "Wrong right value class type - expected: subtype of " + typeType + " ≠ current: " + exprType,
                         this.getLocation());
             }
-        } else {
+        } else if (!exprType.sameType(typeType)){
             throw new ContextualError(
                     "Wrong cast: Cannot cast " + exprType + " to " + typeType,
                     this.getLocation());
@@ -109,7 +110,7 @@ public class Cast extends AbstractExpr {
         expr.codeGenExp(compiler, register_name);
 
         // conversion from float to int
-        if (type.getDefinition().getType().isInt()) {
+        if (expr.getType().isFloat() && type.getDefinition().getType().isInt()) {
             // check if the value is too big for le cast to int
 
             compiler.addComment("Cast to int");
@@ -128,13 +129,16 @@ public class Cast extends AbstractExpr {
 
             return;
         // conversion from int to float
-        } else if (type.getDefinition().getType().isFloat()){
+        } else if (expr.getType().isInt() && type.getDefinition().getType().isFloat()){
             compiler.addComment("Cast to float");
 
             compiler.addInstruction(new FLOAT(Register.getR(register_name), Register.getR(register_name)));
             compiler.addComment("End cast to float");
 
             return;   
+        }
+        else if (expr.getType().sameType(type.getType())){
+            return;
         }
 
 

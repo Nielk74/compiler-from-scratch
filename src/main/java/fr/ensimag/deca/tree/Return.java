@@ -43,10 +43,8 @@ public class Return extends AbstractInst {
         if (returnType.isVoid()) {
             throw new ContextualError("Wrong instruction: return statement not allowed in void method", this.getLocation());
         }
-        this.expr.verifyExpr(compiler, localEnv, currentClass);
-        if (!this.expr.getType().equals(returnType)) {
-            throw new ContextualError("Wrong return type: it does not match method return type", this.getLocation());
-        }
+
+        this.expr = this.expr.verifyRValue(compiler, localEnv, currentClass, returnType);
     }
 
     /**

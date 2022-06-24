@@ -105,7 +105,7 @@ public class DeclMethod extends AbstractDeclMethod {
         }
         MethodDefinition newMethodDef = new MethodDefinition(t, getLocation(), sig, methodIndex);
         Label label = compiler.labelManager
-                .createLabel("code." + currentClass.getType().getName().getName() + "." + name.getName().getName());
+                .createLabel("code." + currentClass.getType().getName().getName() + "." + name.getName().getName()+"."+methodIndex);
         newMethodDef.setLabel(label);
         try {
             currentClass.getMembers().declare(name.getName(), newMethodDef);
