@@ -69,6 +69,10 @@ public class Cast extends AbstractExpr {
         Type typeType = type.getDefinition().getType();
         this.setType(typeType);
         type.setType(typeType);
+        if (exprType.isNull()) {
+            this.setType(typeType);
+            return this.getType();
+        }
         if (exprType.isVoid()) {
             throw new ContextualError("Forbidden type : void", type.getLocation());
         }
