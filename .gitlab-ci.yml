@@ -37,8 +37,6 @@ coverage:
     - mvn clean jacoco:prepare-agent install jacoco:report
     - getCoverage.sh
   rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'
-      when: always
     - if: '$CI_COMMIT_BRANCH == "master"'
       when: always
     - when: never

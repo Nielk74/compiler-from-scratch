@@ -53,6 +53,9 @@ public class New extends AbstractExpr {
         if (t == null) {
             throw new ContextualError("Wrong initialization object: Type " + type.getName() + " is not defined", type.getLocation());
         }
+        if(!t.isClass()){
+            throw new ContextualError("Wrong initialization object: Type " + type.getName() + " is not a class", type.getLocation());
+        }
         type.setDefinition(t);
         this.setType(t.getType());
         return t.getType();
