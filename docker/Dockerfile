@@ -25,7 +25,7 @@ RUN useradd -ms /bin/bash gl && usermod -aG sudo gl
 RUN echo gl:gl | chpasswd
 
 # Copy bashrc and set permissions (as root)
-COPY docker/bashrc /home/gl/.bashrc
+COPY bashrc /home/gl/.bashrc
 RUN chown gl:gl /home/gl/.bashrc
 
 # Ensure directories exist and append paths (as root)
