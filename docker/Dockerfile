@@ -24,15 +24,18 @@ COPY ima_sources/sources /usr/local/ima/sources
 RUN useradd -ms /bin/bash gl && usermod -aG sudo gl
 RUN echo gl:gl | chpasswd
 
-# Configure user's home directory
+# Copy bashrc and set permissions (as root)
+COPY docker/bashrc /home/gl/.bashrc
+RUN chown gl:gl /home/gl/.bashrc
+
+# Ensure directories exist and append paths (as root)
+RUN mkdir -p /home/gl/Projet_GL /home/gl/.config \
+    && chown -R gl:gl /home/gl \
+    && echo 'export PATH="$PATH:/home/gl/Projet_GL/src/main/bin/"' >> /home/gl/.bashrc \
+    && echo 'export PATH="$PATH:/home/gl/Projet_GL/src/test/script/launchers"' >> /home/gl/.bashrc
+
+# Now switch to user gl
 USER gl
-COPY bashrc /home/gl/.bashrc
-
-# Ensure directories exist and automatically add custom PATH
-RUN mkdir -p /home/gl/Projet_GL /home/gl/.config && \
-    echo 'export PATH="$PATH:/home/gl/Projet_GL/src/main/bin/"' >> /home/gl/.bashrc && \
-    echo 'export PATH="$PATH:/home/gl/Projet_GL/src/test/script/launchers"' >> /home/gl/.bashrc   
-
 
 # Set volume and workdir
 VOLUME /home/gl/Projet_GL
