@@ -28,6 +28,9 @@ RUN echo gl:gl | chpasswd
 COPY bashrc /home/gl/.bashrc
 RUN chown gl:gl /home/gl/.bashrc
 
+RUN mkdir -p /home/gl/Projet_GL/target/generated-sources \
+    && chown -R gl:gl /home/gl/Projet_GL
+    
 # Ensure directories exist and append paths (as root)
 RUN mkdir -p /home/gl/Projet_GL /home/gl/.config \
     && chown -R gl:gl /home/gl \
