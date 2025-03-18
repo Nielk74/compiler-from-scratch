@@ -20,5 +20,6 @@ jobs:
       - name: Run tests in Docker container
         run: |
           docker run --rm \
-            -v "${{ github.workspace }}:/home/gl/Projet_GL" \
-            projetgl /bin/bash -c "cd /home/gl/Projet_GL && mvn clean && mvn test"
+          --entrypoint /bin/bash \
+          -v "${{ github.workspace }}:/home/gl/Projet_GL" \
+          projetgl -c "cd /home/gl/Projet_GL && mvn clean && mvn test"
