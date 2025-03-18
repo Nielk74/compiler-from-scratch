@@ -22,4 +22,4 @@ jobs:
           docker run --rm \
           --entrypoint /bin/bash \
           -v "${{ github.workspace }}:/home/gl/Projet_GL" \
-          projetgl /bin/bash -c "cd /home/gl/Projet_GL && mkdir -p target/generated-sources && mvn clean && mvn test"
+          projetgl -c "cd /home/gl/Projet_GL && mkdir -p target/generated-sources && mvn clean && mvn test"
