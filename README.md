@@ -1,7 +1,7 @@
 # Projet Génie Logiciel, Ensimag.
 gl10 (Donkey Kong), 25/04/2022.
 
-![https://gitlab.ensimag.fr/glapp2022/gl10/-/jobs/artifacts/develop/raw/cover.svg?job=coverage](https://gitlab.ensimag.fr/glapp2022/gl10/-/jobs/artifacts/develop/raw/cover.svg?job=coverage)
+[![CI/CD Pipeline](https://github.com/Nielk74/compiler-from-scratch/actions/workflows/docker-maven-ci.yml/badge.svg)](https://github.com/Nielk74/compiler-from-scratch/actions/workflows/docker-maven-ci.yml)
 
 ---
 ## Implémentation effective
@@ -72,4 +72,6 @@ Voir la documentation du Projet GL.
 
 ```
 - Sortie :
-<img src="https://cdn.discordapp.com/attachments/896722660027953162/985791297895931924/unknown.png" width=250>
+![IMG_20220619_220149](https://github.com/user-attachments/assets/681520e4-ff06-41f2-b06e-38e311b1bf8e)
+
+=
