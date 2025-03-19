@@ -22,6 +22,4 @@ jobs:
           docker run --rm \
           --entrypoint /bin/bash \
           -v "${{ github.workspace }}:/home/gl/Projet_GL" \
-          projetgl -c "cp -r /home/gl/Projet_GL /tmp/Projet_GL \
-          && cd /tmp/Projet_GL \
-          && mvn clean && mvn compile && mvn test"
+          projetgl -c "mvn clean && mvn compile && mvn test"
