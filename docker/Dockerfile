@@ -43,8 +43,8 @@ RUN mkdir -p /home/gl/Projet_GL /home/gl/.config \
     #&& echo 'export PATH="$PATH:/home/gl/Projet_GL/src/main/bin/"' >> /home/gl/.bashrc \
     #&& echo 'export PATH="$PATH:/home/gl/Projet_GL/src/test/script/launchers"' >> /home/gl/.bashrc
 
-ENV PATH="$PATH:/home/gl/Projet_GL/src/main/bin"
-ENV PATH="$PATH:/home/gl/Projet_GL/src/test/script/launchers"
+ENV PATH="$PATH:/tmp/Projet_GL/src/main/bin"
+ENV PATH="$PATH:/tmp/Projet_GL/src/test/script/launchers"
 
 #COPY src/main/bin/decac /usr/local/bin/decac
 #RUN chmod +x /usr/local/bin/decac
