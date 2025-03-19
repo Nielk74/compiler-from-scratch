@@ -73,5 +73,3 @@ Voir la documentation du Projet GL.
 ```
 - Sortie :
 ![IMG_20220619_220149](https://github.com/user-attachments/assets/681520e4-ff06-41f2-b06e-38e311b1bf8e)
-
-=
